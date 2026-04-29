@@ -6,6 +6,14 @@ import { supabase } from '../../lib/supabase';
 const QUESTION_COUNT = 10;
 const TIME_PER_QUESTION = 30;
 
+function FlagImage({ iso }) {
+  return (
+    <div style={{width:'100%',display:'flex',justifyContent:'center',alignItems:'center',padding:'1.5rem',background:'linear-gradient(135deg, #f8fafc, #e2e8f0)',borderRadius:'12px',marginBottom:'1.5rem',border:'2px solid #e2e8f0'}}>
+      <img src={'https://flagcdn.com/w320/' + iso + '.png'} alt="Steag" style={{maxWidth:'280px',width:'100%',height:'auto',borderRadius:'6px',boxShadow:'0 4px 12px rgba(0,0,0,0.15)'}} />
+    </div>
+  );
+}
+
 function HintMap({ lat, lng, radius }) {
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -180,6 +188,8 @@ export default function PlayQuiz() {
   const q = questions[currentIdx];
   const progress = ((currentIdx + 1) / questions.length) * 100;
   const hasMap = q.map_lat !== null && q.map_lat !== undefined && q.map_lng !== null && q.map_lng !== undefined;
+  const hasFlag = q.image_description && q.image_description.startsWith('FLAG_IMAGE:');
+  const flagIso = hasFlag ? q.image_description.replace('FLAG_IMAGE:', '') : null;
 
   return (
     <div className="quiz-container">
@@ -196,9 +206,11 @@ export default function PlayQuiz() {
           <span style={{marginLeft:'auto', color:'var(--text-light)', fontSize:'0.9rem'}}>Intrebarea {currentIdx + 1} / {questions.length}</span>
         </div>
         <div className="question-text">{q.question_text}</div>
-        {hasMap ? (
+        {hasFlag ? (
+          <FlagImage iso={flagIso} />
+        ) : hasMap ? (
           <HintMap key={'map-' + currentIdx} lat={parseFloat(q.map_lat)} lng={parseFloat(q.map_lng)} radius={parseFloat(q.map_radius) || 500000} />
-        ) : q.image_description ? (
+        ) : q.image_description && !q.image_description.startsWith('FLAG_IMAGE:') ? (
           <div className="question-image">Indiciu vizual: {q.image_description}</div>
         ) : null}
         {q.type === 'multiple_choice' ? (
