@@ -14,7 +14,13 @@ function FlagImage({ iso }) {
   );
 }
 
-function HintMap({ lat, lng, radius }) {
+function isPhysicalTopic(topic) {
+  if (!topic) return false;
+  const t = topic.toLowerCase();
+  return t.includes('relief') || t.includes('hidrograf') || t.includes('clim') || t.includes('munt') || t.includes('rauri') || t.includes('lac') || t.includes('mar') || t.includes('ocean') || t.includes('vegetat') || t.includes('sol') || t.includes('record');
+}
+
+function HintMap({ lat, lng, radius, topic }) {
   useEffect(() => {
     if (typeof window === 'undefined') return;
     if (!document.getElementById('leaflet-css')) {
@@ -34,25 +40,47 @@ function HintMap({ lat, lng, radius }) {
       const container = document.getElementById('hint-map');
       if (!container || !window.L) return;
       if (container._leaflet_id) { container._leaflet_id = null; container.innerHTML = ''; }
-      const map = window.L.map('hint-map', {zoomControl: true, attributionControl: false, scrollWheelZoom: false}).setView([lat, lng], getZoomFromRadius(radius));
-      window.L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom: 18, minZoom: 2}).addTo(map);
-      window.L.circle([lat, lng], {color: '#3b82f6', fillColor: '#3b82f6', fillOpacity: 0.2, weight: 2, dashArray: '8, 4', radius: radius}).addTo(map);
+      
+      const physical = isPhysicalTopic(topic);
+      const vagueRadius = radius * 2;
+      
+      const map = window.L.map('hint-map', {zoomControl: true, attributionControl: false, scrollWheelZoom: false}).setView([lat, lng], getZoomFromRadius(vagueRadius));
+      
+      let tileUrl, maxZoom;
+      if (physical) {
+        tileUrl = 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png';
+        maxZoom = 17;
+      } else {
+        tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+        maxZoom = 18;
+      }
+      
+      window.L.tileLayer(tileUrl, {maxZoom: maxZoom, minZoom: 2}).addTo(map);
+      
+      const circleColor = physical ? '#059669' : '#3b82f6';
+      window.L.circle([lat, lng], {color: circleColor, fillColor: circleColor, fillOpacity: 0.15, weight: 2, dashArray: '8, 4', radius: vagueRadius}).addTo(map);
     }
-  }, [lat, lng, radius]);
+  }, [lat, lng, radius, topic]);
+  
+  const physical = isPhysicalTopic(topic);
+  const labelText = physical ? 'Indiciu - harta fizica' : 'Indiciu - harta politica';
+  const labelColor = physical ? '#059669' : '#3b82f6';
+  
   return (
-    <div style={{width:'100%',height:'300px',borderRadius:'12px',overflow:'hidden',border:'2px solid #e2e8f0',marginBottom:'1.5rem',position:'relative'}}>
+    <div style={{width:'100%',height:'320px',borderRadius:'12px',overflow:'hidden',border:'2px solid #e2e8f0',marginBottom:'1.5rem',position:'relative'}}>
       <div id="hint-map" style={{width:'100%',height:'100%'}}></div>
-      <div style={{position:'absolute',top:8,left:8,background:'rgba(255,255,255,0.92)',padding:'4px 10px',borderRadius:'6px',fontSize:'0.8rem',fontWeight:600,color:'#0f172a',zIndex:1000}}>Indiciu vizual aproximativ</div>
+      <div style={{position:'absolute',top:8,left:8,background:'rgba(255,255,255,0.95)',padding:'4px 10px',borderRadius:'6px',fontSize:'0.8rem',fontWeight:600,color:labelColor,zIndex:1000,border:'1px solid '+labelColor}}>{labelText}</div>
     </div>
   );
 }
 
 function getZoomFromRadius(radius) {
-  if (radius >= 2000000) return 2;
-  if (radius >= 1000000) return 3;
-  if (radius >= 500000) return 4;
-  if (radius >= 200000) return 5;
-  return 6;
+  if (radius >= 4000000) return 2;
+  if (radius >= 2000000) return 3;
+  if (radius >= 1000000) return 4;
+  if (radius >= 500000) return 5;
+  if (radius >= 200000) return 6;
+  return 7;
 }
 
 export default function PlayQuiz() {
@@ -209,7 +237,7 @@ export default function PlayQuiz() {
         {hasFlag ? (
           <FlagImage iso={flagIso} />
         ) : hasMap ? (
-          <HintMap key={'map-' + currentIdx} lat={parseFloat(q.map_lat)} lng={parseFloat(q.map_lng)} radius={parseFloat(q.map_radius) || 500000} />
+          <HintMap key={'map-' + currentIdx} lat={parseFloat(q.map_lat)} lng={parseFloat(q.map_lng)} radius={parseFloat(q.map_radius) || 500000} topic={q.topic} />
         ) : q.image_description && !q.image_description.startsWith('FLAG_IMAGE:') ? (
           <div className="question-image">Indiciu vizual: {q.image_description}</div>
         ) : null}
