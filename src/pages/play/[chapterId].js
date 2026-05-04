@@ -6,6 +6,27 @@ import { supabase } from '../../lib/supabase';
 const QUESTION_COUNT = 10;
 const TIME_PER_QUESTION = 30;
 
+const DIPLOMAS_PER_CHAPTER = {
+  'Quiz Romania': { code: 'romania_master', name: 'Cunoscatorul Romaniei', emoji: 'RO' },
+  'Quiz România': { code: 'romania_master', name: 'Cunoscatorul Romaniei', emoji: 'RO' },
+  'Europa': { code: 'europe_explorer', name: 'Exploratorul Europei', emoji: 'EU' },
+  'Asia': { code: 'asia_master', name: 'Maestru al Asiei', emoji: 'AS' },
+  'Africa': { code: 'africa_conqueror', name: 'Cuceritorul Africii', emoji: 'AF' },
+  'America de Nord': { code: 'north_america_pioneer', name: 'Pionier al Americii de Nord', emoji: 'NA' },
+  'America de Sud': { code: 'south_america_adventurer', name: 'Aventurier in America de Sud', emoji: 'SA' },
+  'Oceania': { code: 'oceania_navigator', name: 'Navigator in Oceania', emoji: 'OC' },
+  'Antarctica': { code: 'antarctica_explorer', name: 'Explorator al Antarcticii', emoji: 'AN' },
+  'Steaguri': { code: 'flag_hunter', name: 'Vanator de Steaguri', emoji: 'FL' },
+  'Bacalaureat': { code: 'bac_master', name: 'Maestru BAC', emoji: 'BAC' },
+};
+
+const CUMULATIVE_DIPLOMAS = [
+  { threshold: 100, code: 'beginner', name: 'Incepator', emoji: 'IN' },
+  { threshold: 1000, code: 'enthusiast', name: 'Pasionat', emoji: 'PS' },
+  { threshold: 5000, code: 'expert', name: 'Expert Geograf', emoji: 'EX' },
+  { threshold: 10000, code: 'supreme_master', name: 'Maestru Suprem', emoji: 'MS' },
+];
+
 function FlagImage({ iso }) {
   return (
     <div style={{width:'100%',display:'flex',justifyContent:'center',alignItems:'center',padding:'1.5rem',background:'linear-gradient(135deg, #f8fafc, #e2e8f0)',borderRadius:'12px',marginBottom:'1.5rem',border:'2px solid #e2e8f0'}}>
@@ -40,32 +61,19 @@ function HintMap({ lat, lng, radius, topic }) {
       const container = document.getElementById('hint-map');
       if (!container || !window.L) return;
       if (container._leaflet_id) { container._leaflet_id = null; container.innerHTML = ''; }
-      
       const physical = isPhysicalTopic(topic);
       const vagueRadius = radius * 2;
-      
       const map = window.L.map('hint-map', {zoomControl: true, attributionControl: false, scrollWheelZoom: false}).setView([lat, lng], getZoomFromRadius(vagueRadius));
-      
-      let tileUrl, maxZoom;
-      if (physical) {
-        tileUrl = 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png';
-        maxZoom = 17;
-      } else {
-        tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-        maxZoom = 18;
-      }
-      
+      const tileUrl = physical ? 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png' : 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+      const maxZoom = physical ? 17 : 18;
       window.L.tileLayer(tileUrl, {maxZoom: maxZoom, minZoom: 2}).addTo(map);
-      
       const circleColor = physical ? '#059669' : '#3b82f6';
       window.L.circle([lat, lng], {color: circleColor, fillColor: circleColor, fillOpacity: 0.15, weight: 2, dashArray: '8, 4', radius: vagueRadius}).addTo(map);
     }
   }, [lat, lng, radius, topic]);
-  
   const physical = isPhysicalTopic(topic);
   const labelText = physical ? 'Indiciu - harta fizica' : 'Indiciu - harta politica';
   const labelColor = physical ? '#059669' : '#3b82f6';
-  
   return (
     <div style={{width:'100%',height:'320px',borderRadius:'12px',overflow:'hidden',border:'2px solid #e2e8f0',marginBottom:'1.5rem',position:'relative'}}>
       <div id="hint-map" style={{width:'100%',height:'100%'}}></div>
@@ -81,6 +89,23 @@ function getZoomFromRadius(radius) {
   if (radius >= 500000) return 5;
   if (radius >= 200000) return 6;
   return 7;
+}
+
+function DiplomaPopup({ diploma, onClose }) {
+  return (
+    <div style={{position:'fixed',inset:0,background:'rgba(0,0,0,0.7)',display:'flex',alignItems:'center',justifyContent:'center',zIndex:9999,padding:'1rem'}} onClick={onClose}>
+      <div style={{background:'linear-gradient(135deg,#fef3c7,#fcd34d)',padding:'3rem 2rem',borderRadius:'20px',maxWidth:'500px',textAlign:'center',border:'4px solid #d97706',boxShadow:'0 20px 60px rgba(0,0,0,0.3)'}} onClick={e=>e.stopPropagation()}>
+        <div style={{fontSize:'4rem',marginBottom:'1rem'}}>🏆</div>
+        <h2 style={{color:'#78350f',marginBottom:'0.5rem',fontSize:'1.8rem'}}>Diploma noua!</h2>
+        <div style={{fontSize:'1.5rem',fontWeight:700,color:'#92400e',margin:'1rem 0'}}>{diploma.name}</div>
+        <p style={{color:'#78350f',marginBottom:'1.5rem'}}>Felicitari! Ai obtinut o noua diploma. O poti vedea si descarca din pagina ta de Diplome.</p>
+        <div style={{display:'flex',gap:'1rem',justifyContent:'center'}}>
+          <Link href="/diplome" className="btn btn-primary" style={{background:'#d97706',color:'white',padding:'0.75rem 1.5rem',borderRadius:'8px',fontWeight:600,textDecoration:'none'}}>Vezi diplomele</Link>
+          <button onClick={onClose} className="btn" style={{background:'white',color:'#78350f',padding:'0.75rem 1.5rem',borderRadius:'8px',fontWeight:600,border:'2px solid #d97706'}}>Inchide</button>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default function PlayQuiz() {
@@ -99,6 +124,7 @@ export default function PlayQuiz() {
   const [loading, setLoading] = useState(true);
   const [finished, setFinished] = useState(false);
   const [startTime, setStartTime] = useState(Date.now());
+  const [newDiploma, setNewDiploma] = useState(null);
 
   useEffect(() => { if (!chapterId) return; loadQuiz(); }, [chapterId]);
 
@@ -159,6 +185,62 @@ export default function PlayQuiz() {
     }
   }
 
+  async function checkAndAwardDiplomas(session, totalScore, finalCorrect, total) {
+    const pct = Math.round((finalCorrect / total) * 100);
+    let awarded = null;
+    
+    // Diploma per chapter (need 80%+)
+    if (chapter && pct >= 80) {
+      const diplomaInfo = DIPLOMAS_PER_CHAPTER[chapter.name];
+      if (diplomaInfo) {
+        const { data: existing } = await supabase
+          .from('diplomas')
+          .select('id')
+          .eq('user_id', session.user.id)
+          .eq('diploma_code', diplomaInfo.code)
+          .maybeSingle();
+        
+        if (!existing) {
+          const { data } = await supabase.from('diplomas').insert({
+            user_id: session.user.id,
+            diploma_code: diplomaInfo.code,
+            diploma_name: diplomaInfo.name,
+            diploma_emoji: diplomaInfo.emoji,
+            diploma_type: 'chapter',
+            earned_score: pct
+          }).select().single();
+          if (data) awarded = data;
+        }
+      }
+    }
+    
+    // Cumulative diplomas
+    for (const cd of CUMULATIVE_DIPLOMAS) {
+      if (totalScore >= cd.threshold) {
+        const { data: existing } = await supabase
+          .from('diplomas')
+          .select('id')
+          .eq('user_id', session.user.id)
+          .eq('diploma_code', cd.code)
+          .maybeSingle();
+        
+        if (!existing) {
+          const { data } = await supabase.from('diplomas').insert({
+            user_id: session.user.id,
+            diploma_code: cd.code,
+            diploma_name: cd.name,
+            diploma_emoji: cd.emoji,
+            diploma_type: 'cumulative',
+            earned_score: totalScore
+          }).select().single();
+          if (data && !awarded) awarded = data;
+        }
+      }
+    }
+    
+    return awarded;
+  }
+
   async function saveResults() {
     const { data: { session } } = await supabase.auth.getSession();
     if (!session) return;
@@ -172,12 +254,18 @@ export default function PlayQuiz() {
       duration_seconds: duration
     });
     const { data: profile } = await supabase.from('profiles').select('total_score, games_played').eq('id', session.user.id).single();
+    let newTotalScore = score;
     if (profile) {
+      newTotalScore = (profile.total_score || 0) + score;
       await supabase.from('profiles').update({
-        total_score: (profile.total_score || 0) + score,
+        total_score: newTotalScore,
         games_played: (profile.games_played || 0) + 1
       }).eq('id', session.user.id);
     }
+    
+    // Check for diplomas
+    const awarded = await checkAndAwardDiplomas(session, newTotalScore, correct, questions.length);
+    if (awarded) setNewDiploma(awarded);
   }
 
   if (loading) return <div className="loading container">Se incarca intrebarile...</div>;
@@ -193,23 +281,26 @@ export default function PlayQuiz() {
   if (finished) {
     const pct = Math.round((correct / questions.length) * 100);
     return (
-      <div className="container">
-        <div className="results">
-          <div style={{fontSize:'4rem'}}>{pct >= 80 ? 'Excelent' : pct >= 60 ? 'Bine' : pct >= 40 ? 'Ok' : 'Mai studiaza'}</div>
-          <div className="score">{score}</div>
-          <div className="score-label">puncte castigate</div>
-          <div className="stats">
-            <div className="stat"><div className="v">{correct}/{questions.length}</div><div className="l">Corecte</div></div>
-            <div className="stat"><div className="v">{pct}%</div><div className="l">Acuratete</div></div>
-            <div className="stat"><div className="v">{chapter?.emoji}</div><div className="l">{chapter?.name}</div></div>
-          </div>
-          <div className="actions">
-            <button onClick={() => router.reload()} className="btn btn-primary">Mai joc o data</button>
-            <Link href="/" className="btn btn-outline" style={{borderColor:'var(--primary-light)', color:'var(--primary-light)'}}>Capitole</Link>
-            <Link href="/leaderboard" className="btn btn-success">Clasament</Link>
+      <>
+        {newDiploma && <DiplomaPopup diploma={newDiploma} onClose={() => setNewDiploma(null)} />}
+        <div className="container">
+          <div className="results">
+            <div style={{fontSize:'4rem'}}>{pct >= 80 ? 'Excelent' : pct >= 60 ? 'Bine' : pct >= 40 ? 'Ok' : 'Mai studiaza'}</div>
+            <div className="score">{score}</div>
+            <div className="score-label">puncte castigate</div>
+            <div className="stats">
+              <div className="stat"><div className="v">{correct}/{questions.length}</div><div className="l">Corecte</div></div>
+              <div className="stat"><div className="v">{pct}%</div><div className="l">Acuratete</div></div>
+              <div className="stat"><div className="v">{chapter?.emoji}</div><div className="l">{chapter?.name}</div></div>
+            </div>
+            <div className="actions">
+              <button onClick={() => router.reload()} className="btn btn-primary">Mai joc o data</button>
+              <Link href="/" className="btn btn-outline" style={{borderColor:'var(--primary-light)', color:'var(--primary-light)'}}>Capitole</Link>
+              <Link href="/diplome" className="btn btn-success">Diplomele mele</Link>
+            </div>
           </div>
         </div>
-      </div>
+      </>
     );
   }
 

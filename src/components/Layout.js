@@ -30,7 +30,8 @@ export default function Layout({ children }) {
             🌍 TerraQuiz
           </Link>
           <nav>
-            <Link href="/leaderboard">Clasament</Link>
+            <Link href="/leaderboard">Clasament</Link><Link href="/diplome">Diplome</Link>
+
             {user ? (
               <>
                 <Link href="/profile">Profil</Link>
