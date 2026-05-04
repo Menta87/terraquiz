@@ -108,6 +108,69 @@ function DiplomaPopup({ diploma, onClose }) {
   );
 }
 
+function ChallengeBox({ challengeId, baseUrl }) {
+  const [copied, setCopied] = useState(false);
+  const link = `${baseUrl}/provocare/${challengeId}`;
+  
+  function copyLink() {
+    navigator.clipboard.writeText(link);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  }
+  
+  function shareWhatsApp() {
+    const text = encodeURIComponent(`Te provoc la TerraQuiz! Vezi daca ma poti bate: ${link}`);
+    window.open(`https://wa.me/?text=${text}`, '_blank');
+  }
+  
+  function shareFacebook() {
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(link)}`, '_blank');
+  }
+  
+  return (
+    <div style={{
+      background: 'linear-gradient(135deg, #ddd6fe, #c4b5fd)',
+      padding: '1.5rem',
+      borderRadius: '12px',
+      marginTop: '1.5rem',
+      border: '2px solid #8b5cf6',
+    }}>
+      <div style={{textAlign:'center', marginBottom:'1rem'}}>
+        <div style={{fontSize:'2.5rem'}}>🎯</div>
+        <h3 style={{color:'#5b21b6', marginBottom:'0.5rem'}}>Provoaca un coleg!</h3>
+        <p style={{color:'#6d28d9', fontSize:'0.95rem'}}>Trimite linkul si vezi cine te bate la scor</p>
+      </div>
+      <div style={{
+        background:'white',
+        padding:'0.75rem',
+        borderRadius:'8px',
+        marginBottom:'1rem',
+        wordBreak:'break-all',
+        fontSize:'0.85rem',
+        color:'#5b21b6',
+        border:'1px solid #8b5cf6',
+      }}>{link}</div>
+      <div style={{display:'flex', gap:'0.5rem', flexWrap:'wrap'}}>
+        <button onClick={copyLink} style={{
+          flex:1, minWidth:'120px',
+          background: copied ? '#16a34a' : '#8b5cf6',
+          color:'white', padding:'0.75rem', borderRadius:'8px',
+          border:'none', fontWeight:600, cursor:'pointer',
+          transition:'all 0.2s'
+        }}>{copied ? '✓ Copiat!' : 'Copiaza link'}</button>
+        <button onClick={shareWhatsApp} style={{
+          background:'#25d366', color:'white', padding:'0.75rem 1.25rem',
+          borderRadius:'8px', border:'none', fontWeight:600, cursor:'pointer'
+        }}>WhatsApp</button>
+        <button onClick={shareFacebook} style={{
+          background:'#1877f2', color:'white', padding:'0.75rem 1.25rem',
+          borderRadius:'8px', border:'none', fontWeight:600, cursor:'pointer'
+        }}>Facebook</button>
+      </div>
+    </div>
+  );
+}
+
 export default function PlayQuiz() {
   const router = useRouter();
   const { chapterId } = router.query;
@@ -125,6 +188,8 @@ export default function PlayQuiz() {
   const [finished, setFinished] = useState(false);
   const [startTime, setStartTime] = useState(Date.now());
   const [newDiploma, setNewDiploma] = useState(null);
+  const [challengeId, setChallengeId] = useState(null);
+  const [creatingChallenge, setCreatingChallenge] = useState(false);
 
   useEffect(() => { if (!chapterId) return; loadQuiz(); }, [chapterId]);
 
@@ -188,56 +253,31 @@ export default function PlayQuiz() {
   async function checkAndAwardDiplomas(session, totalScore, finalCorrect, total) {
     const pct = Math.round((finalCorrect / total) * 100);
     let awarded = null;
-    
-    // Diploma per chapter (need 80%+)
     if (chapter && pct >= 80) {
       const diplomaInfo = DIPLOMAS_PER_CHAPTER[chapter.name];
       if (diplomaInfo) {
-        const { data: existing } = await supabase
-          .from('diplomas')
-          .select('id')
-          .eq('user_id', session.user.id)
-          .eq('diploma_code', diplomaInfo.code)
-          .maybeSingle();
-        
+        const { data: existing } = await supabase.from('diplomas').select('id').eq('user_id', session.user.id).eq('diploma_code', diplomaInfo.code).maybeSingle();
         if (!existing) {
           const { data } = await supabase.from('diplomas').insert({
-            user_id: session.user.id,
-            diploma_code: diplomaInfo.code,
-            diploma_name: diplomaInfo.name,
-            diploma_emoji: diplomaInfo.emoji,
-            diploma_type: 'chapter',
-            earned_score: pct
+            user_id: session.user.id, diploma_code: diplomaInfo.code, diploma_name: diplomaInfo.name,
+            diploma_emoji: diplomaInfo.emoji, diploma_type: 'chapter', earned_score: pct
           }).select().single();
           if (data) awarded = data;
         }
       }
     }
-    
-    // Cumulative diplomas
     for (const cd of CUMULATIVE_DIPLOMAS) {
       if (totalScore >= cd.threshold) {
-        const { data: existing } = await supabase
-          .from('diplomas')
-          .select('id')
-          .eq('user_id', session.user.id)
-          .eq('diploma_code', cd.code)
-          .maybeSingle();
-        
+        const { data: existing } = await supabase.from('diplomas').select('id').eq('user_id', session.user.id).eq('diploma_code', cd.code).maybeSingle();
         if (!existing) {
           const { data } = await supabase.from('diplomas').insert({
-            user_id: session.user.id,
-            diploma_code: cd.code,
-            diploma_name: cd.name,
-            diploma_emoji: cd.emoji,
-            diploma_type: 'cumulative',
-            earned_score: totalScore
+            user_id: session.user.id, diploma_code: cd.code, diploma_name: cd.name,
+            diploma_emoji: cd.emoji, diploma_type: 'cumulative', earned_score: totalScore
           }).select().single();
           if (data && !awarded) awarded = data;
         }
       }
     }
-    
     return awarded;
   }
 
@@ -246,26 +286,41 @@ export default function PlayQuiz() {
     if (!session) return;
     const duration = Math.floor((Date.now() - startTime) / 1000);
     await supabase.from('game_results').insert({
-      user_id: session.user.id,
-      chapter_id: parseInt(chapterId),
-      score,
-      questions_correct: correct,
-      questions_total: questions.length,
-      duration_seconds: duration
+      user_id: session.user.id, chapter_id: parseInt(chapterId), score,
+      questions_correct: correct, questions_total: questions.length, duration_seconds: duration
     });
     const { data: profile } = await supabase.from('profiles').select('total_score, games_played').eq('id', session.user.id).single();
     let newTotalScore = score;
     if (profile) {
       newTotalScore = (profile.total_score || 0) + score;
       await supabase.from('profiles').update({
-        total_score: newTotalScore,
-        games_played: (profile.games_played || 0) + 1
+        total_score: newTotalScore, games_played: (profile.games_played || 0) + 1
       }).eq('id', session.user.id);
     }
-    
-    // Check for diplomas
     const awarded = await checkAndAwardDiplomas(session, newTotalScore, correct, questions.length);
     if (awarded) setNewDiploma(awarded);
+  }
+
+  async function createChallenge() {
+    setCreatingChallenge(true);
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session) { setCreatingChallenge(false); return; }
+    
+    const { data: profile } = await supabase.from('profiles').select('username').eq('id', session.user.id).single();
+    const challengerName = profile?.username || 'Anonim';
+    
+    const id = Math.random().toString(36).substring(2, 11);
+    const questionIds = questions.map(q => q.id);
+    
+    const { error } = await supabase.from('challenges').insert({
+      id, challenger_id: session.user.id, challenger_name: challengerName,
+      challenger_score: score, challenger_correct: correct, challenger_total: questions.length,
+      chapter_id: parseInt(chapterId), chapter_name: chapter?.name, chapter_emoji: chapter?.emoji,
+      question_ids: questionIds
+    });
+    
+    if (!error) setChallengeId(id);
+    setCreatingChallenge(false);
   }
 
   if (loading) return <div className="loading container">Se incarca intrebarile...</div>;
@@ -280,6 +335,7 @@ export default function PlayQuiz() {
 
   if (finished) {
     const pct = Math.round((correct / questions.length) * 100);
+    const baseUrl = typeof window !== 'undefined' ? window.location.origin : '';
     return (
       <>
         {newDiploma && <DiplomaPopup diploma={newDiploma} onClose={() => setNewDiploma(null)} />}
@@ -298,6 +354,21 @@ export default function PlayQuiz() {
               <Link href="/" className="btn btn-outline" style={{borderColor:'var(--primary-light)', color:'var(--primary-light)'}}>Capitole</Link>
               <Link href="/diplome" className="btn btn-success">Diplomele mele</Link>
             </div>
+            
+            {!challengeId ? (
+              <button onClick={createChallenge} disabled={creatingChallenge} style={{
+                marginTop:'1.5rem', width:'100%',
+                background:'linear-gradient(135deg, #8b5cf6, #6d28d9)',
+                color:'white', padding:'1rem', borderRadius:'12px',
+                border:'none', fontWeight:700, fontSize:'1.1rem',
+                cursor: creatingChallenge ? 'wait' : 'pointer',
+                boxShadow:'0 4px 12px rgba(139, 92, 246, 0.4)',
+              }}>
+                {creatingChallenge ? 'Se creeaza...' : '🎯 Provoaca un coleg'}
+              </button>
+            ) : (
+              <ChallengeBox challengeId={challengeId} baseUrl={baseUrl} />
+            )}
           </div>
         </div>
       </>
@@ -325,13 +396,7 @@ export default function PlayQuiz() {
           <span style={{marginLeft:'auto', color:'var(--text-light)', fontSize:'0.9rem'}}>Intrebarea {currentIdx + 1} / {questions.length}</span>
         </div>
         <div className="question-text">{q.question_text}</div>
-        {hasFlag ? (
-          <FlagImage iso={flagIso} />
-        ) : hasMap ? (
-          <HintMap key={'map-' + currentIdx} lat={parseFloat(q.map_lat)} lng={parseFloat(q.map_lng)} radius={parseFloat(q.map_radius) || 500000} topic={q.topic} />
-        ) : q.image_description && !q.image_description.startsWith('FLAG_IMAGE:') ? (
-          <div className="question-image">Indiciu vizual: {q.image_description}</div>
-        ) : null}
+        {hasFlag ? <FlagImage iso={flagIso} /> : hasMap ? <HintMap key={'map-' + currentIdx} lat={parseFloat(q.map_lat)} lng={parseFloat(q.map_lng)} radius={parseFloat(q.map_radius) || 500000} topic={q.topic} /> : q.image_description && !q.image_description.startsWith('FLAG_IMAGE:') ? <div className="question-image">Indiciu vizual: {q.image_description}</div> : null}
         {q.type === 'multiple_choice' ? (
           <div className="options">
             {['option_a', 'option_b', 'option_c', 'option_d'].map((key, i) => {
@@ -343,31 +408,17 @@ export default function PlayQuiz() {
                 if (opt === q.correct_answer) cls += ' correct';
                 else if (opt === selectedOption) cls += ' incorrect';
               }
-              return (
-                <button key={key} className={cls} disabled={showResult} onClick={() => handleAnswer(opt)}>
-                  <strong>{letter})</strong> {opt}
-                </button>
-              );
+              return <button key={key} className={cls} disabled={showResult} onClick={() => handleAnswer(opt)}><strong>{letter})</strong> {opt}</button>;
             })}
           </div>
         ) : (
           <div>
             <input type="text" className="fill-input" placeholder="Scrie raspunsul aici..." value={fillAnswer} onChange={e => setFillAnswer(e.target.value)} disabled={showResult} onKeyDown={e => e.key === 'Enter' && !showResult && handleAnswer(fillAnswer)} autoFocus />
-            {!showResult && (
-              <button onClick={() => handleAnswer(fillAnswer)} className="btn btn-primary next-btn">Verifica raspunsul</button>
-            )}
-            {showResult && (
-              <div style={{marginTop:'1rem', padding:'1rem', borderRadius:'8px', background: isCorrect ? '#d1fae5' : '#fee2e2', color: isCorrect ? '#065f46' : '#991b1b'}}>
-                {isCorrect ? 'Corect!' : 'Raspunsul corect: ' + q.correct_answer}
-              </div>
-            )}
+            {!showResult && <button onClick={() => handleAnswer(fillAnswer)} className="btn btn-primary next-btn">Verifica raspunsul</button>}
+            {showResult && <div style={{marginTop:'1rem', padding:'1rem', borderRadius:'8px', background: isCorrect ? '#d1fae5' : '#fee2e2', color: isCorrect ? '#065f46' : '#991b1b'}}>{isCorrect ? 'Corect!' : 'Raspunsul corect: ' + q.correct_answer}</div>}
           </div>
         )}
-        {showResult && (
-          <button onClick={nextQuestion} className="btn btn-primary next-btn">
-            {currentIdx + 1 >= questions.length ? 'Vezi rezultatul' : 'Urmatoarea intrebare'}
-          </button>
-        )}
+        {showResult && <button onClick={nextQuestion} className="btn btn-primary next-btn">{currentIdx + 1 >= questions.length ? 'Vezi rezultatul' : 'Urmatoarea intrebare'}</button>}
       </div>
     </div>
   );
