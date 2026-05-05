@@ -13,13 +13,27 @@ export default function App({ Component, pageProps }) {
         <meta name="google-adsense-account" content="ca-pub-7306328079715769" />
         <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌍</text></svg>" />
       </Head>
-      <Script
+        <Script
         async
         strategy="afterInteractive"
         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7306328079715769"
         crossOrigin="anonymous"
       />
+      <Script
+        async
+        strategy="afterInteractive"
+        src="https://www.googletagmanager.com/gtag/js?id=G-B7ZW42MTPK"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-B7ZW42MTPK');
+        `}
+      </Script>
       <Layout>
+
         <Component {...pageProps} />
       </Layout>
     </>
