@@ -86,12 +86,56 @@ export default function Home() {
         </div>
       </section>
 
+         <section style={{
+        background:'linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%)',
+        padding:'3rem 0',
+      }}>
+        <div className="container">
+          <div style={{
+            background:'rgba(255,255,255,0.15)',
+            backdropFilter:'blur(10px)',
+            border:'2px solid rgba(255,255,255,0.3)',
+            borderRadius:'24px',
+            padding:'2.5rem 2rem',
+            textAlign:'center',
+            color:'white',
+            boxShadow:'0 20px 60px rgba(0,0,0,0.2)',
+          }}>
+            <div style={{fontSize:'4rem', marginBottom:'0.5rem'}}>🎮</div>
+            <h2 style={{fontSize:'2.2rem', fontWeight:900, marginBottom:'0.75rem', letterSpacing:'-0.5px'}}>
+              Joaca cu prietenii sau cu clasa!
+            </h2>
+            <p style={{fontSize:'1.15rem', opacity:0.95, maxWidth:'600px', margin:'0 auto 2rem', lineHeight:1.5}}>
+              Mod multiplayer in stilul Kahoot. Profesorul creeaza camera, elevii intra cu un cod si toata lumea joaca live!
+            </p>
+            <a href="/multiplayer" style={{
+              display:'inline-block',
+              background:'white',
+              color:'#7c3aed',
+              padding:'1rem 2.5rem',
+              borderRadius:'12px',
+              fontWeight:800,
+              fontSize:'1.15rem',
+              textDecoration:'none',
+              boxShadow:'0 8px 24px rgba(0,0,0,0.25)',
+              transition:'transform 0.2s',
+            }}
+            onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-3px) scale(1.03)'}
+            onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0) scale(1)'}
+            >
+              🚀 Intra in modul Multiplayer
+            </a>
+          </div>
+        </div>
+      </section>
+
       <section style={{padding:'4rem 0', background:'linear-gradient(180deg, #f8fafc 0%, #ffffff 100%)'}}>
         <div className="container">
           <div style={{textAlign:'center', marginBottom:'3rem'}}>
             <h2 style={{fontSize:'2.5rem', fontWeight:800, color:'#1e293b', marginBottom:'0.5rem'}}>
               Alege un capitol
             </h2>
+
             <p style={{color:'#64748b', fontSize:'1.1rem'}}>
               Selecteaza tema preferata si incepe sa joci
             </p>
