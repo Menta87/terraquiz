@@ -30,7 +30,8 @@ export default function Layout({ children }) {
             🌍 TerraQuiz
           </Link>
           <nav>
-            <Link href="/leaderboard">Clasament</Link><Link href="/diplome">Diplome</Link>
+                       <Link href="/leaderboard">Clasament</Link><Link href="/diplome">Diplome</Link><Link href="/premium" style={{background:'linear-gradient(135deg, #fbbf24, #d97706)', color:'white', padding:'0.4rem 0.9rem', borderRadius:'8px', fontWeight:700, marginLeft:'0.25rem'}}>⭐ Premium</Link>
+
 
             {user ? (
               <>
