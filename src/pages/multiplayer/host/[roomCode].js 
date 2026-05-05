@@ -78,28 +78,13 @@ export default function HostRoom() {
     setLoading(false);
 
     const channel = supabase.channel(`room_${r.id}`)
-      .on('postgres_changes', {
-        event: 'INSERT',
-        schema: 'public',
-        table: 'multiplayer_players',
-        filter: `room_id=eq.${r.id}`
-      }, (payload) => {
+      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'multiplayer_players', filter: `room_id=eq.${r.id}` }, (payload) => {
         setPlayers(prev => [...prev, payload.new]);
       })
-      .on('postgres_changes', {
-        event: 'UPDATE',
-        schema: 'public',
-        table: 'multiplayer_players',
-        filter: `room_id=eq.${r.id}`
-      }, (payload) => {
+      .on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'multiplayer_players', filter: `room_id=eq.${r.id}` }, (payload) => {
         setPlayers(prev => prev.map(p => p.id === payload.new.id ? payload.new : p));
       })
-      .on('postgres_changes', {
-        event: 'INSERT',
-        schema: 'public',
-        table: 'multiplayer_answers',
-        filter: `room_id=eq.${r.id}`
-      }, (payload) => {
+      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'multiplayer_answers', filter: `room_id=eq.${r.id}` }, (payload) => {
         setAnswersForQuestion(prev => [...prev, payload.new]);
       })
       .subscribe();
@@ -117,10 +102,7 @@ export default function HostRoom() {
 
   useEffect(() => {
     if (stage !== 'question') return;
-    if (timeLeft <= 0) {
-      revealAnswer();
-      return;
-    }
+    if (timeLeft <= 0) { revealAnswer(); return; }
     const t = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
     return () => clearTimeout(t);
   }, [timeLeft, stage]);
@@ -130,14 +112,10 @@ export default function HostRoom() {
       alert('Trebuie sa fie cel putin un jucator!');
       return;
     }
-    
     const now = new Date().toISOString();
     await supabase.from('multiplayer_rooms').update({
-      status: 'playing',
-      current_question_idx: 0,
-      question_started_at: now
+      status: 'playing', current_question_idx: 0, question_started_at: now
     }).eq('id', room.id);
-
     setCurrentQuestion(0);
     setAnswersForQuestion([]);
     setTimeLeft(TIME_PER_QUESTION);
@@ -146,35 +124,27 @@ export default function HostRoom() {
 
   async function nextQuestion() {
     const nextIdx = currentQuestion + 1;
-    
     if (nextIdx >= questions.length) {
-      await supabase.from('multiplayer_rooms').update({
-        status: 'finished'
-      }).eq('id', room.id);
+      await supabase.from('multiplayer_rooms').update({ status: 'finished' }).eq('id', room.id);
       setStage('finished');
       return;
     }
-
     const now = new Date().toISOString();
     await supabase.from('multiplayer_rooms').update({
-      current_question_idx: nextIdx,
-      question_started_at: now
+      current_question_idx: nextIdx, question_started_at: now
     }).eq('id', room.id);
-
     setCurrentQuestion(nextIdx);
     setAnswersForQuestion([]);
     setTimeLeft(TIME_PER_QUESTION);
     setStage('question');
   }
 
-  function revealAnswer() {
-    setStage('reveal');
-  }
+  function revealAnswer() { setStage('reveal'); }
 
   const sortedPlayers = [...players].sort((a, b) => b.score - a.score);
 
   if (loading) return <div className="loading container">Se incarca camera...</div>;
-  
+
   if (error) {
     return (
       <div className="container" style={{padding:'4rem 0', textAlign:'center'}}>
@@ -189,22 +159,14 @@ export default function HostRoom() {
       <div style={{minHeight:'90vh', padding:'2rem 1.5rem', background:'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'}}>
         <div style={{maxWidth:'1200px', margin:'0 auto'}}>
           <div style={{background:'white', borderRadius:'20px', padding:'2.5rem', textAlign:'center', marginBottom:'2rem', boxShadow:'0 10px 40px rgba(0,0,0,0.2)'}}>
-            <div style={{fontSize:'1.2rem', color:'#64748b', marginBottom:'0.5rem'}}>
-              {room.chapter_emoji} {room.chapter_name} • {questions.length} intrebari
-            </div>
-            <div style={{fontSize:'1.1rem', color:'#475569', marginBottom:'1rem'}}>
-              Intra pe <strong>terraquiz.ro/multiplayer</strong> si introdu codul:
-            </div>
-            <div style={{fontSize:'5rem', fontWeight:900, letterSpacing:'1rem', color:'#5b21b6', fontFamily:'monospace', padding:'1rem', background:'linear-gradient(135deg, #ede9fe, #ddd6fe)', borderRadius:'16px', border:'4px solid #8b5cf6'}}>
-              {roomCode}
-            </div>
+            <div style={{fontSize:'1.2rem', color:'#64748b', marginBottom:'0.5rem'}}>{room.chapter_emoji} {room.chapter_name} • {questions.length} intrebari</div>
+            <div style={{fontSize:'1.1rem', color:'#475569', marginBottom:'1rem'}}>Intra pe <strong>terraquiz.ro/multiplayer</strong> si introdu codul:</div>
+            <div style={{fontSize:'5rem', fontWeight:900, letterSpacing:'1rem', color:'#5b21b6', fontFamily:'monospace', padding:'1rem', background:'linear-gradient(135deg, #ede9fe, #ddd6fe)', borderRadius:'16px', border:'4px solid #8b5cf6'}}>{roomCode}</div>
           </div>
           <div style={{background:'white', borderRadius:'20px', padding:'2rem', marginBottom:'2rem', boxShadow:'0 10px 40px rgba(0,0,0,0.2)'}}>
             <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'1.5rem'}}>
               <h2 style={{color:'#1e293b', fontSize:'1.5rem'}}>👥 Jucatori conectati</h2>
-              <div style={{background:'#8b5cf6', color:'white', padding:'0.5rem 1rem', borderRadius:'8px', fontWeight:700, fontSize:'1.2rem'}}>
-                {players.length}
-              </div>
+              <div style={{background:'#8b5cf6', color:'white', padding:'0.5rem 1rem', borderRadius:'8px', fontWeight:700, fontSize:'1.2rem'}}>{players.length}</div>
             </div>
             {players.length === 0 ? (
               <div style={{textAlign:'center', padding:'3rem', color:'#94a3b8'}}>
@@ -233,7 +195,6 @@ export default function HostRoom() {
   if (stage === 'question' || stage === 'reveal') {
     const q = questions[currentQuestion];
     if (!q) return <div className="loading container">Se incarca intrebarea...</div>;
-    
     const answeredCount = answersForQuestion.length;
     const totalPlayers = players.length;
     const hasFlag = q.image_description && q.image_description.startsWith('FLAG_IMAGE:');
@@ -244,18 +205,12 @@ export default function HostRoom() {
         <div style={{maxWidth:'1200px', margin:'0 auto'}}>
           <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'1.5rem', color:'white'}}>
             <div style={{fontSize:'1.2rem', fontWeight:600}}>Intrebarea {currentQuestion + 1} / {questions.length}</div>
-            <div style={{background:'white', color:'#5b21b6', padding:'0.75rem 1.5rem', borderRadius:'12px', fontSize:'2rem', fontWeight:900, minWidth:'80px', textAlign:'center'}}>
-              {stage === 'question' ? timeLeft : '⏰'}
-            </div>
+            <div style={{background:'white', color:'#5b21b6', padding:'0.75rem 1.5rem', borderRadius:'12px', fontSize:'2rem', fontWeight:900, minWidth:'80px', textAlign:'center'}}>{stage === 'question' ? timeLeft : '⏰'}</div>
             <div style={{fontSize:'1.2rem', fontWeight:600}}>📝 {answeredCount} / {totalPlayers} raspuns</div>
           </div>
           <div style={{background:'white', borderRadius:'20px', padding:'2rem', marginBottom:'1.5rem', boxShadow:'0 10px 40px rgba(0,0,0,0.2)'}}>
             <div style={{fontSize:'1.8rem', fontWeight:700, color:'#1e293b', textAlign:'center', marginBottom:'1.5rem'}}>{q.question_text}</div>
-            {hasFlag && (
-              <div style={{textAlign:'center', marginBottom:'1.5rem'}}>
-                <img src={`https://flagcdn.com/w320/${flagIso}.png`} alt="Steag" style={{maxWidth:'280px', borderRadius:'8px', boxShadow:'0 4px 12px rgba(0,0,0,0.15)'}} />
-              </div>
-            )}
+            {hasFlag && (<div style={{textAlign:'center', marginBottom:'1.5rem'}}><img src={`https://flagcdn.com/w320/${flagIso}.png`} alt="Steag" style={{maxWidth:'280px', borderRadius:'8px', boxShadow:'0 4px 12px rgba(0,0,0,0.15)'}} /></div>)}
             {q.type === 'multiple_choice' && (
               <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:'1rem'}}>
                 {[
@@ -289,9 +244,7 @@ export default function HostRoom() {
             )}
           </div>
           {stage === 'question' && (
-            <button onClick={revealAnswer} style={{width:'100%', padding:'1rem', background:'white', color:'#5b21b6', border:'none', borderRadius:'12px', fontSize:'1.1rem', fontWeight:700, cursor:'pointer'}}>
-              ⏭️ Arata raspunsul (omite timer)
-            </button>
+            <button onClick={revealAnswer} style={{width:'100%', padding:'1rem', background:'white', color:'#5b21b6', border:'none', borderRadius:'12px', fontSize:'1.1rem', fontWeight:700, cursor:'pointer'}}>⏭️ Arata raspunsul (omite timer)</button>
           )}
           {stage === 'reveal' && (
             <>
@@ -299,9 +252,7 @@ export default function HostRoom() {
                 <h3 style={{color:'#1e293b', marginBottom:'1rem'}}>🏆 Clasament</h3>
                 {sortedPlayers.slice(0, 10).map((p, idx) => (
                   <div key={p.id} style={{display:'flex', alignItems:'center', gap:'1rem', padding:'0.75rem', background: idx === 0 ? '#fef3c7' : idx === 1 ? '#e2e8f0' : idx === 2 ? '#fde68a' : '#f8fafc', borderRadius:'8px', marginBottom:'0.5rem'}}>
-                    <div style={{fontSize:'1.5rem', fontWeight:800, color:'#5b21b6', minWidth:'40px'}}>
-                      {idx === 0 ? '🥇' : idx === 1 ? '🥈' : idx === 2 ? '🥉' : `#${idx + 1}`}
-                    </div>
+                    <div style={{fontSize:'1.5rem', fontWeight:800, color:'#5b21b6', minWidth:'40px'}}>{idx === 0 ? '🥇' : idx === 1 ? '🥈' : idx === 2 ? '🥉' : `#${idx + 1}`}</div>
                     <div style={{fontSize:'1.5rem'}}>{p.avatar_emoji}</div>
                     <div style={{flex:1, fontWeight:700, color:'#1e293b'}}>{p.nickname}</div>
                     <div style={{fontSize:'1.3rem', fontWeight:800, color:'#5b21b6'}}>{p.score} pct</div>
@@ -321,7 +272,6 @@ export default function HostRoom() {
   if (stage === 'finished') {
     const top3 = sortedPlayers.slice(0, 3);
     const others = sortedPlayers.slice(3);
-
     return (
       <div style={{minHeight:'90vh', padding:'2rem 1.5rem', background:'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'}}>
         <div style={{maxWidth:'900px', margin:'0 auto'}}>
@@ -332,36 +282,9 @@ export default function HostRoom() {
           </div>
           {top3.length > 0 && (
             <div style={{display:'flex', alignItems:'flex-end', justifyContent:'center', gap:'1rem', marginBottom:'2rem'}}>
-              {top3[1] && (
-                <div style={{flex:1, textAlign:'center'}}>
-                  <div style={{fontSize:'3rem'}}>{top3[1].avatar_emoji}</div>
-                  <div style={{background:'linear-gradient(180deg, #cbd5e1, #94a3b8)', padding:'1.5rem 1rem', borderRadius:'12px 12px 0 0', color:'white', minHeight:'120px', display:'flex', flexDirection:'column', justifyContent:'center'}}>
-                    <div style={{fontSize:'2.5rem'}}>🥈</div>
-                    <div style={{fontWeight:700, fontSize:'1.1rem'}}>{top3[1].nickname}</div>
-                    <div style={{fontSize:'1.5rem', fontWeight:800}}>{top3[1].score} pct</div>
-                  </div>
-                </div>
-              )}
-              {top3[0] && (
-                <div style={{flex:1, textAlign:'center'}}>
-                  <div style={{fontSize:'4rem'}}>{top3[0].avatar_emoji}</div>
-                  <div style={{background:'linear-gradient(180deg, #fcd34d, #d97706)', padding:'2rem 1rem', borderRadius:'12px 12px 0 0', color:'white', minHeight:'160px', display:'flex', flexDirection:'column', justifyContent:'center'}}>
-                    <div style={{fontSize:'3.5rem'}}>🥇</div>
-                    <div style={{fontWeight:800, fontSize:'1.3rem'}}>{top3[0].nickname}</div>
-                    <div style={{fontSize:'2rem', fontWeight:900}}>{top3[0].score} pct</div>
-                  </div>
-                </div>
-              )}
-              {top3[2] && (
-                <div style={{flex:1, textAlign:'center'}}>
-                  <div style={{fontSize:'2.5rem'}}>{top3[2].avatar_emoji}</div>
-                  <div style={{background:'linear-gradient(180deg, #fbbf24, #b45309)', padding:'1rem', borderRadius:'12px 12px 0 0', color:'white', minHeight:'100px', display:'flex', flexDirection:'column', justifyContent:'center'}}>
-                    <div style={{fontSize:'2rem'}}>🥉</div>
-                    <div style={{fontWeight:700}}>{top3[2].nickname}</div>
-                    <div style={{fontSize:'1.3rem', fontWeight:800}}>{top3[2].score} pct</div>
-                  </div>
-                </div>
-              )}
+              {top3[1] && (<div style={{flex:1, textAlign:'center'}}><div style={{fontSize:'3rem'}}>{top3[1].avatar_emoji}</div><div style={{background:'linear-gradient(180deg, #cbd5e1, #94a3b8)', padding:'1.5rem 1rem', borderRadius:'12px 12px 0 0', color:'white', minHeight:'120px', display:'flex', flexDirection:'column', justifyContent:'center'}}><div style={{fontSize:'2.5rem'}}>🥈</div><div style={{fontWeight:700, fontSize:'1.1rem'}}>{top3[1].nickname}</div><div style={{fontSize:'1.5rem', fontWeight:800}}>{top3[1].score} pct</div></div></div>)}
+              {top3[0] && (<div style={{flex:1, textAlign:'center'}}><div style={{fontSize:'4rem'}}>{top3[0].avatar_emoji}</div><div style={{background:'linear-gradient(180deg, #fcd34d, #d97706)', padding:'2rem 1rem', borderRadius:'12px 12px 0 0', color:'white', minHeight:'160px', display:'flex', flexDirection:'column', justifyContent:'center'}}><div style={{fontSize:'3.5rem'}}>🥇</div><div style={{fontWeight:800, fontSize:'1.3rem'}}>{top3[0].nickname}</div><div style={{fontSize:'2rem', fontWeight:900}}>{top3[0].score} pct</div></div></div>)}
+              {top3[2] && (<div style={{flex:1, textAlign:'center'}}><div style={{fontSize:'2.5rem'}}>{top3[2].avatar_emoji}</div><div style={{background:'linear-gradient(180deg, #fbbf24, #b45309)', padding:'1rem', borderRadius:'12px 12px 0 0', color:'white', minHeight:'100px', display:'flex', flexDirection:'column', justifyContent:'center'}}><div style={{fontSize:'2rem'}}>🥉</div><div style={{fontWeight:700}}>{top3[2].nickname}</div><div style={{fontSize:'1.3rem', fontWeight:800}}>{top3[2].score} pct</div></div></div>)}
             </div>
           )}
           {others.length > 0 && (
@@ -377,9 +300,7 @@ export default function HostRoom() {
               ))}
             </div>
           )}
-          <Link href="/multiplayer" style={{display:'block', textAlign:'center', padding:'1rem', background:'white', color:'#5b21b6', borderRadius:'12px', textDecoration:'none', fontWeight:700, fontSize:'1.1rem'}}>
-            🎮 Joc nou
-          </Link>
+          <Link href="/multiplayer" style={{display:'block', textAlign:'center', padding:'1rem', background:'white', color:'#5b21b6', borderRadius:'12px', textDecoration:'none', fontWeight:700, fontSize:'1.1rem'}}>🎮 Joc nou</Link>
         </div>
       </div>
     );
