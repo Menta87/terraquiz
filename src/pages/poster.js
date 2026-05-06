@@ -110,7 +110,8 @@ export default function Poster() {
         }}>
           <h2 style={{fontSize:'6mm', fontWeight:800, margin:'0 0 3mm', textAlign:'center'}}>✨ Ce găsești?</h2>
           <div style={{fontSize:'4mm', lineHeight:1.6}}>
-            🎯 <strong>Mod Multiplayer ca Kahoot</strong> — joacă live cu colegii<br/>
+           🎯 <strong>Mod multiplayer stil Kahoot</strong> — joacă live cu colegii<br/>
+
             🎓 <strong>Pregătire Bacalaureat</strong> — 150 întrebări BAC<br/>
             🗺️ <strong>Hărți interactive</strong> — politice și fizice<br/>
             🚩 <strong>Steaguri din toată lumea</strong> — 100 întrebări<br/>
