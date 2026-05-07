@@ -176,9 +176,13 @@ export default function EuropeMap({ varianta = 'Test_6', onStateClick = null, hi
                 y={5}
                 style={{
                   fontFamily: 'system-ui',
-                  fontSize: 14,
-                  fontWeight: 'bold',
-                  fill: '#1e293b',
+                 fontSize: 18,
+                  fontWeight: 900,
+                  fill: '#000',
+                  stroke: '#fff',
+                  strokeWidth: 3,
+                  paintOrder: 'stroke',
+
                   pointerEvents: 'none',
                 }}
               >

@@ -83,26 +83,35 @@ export default function ExercitiuIdentificare({
         )}
       </div>
       
-      {verificat && (
+     {verificat && (
         <div style={{
-          marginTop:'0.75rem', padding:'0.75rem',
+          marginTop:'0.75rem', padding:'1rem',
           background: corect ? '#dcfce7' : '#fee2e2',
-          border: `1px solid ${corect ? '#16a34a' : '#dc2626'}`,
+          border: `2px solid ${corect ? '#16a34a' : '#dc2626'}`,
           borderRadius:'8px',
-          fontSize:'0.9rem',
+          fontSize:'0.95rem',
         }}>
           {corect ? (
-            <>
-              <strong style={{color:'#15803d'}}>✅ Corect! +{puncteObtinute}p</strong>
-            </>
+            <div>
+              <strong style={{color:'#15803d', fontSize:'1.1rem'}}>✅ Corect! +{puncteObtinute} puncte</strong>
+              <div style={{marginTop:'0.5rem', color:'#166534', fontSize:'0.9rem'}}>
+                Răspunsul tău: <strong>{raspunsUser}</strong>
+              </div>
+            </div>
           ) : (
-            <>
-              <strong style={{color:'#b91c1c'}}>❌ Greșit. </strong>
-              <span style={{color:'#1e293b'}}>Răspunsul corect: <strong>{raspunsCorect}</strong></span>
-            </>
+            <div>
+              <strong style={{color:'#b91c1c', fontSize:'1.1rem'}}>❌ Răspuns greșit · 0 puncte</strong>
+              <div style={{marginTop:'0.75rem', padding:'0.6rem', background:'#fef2f2', borderRadius:'6px', borderLeft:'4px solid #dc2626'}}>
+                <span style={{color:'#7f1d1d'}}>📝 Răspunsul tău: <strong>{raspunsUser}</strong></span>
+              </div>
+              <div style={{marginTop:'0.5rem', padding:'0.6rem', background:'#f0fdf4', borderRadius:'6px', borderLeft:'4px solid #16a34a'}}>
+                <span style={{color:'#166534'}}>✅ Răspuns corect: <strong>{raspunsCorect}</strong></span>
+              </div>
+            </div>
           )}
         </div>
       )}
+
     </div>
   );
 }
