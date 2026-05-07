@@ -1,38 +1,35 @@
 import { useState } from 'react';
 import { ComposableMap, Geographies, Geography, Marker } from 'react-simple-maps';
 
-// Date geografice Europa - URL public TopoJSON
 const geoUrl = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json';
 
-// State Europa cu litere BAC (configurabile per variantă)
 const EUROPE_STATES = {
   'Test_6': {
-    'A': { name: 'Suedia', code: 'SWE' },
-    'B': { name: 'Germania', code: 'DEU' },
-    'C': { name: 'Franța', code: 'FRA' },
-    'D': { name: 'Belgia', code: 'BEL' },
-    'E': { name: 'Austria', code: 'AUT' },
-    'F': { name: 'Italia', code: 'ITA' },
-    'G': { name: 'Spania', code: 'ESP' },
-    'H': { name: 'Grecia', code: 'GRC' },
-    'I': { name: 'Polonia', code: 'POL' },
-    'J': { name: 'Bulgaria', code: 'BGR' },
+    'A': { name: 'Suedia', englishName: 'Sweden' },
+    'B': { name: 'Germania', englishName: 'Germany' },
+    'C': { name: 'Franța', englishName: 'France' },
+    'D': { name: 'Belgia', englishName: 'Belgium' },
+    'E': { name: 'Austria', englishName: 'Austria' },
+    'F': { name: 'Italia', englishName: 'Italy' },
+    'G': { name: 'Spania', englishName: 'Spain' },
+    'H': { name: 'Grecia', englishName: 'Greece' },
+    'I': { name: 'Polonia', englishName: 'Poland' },
+    'J': { name: 'Bulgaria', englishName: 'Bulgaria' },
   },
   'Test_10': {
-    'A': { name: 'Norvegia', code: 'NOR' },
-    'B': { name: 'Marea Britanie', code: 'GBR' },
-    'C': { name: 'Olanda', code: 'NLD' },
-    'D': { name: 'Portugalia', code: 'PRT' },
-    'E': { name: 'Cehia', code: 'CZE' },
-    'F': { name: 'Italia', code: 'ITA' },
-    'G': { name: 'Republica Moldova', code: 'MDA' },
-    'H': { name: 'România', code: 'ROU' },
-    'I': { name: 'Polonia', code: 'POL' },
-    'J': { name: 'Letonia', code: 'LVA' },
+    'A': { name: 'Norvegia', englishName: 'Norway' },
+    'B': { name: 'Marea Britanie', englishName: 'United Kingdom' },
+    'C': { name: 'Olanda', englishName: 'Netherlands' },
+    'D': { name: 'Portugalia', englishName: 'Portugal' },
+    'E': { name: 'Cehia', englishName: 'Czechia' },
+    'F': { name: 'Italia', englishName: 'Italy' },
+    'G': { name: 'Republica Moldova', englishName: 'Moldova' },
+    'H': { name: 'România', englishName: 'Romania' },
+    'I': { name: 'Polonia', englishName: 'Poland' },
+    'J': { name: 'Letonia', englishName: 'Latvia' },
   }
 };
 
-// Capitale Europa cu numere BAC (configurabile per variantă)
 const EUROPE_CAPITALS = {
   'Test_6': {
     1: { name: 'Madrid', coords: [-3.7, 40.4] },
@@ -70,21 +67,34 @@ const EUROPE_CAPITALS = {
   }
 };
 
+const COORDS = {
+  'Sweden': [16, 62], 'Norway': [9, 61], 'Finland': [26, 64], 'Denmark': [10, 56],
+  'United Kingdom': [-1, 53], 'Ireland': [-8, 53], 'Iceland': [-19, 65],
+  'Germany': [10, 51], 'France': [2, 47], 'Spain': [-4, 40], 'Portugal': [-8, 39],
+  'Italy': [12, 43], 'Greece': [22, 39], 'Bulgaria': [25, 43], 'Romania': [25, 46],
+  'Poland': [19, 52], 'Czechia': [15, 50], 'Hungary': [19, 47], 'Austria': [14, 47],
+  'Switzerland': [8, 47], 'Belgium': [4, 50], 'Netherlands': [5, 52], 'Luxembourg': [6, 49],
+  'Ukraine': [31, 49], 'Belarus': [28, 53], 'Latvia': [25, 57], 'Lithuania': [24, 55],
+  'Estonia': [25, 59], 'Moldova': [29, 47], 'Serbia': [21, 44], 'Croatia': [16, 45],
+  'Slovenia': [15, 46], 'Bosnia and Herz.': [18, 44], 'Montenegro': [19, 43], 'Albania': [20, 41],
+  'North Macedonia': [21, 42], 'Slovakia': [19, 49], 'Turkey': [35, 39], 'Cyprus': [33, 35],
+  'Malta': [14, 36],
+};
+
 export default function EuropeMap({ varianta = 'Test_6', onStateClick = null, highlighted = null }) {
-  const [hoveredState, setHoveredState] = useState(null);
+  const [hoveredInfo, setHoveredInfo] = useState(null);
   
   const states = EUROPE_STATES[varianta] || EUROPE_STATES['Test_6'];
   const capitals = EUROPE_CAPITALS[varianta] || EUROPE_CAPITALS['Test_6'];
   
-  // Mapare inversă: cod țară → litera BAC
-  const codeToLetter = {};
+  const nameToLetter = {};
   Object.entries(states).forEach(([letter, info]) => {
-    codeToLetter[info.code] = letter;
+    nameToLetter[info.englishName] = letter;
   });
   
   function handleStateClick(geo) {
-    const code = geo.properties['ISO_A3'] || geo.id;
-    const letter = codeToLetter[code];
+    const countryName = geo.properties.name;
+    const letter = nameToLetter[countryName];
     if (letter && onStateClick) {
       onStateClick(letter, states[letter].name);
     }
@@ -118,8 +128,8 @@ export default function EuropeMap({ varianta = 'Test_6', onStateClick = null, hi
         <Geographies geography={geoUrl}>
           {({ geographies }) =>
             geographies.map((geo) => {
-              const code = geo.properties['ISO_A3'] || geo.id;
-              const letter = codeToLetter[code];
+              const countryName = geo.properties.name;
+              const letter = nameToLetter[countryName];
               const isHighlighted = letter === highlighted;
               const isInBAC = !!letter;
               
@@ -128,8 +138,8 @@ export default function EuropeMap({ varianta = 'Test_6', onStateClick = null, hi
                   key={geo.rsmKey}
                   geography={geo}
                   onClick={() => handleStateClick(geo)}
-                  onMouseEnter={() => setHoveredState(letter || null)}
-                  onMouseLeave={() => setHoveredState(null)}
+                  onMouseEnter={() => setHoveredInfo({ letter, name: countryName })}
+                  onMouseLeave={() => setHoveredInfo(null)}
                   style={{
                     default: {
                       fill: isHighlighted 
@@ -141,7 +151,7 @@ export default function EuropeMap({ varianta = 'Test_6', onStateClick = null, hi
                       cursor: isInBAC ? 'pointer' : 'default',
                     },
                     hover: {
-                      fill: isInBAC ? '#3b82f6' : '#e2e8f0',
+                      fill: isInBAC ? '#3b82f6' : '#cbd5e1',
                       outline: 'none',
                     },
                     pressed: {
@@ -155,10 +165,8 @@ export default function EuropeMap({ varianta = 'Test_6', onStateClick = null, hi
           }
         </Geographies>
         
-        {/* Litere pe state */}
         {Object.entries(states).map(([letter, info]) => {
-          // Aproximăm centrele - pentru implementare mai bună, calculăm centroide
-          const stateCoords = getStateCoords(info.code);
+          const stateCoords = COORDS[info.englishName];
           if (!stateCoords) return null;
           
           return (
@@ -180,7 +188,6 @@ export default function EuropeMap({ varianta = 'Test_6', onStateClick = null, hi
           );
         })}
         
-        {/* Numere pe capitale */}
         {Object.entries(capitals).map(([num, capital]) => (
           <Marker key={`capital-${num}`} coordinates={capital.coords}>
             <circle r={8} fill="#dc2626" stroke="#fff" strokeWidth={2} />
@@ -201,14 +208,15 @@ export default function EuropeMap({ varianta = 'Test_6', onStateClick = null, hi
         ))}
       </ComposableMap>
       
-      {hoveredState && (
+      {hoveredInfo && (
         <div style={{
           position:'absolute', top:'1rem', right:'1rem',
           background:'#1e293b', color:'white',
           padding:'0.5rem 1rem', borderRadius:'8px',
           fontSize:'0.875rem', fontWeight:600,
+          zIndex: 10,
         }}>
-          {hoveredState}: {states[hoveredState].name}
+          {hoveredInfo.letter ? `${hoveredInfo.letter}: ${states[hoveredInfo.letter].name}` : hoveredInfo.name}
         </div>
       )}
       
@@ -217,22 +225,4 @@ export default function EuropeMap({ varianta = 'Test_6', onStateClick = null, hi
       </div>
     </div>
   );
-}
-
-// Helper - coordonate aproximative pentru fiecare țară (pentru poziționare litere)
-function getStateCoords(code) {
-  const COORDS = {
-    'SWE': [16, 62], 'NOR': [9, 61], 'FIN': [26, 64], 'DNK': [10, 56],
-    'GBR': [-1, 53], 'IRL': [-8, 53], 'ISL': [-19, 65],
-    'DEU': [10, 51], 'FRA': [2, 47], 'ESP': [-4, 40], 'PRT': [-8, 39],
-    'ITA': [12, 43], 'GRC': [22, 39], 'BGR': [25, 43], 'ROU': [25, 46],
-    'POL': [19, 52], 'CZE': [15, 50], 'HUN': [19, 47], 'AUT': [14, 47],
-    'CHE': [8, 47], 'BEL': [4, 50], 'NLD': [5, 52], 'LUX': [6, 49],
-    'UKR': [31, 49], 'BLR': [28, 53], 'LVA': [25, 57], 'LTU': [24, 55],
-    'EST': [25, 59], 'MDA': [29, 47], 'SRB': [21, 44], 'HRV': [16, 45],
-    'SVN': [15, 46], 'BIH': [18, 44], 'MNE': [19, 43], 'ALB': [20, 41],
-    'MKD': [21, 42], 'SVK': [19, 49], 'TUR': [35, 39], 'CYP': [33, 35],
-    'MLT': [14, 36],
-  };
-  return COORDS[code];
 }
