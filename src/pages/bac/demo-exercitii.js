@@ -6,7 +6,6 @@ import ExercitiuGrila from '../../components/bac/ExercitiuGrila';
 import ExercitiuCompletare from '../../components/bac/ExercitiuCompletare';
 import ExercitiuComparatie from '../../components/bac/ExercitiuComparatie';
 
-
 export default function DemoExercitii() {
   const [scor, setScor] = useState(0);
   const [raspunsuri, setRaspunsuri] = useState([]);
@@ -20,13 +19,12 @@ export default function DemoExercitii() {
     <Layout>
       <div style={{padding:'2rem 1rem', maxWidth:'800px', margin:'0 auto'}}>
         <h1 style={{textAlign:'center', color:'#1e293b', marginBottom:'0.5rem'}}>
-          🎓 BAC - Subiect I (demo)
+          BAC - Subiect I (demo)
         </h1>
         <p style={{textAlign:'center', color:'#64748b', marginBottom:'1.5rem'}}>
-          Test 6 - 2020 · Europa
+          Variantă demonstrativă - Europa
         </p>
         
-        {/* Scor live */}
         <div style={{
           position:'sticky', top:'1rem',
           background:'#fbbf24', color:'#78350f',
@@ -36,21 +34,19 @@ export default function DemoExercitii() {
           boxShadow:'0 4px 12px rgba(251,191,36,0.3)',
           zIndex: 10,
         }}>
-          📊 Scor: {scor} puncte · {raspunsuri.length} răspunsuri verificate
+          Scor: {scor} puncte - {raspunsuri.length} răspunsuri verificate
         </div>
         
-        {/* Hartă Europa */}
         <div style={{marginBottom:'1.5rem'}}>
           <EuropeMap varianta="Test_6" />
         </div>
         
-        {/* Subiect I A - Identificare */}
         <h2 style={{color:'#0c4a6e', marginTop:'2rem'}}>A. Precizați:</h2>
         
         <ExercitiuIdentificare
           enunt="1. Numele statului marcat, pe hartă, cu litera J"
           raspunsCorect="Bulgaria"
-          raspunsuriAcceptate={["bulgaria", "Bulgaria", "Republica Bulgaria"]}
+          raspunsuriAcceptate={["bulgaria", "Bulgaria"]}
           punctaj={2}
           onRaspuns={adaugaRaspuns}
         />
@@ -63,7 +59,6 @@ export default function DemoExercitii() {
           onRaspuns={adaugaRaspuns}
         />
         
-              {/* Subiect I B - Completare */}
         <h2 style={{color:'#0c4a6e', marginTop:'2rem'}}>B. Completează propozițiile:</h2>
         
         <ExercitiuCompletare
@@ -90,9 +85,7 @@ export default function DemoExercitii() {
           onRaspuns={adaugaRaspuns}
         />
         
-        {/* Subiect I C - Grilă */}
         <h2 style={{color:'#0c4a6e', marginTop:'2rem'}}>C. Selectați răspunsul corect:</h2>
-
         
         <ExercitiuGrila
           enunt="1. Care dintre statele marcate pe hartă cu literele de mai jos este Italia?"
@@ -117,8 +110,7 @@ export default function DemoExercitii() {
           punctaj={2}
           onRaspuns={adaugaRaspuns}
         />
-
-        {/* Subiect I D - Comparație */}
+        
         <h2 style={{color:'#0c4a6e', marginTop:'2rem'}}>D. Compară:</h2>
         
         <ExercitiuComparatie
@@ -129,12 +121,16 @@ export default function DemoExercitii() {
             "Belgia are amplitudine termică mai mică, iar Grecia mai mare datorită verilor toride",
           ]}
           punctajMaxim={6}
-          onRaspuns={​​​​​​​​​​​​​​​​
-
+          onRaspuns={adaugaRaspuns}
+        />
+        
+        <div style={{
+          marginTop:'2rem', padding:'1.5rem',
+          background:'linear-gradient(135deg, #fbbf24, #d97706)',
           color:'white', borderRadius:'12px',
           textAlign:'center',
         }}>
-          <h2 style={{margin:0, fontSize:'1.5rem'}}>🎯 Total scor: {scor} puncte</h2>
+          <h2 style={{margin:0, fontSize:'1.5rem'}}>Total scor: {scor} puncte</h2>
           <p style={{margin:'0.5rem 0 0', opacity:0.95, fontSize:'0.95rem'}}>
             Din {raspunsuri.length * 2} puncte posibile pentru exercițiile încercate
           </p>
