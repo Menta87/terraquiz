@@ -192,15 +192,15 @@ export default function EuropeMap({ varianta = 'Test_6', onStateClick = null, hi
           );
         })}
         
-        {Object.entries(capitals).map(([num, capital]) => (
+       {Object.entries(capitals).map(([num, capital]) => (
           <Marker key={`capital-${num}`} coordinates={capital.coords}>
-            <circle r={8} fill="#dc2626" stroke="#fff" strokeWidth={2} />
+            <circle r={9} fill="#dc2626" stroke="#fff" strokeWidth={2} cy={12} />
             <text
               textAnchor="middle"
-              y={3}
+              y={15}
               style={{
                 fontFamily: 'system-ui',
-                fontSize: 9,
+                fontSize: 10,
                 fontWeight: 'bold',
                 fill: '#fff',
                 pointerEvents: 'none',
@@ -210,6 +210,7 @@ export default function EuropeMap({ varianta = 'Test_6', onStateClick = null, hi
             </text>
           </Marker>
         ))}
+
       </ComposableMap>
       
       {hoveredInfo && (

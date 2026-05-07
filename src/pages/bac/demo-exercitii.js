@@ -60,33 +60,33 @@ export default function DemoExercitii() {
           onRaspuns={adaugaRaspuns}
         />
         
-        {/* Subiect I C - Grilă */}
+               {/* Subiect I C - Grilă */}
         <h2 style={{color:'#0c4a6e', marginTop:'2rem'}}>C. Selectați răspunsul corect:</h2>
         
         <ExercitiuGrila
-          enunt="1. Orașul-capitală Riga este marcat, pe hartă, cu numărul:"
-          variante={{ a: "4", b: "11", c: "13", d: "15" }}
-          raspunsCorect="a"
+          enunt="1. Care dintre statele marcate pe hartă cu literele de mai jos este Italia?"
+          variante={{ a: "C", b: "E", c: "F", d: "G" }}
+          raspunsCorect="c"
           punctaj={2}
           onRaspuns={adaugaRaspuns}
         />
         
         <ExercitiuGrila
-          enunt="2. Munții Alpii Dinarici se desfășoară pe teritoriul statului marcat, pe hartă, cu litera:"
-          variante={{ a: "C", b: "E", c: "F", d: "I" }}
+          enunt="2. Care dintre statele marcate pe hartă cu literele de mai jos este Bulgaria?"
+          variante={{ a: "F", b: "H", c: "I", d: "J" }}
           raspunsCorect="d"
           punctaj={2}
           onRaspuns={adaugaRaspuns}
         />
         
         <ExercitiuGrila
-          enunt="3. Capitala statului marcat, pe hartă, cu litera G este orașul:"
-          variante={{ a: "Amsterdam", b: "Bruxelles", c: "Copenhaga", d: "Haga" }}
+          enunt="3. Care dintre statele marcate pe hartă cu literele de mai jos este Germania?"
+          variante={{ a: "A", b: "B", c: "C", d: "E" }}
           raspunsCorect="b"
           punctaj={2}
           onRaspuns={adaugaRaspuns}
         />
-        
+
         {/* Final */}
         <div style={{
           marginTop:'2rem', padding:'1.5rem',
