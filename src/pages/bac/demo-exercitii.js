@@ -5,6 +5,9 @@ import ExercitiuIdentificare from '../../components/bac/ExercitiuIdentificare';
 import ExercitiuGrila from '../../components/bac/ExercitiuGrila';
 import ExercitiuCompletare from '../../components/bac/ExercitiuCompletare';
 import ExercitiuComparatie from '../../components/bac/ExercitiuComparatie';
+import ExercitiuCalcul from '../../components/bac/ExercitiuCalcul';
+import ExercitiuCauza from '../../components/bac/ExercitiuCauza';
+
 
 export default function DemoExercitii() {
   const [scor, setScor] = useState(0);
@@ -127,9 +130,50 @@ export default function DemoExercitii() {
           onRaspuns={adaugaRaspuns}
         />
         
+              <h2 style={{color:'#0c4a6e', marginTop:'2rem'}}>E. Prezintă cauze:</h2>
+        
+        <ExercitiuCauza
+          enunt="Prezentați o cauză care explică valorile mici ale densității populației din statul A (Suedia)"
+          raspunsExemplu="Suedia are densitate mică a populației datorită climei reci subpolare în nord, reliefului muntos al Alpilor Scandinaviei și suprafeței mari acoperite de păduri și mlaștini, care fac dificilă locuirea pe scară largă."
+          cuvinteCheie={["climă", "rece", "munți", "păduri", "nord"]}
+          punctaj={2}
+          onRaspuns={adaugaRaspuns}
+        />
+        
+        <ExercitiuCauza
+          enunt="Prezentați o cauză care favorizează cultura viței de vie în statul F (Italia)"
+          raspunsExemplu="Italia favorizează cultura viței de vie datorită climei mediteraneene cu veri calde și uscate, precipitații moderate, soluri fertile și un număr mare de ore de soare necesare pentru maturarea strugurilor."
+          cuvinteCheie={["mediteranean", "soare", "verile", "uscat", "soluri"]}
+          punctaj={2}
+          onRaspuns={adaugaRaspuns}
+        />
+        
+        <h2 style={{color:'#0c4a6e', marginTop:'2rem'}}>Subiect III - Calcule:</h2>
+        
+        <ExercitiuCalcul
+          enunt="Calculați amplitudinea termică medie anuală pentru un oraș cu T min = 5,0°C în ianuarie și T max = 15,2°C în iulie"
+          formula="Amplitudine = T max - T min"
+          raspunsCorect={10.2}
+          intervalAcceptat={[10.0, 10.4]}
+          unitate="°C"
+          punctaj={2}
+          onRaspuns={adaugaRaspuns}
+        />
+        
+        <ExercitiuCalcul
+          enunt="Calculați populația Ucrainei în 2000 (suma celor 3 grupe de vârstă: 0-14 ani: 8.570.000; 15-64 ani: 33.731.000; 65+: 6.756.000)"
+          formula="Total = grupa1 + grupa2 + grupa3"
+          raspunsCorect={49057000}
+          intervalAcceptat={[49000000, 49100000]}
+          unitate="locuitori"
+          punctaj={2}
+          onRaspuns={adaugaRaspuns}
+        />
+        
         <div style={{
           marginTop:'2rem', padding:'1.5rem',
           background:'linear-gradient(135deg, #fbbf24, #d97706)',
+
           color:'white', borderRadius:'12px',
           textAlign:'center',
         }}>
