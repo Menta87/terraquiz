@@ -62,15 +62,17 @@ export default function DemoExercitii() {
         <h2 style={{color:'#0c4a6e', marginTop:'2rem'}}>B. Completează propozițiile:</h2>
         
         <ExercitiuCompletare
-          enuntInainte="1. Capitala statului marcat, pe hartă, cu litera B (Germania) este orașul"
-          raspunsCorect="Berlin"
+                    raspunsCorect="Berlin"enuntInainte="1. Capitala statului marcat, pe hartă, cu litera B este orașul"
+
+
           raspunsuriAcceptate={["berlin", "Berlin"]}
           punctaj={2}
           onRaspuns={adaugaRaspuns}
         />
         
         <ExercitiuCompletare
-          enuntInainte="2. Capitala statului marcat, pe hartă, cu litera C (Franța) este orașul"
+          enuntInainte="2. Capitala statului marcat, pe hartă, cu litera C este orașul"
+
           raspunsCorect="Paris"
           raspunsuriAcceptate={["paris", "Paris"]}
           punctaj={2}
@@ -78,7 +80,8 @@ export default function DemoExercitii() {
         />
         
         <ExercitiuCompletare
-          enuntInainte="3. Capitala statului marcat, pe hartă, cu litera J (Bulgaria) este orașul"
+          enuntInainte="3. Capitala statului marcat, pe hartă, cu litera J este orașul"
+
           raspunsCorect="Sofia"
           raspunsuriAcceptate={["sofia", "Sofia"]}
           punctaj={2}
