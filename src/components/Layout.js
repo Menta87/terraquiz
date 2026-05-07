@@ -49,6 +49,7 @@ export default function Layout({ children }) {
             🌍 TerraQuiz
           </Link>
           <nav>
+            <Link href="/bac" style={{background:'linear-gradient(135deg, #0284c7, #1e40af)', color:'white', padding:'0.4rem 0.9rem', borderRadius:'8px', fontWeight:700, marginRight:'0.25rem'}}>🎓 BAC</Link>
             <Link href="/leaderboard">Clasament</Link>
             <Link href="/diplome">Diplome</Link>
             {!isPremium && (
