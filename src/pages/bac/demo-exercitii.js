@@ -3,6 +3,9 @@ import Layout from '../../components/Layout';
 import EuropeMap from '../../components/bac/EuropeMap';
 import ExercitiuIdentificare from '../../components/bac/ExercitiuIdentificare';
 import ExercitiuGrila from '../../components/bac/ExercitiuGrila';
+import ExercitiuCompletare from '../../components/bac/ExercitiuCompletare';
+import ExercitiuComparatie from '../../components/bac/ExercitiuComparatie';
+
 
 export default function DemoExercitii() {
   const [scor, setScor] = useState(0);
@@ -60,8 +63,36 @@ export default function DemoExercitii() {
           onRaspuns={adaugaRaspuns}
         />
         
-               {/* Subiect I C - Grilă */}
+              {/* Subiect I B - Completare */}
+        <h2 style={{color:'#0c4a6e', marginTop:'2rem'}}>B. Completează propozițiile:</h2>
+        
+        <ExercitiuCompletare
+          enuntInainte="1. Capitala statului marcat, pe hartă, cu litera B (Germania) este orașul"
+          raspunsCorect="Berlin"
+          raspunsuriAcceptate={["berlin", "Berlin"]}
+          punctaj={2}
+          onRaspuns={adaugaRaspuns}
+        />
+        
+        <ExercitiuCompletare
+          enuntInainte="2. Capitala statului marcat, pe hartă, cu litera C (Franța) este orașul"
+          raspunsCorect="Paris"
+          raspunsuriAcceptate={["paris", "Paris"]}
+          punctaj={2}
+          onRaspuns={adaugaRaspuns}
+        />
+        
+        <ExercitiuCompletare
+          enuntInainte="3. Capitala statului marcat, pe hartă, cu litera J (Bulgaria) este orașul"
+          raspunsCorect="Sofia"
+          raspunsuriAcceptate={["sofia", "Sofia"]}
+          punctaj={2}
+          onRaspuns={adaugaRaspuns}
+        />
+        
+        {/* Subiect I C - Grilă */}
         <h2 style={{color:'#0c4a6e', marginTop:'2rem'}}>C. Selectați răspunsul corect:</h2>
+
         
         <ExercitiuGrila
           enunt="1. Care dintre statele marcate pe hartă cu literele de mai jos este Italia?"
@@ -87,10 +118,19 @@ export default function DemoExercitii() {
           onRaspuns={adaugaRaspuns}
         />
 
-        {/* Final */}
-        <div style={{
-          marginTop:'2rem', padding:'1.5rem',
-          background:'linear-gradient(135deg, #fbbf24, #d97706)',
+        {/* Subiect I D - Comparație */}
+        <h2 style={{color:'#0c4a6e', marginTop:'2rem'}}>D. Compară:</h2>
+        
+        <ExercitiuComparatie
+          enunt="Precizați trei deosebiri între clima statului D (Belgia) și clima statului H (Grecia)"
+          raspunsExemplu={[
+            "Belgia are climă temperat-oceanică, iar Grecia are climă mediteraneană",
+            "Belgia are precipitații medii anuale mai mari (700-1000 mm), iar Grecia mai mici (400-700 mm)",
+            "Belgia are amplitudine termică mai mică, iar Grecia mai mare datorită verilor toride",
+          ]}
+          punctajMaxim={6}
+          onRaspuns={​​​​​​​​​​​​​​​​
+
           color:'white', borderRadius:'12px',
           textAlign:'center',
         }}>
