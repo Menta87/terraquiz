@@ -47,17 +47,18 @@ const VARIANTE = [
     disponibil: true,
   },
 
-  {
-    id: 'test-10',
+   {
+    id: 'varianta-completa',
     nume: 'Variantă completă BAC',
-    descriere: 'Subiect I + II + III cu timer 3 ore (în curând)',
-    durata: '~3 ore',
+    descriere: 'Subiect I + II + III · 30 exerciții · Notă finală 1-10',
+    durata: 'Fără limită',
     nrExercitii: 30,
-    nivel: 'Examen',
+    nivel: 'BAC complet',
     culoare: '#7c3aed',
-    href: '#',
-    disponibil: false,
+    href: '/bac/varianta-completa',
+    disponibil: true,
   },
+
 ];
 
 
