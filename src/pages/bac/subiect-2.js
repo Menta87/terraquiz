@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Layout from '../../components/Layout';
-import RomaniaInfo from '../../components/bac/RomaniaInfo';
+import RomaniaMap from '../../components/bac/RomaniaMap';
+
 import ExercitiuIdentificare from '../../components/bac/ExercitiuIdentificare';
 import ExercitiuCompletare from '../../components/bac/ExercitiuCompletare';
 import ExercitiuGrila from '../../components/bac/ExercitiuGrila';
@@ -40,7 +41,8 @@ export default function Subiect2() {
         </div>
         
         {/* Legenda România */}
-        <RomaniaInfo varianta="Test_6" />
+            <RomaniaMap varianta="Test_6" />
+
         
         {/* Subiect II A - Identificare */}
         <h2 style={{color: '#0c4a6e', marginTop: '2rem'}}>A. Precizați (4p):</h2>

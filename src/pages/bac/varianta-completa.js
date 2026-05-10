@@ -2,7 +2,8 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Layout from '../../components/Layout';
 import EuropeMap from '../../components/bac/EuropeMap';
-import RomaniaInfo from '../../components/bac/RomaniaInfo';
+import RomaniaMap from '../../components/bac/RomaniaMap';
+
 import ExercitiuIdentificare from '../../components/bac/ExercitiuIdentificare';
 import ExercitiuCompletare from '../../components/bac/ExercitiuCompletare';
 import ExercitiuGrila from '../../components/bac/ExercitiuGrila';
@@ -208,7 +209,8 @@ export default function VariantaCompleta() {
           <div>
             <h2 style={{color:'#0c4a6e', fontSize:'1.5rem'}}>📋 Subiect II - România (30p)</h2>
             
-            <RomaniaInfo varianta="Test_6" />
+                       <RomaniaMap varianta="Test_6" />
+
             
             <h3 style={{color:'#0c4a6e', marginTop:'1.5rem'}}>A. Precizați (4p):</h3>
             <ExercitiuIdentificare
