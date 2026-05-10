@@ -24,10 +24,21 @@ const VARIANTE = [
     href: '/bac/demo-exercitii',
     disponibil: true,
   },
+   {
+    id: 'subiect-2',
+    nume: 'Subiect II - Geografia României',
+    descriere: 'Unități de relief, râuri, orașe, comparații, cauze - 30 puncte',
+    durata: '~30 min',
+    nrExercitii: 13,
+    nivel: 'Avansat',
+    culoare: '#d97706',
+    href: '/bac/subiect-2',
+    disponibil: true,
+  },
   {
     id: 'test-10',
-    nume: 'Variantă inspirată BAC',
-    descriere: 'Subiect I + II + III complete (în curs de adăugare)',
+    nume: 'Variantă completă BAC',
+    descriere: 'Subiect I + II + III cu timer 3 ore (în curând)',
     durata: '~3 ore',
     nrExercitii: 30,
     nivel: 'Examen',
@@ -36,6 +47,7 @@ const VARIANTE = [
     disponibil: false,
   },
 ];
+
 
 export default function BacIndex() {
   return (
