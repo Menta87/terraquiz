@@ -24,7 +24,7 @@ const VARIANTE = [
     href: '/bac/demo-exercitii',
     disponibil: true,
   },
-   {
+    {
     id: 'subiect-2',
     nume: 'Subiect II - Geografia României',
     descriere: 'Unități de relief, râuri, orașe, comparații, cauze - 30 puncte',
@@ -35,6 +35,18 @@ const VARIANTE = [
     href: '/bac/subiect-2',
     disponibil: true,
   },
+  {
+    id: 'subiect-3',
+    nume: 'Subiect III - Lumea contemporană',
+    descriere: 'Calcule, grafice, tabele, caracterizare regiune - 30 puncte',
+    durata: '~30 min',
+    nrExercitii: 13,
+    nivel: 'Avansat',
+    culoare: '#16a34a',
+    href: '/bac/subiect-3',
+    disponibil: true,
+  },
+
   {
     id: 'test-10',
     nume: 'Variantă completă BAC',
