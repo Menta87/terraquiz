@@ -1,10 +1,43 @@
 import Link from 'next/link';
 import Layout from '../../components/Layout';
 
- const VARIANTE = [
+const VARIANTE = [
   {
     id: 'varianta-1',
     nume: 'Varianta 1 - BAC 2020',
+    descriere: 'Variantă completă cu Subiect I (Europa) + II (România) + III (Lumea)',
+    durata: '~45 min',
+    nrExercitii: 30,
+    nivel: 'BAC complet',
+    culoare: '#7c3aed',
+    href: '/bac/varianta/varianta-1',
+    disponibil: true,
+  },
+  {
+    id: 'varianta-2',
+    nume: 'Varianta 2 - Test 7 BAC 2020',
+    descriere: 'Subiect I (Europa) + II (România) + III (migrație + Podișul Mehedinți + fond funciar + Suedia)',
+    durata: '~45 min',
+    nrExercitii: 30,
+    nivel: 'BAC complet',
+    culoare: '#dc2626',
+    href: '/bac/varianta/varianta-2',
+    disponibil: true,
+  },
+  {
+    id: 'varianta-3',
+    nume: 'Varianta 3 - Test 8 BAC 2020',
+    descriere: 'Subiect I (Europa) + II (România) + III (precipitații + Subcarpații Moldovei + bilanț natural)',
+    durata: '~45 min',
+    nrExercitii: 30,
+    nivel: 'BAC complet',
+    culoare: '#0284c7',
+    href: '/bac/varianta/varianta-3',
+    disponibil: true,
+  },
+  {
+   
+
     descriere: 'Variantă completă cu Subiect I (Europa) + II (România) + III (Lumea)',
     durata: '~45 min',
     nrExercitii: 30,

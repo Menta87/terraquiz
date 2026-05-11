@@ -7,10 +7,15 @@ import RomaniaMap from '../../../components/bac/RomaniaMap';
 import VariantaRenderer from '../../../components/bac/VariantaRenderer';
 
 import { varianta1 } from '../../../data/bac/varianta-1';
+import { varianta2 } from '../../../data/bac/varianta-2';
+import { varianta3 } from '../../../data/bac/varianta-3';
 
 const VARIANTE = {
   'varianta-1': varianta1,
+  'varianta-2': varianta2,
+  'varianta-3': varianta3,
 };
+
 
 export default function VariantaPage() {
   const router = useRouter();
