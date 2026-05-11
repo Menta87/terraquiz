@@ -4,7 +4,7 @@ import Layout from '../../components/Layout';
 const VARIANTE = [
   {
     id: 'varianta-1',
-    nume: 'Varianta 1'
+    nume: 'Varianta 1',
 
     descriere: 'Variantă completă cu Subiect I (Europa) + II (România) + III (Lumea)',
     durata: '~45 min',
@@ -16,7 +16,7 @@ const VARIANTE = [
   },
   {
     id: 'varianta-2',
-    nume: 'Varianta 2'
+    nume: 'Varianta 2',
 
     descriere: 'Subiect I (Europa) + II (România) + III (migrație + Podișul Mehedinți + fond funciar + Suedia)',
     durata: '~45 min',
@@ -40,7 +40,7 @@ const VARIANTE = [
   },
     {
     id: 'varianta-4',
-    nume: 'Varianta 4'
+    nume: 'Varianta 4',
 
     descriere: 'Subiect I (Europa) + II (România) + III (energie electrică + Câmpia Română)',
     durata: '~45 min',
@@ -52,7 +52,7 @@ const VARIANTE = [
   },
   {
     id: 'varianta-5',
-    nume: 'Varianta 5'
+    nume: 'Varianta 5',
 
     descriere: 'Subiect I (Europa) + II (România) + III (natalitate/mortalitate + Dealurile de Vest)',
     durata: '~45 min',
@@ -64,7 +64,7 @@ const VARIANTE = [
   },
   {
     id: 'varianta-6',
-    nume: 'Varianta 6'
+    nume: 'Varianta 6',
 
     descriere: 'Subiect I (Europa) + II (România) + III (defrișări + Câmpia de Vest + populație)',
     durata: '~45 min',
@@ -76,7 +76,7 @@ const VARIANTE = [
   },
   {
     id: 'varianta-7',
-    nume: 'Varianta 7'
+    nume: 'Varianta 7',
 
     descriere: 'Subiect I (Europa) + II (România) + III (precipitații + Munții Banatului)',
     durata: '~45 min',
@@ -88,7 +88,7 @@ const VARIANTE = [
   },
   {
     id: 'varianta-8',
-    nume: 'Varianta 8'
+    nume: 'Varianta 8',
 
     descriere: 'Subiect I (Europa) + II (România) + III (temperaturi Murmansk + Podișul Someșan)',
     durata: '~45 min',
@@ -100,7 +100,7 @@ const VARIANTE = [
   },
   {
     id: 'varianta-9',
-    nume: 'Varianta 9'
+    nume: 'Varianta 9',
 
     descriere: 'Subiect I (Europa) + II (România) + III (precipitații Constanța + Carpații Meridionali)',
     durata: '~45 min',
@@ -112,7 +112,7 @@ const VARIANTE = [
   },
   {
     id: 'varianta-10',
-    nume: 'Varianta 10'
+    nume: 'Varianta 10',
 
     descriere: 'Subiect I (Europa) + II (România) + III (Mureș, Olt, Prut + Subcarpații Curburii)',
     durata: '~45 min',
@@ -124,7 +124,7 @@ const VARIANTE = [
   },
   {
     id: 'varianta-11',
-    nume: 'Varianta 11'
+    nume: 'Varianta 11',
 
     descriere: 'Subiect I (Europa) + II (România) + III (temperaturi Budapesta + Depresiunea Transilvaniei)',
     durata: '~45 min',
@@ -136,7 +136,7 @@ const VARIANTE = [
   },
   {
     id: 'varianta-12',
-    nume: 'Varianta 12'
+    nume: 'Varianta 12',
 
     descriere: 'Subiect I (Europa) + II (România) + III (temperaturi Kiev + Masivul Dobrogei)',
     durata: '~45 min',
