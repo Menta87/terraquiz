@@ -33,40 +33,14 @@ const RELIEF_INFO = {
 
 const RAURI_DATA = {
   'Test_6': {
-    1: { 
-      name: 'Mures',
-      labelPos: [280, 170],
-      path: 'M 290,115 Q 270,135 250,160 Q 230,180 200,210 Q 165,225 130,235',
-    },
-    2: { 
-      name: 'Olt',
-      labelPos: [310, 290],
-      path: 'M 305,180 Q 312,220 320,260 Q 322,290 320,320 Q 318,360 315,395',
-    },
-    3: { 
-      name: 'Arges',
-      labelPos: [365, 335],
-      path: 'M 340,260 Q 355,295 370,325 Q 385,360 405,390',
-    },
-    4: { 
-      name: 'Siret',
-      labelPos: [425, 230],
-      path: 'M 460,60 Q 445,110 432,160 Q 420,210 410,260 Q 400,320 395,380 Q 395,395 400,405',
-    },
-    5: { 
-      name: 'Prut',
-      labelPos: [510, 130],
-      path: 'M 500,50 Q 503,90 506,140 Q 510,200 515,260 Q 518,310 520,355 Q 520,375 515,395',
-    },
-    6: { 
-      name: 'Dunarea',
-      labelPos: [310, 405],
-      path: 'M 100,355 Q 180,395 260,405 Q 340,415 420,410 Q 480,405 530,385 Q 555,365 565,335 Q 575,310 580,290',
-    },
+    1: { name: 'Mures', labelPos: [240, 175], path: 'M 290,115 Q 270,135 250,160 Q 230,180 200,210 Q 165,225 130,235' },
+    2: { name: 'Olt', labelPos: [318, 295], path: 'M 305,180 Q 312,220 320,260 Q 322,290 320,320 Q 318,360 315,395' },
+    3: { name: 'Arges', labelPos: [370, 345], path: 'M 340,260 Q 355,295 370,325 Q 385,360 405,390' },
+    4: { name: 'Siret', labelPos: [410, 230], path: 'M 460,60 Q 445,110 432,160 Q 420,210 410,260 Q 400,320 395,380 Q 395,395 400,405' },
+    5: { name: 'Prut', labelPos: [515, 180], path: 'M 500,50 Q 503,90 506,140 Q 510,200 515,260 Q 518,310 520,355 Q 520,375 515,395' },
+    6: { name: 'Dunarea', labelPos: [310, 410], path: 'M 100,355 Q 180,395 260,405 Q 340,415 420,410 Q 480,405 530,385 Q 555,365 565,335 Q 575,310 580,290' },
   }
 };
-
-
 
 const ORASE_DATA = {
   'Test_6': {
@@ -79,7 +53,6 @@ const ORASE_DATA = {
   }
 };
 
-
 export default function RomaniaMap({ varianta = 'Test_6', onUnitClick = null, highlighted = null }) {
   const [hoveredJudet, setHoveredJudet] = useState(null);
   const [hoveredRiver, setHoveredRiver] = useState(null);
@@ -91,8 +64,7 @@ export default function RomaniaMap({ varianta = 'Test_6', onUnitClick = null, hi
   function getJudetColor(judetId) {
     const relief = JUDET_TO_RELIEF[judetId];
     if (!relief) return '#e5e7eb';
-    const isHighlighted = relief === highlighted;
-    if (isHighlighted) return '#fbbf24';
+    if (relief === highlighted) return '#fbbf24';
     return RELIEF_INFO[relief].color;
   }
   
@@ -101,14 +73,6 @@ export default function RomaniaMap({ varianta = 'Test_6', onUnitClick = null, hi
     if (relief && onUnitClick) {
       onUnitClick(relief, RELIEF_INFO[relief].name);
     }
-  }
-  
-  function handleSvgClick(e) {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const vb = romaniaMap.viewBox.split(' ').map(Number);
-    const x = Math.round((e.clientX - rect.left) * vb[2] / rect.width);
-    const y = Math.round((e.clientY - rect.top) * vb[3] / rect.height);
-    console.log('CLICK la X:', x, 'Y:', y);
   }
   
   let hoverText = null;
@@ -142,8 +106,7 @@ export default function RomaniaMap({ varianta = 'Test_6', onUnitClick = null, hi
       
       <svg 
         viewBox={romaniaMap.viewBox} 
-              style={{ width: '100%', height: 'auto', background: '#e0f2fe', borderRadius: '8px' }}
-
+        style={{ width: '100%', height: 'auto', background: '#e0f2fe', borderRadius: '8px' }}
       >
         {romaniaMap.locations.map(function(judet) {
           const isHovered = hoveredJudet && hoveredJudet.id === judet.id;
@@ -156,31 +119,29 @@ export default function RomaniaMap({ varianta = 'Test_6', onUnitClick = null, hi
               fill={isHovered ? '#3b82f6' : baseColor}
               stroke="#1e293b"
               strokeWidth="0.5"
-             onClick={function(e) { e.stopPropagation(); handleJudetClick(judet); }}
-
-
+              onClick={function() { handleJudetClick(judet); }}
               onMouseEnter={function() { setHoveredJudet(judet); }}
               onMouseLeave={function() { setHoveredJudet(null); }}
               style={{ cursor: 'pointer', transition: 'fill 0.2s' }}
             />
           );
-                {Object.entries(rauri).map(function(entry) {
+        })}
+        
+        {Object.entries(rauri).map(function(entry) {
           const num = entry[0];
           const river = entry[1];
           return (
             <g key={'river-' + num}>
-              {river.path && (
-                <path
-                  d={river.path}
-                  fill="none"
-                  stroke="#1e40af"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  opacity="0.85"
-                  style={{pointerEvents: 'none'}}
-                />
-              )}
+              <path
+                d={river.path}
+                fill="none"
+                stroke="#1e40af"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                opacity="0.85"
+                style={{pointerEvents: 'none'}}
+              />
               <circle
                 cx={river.labelPos[0]}
                 cy={river.labelPos[1]}
@@ -188,10 +149,9 @@ export default function RomaniaMap({ varianta = 'Test_6', onUnitClick = null, hi
                 fill="#1e40af"
                 stroke="#fff"
                 strokeWidth={2}
-                onClick={function(e) { e.stopPropagation(); }}
                 onMouseEnter={function() { setHoveredRiver(num); }}
                 onMouseLeave={function() { setHoveredRiver(null); }}
-                style={{cursor:'help'}}
+                style={{cursor: 'help'}}
               />
               <text
                 x={river.labelPos[0]}
@@ -210,7 +170,6 @@ export default function RomaniaMap({ varianta = 'Test_6', onUnitClick = null, hi
             </g>
           );
         })}
-
         
         {Object.entries(orase).map(function(entry) {
           const num = entry[0];
@@ -224,10 +183,9 @@ export default function RomaniaMap({ varianta = 'Test_6', onUnitClick = null, hi
                 fill="#dc2626"
                 stroke="#fff"
                 strokeWidth={2}
-                onClick={function(e) { e.stopPropagation(); }}
                 onMouseEnter={function() { setHoveredCity(num); }}
                 onMouseLeave={function() { setHoveredCity(null); }}
-                style={{cursor:'help'}}
+                style={{cursor: 'help'}}
               />
               <text
                 x={oras.coords[0]}
@@ -250,25 +208,32 @@ export default function RomaniaMap({ varianta = 'Test_6', onUnitClick = null, hi
       
       {hoverText && (
         <div style={{
-          position:'absolute', top:'1rem', right:'1rem',
-          background:'#1e293b', color:'white',
-          padding:'0.5rem 1rem', borderRadius:'8px',
-          fontSize:'0.875rem', fontWeight:600,
+          position: 'absolute',
+          top: '1rem',
+          right: '1rem',
+          background: '#1e293b',
+          color: 'white',
+          padding: '0.5rem 1rem',
+          borderRadius: '8px',
+          fontSize: '0.875rem',
+          fontWeight: 600,
           zIndex: 10,
-          boxShadow:'0 4px 12px rgba(0,0,0,0.2)',
+          boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
         }}>
           {hoverText}
         </div>
       )}
       
       <div style={{
-        marginTop:'0.75rem', padding:'0.6rem',
-        background:'white', borderRadius:'6px',
-        fontSize:'0.8rem', color:'#475569',
-        textAlign:'center',
+        marginTop: '0.75rem',
+        padding: '0.6rem',
+        background: 'white',
+        borderRadius: '6px',
+        fontSize: '0.8rem',
+        color: '#475569',
+        textAlign: 'center',
       }}>
-               💡 Hover pe judete pentru relief · Cifre albastre = rauri · Cifre rosii = orase
-
+        💡 Hover pe judete pentru relief · Cifre albastre = rauri · Cifre rosii = orase
       </div>
     </div>
   );
