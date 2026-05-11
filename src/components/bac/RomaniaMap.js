@@ -143,8 +143,9 @@ export default function RomaniaMap({ varianta = 'Test_6', onUnitClick = null, hi
         🇷🇴 Harta României - {varianta.replace('_', ' ')}
       </div>
       
-      <svg viewBox={romaniaMap.viewBox} style={{ width: '100%', height: 'auto', background: '#e0f2fe', borderRadius: '8px' }}>
-        {/* Județele cu coloring pe unități de relief */}
+              {/* Județele cu coloring pe unități de<svg viewBox={romaniaMap.viewBox} style={{ width: '100%', height: 'auto', background: '#e0f2fe', borderRadius: '8px', cursor: 'crosshair' }} onClick={function(e) { const rect = e.currentTarget.getBoundingClientRect(); const vb = romaniaMap.viewBox.split(' ').map(Number); const x = Math.round((e.clientX - rect.left) * vb[2] / rect.width); const y = Math.round((e.clientY - rect.top) * vb[3] / rect.height); console.log('📍 Click la X:', x, 'Y:', y); }}>
+
+ relief */}
         {romaniaMap.locations.map(function(judet) {
           const isHovered = hoveredJudet && hoveredJudet.id === judet.id;
           const baseColor = getJudetColor(judet.id);
