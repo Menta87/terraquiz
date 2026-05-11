@@ -28,7 +28,7 @@ const VARIANTE = [
   },
   {
     id: 'varianta-3',
-    nume:'Varianta 3'
+    nume: 'Varianta 3',
 
     descriere: 'Subiect I (Europa) + II (România) + III (precipitații + Subcarpații Moldovei + bilanț natural)',
     durata: '~45 min',
