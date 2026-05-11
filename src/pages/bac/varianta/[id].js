@@ -13,6 +13,8 @@ import { varianta4 } from '../../../data/bac/varianta-4';
 import { varianta5 } from '../../../data/bac/varianta-5';
 import { varianta6 } from '../../../data/bac/varianta-6';
 import { varianta7 } from '../../../data/bac/varianta-7';
+import { varianta8 } from '../../../data/bac/varianta-8';
+import { varianta9 } from '../../../data/bac/varianta-9';
 
 const VARIANTE = {
   'varianta-1': varianta1,
@@ -22,7 +24,10 @@ const VARIANTE = {
   'varianta-5': varianta5,
   'varianta-6': varianta6,
   'varianta-7': varianta7,
+  'varianta-8': varianta8,
+  'varianta-9': varianta9,
 };
+
 
 
 

@@ -76,9 +76,32 @@ const VARIANTE = [
     nrExercitii: 30,
     nivel: 'BAC complet',
     culoare: '#f59e0b',
-    href: '/bac/varianta/varianta-7',
+      href: '/bac/varianta/varianta-7',
     disponibil: true,
   },
+  {
+    id: 'varianta-8',
+    nume: 'Varianta 8 - Test 13 BAC 2020',
+    descriere: 'Subiect I (Europa) + II (România) + III (temperaturi Murmansk + Podișul Someșan)',
+    durata: '~45 min',
+    nrExercitii: 30,
+    nivel: 'BAC complet',
+    culoare: '#ec4899',
+    href: '/bac/varianta/varianta-8',
+    disponibil: true,
+  },
+  {
+    id: 'varianta-9',
+    nume: 'Varianta 9 - Test 14 BAC 2020',
+    descriere: 'Subiect I (Europa) + II (România) + III (precipitații Constanța + Carpații Meridionali)',
+    durata: '~45 min',
+    nrExercitii: 30,
+    nivel: 'BAC complet',
+    culoare: '#06b6d4',
+    href: '/bac/varianta/varianta-9',
+    disponibil: true,
+  },
+
 
 
   {
