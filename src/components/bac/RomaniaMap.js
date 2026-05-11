@@ -129,7 +129,8 @@ export default function RomaniaMap({ varianta = 'Test_6', onUnitClick = null, hi
               fill={isHovered ? '#3b82f6' : baseColor}
               stroke="#1e293b"
               strokeWidth="0.5"
-              onClick={function(e) { e.stopPropagation(); handleJudetClick(judet); }}
+              onClick={function(e) { const rect = e.currentTarget.ownerSVGElement.getBoundingClientRect(); const vb = romaniaMap.viewBox.split(' ').map(Number); const x = Math.round((e.clientX - rect.left) * vb[2] / rect.width); const y = Math.round((e.clientY - rect.top) * vb[3] / rect.height); console.log('CLICK pe', judet.name, '- X:', x, 'Y:', y); handleJudetClick(judet); }}
+
               onMouseEnter={function() { setHoveredJudet(judet); }}
               onMouseLeave={function() { setHoveredJudet(null); }}
               style={{ cursor: 'pointer', transition: 'fill 0.2s' }}
