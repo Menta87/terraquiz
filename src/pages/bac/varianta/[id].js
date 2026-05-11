@@ -9,12 +9,15 @@ import VariantaRenderer from '../../../components/bac/VariantaRenderer';
 import { varianta1 } from '../../../data/bac/varianta-1';
 import { varianta2 } from '../../../data/bac/varianta-2';
 import { varianta3 } from '../../../data/bac/varianta-3';
+import { varianta4 } from '../../../data/bac/varianta-4';
 
 const VARIANTE = {
   'varianta-1': varianta1,
   'varianta-2': varianta2,
   'varianta-3': varianta3,
+  'varianta-4': varianta4,
 };
+
 
 
 export default function VariantaPage() {

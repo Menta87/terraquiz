@@ -35,6 +35,18 @@ const VARIANTE = [
     href: '/bac/varianta/varianta-3',
     disponibil: true,
   },
+    {
+    id: 'varianta-4',
+    nume: 'Varianta 4 - Test 9 BAC 2020',
+    descriere: 'Subiect I (Europa) + II (România) + III (energie electrică + Câmpia Română)',
+    durata: '~45 min',
+    nrExercitii: 30,
+    nivel: 'BAC complet',
+    culoare: '#16a34a',
+    href: '/bac/varianta/varianta-4',
+    disponibil: true,
+  },
+
   {
    
 
