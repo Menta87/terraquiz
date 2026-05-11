@@ -1,6 +1,6 @@
 export const varianta12 = {
   id: 'varianta-12',
-  nume: 'Varianta 12 - Test 17 BAC 2020',
+  nume: 'Varianta 12',
   an: 2020,
   totalPuncte: 90,
   
