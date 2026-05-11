@@ -33,25 +33,27 @@ const RELIEF_INFO = {
 
 const RAURI_DATA = {
   'Test_6': {
-    1: { name: 'Mures', labelPos: [280, 165] },
-    2: { name: 'Olt', labelPos: [305, 280] },
-    3: { name: 'Arges', labelPos: [345, 320] },
-    4: { name: 'Siret', labelPos: [430, 200] },
-    5: { name: 'Prut', labelPos: [490, 140] },
-    6: { name: 'Dunarea', labelPos: [330, 380] },
+    1: { name: 'Mures', labelPos: [280, 170] },
+    2: { name: 'Olt', labelPos: [320, 290] },
+    3: { name: 'Arges', labelPos: [345, 330] },
+    4: { name: 'Siret', labelPos: [425, 250] },
+    5: { name: 'Prut', labelPos: [490, 100] },
+    6: { name: 'Dunarea', labelPos: [380, 400] },
   }
 };
 
+
 const ORASE_DATA = {
   'Test_6': {
-    7: { name: 'Cluj-Napoca', coords: [220, 160] },
-    8: { name: 'Brasov', coords: [320, 235] },
-    9: { name: 'Iasi', coords: [475, 130] },
-    10: { name: 'Timisoara', coords: [105, 220] },
-    11: { name: 'Constanta', coords: [530, 320] },
-    12: { name: 'Calarasi', coords: [430, 350] },
+    7: { name: 'Cluj-Napoca', coords: [218, 138] },
+    8: { name: 'Brasov', coords: [332, 240] },
+    9: { name: 'Iasi', coords: [469, 109] },
+    10: { name: 'Timisoara', coords: [102, 231] },
+    11: { name: 'Constanta', coords: [555, 340] },
+    12: { name: 'Calarasi', coords: [443, 360] },
   }
 };
+
 
 export default function RomaniaMap({ varianta = 'Test_6', onUnitClick = null, highlighted = null }) {
   const [hoveredJudet, setHoveredJudet] = useState(null);
@@ -115,8 +117,8 @@ export default function RomaniaMap({ varianta = 'Test_6', onUnitClick = null, hi
       
       <svg 
         viewBox={romaniaMap.viewBox} 
-        style={{ width: '100%', height: 'auto', background: '#e0f2fe', borderRadius: '8px', cursor: 'crosshair' }}
-        onClick={handleSvgClick}
+              style={{ width: '100%', height: 'auto', background: '#e0f2fe', borderRadius: '8px' }}
+
       >
         {romaniaMap.locations.map(function(judet) {
           const isHovered = hoveredJudet && hoveredJudet.id === judet.id;
@@ -129,7 +131,8 @@ export default function RomaniaMap({ varianta = 'Test_6', onUnitClick = null, hi
               fill={isHovered ? '#3b82f6' : baseColor}
               stroke="#1e293b"
               strokeWidth="0.5"
-              onClick={function(e) { const rect = e.currentTarget.ownerSVGElement.getBoundingClientRect(); const vb = romaniaMap.viewBox.split(' ').map(Number); const x = Math.round((e.clientX - rect.left) * vb[2] / rect.width); const y = Math.round((e.clientY - rect.top) * vb[3] / rect.height); console.log('CLICK pe', judet.name, '- X:', x, 'Y:', y); handleJudetClick(judet); }}
+             onClick={function(e) { e.stopPropagation(); handleJudetClick(judet); }}
+
 
               onMouseEnter={function() { setHoveredJudet(judet); }}
               onMouseLeave={function() { setHoveredJudet(null); }}
@@ -228,7 +231,8 @@ export default function RomaniaMap({ varianta = 'Test_6', onUnitClick = null, hi
         fontSize:'0.8rem', color:'#475569',
         textAlign:'center',
       }}>
-        Hover pe judete pentru identificare relief - Click pe harta pentru a vedea coordonatele in Console
+               💡 Hover pe judete pentru relief · Cifre albastre = rauri · Cifre rosii = orase
+
       </div>
     </div>
   );
