@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Layout from '../../components/Layout';
 
-const const VARIANTE = [
+ const VARIANTE = [
   {
     id: 'varianta-1',
     nume: 'Varianta 1 - BAC 2020',
