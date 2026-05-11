@@ -10,13 +10,20 @@ import { varianta1 } from '../../../data/bac/varianta-1';
 import { varianta2 } from '../../../data/bac/varianta-2';
 import { varianta3 } from '../../../data/bac/varianta-3';
 import { varianta4 } from '../../../data/bac/varianta-4';
+import { varianta5 } from '../../../data/bac/varianta-5';
+import { varianta6 } from '../../../data/bac/varianta-6';
+import { varianta7 } from '../../../data/bac/varianta-7';
 
 const VARIANTE = {
   'varianta-1': varianta1,
   'varianta-2': varianta2,
   'varianta-3': varianta3,
   'varianta-4': varianta4,
+  'varianta-5': varianta5,
+  'varianta-6': varianta6,
+  'varianta-7': varianta7,
 };
+
 
 
 
