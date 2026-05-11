@@ -5,7 +5,6 @@ const VARIANTE = [
   {
     id: 'varianta-1',
     nume: 'Varianta 1',
-
     descriere: 'Variantă completă cu Subiect I (Europa) + II (România) + III (Lumea)',
     durata: '~45 min',
     nrExercitii: 30,
@@ -17,7 +16,6 @@ const VARIANTE = [
   {
     id: 'varianta-2',
     nume: 'Varianta 2',
-
     descriere: 'Subiect I (Europa) + II (România) + III (migrație + Podișul Mehedinți + fond funciar + Suedia)',
     durata: '~45 min',
     nrExercitii: 30,
@@ -29,7 +27,6 @@ const VARIANTE = [
   {
     id: 'varianta-3',
     nume: 'Varianta 3',
-
     descriere: 'Subiect I (Europa) + II (România) + III (precipitații + Subcarpații Moldovei + bilanț natural)',
     durata: '~45 min',
     nrExercitii: 30,
@@ -38,22 +35,20 @@ const VARIANTE = [
     href: '/bac/varianta/varianta-3',
     disponibil: true,
   },
-    {
+  {
     id: 'varianta-4',
     nume: 'Varianta 4',
-
     descriere: 'Subiect I (Europa) + II (România) + III (energie electrică + Câmpia Română)',
     durata: '~45 min',
     nrExercitii: 30,
     nivel: 'BAC complet',
     culoare: '#16a34a',
-       href: '/bac/varianta/varianta-4',
+    href: '/bac/varianta/varianta-4',
     disponibil: true,
   },
   {
     id: 'varianta-5',
     nume: 'Varianta 5',
-
     descriere: 'Subiect I (Europa) + II (România) + III (natalitate/mortalitate + Dealurile de Vest)',
     durata: '~45 min',
     nrExercitii: 30,
@@ -65,7 +60,6 @@ const VARIANTE = [
   {
     id: 'varianta-6',
     nume: 'Varianta 6',
-
     descriere: 'Subiect I (Europa) + II (România) + III (defrișări + Câmpia de Vest + populație)',
     durata: '~45 min',
     nrExercitii: 30,
@@ -77,19 +71,17 @@ const VARIANTE = [
   {
     id: 'varianta-7',
     nume: 'Varianta 7',
-
     descriere: 'Subiect I (Europa) + II (România) + III (precipitații + Munții Banatului)',
     durata: '~45 min',
     nrExercitii: 30,
     nivel: 'BAC complet',
     culoare: '#f59e0b',
-      href: '/bac/varianta/varianta-7',
+    href: '/bac/varianta/varianta-7',
     disponibil: true,
   },
   {
     id: 'varianta-8',
     nume: 'Varianta 8',
-
     descriere: 'Subiect I (Europa) + II (România) + III (temperaturi Murmansk + Podișul Someșan)',
     durata: '~45 min',
     nrExercitii: 30,
@@ -101,19 +93,17 @@ const VARIANTE = [
   {
     id: 'varianta-9',
     nume: 'Varianta 9',
-
     descriere: 'Subiect I (Europa) + II (România) + III (precipitații Constanța + Carpații Meridionali)',
     durata: '~45 min',
     nrExercitii: 30,
     nivel: 'BAC complet',
     culoare: '#06b6d4',
-      href: '/bac/varianta/varianta-9',
+    href: '/bac/varianta/varianta-9',
     disponibil: true,
   },
   {
     id: 'varianta-10',
     nume: 'Varianta 10',
-
     descriere: 'Subiect I (Europa) + II (România) + III (Mureș, Olt, Prut + Subcarpații Curburii)',
     durata: '~45 min',
     nrExercitii: 30,
@@ -125,7 +115,6 @@ const VARIANTE = [
   {
     id: 'varianta-11',
     nume: 'Varianta 11',
-
     descriere: 'Subiect I (Europa) + II (România) + III (temperaturi Budapesta + Depresiunea Transilvaniei)',
     durata: '~45 min',
     nrExercitii: 30,
@@ -137,7 +126,6 @@ const VARIANTE = [
   {
     id: 'varianta-12',
     nume: 'Varianta 12',
-
     descriere: 'Subiect I (Europa) + II (România) + III (temperaturi Kiev + Masivul Dobrogei)',
     durata: '~45 min',
     nrExercitii: 30,
@@ -146,86 +134,44 @@ const VARIANTE = [
     href: '/bac/varianta/varianta-12',
     disponibil: true,
   },
-
-
-
-
   {
-   
-
-    descriere: 'Variantă completă cu Subiect I (Europa) + II (România) + III (Lumea)',
+    id: 'varianta-13',
+    nume: 'Varianta 13',
+    descriere: 'Subiect I (Europa) + II (România) + III (natalitate/mortalitate + Podișul Bârladului)',
     durata: '~45 min',
     nrExercitii: 30,
     nivel: 'BAC complet',
-    culoare: '#7c3aed',
-    href: '/bac/varianta/varianta-1',
+    culoare: '#0d9488',
+    href: '/bac/varianta/varianta-13',
     disponibil: true,
   },
   {
-    id: 'demo',
-
-    nume: 'Variantă Demo',
-    descriere: 'Test rapid cu toate tipurile de exerciții - Subiect I + Calcule',
-    durata: '~15 min',
-    nrExercitii: 13,
-    nivel: 'Începător',
-    culoare: '#10b981',
-    href: '/bac/demo-exercitii',
-    disponibil: true,
-  },
-  {
-    id: 'test-6',
-    nume: 'Variantă inspirată BAC 2020',
-    descriere: 'Subiect I (Europa) - identificare, completare, grilă, comparație, cauze',
-    durata: '~30 min',
-    nrExercitii: 13,
-    nivel: 'Avansat',
-    culoare: '#0284c7',
-    href: '/bac/demo-exercitii',
-    disponibil: true,
-  },
-    {
-    id: 'subiect-2',
-    nume: 'Subiect II - Geografia României',
-    descriere: 'Unități de relief, râuri, orașe, comparații, cauze - 30 puncte',
-    durata: '~30 min',
-    nrExercitii: 13,
-    nivel: 'Avansat',
-    culoare: '#d97706',
-    href: '/bac/subiect-2',
-    disponibil: true,
-  },
-  {
-    id: 'subiect-3',
-    nume: 'Subiect III - Lumea contemporană',
-    descriere: 'Calcule, grafice, tabele, caracterizare regiune - 30 puncte',
-    durata: '~30 min',
-    nrExercitii: 13,
-    nivel: 'Avansat',
-    culoare: '#16a34a',
-    href: '/bac/subiect-3',
-    disponibil: true,
-  },
-
-   {
-    id: 'varianta-completa',
-    nume: 'Variantă completă BAC',
-    descriere: 'Subiect I + II + III · 30 exerciții · Notă finală 1-10',
-    durata: 'Fără limită',
+    id: 'varianta-14',
+    nume: 'Varianta 14',
+    descriere: 'Subiect I (Europa) + II (România) + III (debit Mureș + Podișul Târnavelor)',
+    durata: '~45 min',
     nrExercitii: 30,
     nivel: 'BAC complet',
-    culoare: '#7c3aed',
-    href: '/bac/varianta-completa',
+    culoare: '#9333ea',
+    href: '/bac/varianta/varianta-14',
     disponibil: true,
   },
-
+  {
+    id: 'varianta-15',
+    nume: 'Varianta 15',
+    descriere: 'Subiect I (Europa) + II (România) + III (precipitații București + Câmpia Moldovei)',
+    durata: '~45 min',
+    nrExercitii: 30,
+    nivel: 'BAC complet',
+    culoare: '#e11d48',
+    href: '/bac/varianta/varianta-15',
+    disponibil: true,
+  },
 ];
-
 
 export default function BacIndex() {
   return (
     <Layout>
-      {/* Hero */}
       <section style={{
         background: 'linear-gradient(135deg, #1e3a8a 0%, #5b21b6 50%, #7c3aed 100%)',
         color: 'white',
@@ -240,7 +186,6 @@ export default function BacIndex() {
           <p style={{fontSize: '1.15rem', opacity: 0.95, margin: '0 0 1.5rem', lineHeight: 1.6}}>
             Exerciții identice cu examenul real. Hărți interactive, întrebări inspirate din variantele oficiale, auto-evaluare cu barem.
           </p>
-          
           <div style={{
             display: 'inline-flex', gap: '1rem', flexWrap: 'wrap',
             justifyContent: 'center', marginTop: '1rem',
@@ -270,10 +215,9 @@ export default function BacIndex() {
         </div>
       </section>
 
-      {/* Variante */}
       <section style={{padding: '3rem 1rem', maxWidth: '1100px', margin: '0 auto'}}>
         <h2 style={{textAlign: 'center', fontSize: '1.75rem', fontWeight: 800, color: '#1e293b', marginBottom: '0.5rem'}}>
-          Variante disponibile
+          15 variante BAC disponibile
         </h2>
         <p style={{textAlign: 'center', color: '#64748b', marginBottom: '2.5rem', fontSize: '1rem'}}>
           Alege o variantă și începe pregătirea pentru BAC
@@ -351,7 +295,6 @@ export default function BacIndex() {
         </div>
       </section>
 
-      {/* Info despre BAC */}
       <section style={{
         background: '#f8fafc', padding: '3rem 1rem',
       }}>
@@ -359,7 +302,6 @@ export default function BacIndex() {
           <h2 style={{textAlign: 'center', fontSize: '1.5rem', fontWeight: 800, color: '#1e293b', marginBottom: '2rem'}}>
             De ce TerraQuiz pentru BAC?
           </h2>
-          
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
@@ -397,22 +339,21 @@ export default function BacIndex() {
         </div>
       </section>
 
-      {/* CTA final */}
       <section style={{padding: '3rem 1rem', textAlign: 'center'}}>
         <h2 style={{fontSize: '1.5rem', fontWeight: 800, color: '#1e293b', marginBottom: '0.5rem'}}>
           Începe pregătirea acum
         </h2>
         <p style={{color: '#64748b', marginBottom: '1.5rem', fontSize: '1rem'}}>
-          Totul e gratuit. Fără cont obligatoriu pentru variantele demo.
+          15 variante BAC complete · Toate gratuit
         </p>
-        <Link href="/bac/demo-exercitii" style={{
+        <Link href="/bac/varianta/varianta-1" style={{
           display: 'inline-block',
           padding: '0.9rem 2rem',
           background: 'linear-gradient(135deg, #0284c7, #1e40af)',
           color: 'white', borderRadius: '10px',
           textDecoration: 'none', fontWeight: 700, fontSize: '1.05rem',
         }}>
-          🚀 Începe acum cu varianta Demo
+          🚀 Începe cu Varianta 1
         </Link>
       </section>
     </Layout>
