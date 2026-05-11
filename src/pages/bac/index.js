@@ -211,7 +211,30 @@ const VARIANTE = [
     href: '/bac/varianta/varianta-19',
     disponibil: true,
   },
+  {
+    id: 'varianta-20',
+    nume: 'Varianta 20',
+    descriere: 'BAC 2009 - Europa + România (Pod. Bârladului, Retezat) + producția de grâu',
+    durata: '~45 min',
+    nrExercitii: 30,
+    nivel: 'BAC complet',
+    culoare: '#f59e0b',
+    href: '/bac/varianta/varianta-20',
+    disponibil: true,
+  },
+  {
+    id: 'varianta-21',
+    nume: 'Varianta 21',
+    descriere: 'BAC 2009 - Europa + România (Banatului, Maramureș) + Franța nod comunicație',
+    durata: '~45 min',
+    nrExercitii: 30,
+    nivel: 'BAC complet',
+    culoare: '#ec4899',
+    href: '/bac/varianta/varianta-21',
+    disponibil: true,
+  },
 ];
+
 
 
 export default function BacIndex() {
