@@ -1,9 +1,21 @@
 import Link from 'next/link';
 import Layout from '../../components/Layout';
 
-const VARIANTE = [
+const const VARIANTE = [
+  {
+    id: 'varianta-1',
+    nume: 'Varianta 1 - BAC 2020',
+    descriere: 'Variantă completă cu Subiect I (Europa) + II (România) + III (Lumea)',
+    durata: '~45 min',
+    nrExercitii: 30,
+    nivel: 'BAC complet',
+    culoare: '#7c3aed',
+    href: '/bac/varianta/varianta-1',
+    disponibil: true,
+  },
   {
     id: 'demo',
+
     nume: 'Variantă Demo',
     descriere: 'Test rapid cu toate tipurile de exerciții - Subiect I + Calcule',
     durata: '~15 min',
