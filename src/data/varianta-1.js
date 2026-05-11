@@ -1,4 +1,3 @@
-// Varianta 1 - BAC Geografie
 export const varianta1 = {
   id: 'varianta-1',
   nume: 'Varianta 1',
