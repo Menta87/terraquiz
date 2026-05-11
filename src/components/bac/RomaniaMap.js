@@ -33,14 +33,39 @@ const RELIEF_INFO = {
 
 const RAURI_DATA = {
   'Test_6': {
-    1: { name: 'Mures', labelPos: [280, 170] },
-    2: { name: 'Olt', labelPos: [320, 290] },
-    3: { name: 'Arges', labelPos: [345, 330] },
-    4: { name: 'Siret', labelPos: [425, 250] },
-    5: { name: 'Prut', labelPos: [490, 100] },
-    6: { name: 'Dunarea', labelPos: [380, 400] },
+    1: { 
+      name: 'Mures',
+      labelPos: [280, 170],
+      path: 'M 290,115 Q 270,135 250,160 Q 230,180 200,210 Q 165,225 130,235',
+    },
+    2: { 
+      name: 'Olt',
+      labelPos: [310, 290],
+      path: 'M 305,180 Q 312,220 320,260 Q 322,290 320,320 Q 318,360 315,395',
+    },
+    3: { 
+      name: 'Arges',
+      labelPos: [365, 335],
+      path: 'M 340,260 Q 355,295 370,325 Q 385,360 405,390',
+    },
+    4: { 
+      name: 'Siret',
+      labelPos: [425, 230],
+      path: 'M 460,60 Q 445,110 432,160 Q 420,210 410,260 Q 400,320 395,380 Q 395,395 400,405',
+    },
+    5: { 
+      name: 'Prut',
+      labelPos: [510, 130],
+      path: 'M 500,50 Q 503,90 506,140 Q 510,200 515,260 Q 518,310 520,355 Q 520,375 515,395',
+    },
+    6: { 
+      name: 'Dunarea',
+      labelPos: [310, 405],
+      path: 'M 100,355 Q 180,395 260,405 Q 340,415 420,410 Q 480,405 530,385 Q 555,365 565,335 Q 575,310 580,290',
+    },
   }
 };
+
 
 
 const ORASE_DATA = {
@@ -139,17 +164,27 @@ export default function RomaniaMap({ varianta = 'Test_6', onUnitClick = null, hi
               style={{ cursor: 'pointer', transition: 'fill 0.2s' }}
             />
           );
-        })}
-        
-        {Object.entries(rauri).map(function(entry) {
+                {Object.entries(rauri).map(function(entry) {
           const num = entry[0];
           const river = entry[1];
           return (
             <g key={'river-' + num}>
+              {river.path && (
+                <path
+                  d={river.path}
+                  fill="none"
+                  stroke="#1e40af"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  opacity="0.85"
+                  style={{pointerEvents: 'none'}}
+                />
+              )}
               <circle
                 cx={river.labelPos[0]}
                 cy={river.labelPos[1]}
-                r={9}
+                r={10}
                 fill="#1e40af"
                 stroke="#fff"
                 strokeWidth={2}
@@ -164,7 +199,7 @@ export default function RomaniaMap({ varianta = 'Test_6', onUnitClick = null, hi
                 textAnchor="middle"
                 style={{
                   fontFamily: 'system-ui',
-                  fontSize: 10,
+                  fontSize: 11,
                   fontWeight: 'bold',
                   fill: '#fff',
                   pointerEvents: 'none',
@@ -175,6 +210,7 @@ export default function RomaniaMap({ varianta = 'Test_6', onUnitClick = null, hi
             </g>
           );
         })}
+
         
         {Object.entries(orase).map(function(entry) {
           const num = entry[0];
