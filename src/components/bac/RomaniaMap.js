@@ -132,16 +132,7 @@ export default function RomaniaMap({ varianta = 'Test_6', onUnitClick = null, hi
           const river = entry[1];
           return (
             <g key={'river-' + num}>
-              <path
-                d={river.path}
-                fill="none"
-                stroke="#1e40af"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                opacity="0.85"
-                style={{pointerEvents: 'none'}}
-              />
+            
               <circle
                 cx={river.labelPos[0]}
                 cy={river.labelPos[1]}
