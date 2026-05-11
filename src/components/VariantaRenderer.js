@@ -88,7 +88,6 @@ export default function VariantaRenderer({ exercitii, onRaspuns }) {
           );
         }
         
-        // identificare (default)
         return (
           <Component
             key={idx}
