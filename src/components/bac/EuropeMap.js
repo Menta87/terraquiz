@@ -111,11 +111,8 @@ export default function EuropeMap({ varianta = 'Test_6', onStateClick = null, hi
       padding: '1rem',
       position: 'relative',
     }}>
-      <div style={{textAlign:'center', marginBottom:'0.5rem', fontWeight:700, color:'#0c4a6e', fontSize:'0.9rem'}}>
-        🗺️ Harta Europei - {varianta.replace('_', ' ')}
-      </div>
-      
-      <ComposableMap
+          <ComposableMap
+
         projection="geoMercator"
         projectionConfig={{
           scale: 500,
