@@ -55,17 +55,14 @@ export default function Layout({ children }) {
 
             <Link href="/diplome">Diplome</Link>
 
-            {!isPremium && (
-              <Link href="/premium" style={{background:'linear-gradient(135deg, #fbbf24, #d97706)', color:'white', padding:'0.4rem 0.9rem', borderRadius:'8px', fontWeight:700, marginLeft:'0.25rem'}}>⭐ Premium</Link>
-            )}
+                       {/* Premium dezactivat temporar - revine după înregistrare PFA */}
+
 
             {user ? (
               <>
                 <Link href="/profile" style={{display:'inline-flex', alignItems:'center', gap:'0.4rem'}}>
                   Profil
-                  {isPremium && (
-                    <span style={{background:'linear-gradient(135deg, #fbbf24, #d97706)', color:'white', padding:'0.2rem 0.5rem', borderRadius:'6px', fontSize:'0.75rem', fontWeight:700}}>⭐ PREMIUM</span>
-                  )}
+                 
                 </Link>
                 <button onClick={logout} className="btn btn-outline" style={{padding:'0.4rem 1rem', fontSize:'0.9rem'}}>Ieșire</button>
               </>
