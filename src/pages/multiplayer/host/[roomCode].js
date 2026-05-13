@@ -162,7 +162,8 @@ export default function HostRoom() {
                 })}
               </div>
             )}
-                        {q.type === 'fill_in' && stage === 'reveal' && (<div style={{padding:'1.5rem', background:'#d1fae5', borderRadius:'12px', textAlign:'center'}}><div style={{color:'#065f46', fontSize:'0.9rem'}}>Raspunsul corect:</div><div style={{color:'#065f46', fontSize:'2rem', fontWeight:800}}>{q.correct_answer}</div></div>)}
+                        {(q.type === 'fill_in' || q.type === 'fill_blank') && stage === 'reveal' && (<div style={{padding:'1.5rem', background:'#d1fae5', borderRadius:'12px', textAlign:'center'}}><div style={{color:'#065f46', fontSize:'0.9rem'}}>Raspunsul corect:</div><div style={{color:'#065f46', fontSize:'2rem', fontWeight:800}}>{q.correct_answer}</div></div>)}
+
 
 
           </div>
