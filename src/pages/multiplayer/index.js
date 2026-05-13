@@ -13,8 +13,9 @@ const CHAPTERS_LIST = [
   { id: 7, name: 'America de Sud', emoji: '🌴' },
   { id: 8, name: 'Oceania', emoji: '🦘' },
   { id: 9, name: 'Antarctica', emoji: '🐧' },
-  { id: 10, name: 'Steaguri', emoji: '🚩' },
-  { id: 11, name: 'Bacalaureat', emoji: '🎓' },
+    { id: 12, name: 'Steaguri', emoji: '🚩' },
+  { id: 13, name: 'Bacalaureat', emoji: '🎓' },
+
 ];
 
 export default function MultiplayerHome() {
