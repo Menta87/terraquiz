@@ -25,6 +25,7 @@ const VARIANTE = {
 export default function VariantaPage() {
   const router = useRouter();
   const { id } = router.query;
+  const [raspunsuri, setRaspunsuri] = useState({});
   
   if (!id) return <Layout><div style={{padding:'2rem', textAlign:'center'}}>Se încarcă...</div></Layout>;
   
@@ -42,9 +43,67 @@ export default function VariantaPage() {
     );
   }
   
+  function handleRaspuns(data) {
+    setRaspunsuri(function(prev) {
+      return { ...prev, [Date.now()]: data };
+    });
+  }
+  
+  // Combinăm toate exercițiile dintr-un subiect
+  function combineExercises(subiect) {
+    if (!subiect) return [];
+    const all = [];
+    ['A', 'B', 'C', 'D', 'E'].forEach(function(key) {
+      if (Array.isArray(subiect[key])) {
+        subiect[key].forEach(function(ex) { all.push(ex); });
+      }
+    });
+    return all;
+  }
+  
+  const exercitiiI = combineExercises(varianta.subiectI);
+  const exercitiiII = combineExercises(varianta.subiectII);
+  const exercitiiIII = combineExercises(varianta.subiectIII);
+  
   return (
     <Layout>
-      <VariantaRenderer varianta={varianta} EuropeMap={EuropeMap} RomaniaMap={RomaniaMap} />
+      <div style={{maxWidth: '1000px', margin: '0 auto', padding: '2rem 1rem'}}>
+        <Link href="/bac" style={{color:'#0284c7', textDecoration:'underline', fontSize:'0.9rem'}}>← Înapoi la BAC</Link>
+        
+        <h1 style={{fontSize: '2rem', fontWeight: 900, margin: '1rem 0', color: '#1e293b'}}>
+          🎓 {varianta.nume}
+        </h1>
+        
+        {/* SUBIECT I */}
+        <section style={{marginTop: '2rem'}}>
+          <h2 style={{fontSize: '1.5rem', fontWeight: 800, color: '#1e3a8a', marginBottom: '1rem'}}>
+            {varianta.subiectI && varianta.subiectI.titlu ? varianta.subiectI.titlu : 'Subiect I'} (30 puncte)
+          </h2>
+          <div style={{marginBottom: '1.5rem'}}>
+            <EuropeMap varianta={varianta.subiectI && varianta.subiectI.harta ? varianta.subiectI.harta : 'Test_6'} />
+          </div>
+          <VariantaRenderer exercitii={exercitiiI} onRaspuns={handleRaspuns} />
+        </section>
+        
+        {/* SUBIECT II */}
+        <section style={{marginTop: '3rem'}}>
+          <h2 style={{fontSize: '1.5rem', fontWeight: 800, color: '#1e3a8a', marginBottom: '1rem'}}>
+            {varianta.subiectII && varianta.subiectII.titlu ? varianta.subiectII.titlu : 'Subiect II'} (30 puncte)
+          </h2>
+          <div style={{marginBottom: '1.5rem'}}>
+            <RomaniaMap varianta={varianta.subiectII && varianta.subiectII.harta ? varianta.subiectII.harta : 'Test_6'} />
+          </div>
+          <VariantaRenderer exercitii={exercitiiII} onRaspuns={handleRaspuns} />
+        </section>
+        
+        {/* SUBIECT III */}
+        <section style={{marginTop: '3rem'}}>
+          <h2 style={{fontSize: '1.5rem', fontWeight: 800, color: '#1e3a8a', marginBottom: '1rem'}}>
+            {varianta.subiectIII && varianta.subiectIII.titlu ? varianta.subiectIII.titlu : 'Subiect III'} (30 puncte)
+          </h2>
+          <VariantaRenderer exercitii={exercitiiIII} onRaspuns={handleRaspuns} />
+        </section>
+      </div>
     </Layout>
   );
 }
