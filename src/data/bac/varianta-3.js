@@ -1,7 +1,7 @@
 export const varianta3 = {
   id: 'varianta-3',
   nume: 'Varianta 3',
-  an: 2020,
+  an: 2009,
   totalPuncte: 90,
   
   subiectI: {
@@ -9,112 +9,37 @@ export const varianta3 = {
     harta: 'Test_6',
     
     A: [
-      {
-        tip: 'identificare',
-        enunt: '1. Numele statului marcat, pe hartă, cu litera C',
-        raspunsCorect: 'Finlanda',
-        raspunsuriAcceptate: ['finlanda', 'Finlanda'],
-        punctaj: 2,
-      },
-      {
-        tip: 'identificare',
-        enunt: '2. Numele orașului-capitală marcat, pe hartă, cu numărul 6',
-        raspunsCorect: 'București',
-        raspunsuriAcceptate: ['bucuresti', 'București', 'Bucuresti'],
-        punctaj: 2,
-      },
+      { tip: 'identificare', enunt: '1. Numele statului marcat cu litera B', raspunsCorect: 'Portugalia', raspunsuriAcceptate: ['portugalia', 'Portugalia'], punctaj: 2 },
+      { tip: 'identificare', enunt: '2. Numele statului marcat cu litera D', raspunsCorect: 'Regatul Unit', raspunsuriAcceptate: ['Regatul Unit', 'Marea Britanie', 'UK', 'Regatul Unit al Marii Britanii și Irlandei de Nord'], punctaj: 2 },
+      { tip: 'identificare', enunt: '3. Numele orașului-capitală marcat cu numărul 3', raspunsCorect: 'Madrid', raspunsuriAcceptate: ['madrid', 'Madrid'], punctaj: 2 },
+      { tip: 'identificare', enunt: '4. Numele orașului-capitală marcat cu numărul 10', raspunsCorect: 'Moscova', raspunsuriAcceptate: ['moscova', 'Moscova', 'Moscow'], punctaj: 2 },
     ],
     
     B: [
-      {
-        tip: 'completare',
-        enuntInainte: '1. Orașul Reykjavik este capitala statului marcat, pe hartă, cu litera',
-        raspunsCorect: 'J',
-        raspunsuriAcceptate: ['J', 'j', 'Islanda', 'islanda'],
-        punctaj: 2,
-      },
-      {
-        tip: 'completare',
-        enuntInainte: '2. Capitala statului marcat, pe hartă, cu litera E se numește',
-        raspunsCorect: 'Viena',
-        raspunsuriAcceptate: ['viena', 'Viena'],
-        punctaj: 2,
-      },
-      {
-        tip: 'completare',
-        enuntInainte: '3. Orașul marcat, pe hartă, cu numărul 13 este capitala statului numit',
-        raspunsCorect: 'Belarus',
-        raspunsuriAcceptate: ['belarus', 'Belarus', 'Bielorusia'],
-        punctaj: 2,
-      },
+      { tip: 'completare', enuntInainte: '1. Este traversat de fluviul Sena orașul marcat cu numărul', raspunsCorect: '15', raspunsuriAcceptate: ['15', 'Paris', 'paris'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '2. Lacul Balaton este situat în statul marcat cu litera', raspunsCorect: 'I', raspunsuriAcceptate: ['I', 'i', 'Ungaria', 'ungaria'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '3. Vulcani activi se găsesc în statul insular marcat cu litera', raspunsCorect: 'F', raspunsuriAcceptate: ['F', 'f', 'Islanda', 'islanda'], punctaj: 2 },
     ],
     
     C: [
-      {
-        tip: 'grila',
-        enunt: '1. Statul marcat, pe hartă, cu litera I se numește:',
-        variante: { a: 'Andorra', b: 'Cipru', c: 'Malta', d: 'Monaco' },
-        raspunsCorect: 'c',
-        punctaj: 2,
-      },
-      {
-        tip: 'grila',
-        enunt: '2. Teritoriul statului marcat cu litera H nu este străbătut de:',
-        variante: { a: 'Dunăre', b: 'Rhin', c: 'Rhône', d: 'Sena' },
-        raspunsCorect: 'a',
-        punctaj: 2,
-      },
-      {
-        tip: 'grila',
-        enunt: '3. Capitala statului marcat cu litera A se numește:',
-        variante: { a: 'Minsk', b: 'Riga', c: 'Tallinn', d: 'Vilnius' },
-        raspunsCorect: 'd',
-        punctaj: 2,
-      },
-      {
-        tip: 'grila',
-        enunt: '4. Aglomerația urbană Randstad-Holland se află pe teritoriul statului marcat cu litera:',
-        variante: { a: 'A', b: 'B', c: 'E', d: 'J' },
-        raspunsCorect: 'b',
-        punctaj: 2,
-      },
-      {
-        tip: 'grila',
-        enunt: '5. Petrol, cărbuni, gaze naturale, minereu de fier, mangan se exploatează din statul al cărui oraș-capitală este marcat cu numărul:',
-        variante: { a: '9', b: '12', c: '13', d: '14' },
-        raspunsCorect: 'd',
-        punctaj: 2,
-      },
+      { tip: 'grila', enunt: '1. Resurse importante de minereu de fier se exploatează din subsolul statului marcat cu litera:', variante: { a: 'B', b: 'G', c: 'H', d: 'J' }, raspunsCorect: 'b', punctaj: 2 },
+      { tip: 'grila', enunt: '2. Are ieșire la Marea Mediterană statul marcat cu litera:', variante: { a: 'B', b: 'C', c: 'E', d: 'I' }, raspunsCorect: 'c', punctaj: 2 },
+      { tip: 'grila', enunt: '3. Râul Vistula străbate capitala statului marcat cu litera:', variante: { a: 'A', b: 'B', c: 'E', d: 'F' }, raspunsCorect: 'a', punctaj: 2 },
+      { tip: 'grila', enunt: '4. Republica Moldova este marcată cu litera:', variante: { a: 'A', b: 'E', c: 'I', d: 'J' }, raspunsCorect: 'd', punctaj: 2 },
+      { tip: 'grila', enunt: '5. Orașul european cu cel mai mare număr de locuitori este marcat cu numărul:', variante: { a: '2', b: '7', c: '10', d: '12' }, raspunsCorect: 'c', punctaj: 2 },
     ],
     
     D: [
-      {
-        tip: 'comparatie',
-        enunt: 'Precizați 3 deosebiri între clima statului D (Lituania) și clima statului F (Portugalia)',
-        raspunsExemplu: [
-          'Tip de climă: Lituania are climă temperat-continentală cu influențe baltice, iar Portugalia are climă mediteraneană',
-          'Temperaturi: Lituania are temperaturi mai scăzute (iarnă: -4°C), iar Portugalia mai ridicate (iarnă: 10°C)',
-          'Precipitații: Lituania are precipitații uniform distribuite (600-800 mm/an), iar Portugalia precipitații concentrate iarna (700-1000 mm/an)',
-        ],
-        punctajMaxim: 6,
-      },
+      { tip: 'comparatie', enunt: 'Precizați 3 deosebiri între clima din nordul Europei și clima din sudul Europei', raspunsExemplu: [
+        'Tip de climă: în nordul Europei se întâlnește climatul subpolar, iar în sudul Europei climatul subtropical (mediteranean)',
+        'Temperaturi: temperatura medie anuală în nordul Europei este între 5 și -5°C, iar în sudul Europei de aproximativ 15°C',
+        'Precipitații: în climatul subpolar precipitațiile sunt 500-800 mm, predominant zăpadă; în climatul subtropical 600-900 mm, dominant în octombrie-aprilie (toamna și primăvara)',
+      ], punctajMaxim: 6 },
     ],
     
     E: [
-      {
-        tip: 'cauza',
-        enunt: '1. Norvegia obține aproape 100% energie electrică din hidroenergie. Prezentați un factor natural care favorizează utilizarea acestui tip de energie',
-        raspunsExemplu: 'Norvegia are relief muntos cu pante mari, râuri cu debite considerabile, precipitații abundente (1500-2000 mm/an) și văi glaciare adânci ideale pentru construirea barajelor și hidrocentralelor.',
-        cuvinteCheie: ['relief', 'munte', 'pante', 'debit', 'precipitații'],
-        punctaj: 2,
-      },
-      {
-        tip: 'cauza',
-        enunt: '2. Prezentați un factor natural care favorizează culturile de citrice din Europa Sudică',
-        raspunsExemplu: 'Clima mediteraneană cu temperaturi blânde iarna (peste 5-10°C), veri calde și uscate, soluri terra-rosa favorabile și expunere bună la soare permit cultivarea citricelor.',
-        cuvinteCheie: ['mediteraneană', 'temperaturi', 'soare', 'caldă', 'soluri'],
-        punctaj: 2,
-      },
+      { tip: 'cauza', enunt: '1. Prezentați o cauză care determină necesitatea forței de muncă externe (imigranți) pentru unele state europene', raspunsExemplu: 'Îmbătrânirea demografică a populației din unele state europene a determinat un deficit de forță de muncă, motiv pentru care s-a apelat la imigranți. De asemenea, costul mai scăzut al forței de muncă externe.', cuvinteCheie: ['îmbătrânire', 'deficit', 'forță muncă', 'cost'], punctaj: 2 },
+      { tip: 'cauza', enunt: '2. Prezentați o cauză a prezenței pădurilor în Norvegia și a ghețarilor în Groenlanda (la aceeași latitudine)', raspunsExemplu: 'Clima temperat-oceanică din Norvegia, influențată de Curentul Golfului, plus natura substratului muntos, favorizează pădurile. În Groenlanda, clima subpolară și polară, cu vânturi puternice și temperaturi foarte scăzute, a favorizat instalarea ghețarilor.', cuvinteCheie: ['Curentul Golfului', 'oceanic', 'subpolar', 'temperaturi'], punctaj: 2 },
     ],
   },
   
@@ -123,112 +48,37 @@ export const varianta3 = {
     harta: 'Test_6',
     
     A: [
-      {
-        tip: 'identificare',
-        enunt: '1. Numele orașului marcat, pe hartă, cu numărul 12',
-        raspunsCorect: 'Craiova',
-        raspunsuriAcceptate: ['craiova', 'Craiova'],
-        punctaj: 2,
-      },
-      {
-        tip: 'identificare',
-        enunt: '2. Numele râului marcat, pe hartă, cu numărul 5',
-        raspunsCorect: 'Buzău',
-        raspunsuriAcceptate: ['buzau', 'Buzău', 'Buzau'],
-        punctaj: 2,
-      },
+      { tip: 'identificare', enunt: '1. Numele unității de relief marcate cu litera E', raspunsCorect: 'Grupa Parâng', raspunsuriAcceptate: ['Grupa Parâng', 'Parâng', 'Parang', 'parang'], punctaj: 2 },
+      { tip: 'identificare', enunt: '2. Numele unității de relief marcate cu litera G', raspunsCorect: 'Câmpia Bărăganului', raspunsuriAcceptate: ['Câmpia Bărăganului', 'Bărăgan', 'Baragan', 'Câmpia Română'], punctaj: 2 },
+      { tip: 'identificare', enunt: '3. Numele râului marcat cu numărul 7', raspunsCorect: 'Jijia', raspunsuriAcceptate: ['Jijia', 'jijia'], punctaj: 2 },
+      { tip: 'identificare', enunt: '4. Numele râului marcat cu numărul 11', raspunsCorect: 'Bega', raspunsuriAcceptate: ['Bega', 'bega'], punctaj: 2 },
     ],
     
     B: [
-      {
-        tip: 'completare',
-        enuntInainte: '1. Râul marcat, pe hartă, cu numărul 3 se numește',
-        raspunsCorect: 'Mureș',
-        raspunsuriAcceptate: ['mures', 'Mureș', 'Mures'],
-        punctaj: 2,
-      },
-      {
-        tip: 'completare',
-        enuntInainte: '2. Relief vulcanic s-a format în unitatea de relief marcată cu litera',
-        raspunsCorect: 'C',
-        raspunsuriAcceptate: ['C', 'c', 'Munții Apuseni', 'apuseni'],
-        punctaj: 2,
-      },
-      {
-        tip: 'completare',
-        enuntInainte: '3. Orașul marcat, pe hartă, cu numărul 11 este străbătut de râul numit',
-        raspunsCorect: 'Bega',
-        raspunsuriAcceptate: ['bega', 'Bega'],
-        punctaj: 2,
-      },
+      { tip: 'completare', enuntInainte: '1. Resurse de bauxită se găsesc în unitatea de relief marcată cu litera', raspunsCorect: 'B', raspunsuriAcceptate: ['B', 'b', 'Munții Apuseni', 'apuseni'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '2. Traversează orașul Pitești râul marcat cu numărul', raspunsCorect: '9', raspunsuriAcceptate: ['9'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '3. Unitatea de relief marcată cu litera A se numește', raspunsCorect: 'Munții Banatului', raspunsuriAcceptate: ['Munții Banatului', 'Banatului', 'banatului'], punctaj: 2 },
     ],
     
     C: [
-      {
-        tip: 'grila',
-        enunt: '1. Munți formați în orogeneza hercinică se află în unitatea de relief marcată cu litera:',
-        variante: { a: 'C', b: 'D', c: 'F', d: 'G' },
-        raspunsCorect: 'c',
-        punctaj: 2,
-      },
-      {
-        tip: 'grila',
-        enunt: '2. Râul marcat cu numărul 1 se numește:',
-        variante: { a: 'Cerna', b: 'Cibin', c: 'Lotru', d: 'Motru' },
-        raspunsCorect: 'a',
-        punctaj: 2,
-      },
-      {
-        tip: 'grila',
-        enunt: '3. În unitatea de relief marcată cu litera G nu există zona de vegetație alpină din cauza:',
-        variante: { a: 'altitudinilor reduse', b: 'influențelor climatice baltice', c: 'reliefului glaciar', d: 'solurilor din clasa molisoluri' },
-        raspunsCorect: 'a',
-        punctaj: 2,
-      },
-      {
-        tip: 'grila',
-        enunt: '4. Influențe climatice de ariditate (continentale) pătrund în unitatea de relief marcată cu litera:',
-        variante: { a: 'A', b: 'D', c: 'G', d: 'H' },
-        raspunsCorect: 'b',
-        punctaj: 2,
-      },
-      {
-        tip: 'grila',
-        enunt: '5. Orașul marcat cu numărul 9 se numește:',
-        variante: { a: 'Buzău', b: 'Pitești', c: 'Ploiești', d: 'Târgoviște' },
-        raspunsCorect: 'c',
-        punctaj: 2,
-      },
+      { tip: 'grila', enunt: '1. Lacuri pe masive de sare sunt caracteristice unității de relief marcată cu litera:', variante: { a: 'A', b: 'C', c: 'E', d: 'F' }, raspunsCorect: 'b', punctaj: 2 },
+      { tip: 'grila', enunt: '2. Influențele climatice continentale (de ariditate) pătrund în unitatea de relief marcată cu litera:', variante: { a: 'B', b: 'E', c: 'D', d: 'F' }, raspunsCorect: 'd', punctaj: 2 },
+      { tip: 'grila', enunt: '3. Mureșul și Oltul izvorăsc din unitatea de relief marcată cu litera:', variante: { a: 'A', b: 'C', c: 'E', d: 'H' }, raspunsCorect: 'd', punctaj: 2 },
+      { tip: 'grila', enunt: '4. Minereuri complexe se exploatează din unitatea de relief marcată cu litera:', variante: { a: 'B', b: 'D', c: 'E', d: 'F' }, raspunsCorect: 'a', punctaj: 2 },
+      { tip: 'grila', enunt: '5. Este situat într-o depresiune intramontană orașul marcat cu numărul:', variante: { a: '1', b: '3', c: '5', d: '6' }, raspunsCorect: 'a', punctaj: 2 },
     ],
     
     D: [
-      {
-        tip: 'comparatie',
-        enunt: 'Precizați 3 deosebiri între relieful unității E (Podișul Getic) și relieful unității H (Grupele Bucegi și Făgăraș)',
-        raspunsExemplu: [
-          'Mod de formare: Podișul Getic s-a format prin sedimentare, iar Grupele Bucegi și Făgăraș prin orogeneza alpină (cutare)',
-          'Altitudini: Podișul Getic are altitudini mici (300-700 m), iar Grupele Bucegi și Făgăraș au altitudini mari (peste 2500 m - Vârful Moldoveanu)',
-          'Tipuri de roci: Podișul Getic e alcătuit din roci sedimentare, iar Grupele Bucegi și Făgăraș din roci magmatice și metamorfice',
-        ],
-        punctajMaxim: 6,
-      },
+      { tip: 'comparatie', enunt: 'Precizați 2 asemănări și o deosebire între relieful Grupei Retezat-Godeanu și relieful Grupei Făgăraș', raspunsExemplu: [
+        'Asemănare: ambele unități s-au format prin cutarea scoarței terestre (orogeneza alpină)',
+        'Asemănare: altitudini mari, depășind 2000 m în ambele grupe; prezența reliefului glaciar atât în Retezat-Godeanu cât și în Făgăraș',
+        'Deosebire: Grupa Făgăraș se prezintă sub forma a două culmi principale (nordică masivă cu peste 2000 m și sudică cu sub 2000 m), iar în Grupa Retezat-Godeanu culmile sunt paralele, despărțite prin rețeaua hidrografică',
+      ], punctajMaxim: 6 },
     ],
     
     E: [
-      {
-        tip: 'cauza',
-        enunt: '1. Prezentați o cauză care determină producerea alunecărilor de teren în Subcarpați',
-        raspunsExemplu: 'Subcarpații au pante semnificative, soluri argiloase îmbibate cu apă în urma precipitațiilor abundente, defrișări masive și activități antropice (construcții, drumuri), toate favorizând alunecările de teren.',
-        cuvinteCheie: ['pante', 'argilă', 'precipitații', 'defrișări', 'sol'],
-        punctaj: 2,
-      },
-      {
-        tip: 'cauza',
-        enunt: '2. Prezentați o cauză a temperaturii minime absolute înregistrate în Depresiunea Brașovului',
-        raspunsExemplu: 'Depresiunea Brașovului este o depresiune intramontană în care, iarna, aerul rece coboară de pe munți și se acumulează în partea joasă (fenomen de inversiune termică), neputând să se evacueze ușor.',
-        cuvinteCheie: ['depresiune', 'inversiune', 'termică', 'aer rece', 'munte'],
-        punctaj: 2,
-      },
+      { tip: 'cauza', enunt: '1. Prezentați o cauză a frecvenței mai mari a hidrocentralelor în zona montană față de câmpie', raspunsExemplu: 'În zona montană există pante mari (cădere de apă), debite considerabile și văi adânci care permit construirea de baraje și hidrocentrale eficiente. În câmpie, relieful plan nu oferă cădere suficientă pentru hidroenergie.', cuvinteCheie: ['pante', 'cădere', 'debit', 'baraje'], punctaj: 2 },
+      { tip: 'cauza', enunt: '2. Prezentați o cauză a diferenței de temperatură de peste 2°C între sudul și nordul țării', raspunsExemplu: 'Diferența de latitudine (cca 5°) între nord și sud determină un unghi de incidență a razelor solare diferit, mai mare în sud. Astfel, sudul țării primește mai multă energie solară pe m² decât nordul.', cuvinteCheie: ['latitudine', 'raze solare', 'energie', 'sud'], punctaj: 2 },
     ],
   },
   
@@ -236,131 +86,35 @@ export const varianta3 = {
     titlu: 'Subiect III - Lumea contemporană',
     
     A: [
-      {
-        tip: 'identificare',
-        enunt: '1. Valoarea cea mai mare a precipitațiilor medii lunare și luna în care s-a înregistrat',
-        raspunsCorect: '75 mm iunie',
-        raspunsuriAcceptate: ['75 mm iunie', '75 iunie', '75mm iunie', 'iunie 75', '75', 'iunie'],
-        punctaj: 2,
-      },
-      {
-        tip: 'identificare',
-        enunt: '2. Valoarea minimă a precipitațiilor medii lunare (între 27 și 29 mm) și luna în care s-a înregistrat (februarie)',
-        raspunsCorect: '28 mm februarie',
-        raspunsuriAcceptate: ['28 mm februarie', '28 februarie', 'februarie 28', '27 februarie', '29 februarie', 'februarie'],
-        punctaj: 2,
-      },
+      { tip: 'identificare', enunt: '1. Valoarea maximă a temperaturii medii lunare și lunile', raspunsCorect: '15 iulie august', raspunsuriAcceptate: ['15 iulie august', 'iulie', 'august', '15', 'iulie și august'], punctaj: 2 },
+      { tip: 'identificare', enunt: '2. Cantitatea minimă de precipitații și luna', raspunsCorect: '80 mai', raspunsuriAcceptate: ['80 mai', 'mai', '80', '80 mm mai'], punctaj: 2 },
     ],
     
     B: [
-      {
-        tip: 'calcul',
-        enunt: '1. Calculați diferența dintre precipitațiile din lunile noiembrie și decembrie (între 18 și 20 mm)',
-        formula: 'Diferență noiembrie - decembrie',
-        raspunsCorect: 19,
-        intervalAcceptat: [18, 20],
-        unitate: 'mm',
-        punctaj: 2,
-      },
-      {
-        tip: 'calcul',
-        enunt: '2. Calculați diferența dintre valoarea maximă și minimă a precipitațiilor (între 46 și 48 mm)',
-        formula: 'Max - Min',
-        raspunsCorect: 47,
-        intervalAcceptat: [46, 48],
-        unitate: 'mm',
-        punctaj: 2,
-      },
-      {
-        tip: 'completare',
-        enuntInainte: '3. Precizați o lună în care precipitațiile sunt între 60 și 65 mm',
-        raspunsCorect: 'aprilie',
-        raspunsuriAcceptate: ['aprilie', 'august', 'octombrie', 'noiembrie'],
-        punctaj: 2,
-      },
+      { tip: 'grila', enunt: '1. Tipul de climă în care se înregistrează valorile este:', variante: { a: 'ecuatorial', b: 'subpolar', c: 'mediteranean (subtropical)', d: 'temperat-oceanic' }, raspunsCorect: 'd', punctaj: 2 },
+      { tip: 'grila', enunt: '2. Valoarea maximă a temperaturii medii lunare se înregistrează în lunile:', variante: { a: 'august și mai', b: 'august și iulie', c: 'iulie și iunie', d: 'iulie și mai' }, raspunsCorect: 'b', punctaj: 2 },
+      { tip: 'grila', enunt: '3. Cantitățile mari de precipitații medii anuale sunt o consecință a:', variante: { a: 'altitudinii reduse', b: 'regimului radiației solare', c: 'regimului temperaturii aerului', d: 'circulației vestice a maselor de aer' }, raspunsCorect: 'd', punctaj: 2 },
     ],
     
     C: [
-      {
-        tip: 'completare',
-        enuntInainte: '1. Pentru Subcarpații Moldovei: modul de formare este',
-        raspunsCorect: 'cutare',
-        raspunsuriAcceptate: ['cutare', 'orogeneza alpină', 'orogeneza'],
-        punctaj: 2,
-      },
-      {
-        tip: 'completare',
-        enuntInainte: '2. Pentru Subcarpații Moldovei: unitatea de relief vecină la nord este',
-        raspunsCorect: 'Podișul Moldovei',
-        raspunsuriAcceptate: ['Podișul Moldovei', 'podisul moldovei', 'Podișul Sucevei', 'Sucevei'],
-        punctaj: 2,
-      },
-      {
-        tip: 'completare',
-        enuntInainte: '3. Pentru Subcarpații Moldovei: o influență climatică este',
-        raspunsCorect: 'continentală',
-        raspunsuriAcceptate: ['continentală', 'continentale', 'baltice', 'est-europene', 'scandinavo-baltice'],
-        punctaj: 2,
-      },
-      {
-        tip: 'completare',
-        enuntInainte: '4. Pentru Subcarpații Moldovei: un râu care îi străbate este',
-        raspunsCorect: 'Bistrița',
-        raspunsuriAcceptate: ['Bistrița', 'bistrita', 'Trotuș', 'trotus', 'Moldova', 'moldova', 'Siret', 'siret'],
-        punctaj: 2,
-      },
-      {
-        tip: 'completare',
-        enuntInainte: '5. Pentru Subcarpații Moldovei: o resursă de subsol este',
-        raspunsCorect: 'petrol',
-        raspunsuriAcceptate: ['petrol', 'sare', 'cărbuni', 'gaze', 'gaze naturale'],
-        punctaj: 2,
-      },
+      { tip: 'completare', enuntInainte: '1. Pentru Spania: peninsula este', raspunsCorect: 'Peninsula Iberică', raspunsuriAcceptate: ['Peninsula Iberică', 'iberică', 'iberica'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '2. Pentru Spania: o unitate montană este', raspunsCorect: 'Munții Cantabrici', raspunsuriAcceptate: ['Munții Cantabrici', 'Cantabrici', 'Munții Iberici', 'Pirinei', 'Sierra Nevada'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '3. Pentru Spania: un tip de climă este', raspunsCorect: 'mediteraneană', raspunsuriAcceptate: ['mediteraneană', 'mediterană', 'oceanică', 'subtropical'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '4. Pentru Spania: un oraș mare (altul decât capitala) este', raspunsCorect: 'Barcelona', raspunsuriAcceptate: ['Barcelona', 'Sevilla', 'Valencia', 'Bilbao', 'Zaragoza'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '5. Pentru Spania: o regiune turistică este', raspunsCorect: 'Madrid', raspunsuriAcceptate: ['Madrid', 'Palma de Mallorca', 'Mallorca', 'Costa del Sol', 'Costa Brava', 'Insulele Baleare', 'Insulele Canare'], punctaj: 2 },
     ],
     
     D: [
-      {
-        tip: 'calcul',
-        enunt: '1. Calculați bilanțul natural pentru Belgia (Natalitate: 11,7‰ - Mortalitate: 9,5‰)',
-        formula: 'Natalitate - Mortalitate',
-        raspunsCorect: 2.2,
-        intervalAcceptat: [2.0, 2.4],
-        unitate: '‰',
-        punctaj: 2,
-      },
-      {
-        tip: 'calcul',
-        enunt: '2. Calculați bilanțul natural pentru România (Natalitate: 10,3‰ - Mortalitate: 11,8‰)',
-        formula: 'Natalitate - Mortalitate',
-        raspunsCorect: -1.5,
-        intervalAcceptat: [-1.7, -1.3],
-        unitate: '‰',
-        punctaj: 2,
-      },
-      {
-        tip: 'cauza',
-        enunt: '3. Prezentați o cauză care explică mortalitatea redusă din Belgia',
-        raspunsExemplu: 'Mortalitatea redusă din Belgia se explică prin nivelul de trai ridicat, sistemul de sănătate performant, accesul larg la servicii medicale și speranța de viață ridicată.',
-        cuvinteCheie: ['nivelul', 'trai', 'sănătate', 'medical', 'speranța'],
-        punctaj: 2,
-      },
+      { tip: 'comparatie', enunt: 'Precizați 2 asemănări și o deosebire între cadrul natural al Ucrainei și cel al Bulgariei', raspunsExemplu: [
+        'Asemănare: în Ucraina și în Bulgaria relieful este variat, cuprinzând toate treptele - câmpii, podișuri, munți',
+        'Asemănare: rețeaua hidrografică din ambele state este tributară Mării Negre',
+        'Deosebire: clima Ucrainei este temperat-continentală cu nuanțe excesive în est și mediteraneană în sud, iar clima Bulgariei este temperat-continentală în nord și mediteraneană în sud',
+      ], punctajMaxim: 6 },
     ],
     
     E: [
-      {
-        tip: 'cauza',
-        enunt: '1. Prezentați o caracteristică a apelor Mării Negre',
-        raspunsExemplu: 'Marea Neagră are salinitate redusă (17-18‰, mai mică decât oceanele) datorită aportului mare de apă dulce din fluviile Dunăre, Don, Nipru, Nistru.',
-        cuvinteCheie: ['salinitate', 'redus', 'fluvii', 'Dunăre', 'aport'],
-        punctaj: 2,
-      },
-      {
-        tip: 'cauza',
-        enunt: '2. Prezentați o altă caracteristică a apelor Mării Negre',
-        raspunsExemplu: 'Marea Neagră este o mare mediteraneană interioară cu adâncimi mari (2245 m max) și are sub 200 m apa stratificată în care lipsește oxigenul (zona azoică cu hidrogen sulfurat).',
-        cuvinteCheie: ['adâncime', 'stratificată', 'oxigen', 'azoică', 'sulfurat'],
-        punctaj: 2,
-      },
+      { tip: 'cauza', enunt: '1. Primul factor care favorizează producția mare de cereale în Franța', raspunsExemplu: 'Suprafața arabilă foarte mare a Franței (cca 18 milioane ha), cea mai mare din UE, oferă spațiu pentru producția cerealieră la scară largă.', cuvinteCheie: ['arabilă', 'suprafață', 'UE'], punctaj: 2 },
+      { tip: 'cauza', enunt: '2. Al doilea factor', raspunsExemplu: 'Fertilitatea solurilor (cernoziom în Bazinul Parizian), mecanizarea avansată a lucrărilor agricole, soiurile performante și structura proprietății agricole (ferme mari) susțin productivitatea ridicată.', cuvinteCheie: ['fertilitate', 'mecanizare', 'soiuri', 'ferme'], punctaj: 2 },
     ],
   },
 };

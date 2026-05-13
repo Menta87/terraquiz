@@ -1,7 +1,7 @@
 export const varianta2 = {
   id: 'varianta-2',
   nume: 'Varianta 2',
-  an: 2020,
+  an: 2009,
   totalPuncte: 90,
   
   subiectI: {
@@ -9,112 +9,37 @@ export const varianta2 = {
     harta: 'Test_6',
     
     A: [
-      {
-        tip: 'identificare',
-        enunt: '1. Numele statului marcat, pe hartă, cu litera I',
-        raspunsCorect: 'Danemarca',
-        raspunsuriAcceptate: ['danemarca', 'Danemarca'],
-        punctaj: 2,
-      },
-      {
-        tip: 'identificare',
-        enunt: '2. Numele orașului-capitală marcat, pe hartă, cu numărul 7',
-        raspunsCorect: 'Helsinki',
-        raspunsuriAcceptate: ['helsinki', 'Helsinki'],
-        punctaj: 2,
-      },
+      { tip: 'identificare', enunt: '1. Numele statului marcat cu litera C', raspunsCorect: 'Italia', raspunsuriAcceptate: ['italia', 'Italia'], punctaj: 2 },
+      { tip: 'identificare', enunt: '2. Numele statului marcat cu litera D', raspunsCorect: 'Spania', raspunsuriAcceptate: ['spania', 'Spania'], punctaj: 2 },
+      { tip: 'identificare', enunt: '3. Numele orașului-capitală marcat cu numărul 7', raspunsCorect: 'Londra', raspunsuriAcceptate: ['londra', 'Londra'], punctaj: 2 },
+      { tip: 'identificare', enunt: '4. Numele orașului-capitală marcat cu numărul 12', raspunsCorect: 'Atena', raspunsuriAcceptate: ['atena', 'Atena'], punctaj: 2 },
     ],
     
     B: [
-      {
-        tip: 'completare',
-        enuntInainte: '1. Capitala statului marcat, pe hartă, cu litera C se numește',
-        raspunsCorect: 'Budapesta',
-        raspunsuriAcceptate: ['budapesta', 'Budapesta'],
-        punctaj: 2,
-      },
-      {
-        tip: 'completare',
-        enuntInainte: '2. Versantul sudic al Munților Pirinei se găsește pe teritoriul statului marcat cu litera',
-        raspunsCorect: 'H',
-        raspunsuriAcceptate: ['H', 'h', 'Spania', 'spania'],
-        punctaj: 2,
-      },
-      {
-        tip: 'completare',
-        enuntInainte: '3. Statul marcat, pe hartă, cu litera D se numește',
-        raspunsCorect: 'Lituania',
-        raspunsuriAcceptate: ['lituania', 'Lituania'],
-        punctaj: 2,
-      },
+      { tip: 'completare', enuntInainte: '1. Munții Alpi se găsesc în nordul statului marcat cu litera', raspunsCorect: 'C', raspunsuriAcceptate: ['C', 'c', 'Italia', 'italia'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '2. Podișul Meseta este situat în statul marcat cu litera', raspunsCorect: 'D', raspunsuriAcceptate: ['D', 'd', 'Spania', 'spania'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '3. Climatul rece este caracteristic în statul marcat cu litera', raspunsCorect: 'J', raspunsuriAcceptate: ['J', 'j', 'Finlanda', 'finlanda'], punctaj: 2 },
     ],
     
     C: [
-      {
-        tip: 'grila',
-        enunt: '1. Cel mai mare oraș din Europa, ca număr de locuitori, este marcat cu numărul:',
-        variante: { a: '1', b: '8', c: '13', d: '14' },
-        raspunsCorect: 'c',
-        punctaj: 2,
-      },
-      {
-        tip: 'grila',
-        enunt: '2. Statul marcat cu litera G se numește:',
-        variante: { a: 'Albania', b: 'Muntenegru', c: 'Republica Macedonia de Nord', d: 'Slovenia' },
-        raspunsCorect: 'b',
-        punctaj: 2,
-      },
-      {
-        tip: 'grila',
-        enunt: '3. Capitala statului marcat cu litera B se numește:',
-        variante: { a: 'Berna', b: 'Ljubljana', c: 'Praga', d: 'Viena' },
-        raspunsCorect: 'd',
-        punctaj: 2,
-      },
-      {
-        tip: 'grila',
-        enunt: '4. Statele ale căror orașe-capitale sunt marcate cu numerele 2, 3 și 11 au în comun:',
-        variante: { a: 'clima temperat oceanică', b: 'fluviul Dunărea', c: 'forma de guvernământ monarhie', d: 'Munții Alpi' },
-        raspunsCorect: 'b',
-        punctaj: 2,
-      },
-      {
-        tip: 'grila',
-        enunt: '5. Clima mediteraneeană este specifică orașelor marcate cu numerele:',
-        variante: { a: '5 și 6', b: '8 și 9', c: '12 și 15', d: '13 și 14' },
-        raspunsCorect: 'a',
-        punctaj: 2,
-      },
+      { tip: 'grila', enunt: '1. Este situat într-un stat insular orașul-capitală marcat cu numărul:', variante: { a: '2', b: '3', c: '14', d: '15' }, raspunsCorect: 'b', punctaj: 2 },
+      { tip: 'grila', enunt: '2. Sunt traversate de Dunăre orașele-capitală marcate cu numerele:', variante: { a: '1 și 5', b: '6 și 9', c: '9 și 14', d: '1 și 13' }, raspunsCorect: 'd', punctaj: 2 },
+      { tip: 'grila', enunt: '3. Stepa se dezvoltă în statul marcat cu litera:', variante: { a: 'A', b: 'E', c: 'H', d: 'G' }, raspunsCorect: 'c', punctaj: 2 },
+      { tip: 'grila', enunt: '4. Podișul Boemiei este situat în statul marcat cu litera:', variante: { a: 'C', b: 'E', c: 'G', d: 'H' }, raspunsCorect: 'b', punctaj: 2 },
+      { tip: 'grila', enunt: '5. Statul San Marino este o enclavă în cadrul statului marcat cu litera:', variante: { a: 'A', b: 'C', c: 'D', d: 'I' }, raspunsCorect: 'b', punctaj: 2 },
     ],
     
     D: [
-      {
-        tip: 'comparatie',
-        enunt: 'Precizați 2 deosebiri și o asemănare între clima statului A (Regatul Unit) și clima statului H (Spania)',
-        raspunsExemplu: [
-          'Deosebire: Regatul Unit are climă temperat-oceanică, iar Spania are climă mediteraneană',
-          'Deosebire: Regatul Unit are precipitații mai abundente (1000-2000 mm), iar Spania mai puține (400-700 mm)',
-          'Asemănare: Ambele state au climă temperată (în general), influențată de Oceanul Atlantic',
-        ],
-        punctajMaxim: 6,
-      },
+      { tip: 'comparatie', enunt: 'Precizați 2 deosebiri și o asemănare între relieful Munților Alpi și relieful Munților Scandinaviei', raspunsExemplu: [
+        'Deosebire: Munții Alpi s-au format în orogeneza alpină, iar Munții Scandinaviei în orogeneza caledoniană',
+        'Deosebire: altitudinea maximă în Munții Alpi ajunge la 4807 m (Vf. Mont Blanc), iar în Munții Scandinaviei la 2469 m (Vf. Galdhopiggen)',
+        'Asemănare: prezența reliefului glaciar în ambele unități montane (circuri glaciare, văi în U)',
+      ], punctajMaxim: 6 },
     ],
     
     E: [
-      {
-        tip: 'cauza',
-        enunt: '1. Explicați prezența vulcanilor activi în statul a cărui capitală este orașul marcat cu numărul 10 (Italia)',
-        raspunsExemplu: 'Italia este situată la contactul plăcilor tectonice africană și europeană (eurasiatică). Coliziunea acestora generează magmatism, ceea ce explică existența vulcanilor activi precum Vezuviu, Etna, Stromboli.',
-        cuvinteCheie: ['plăci', 'tectonice', 'coliziune', 'magmatism', 'subducție'],
-        punctaj: 2,
-      },
-      {
-        tip: 'cauza',
-        enunt: '2. Explicați densitatea mare a populației în statul marcat cu litera F (Olanda/Belgia)',
-        raspunsExemplu: 'Densitatea mare a populației este cauzată de relieful jos și plan favorabil locuirii, clima blândă temperat-oceanică, industria dezvoltată, comerțul activ datorită porturilor la Marea Nordului și tradiția urbană veche.',
-        cuvinteCheie: ['câmpie', 'relief', 'industrie', 'porturi', 'comerț'],
-        punctaj: 2,
-      },
+      { tip: 'cauza', enunt: '1. Prezentați o cauză a prezenței ghețarilor actuali în Munții Pirinei', raspunsExemplu: 'Altitudinile ridicate de peste 3000 m (Pic Aneto - 3404 m) creează condiții pentru menținerea zăpezii și formarea ghețarilor permanenți.', cuvinteCheie: ['altitudine', '3000', 'zăpadă'], punctaj: 2 },
+      { tip: 'cauza', enunt: '2. Prezentați o cauză a scăderii precipitațiilor din vest spre est în Europa', raspunsExemplu: 'Circulația predominant vestică a maselor de aer încărcate cu umiditate dinspre Atlantic; intensitatea vânturilor de vest scade de la vest la est, iar continentalitatea crește.', cuvinteCheie: ['circulație', 'vest', 'mase de aer', 'continentalitate'], punctaj: 2 },
     ],
   },
   
@@ -123,112 +48,37 @@ export const varianta2 = {
     harta: 'Test_6',
     
     A: [
-      {
-        tip: 'identificare',
-        enunt: '1. Numele orașului marcat, pe hartă, cu numărul 10',
-        raspunsCorect: 'Bistrița',
-        raspunsuriAcceptate: ['bistrita', 'Bistrița', 'Bistrita'],
-        punctaj: 2,
-      },
-      {
-        tip: 'identificare',
-        enunt: '2. Numele râului marcat, pe hartă, cu numărul 6',
-        raspunsCorect: 'Bârlad',
-        raspunsuriAcceptate: ['barlad', 'Bârlad', 'Barlad'],
-        punctaj: 2,
-      },
+      { tip: 'identificare', enunt: '1. Numele unității de relief marcate cu litera B', raspunsCorect: 'Munții Apuseni', raspunsuriAcceptate: ['Munții Apuseni', 'apuseni', 'muntii apuseni'], punctaj: 2 },
+      { tip: 'identificare', enunt: '2. Numele unității de relief marcate cu litera D', raspunsCorect: 'Podișul Getic', raspunsuriAcceptate: ['Podișul Getic', 'getic', 'Piemontul Getic'], punctaj: 2 },
+      { tip: 'identificare', enunt: '3. Numele orașului marcat cu numărul 1', raspunsCorect: 'Timișoara', raspunsuriAcceptate: ['Timișoara', 'timisoara'], punctaj: 2 },
+      { tip: 'identificare', enunt: '4. Numele orașului marcat cu numărul 6', raspunsCorect: 'Brașov', raspunsuriAcceptate: ['Brașov', 'brasov'], punctaj: 2 },
     ],
     
     B: [
-      {
-        tip: 'completare',
-        enuntInainte: '1. Râul marcat, pe hartă, cu numărul 3 se numește',
-        raspunsCorect: 'Timiș',
-        raspunsuriAcceptate: ['timis', 'Timiș', 'Timis'],
-        punctaj: 2,
-      },
-      {
-        tip: 'completare',
-        enuntInainte: '2. Orașul marcat, pe hartă, cu numărul 12 se numește',
-        raspunsCorect: 'Giurgiu',
-        raspunsuriAcceptate: ['giurgiu', 'Giurgiu'],
-        punctaj: 2,
-      },
-      {
-        tip: 'completare',
-        enuntInainte: '3. Este situat în Subcarpații Getici orașul marcat, pe hartă, cu numărul',
-        raspunsCorect: '7',
-        raspunsuriAcceptate: ['7'],
-        punctaj: 2,
-      },
+      { tip: 'completare', enuntInainte: '1. Lacul vulcanic Sf. Ana este situat în unitatea de relief marcată cu litera', raspunsCorect: 'H', raspunsuriAcceptate: ['H', 'h', 'Carpații Orientali'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '2. Cel mai important centru siderurgic este orașul marcat cu numărul', raspunsCorect: '4', raspunsuriAcceptate: ['4'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '3. Lacuri glaciare se găsesc în unitatea de relief marcată cu litera', raspunsCorect: 'E', raspunsuriAcceptate: ['E', 'e', 'Carpații Meridionali'], punctaj: 2 },
     ],
     
     C: [
-      {
-        tip: 'grila',
-        enunt: '1. Artera hidrografică marcată, pe hartă, cu numărul 2 se numește:',
-        variante: { a: 'Brațul Borcea', b: 'Brațul Chilia', c: 'Canalul Dunăre-Marea Neagră', d: 'Canalul Sulina' },
-        raspunsCorect: 'a',
-        punctaj: 2,
-      },
-      {
-        tip: 'grila',
-        enunt: '2. Soluri din clasa spodosoluri (de tip podzol) se găsesc în unitatea de relief marcată cu litera:',
-        variante: { a: 'B', b: 'C', c: 'D', d: 'F' },
-        raspunsCorect: 'a',
-        punctaj: 2,
-      },
-      {
-        tip: 'grila',
-        enunt: '3. Influențe climatice continentale (est-europene/de ariditate) pătrund în unitățile de relief marcate cu literele:',
-        variante: { a: 'A și B', b: 'C și H', c: 'D și F', d: 'E și G' },
-        raspunsCorect: 'c',
-        punctaj: 2,
-      },
-      {
-        tip: 'grila',
-        enunt: '4. Orașul marcat, pe hartă, cu numărul 11 se numește:',
-        variante: { a: 'Baia Mare', b: 'Oradea', c: 'Satu Mare', d: 'Zalău' },
-        raspunsCorect: 'c',
-        punctaj: 2,
-      },
-      {
-        tip: 'grila',
-        enunt: '5. Râul marcat, pe hartă, cu numărul 1:',
-        variante: { a: 'formează limita între Munții Banatului și Grupa Retezat-Godeanu', b: 'izvorăște din Munții Parâng', c: 'străbate orașul Petroșani', d: 'străbate un bazin carbonifer' },
-        raspunsCorect: 'd',
-        punctaj: 2,
-      },
+      { tip: 'grila', enunt: '1. Stepa se întâlnește în unitatea de relief marcată cu litera:', variante: { a: 'C', b: 'D', c: 'E', d: 'G' }, raspunsCorect: 'd', punctaj: 2 },
+      { tip: 'grila', enunt: '2. Este situat într-o unitate de câmpie orașul marcat cu numărul:', variante: { a: '1', b: '2', c: '3', d: '6' }, raspunsCorect: 'a', punctaj: 2 },
+      { tip: 'grila', enunt: '3. Este un piemont unitatea de relief notată cu litera:', variante: { a: 'A', b: 'D', c: 'G', d: 'F' }, raspunsCorect: 'b', punctaj: 2 },
+      { tip: 'grila', enunt: '4. Influențe climatice oceanice pătrund în unitatea de relief notată cu litera:', variante: { a: 'A', b: 'B', c: 'D', d: 'G' }, raspunsCorect: 'b', punctaj: 2 },
+      { tip: 'grila', enunt: '5. Importante resurse de lignit se găsesc în unitatea de relief notată cu litera:', variante: { a: 'B', b: 'D', c: 'E', d: 'F' }, raspunsCorect: 'b', punctaj: 2 },
     ],
     
     D: [
-      {
-        tip: 'comparatie',
-        enunt: 'Precizați 3 deosebiri între relieful unității B (Carpații Curburii) și relieful unității E (Dealurile Silvaniei)',
-        raspunsExemplu: [
-          'Mod de formare: Carpații Curburii s-au format prin orogeneza alpină (cutare), iar Dealurile Silvaniei prin sedimentare',
-          'Altitudini: Carpații Curburii au altitudini mari (1900 m - Vârful Ciucaș), iar Dealurile Silvaniei au altitudini mici (300-700 m)',
-          'Tipuri de roci: Carpații Curburii sunt alcătuiți din fliș și roci metamorfice, iar Dealurile Silvaniei din roci sedimentare (argile, marne, nisipuri)',
-        ],
-        punctajMaxim: 6,
-      },
+      { tip: 'comparatie', enunt: 'Precizați 3 deosebiri între relieful Munților Banatului și relieful Grupei Nordice a Carpaților Orientali', raspunsExemplu: [
+        'Roci: Munții Banatului s-au format pe roci predominant cristaline și sedimentare (calcare), iar Grupa Nordică a Carpaților Orientali pe roci cristaline, vulcanice și sedimentare cutate (fliș)',
+        'Altitudini: Munții Banatului au altitudinea maximă de 1446 m (Munții Semenic), iar Grupa Nordică ajunge la 2303 m (Munții Rodnei)',
+        'Dispunere: Munții Banatului au două sectoare (unul în est mai înalt, altul în vest fragmentat), iar Grupa Nordică se dispune sub formă de trei șiruri paralele orientate NV-SE',
+      ], punctajMaxim: 6 },
     ],
     
     E: [
-      {
-        tip: 'cauza',
-        enunt: '1. Prezentați un element natural care favorizează cultivarea cerealelor în unitatea de relief marcată cu litera C (Câmpia Română)',
-        raspunsExemplu: 'Relieful plan, lipsit de pante semnificative, și solurile fertile de tip cernoziom, bogate în humus, favorizează cultivarea cerealelor.',
-        cuvinteCheie: ['relief', 'plan', 'cernoziom', 'soluri', 'fertile'],
-        punctaj: 2,
-      },
-      {
-        tip: 'cauza',
-        enunt: '2. Prezentați un al doilea element natural care favorizează cultivarea cerealelor în Câmpia Română',
-        raspunsExemplu: 'Clima temperat-continentală cu veri calde, precipitații suficiente (500-600 mm/an) și un număr mare de ore de soare favorizează maturarea cerealelor.',
-        cuvinteCheie: ['climă', 'temperatura', 'precipitații', 'soare', 'veri'],
-        punctaj: 2,
-      },
+      { tip: 'cauza', enunt: '1. Prezentați o cauză a densității reduse a populației în Munții Carpați', raspunsExemplu: 'Carpații, prin altitudini ridicate, temperaturi scăzute, precipitații abundente, durata mare a perioadei de îngheț, pantele abrupte și stratul subțire de sol, determină condiții puțin favorabile pentru așezările umane.', cuvinteCheie: ['altitudine', 'temperaturi', 'pante', 'sol'], punctaj: 2 },
+      { tip: 'cauza', enunt: '2. Prezentați o cauză a precipitațiilor mai mari în vestul țării', raspunsExemplu: 'La latitudinea României, mișcarea generală a aerului se produce de la vest spre est, aducând mase de aer umede din Atlantic. Carpații formează o barieră, iar influențele oceanice nu depășesc Carpații Orientali.', cuvinteCheie: ['vest', 'mase aer', 'Atlantic', 'barieră'], punctaj: 2 },
     ],
   },
   
@@ -236,137 +86,35 @@ export const varianta2 = {
     titlu: 'Subiect III - Lumea contemporană',
     
     A: [
-      {
-        tip: 'identificare',
-        enunt: '1. Numărul de imigranți în anul 1998 (între 10.000 și 13.000 persoane)',
-        raspunsCorect: '11000',
-        raspunsuriAcceptate: ['11000', '12000', '10000', '13000', '11.000', '12.000'],
-        punctaj: 1,
-      },
-      {
-        tip: 'identificare',
-        enunt: '2. Numărul de emigranți în anul 2011 (între 18.000 și 20.000 persoane)',
-        raspunsCorect: '19000',
-        raspunsuriAcceptate: ['19000', '18000', '20000', '19.000', '18.000', '20.000'],
-        punctaj: 1,
-      },
-      {
-        tip: 'calcul',
-        enunt: '3. Calculați cu cât a crescut numărul de emigranți în anul 2011 față de 2010',
-        formula: 'Diferență 2011-2010',
-        raspunsCorect: 10000,
-        intervalAcceptat: [9000, 11000],
-        unitate: 'persoane',
-        punctaj: 2,
-      },
+      { tip: 'identificare', enunt: '1. Valoarea maximă a densității și statul', raspunsCorect: '1280 Malta', raspunsuriAcceptate: ['1280 Malta', 'Malta', '1280', 'malta'], punctaj: 2 },
+      { tip: 'identificare', enunt: '2. Valoarea minimă a densității și statul', raspunsCorect: '10 Finlanda', raspunsuriAcceptate: ['10 Finlanda', 'Finlanda', '10', 'finlanda'], punctaj: 2 },
     ],
     
     B: [
-      {
-        tip: 'calcul',
-        enuntInainte: '1. Calculați bilanțul migratoriu pentru anul 2007',
-        enunt: '1. Calculați bilanțul migratoriu pentru anul 2007 (imigranți - emigranți)',
-        formula: 'Imigranți - Emigranți',
-        raspunsCorect: 0,
-        intervalAcceptat: [-100, 100],
-        unitate: 'persoane',
-        punctaj: 2,
-      },
-      {
-        tip: 'calcul',
-        enunt: '2. Calculați bilanțul migratoriu pentru anul 1991 (între 43.000 și 44.000)',
-        formula: 'Imigranți - Emigranți',
-        raspunsCorect: 43500,
-        intervalAcceptat: [43000, 44000],
-        unitate: 'persoane',
-        punctaj: 2,
-      },
-      {
-        tip: 'cauza',
-        enunt: '3. Precizați un efect social-economic al numărului mare de emigranți',
-        raspunsExemplu: 'Scăderea forței de muncă tinere și calificate, depopularea anumitor zone, scăderea natalității, dar și creșterea remitențelor (banii trimiși de emigranți în țară) care contribuie la economie.',
-        cuvinteCheie: ['forță', 'muncă', 'depopulare', 'remitențe', 'natalitate'],
-        punctaj: 2,
-      },
+      { tip: 'completare', enuntInainte: '1. Pentru Finlanda, argumentul care explică densitatea este', raspunsCorect: '1', raspunsuriAcceptate: ['1', 'climat rece', 'păduri'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '2. Pentru Olanda, argumentul care explică densitatea este', raspunsCorect: '2', raspunsuriAcceptate: ['2', 'relief jos', 'urbanizare'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '3. Pentru Malta, argumentul care explică densitatea este', raspunsCorect: '4', raspunsuriAcceptate: ['4', 'suprafață mică'], punctaj: 2 },
     ],
     
     C: [
-      {
-        tip: 'completare',
-        enuntInainte: '1. Pentru Podișul Mehedinți: o unitate de relief vecină este',
-        raspunsCorect: 'Subcarpații Getici',
-        raspunsuriAcceptate: ['subcarpatii getici', 'Subcarpații Getici', 'Podișul Getic', 'Munții Mehedinți', 'Câmpia Română'],
-        punctaj: 2,
-      },
-      {
-        tip: 'completare',
-        enuntInainte: '2. Pentru Podișul Mehedinți: modul de formare este',
-        raspunsCorect: 'cutare',
-        raspunsuriAcceptate: ['cutare', 'orogeneza', 'orogeneza alpină', 'orogeneza hercinică'],
-        punctaj: 2,
-      },
-      {
-        tip: 'completare',
-        enuntInainte: '3. Pentru Podișul Mehedinți: un tip de rocă este',
-        raspunsCorect: 'calcar',
-        raspunsuriAcceptate: ['calcar', 'calcare', 'sisturi cristaline', 'sisturi', 'roci metamorfice'],
-        punctaj: 2,
-      },
-      {
-        tip: 'completare',
-        enuntInainte: '4. Pentru Podișul Mehedinți: un tip genetic de relief specific este',
-        raspunsCorect: 'carstic',
-        raspunsuriAcceptate: ['carstic', 'Carstic', 'relief carstic', 'fluvial'],
-        punctaj: 2,
-      },
-      {
-        tip: 'completare',
-        enuntInainte: '5. Pentru Podișul Mehedinți: o influență climatică este',
-        raspunsCorect: 'submediteraneană',
-        raspunsuriAcceptate: ['submediteraneană', 'submediteranean', 'submediteraneene'],
-        punctaj: 2,
-      },
+      { tip: 'completare', enuntInainte: '1. Pentru Regatul Unit: o unitate de relief este', raspunsCorect: 'Munții Grampian', raspunsuriAcceptate: ['Munții Grampian', 'Grampian', 'Munții Penini', 'Penini'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '2. Pentru Regatul Unit: un râu este', raspunsCorect: 'Tamisa', raspunsuriAcceptate: ['Tamisa', 'tamisa', 'Severn', 'severn'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '3. Pentru Regatul Unit: o resursă de subsol este', raspunsCorect: 'cărbuni', raspunsuriAcceptate: ['cărbuni', 'petrol', 'gaze naturale'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '4. Pentru Regatul Unit: un oraș mare (altul decât capitala) este', raspunsCorect: 'Liverpool', raspunsuriAcceptate: ['Liverpool', 'Manchester', 'Leeds', 'Birmingham', 'Glasgow'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '5. Pentru Regatul Unit: o ramură industrială este', raspunsCorect: 'aeronautică', raspunsuriAcceptate: ['aeronautică', 'textilă', 'chimică', 'auto'], punctaj: 2 },
     ],
     
     D: [
-      {
-        tip: 'cauza',
-        enunt: '1. Explicați suprafața mare ocupată de terenuri arabile în județul Călărași',
-        raspunsExemplu: 'Județul Călărași este situat în Câmpia Română, având relief plan, soluri fertile de tip cernoziom și climă favorabilă cerealelor, ceea ce permite cultivarea unor suprafețe mari de terenuri arabile.',
-        cuvinteCheie: ['câmpie', 'plan', 'cernoziom', 'fertile', 'cereale'],
-        punctaj: 2,
-      },
-      {
-        tip: 'cauza',
-        enunt: '2. Explicați suprafața mare ocupată de pășuni și fânețe în județul Harghita',
-        raspunsExemplu: 'Județul Harghita este situat în zona montană (Carpații Orientali), cu altitudini mari, climă rece și soluri puțin fertile pentru agricultura intensivă, dar favorabile pășunilor naturale și fânețelor.',
-        cuvinteCheie: ['munte', 'altitudini', 'rece', 'pășuni', 'păstorit'],
-        punctaj: 2,
-      },
-      {
-        tip: 'cauza',
-        enunt: '3. Explicați suprafața mare ocupată cu livezi și viță de vie în județul Vrancea',
-        raspunsExemplu: 'Județul Vrancea este situat în Subcarpații Curburii, cu relief deluros, climă temperat-continentală cu influențe submediteraneene, soluri brune favorabile pomiculturii și viticulturii (zona Cotnari-Odobești).',
-        cuvinteCheie: ['dealuri', 'climă', 'sol', 'viță', 'viticultură'],
-        punctaj: 2,
-      },
+      { tip: 'comparatie', enunt: 'Precizați 2 asemănări și o deosebire între cadrul natural al Serbiei și cel al Ungariei', raspunsExemplu: [
+        'Asemănare: în ambele state relieful este variat, cuprinzând toate treptele: câmpii, podișuri, munți',
+        'Asemănare: cea mai importantă arteră hidrografică din Serbia și din Ungaria este fluviul Dunărea',
+        'Deosebire: clima Serbiei este temperat-continentală cu influențe mediteraneene, iar clima Ungariei este temperat-continentală cu influențe oceanice',
+      ], punctajMaxim: 6 },
     ],
     
     E: [
-      {
-        tip: 'cauza',
-        enunt: '1. Prezentați o cauză care determină producția mare de oțel în Suedia',
-        raspunsExemplu: 'Suedia dispune de zăcăminte importante de minereu de fier (Kiruna), de hidroenergie ieftină pentru procesare și de tradiție industrială veche în siderurgie.',
-        cuvinteCheie: ['fier', 'minereu', 'hidroenergie', 'siderurgie', 'tradiție'],
-        punctaj: 2,
-      },
-      {
-        tip: 'cauza',
-        enunt: '2. Precizați două resurse de subsol utilizate la fabricarea oțelului',
-        raspunsExemplu: 'Pentru fabricarea oțelului se utilizează: minereu de fier (resursa principală) și cărbune (pentru cocs metalurgic). Alte resurse: mangan, crom, nichel.',
-        cuvinteCheie: ['fier', 'cărbune', 'mangan', 'cocs', 'nichel'],
-        punctaj: 2,
-      },
+      { tip: 'cauza', enunt: '1. Prima sursă de energie nepoluantă', raspunsExemplu: 'Energia eoliană (vântul), produsă de turbine eoliene în zonele cu vânt constant (țărmuri, podișuri).', cuvinteCheie: ['eoliană', 'vânt'], punctaj: 1 },
+      { tip: 'cauza', enunt: '2. A doua sursă de energie nepoluantă', raspunsExemplu: 'Energia solară (panouri fotovoltaice), energia mareelor (țărmuri oceanice), energia geotermală (Islanda).', cuvinteCheie: ['solară', 'mareelor', 'geotermală'], punctaj: 3 },
     ],
   },
 };
