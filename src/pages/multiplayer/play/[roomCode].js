@@ -186,6 +186,13 @@ export default function PlayerRoom() {
             <div style={{fontSize:'6rem'}}>{isCorrect ? '✅' : '❌'}</div>
             <h1 style={{fontSize:'2.5rem', marginTop:'1rem'}}>{isCorrect ? 'Corect!' : 'Gresit!'}</h1>
             {isCorrect && <div style={{fontSize:'2rem', fontWeight:700}}>+{pointsEarned} puncte</div>}
+            {!isCorrect && currentQuestion && (
+              <div style={{background:'rgba(255,255,255,0.25)', padding:'1.25rem', borderRadius:'12px', marginTop:'1.5rem', fontSize:'1.1rem'}}>
+                <div style={{fontSize:'0.95rem', opacity:0.9, marginBottom:'0.5rem'}}>Răspunsul corect era:</div>
+                <div style={{fontSize:'1.5rem', fontWeight:800}}>{currentQuestion.correct_answer}</div>
+              </div>
+            )}
+
             <div style={{background:'rgba(255,255,255,0.2)', padding:'1.5rem', borderRadius:'16px', marginTop:'2rem'}}>
               <div style={{fontSize:'2.5rem'}}>{player.avatar_emoji}</div>
               <div style={{fontSize:'1.3rem', fontWeight:700}}>{player.nickname}</div>
