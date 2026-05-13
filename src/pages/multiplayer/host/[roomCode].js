@@ -162,7 +162,8 @@ export default function HostRoom() {
                 })}
               </div>
             )}
-                        {q.type === 'fill_in' && (<div style={{padding:'1.5rem', background:'#d1fae5', borderRadius:'12px', textAlign:'center'}}><div style={{color:'#065f46', fontSize:'0.9rem'}}>Raspunsul corect:</div><div style={{color:'#065f46', fontSize:'2rem', fontWeight:800}}>{q.correct_answer}</div></div>)}
+                        {q.type === 'fill_in' && stage === 'reveal' && (<div style={{padding:'1.5rem', background:'#d1fae5', borderRadius:'12px', textAlign:'center'}}><div style={{color:'#065f46', fontSize:'0.9rem'}}>Raspunsul corect:</div><div style={{color:'#065f46', fontSize:'2rem', fontWeight:800}}>{q.correct_answer}</div></div>)}
+
 
           </div>
           {stage === 'question' && (<button onClick={() => setStage('reveal')} style={{width:'100%', padding:'1rem', background:'white', color:'#5b21b6', border:'none', borderRadius:'12px', fontSize:'1.1rem', fontWeight:700, cursor:'pointer'}}>⏭️ Arata raspunsul</button>)}
