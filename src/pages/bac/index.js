@@ -62,7 +62,48 @@ const VARIANTE = [
     href: '/bac/varianta/varianta-6',
     disponibil: true,
   },
+  {
+    id: 'varianta-7',
+    nume: 'Varianta 7',
+    durata: '~45 min',
+    nrExercitii: 30,
+    nivel: 'BAC complet',
+    culoare: '#06b6d4',
+    href: '/bac/varianta/varianta-7',
+    disponibil: true,
+  },
+  {
+    id: 'varianta-8',
+    nume: 'Varianta 8',
+    durata: '~45 min',
+    nrExercitii: 30,
+    nivel: 'BAC complet',
+    culoare: '#14b8a6',
+    href: '/bac/varianta/varianta-8',
+    disponibil: true,
+  },
+  {
+    id: 'varianta-9',
+    nume: 'Varianta 9',
+    durata: '~45 min',
+    nrExercitii: 30,
+    nivel: 'BAC complet',
+    culoare: '#a855f7',
+    href: '/bac/varianta/varianta-9',
+    disponibil: true,
+  },
+  {
+    id: 'varianta-10',
+    nume: 'Varianta 10',
+    durata: '~45 min',
+    nrExercitii: 30,
+    nivel: 'BAC complet',
+    culoare: '#f97316',
+    href: '/bac/varianta/varianta-10',
+    disponibil: true,
+  },
 ];
+
 
 export default function BacIndex() {
   return (
