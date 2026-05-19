@@ -5,7 +5,6 @@ const VARIANTE = [
   {
     id: 'varianta-1',
     nume: 'Varianta 1',
-    descriere: 'BAC 2009 - Subiect I (Europa) + II (România) + III (Italia)',
     durata: '~45 min',
     nrExercitii: 30,
     nivel: 'BAC complet',
@@ -16,7 +15,6 @@ const VARIANTE = [
   {
     id: 'varianta-2',
     nume: 'Varianta 2',
-    descriere: 'BAC 2009 - Europa + România + Regatul Unit',
     durata: '~45 min',
     nrExercitii: 30,
     nivel: 'BAC complet',
@@ -27,7 +25,6 @@ const VARIANTE = [
   {
     id: 'varianta-3',
     nume: 'Varianta 3',
-    descriere: 'BAC 2009 - Europa + România + Spania',
     durata: '~45 min',
     nrExercitii: 30,
     nivel: 'BAC complet',
@@ -38,7 +35,6 @@ const VARIANTE = [
   {
     id: 'varianta-4',
     nume: 'Varianta 4',
-    descriere: 'BAC 2009 - Europa + România + Franța',
     durata: '~45 min',
     nrExercitii: 30,
     nivel: 'BAC complet',
@@ -49,7 +45,6 @@ const VARIANTE = [
   {
     id: 'varianta-5',
     nume: 'Varianta 5',
-    descriere: 'BAC 2009 - Europa + România + producția de grâu',
     durata: '~45 min',
     nrExercitii: 30,
     nivel: 'BAC complet',
@@ -60,7 +55,6 @@ const VARIANTE = [
   {
     id: 'varianta-6',
     nume: 'Varianta 6',
-    descriere: 'BAC 2009 - Europa + România + Franța nod comunicație',
     durata: '~45 min',
     nrExercitii: 30,
     nivel: 'BAC complet',
@@ -85,7 +79,7 @@ export default function BacIndex() {
             Pregătire BAC Geografie
           </h1>
           <p style={{fontSize: '1.15rem', opacity: 0.95, margin: '0 0 1.5rem', lineHeight: 1.6}}>
-            Variante autentice din BAC 2009 cu hărți oficiale și diagrame.
+            Variante autentice cu hărți oficiale și diagrame.
           </p>
         </div>
       </section>
@@ -95,7 +89,7 @@ export default function BacIndex() {
           Variante BAC disponibile
         </h2>
         <p style={{textAlign: 'center', color: '#64748b', marginBottom: '2.5rem', fontSize: '1rem'}}>
-          În curs de extindere - până la 100 de variante BAC oficiale
+          În curs de extindere
         </p>
 
         <div style={{
@@ -121,15 +115,12 @@ export default function BacIndex() {
                   {v.nivel}
                 </div>
                 <h3 style={{
-                  margin: '0 0 0.5rem', color: '#1e293b',
+                  margin: '0 0 1rem', color: '#1e293b',
                   fontSize: '1.25rem', fontWeight: 800,
                   paddingRight: '5rem',
                 }}>
                   {v.nume}
                 </h3>
-                <p style={{margin: '0 0 1rem', color: '#64748b', fontSize: '0.95rem', lineHeight: 1.5}}>
-                  {v.descriere}
-                </p>
                 <div style={{
                   display: 'flex', gap: '1rem', flexWrap: 'wrap',
                   marginBottom: '1.25rem', fontSize: '0.85rem', color: '#475569',
