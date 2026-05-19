@@ -2,8 +2,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Layout from '../../../components/Layout';
-import EuropeMap from '../../../components/bac/EuropeMap';
-import RomaniaMap from '../../../components/bac/RomaniaMap';
+import BacImageMap from '../../../components/bac/BacImageMap';
 import VariantaRenderer from '../../../components/bac/VariantaRenderer';
 
 import { varianta1 } from '../../../data/bac/varianta-1';
@@ -36,7 +35,6 @@ export default function VariantaPage() {
       <Layout>
         <div style={{padding:'3rem', textAlign:'center'}}>
           <h1>Varianta nu există</h1>
-          <p>Varianta solicitată nu a fost găsită.</p>
           <Link href="/bac" style={{color:'#0284c7', textDecoration:'underline'}}>← Înapoi la BAC</Link>
         </div>
       </Layout>
@@ -44,12 +42,9 @@ export default function VariantaPage() {
   }
   
   function handleRaspuns(data) {
-    setRaspunsuri(function(prev) {
-      return { ...prev, [Date.now()]: data };
-    });
+    setRaspunsuri(function(prev) { return { ...prev, [Date.now()]: data }; });
   }
   
-  // Combinăm toate exercițiile dintr-un subiect
   function combineExercises(subiect) {
     if (!subiect) return [];
     const all = [];
@@ -65,6 +60,8 @@ export default function VariantaPage() {
   const exercitiiII = combineExercises(varianta.subiectII);
   const exercitiiIII = combineExercises(varianta.subiectIII);
   
+  const testNum = varianta.testNumber || 6;
+  
   return (
     <Layout>
       <div style={{maxWidth: '1000px', margin: '0 auto', padding: '2rem 1rem'}}>
@@ -77,10 +74,10 @@ export default function VariantaPage() {
         {/* SUBIECT I */}
         <section style={{marginTop: '2rem'}}>
           <h2 style={{fontSize: '1.5rem', fontWeight: 800, color: '#1e3a8a', marginBottom: '1rem'}}>
-            {varianta.subiectI && varianta.subiectI.titlu ? varianta.subiectI.titlu : 'Subiect I'} (30 puncte)
+            Subiect I - Europa (30 puncte)
           </h2>
           <div style={{marginBottom: '1.5rem'}}>
-            <EuropeMap varianta={varianta.subiectI && varianta.subiectI.harta ? varianta.subiectI.harta : 'Test_6'} />
+            <BacImageMap test={testNum} tip="europa" />
           </div>
           <VariantaRenderer exercitii={exercitiiI} onRaspuns={handleRaspuns} />
         </section>
@@ -88,10 +85,10 @@ export default function VariantaPage() {
         {/* SUBIECT II */}
         <section style={{marginTop: '3rem'}}>
           <h2 style={{fontSize: '1.5rem', fontWeight: 800, color: '#1e3a8a', marginBottom: '1rem'}}>
-            {varianta.subiectII && varianta.subiectII.titlu ? varianta.subiectII.titlu : 'Subiect II'} (30 puncte)
+            Subiect II - România (30 puncte)
           </h2>
           <div style={{marginBottom: '1.5rem'}}>
-            <RomaniaMap varianta={varianta.subiectII && varianta.subiectII.harta ? varianta.subiectII.harta : 'Test_6'} />
+            <BacImageMap test={testNum} tip="romania" />
           </div>
           <VariantaRenderer exercitii={exercitiiII} onRaspuns={handleRaspuns} />
         </section>
@@ -99,9 +96,20 @@ export default function VariantaPage() {
         {/* SUBIECT III */}
         <section style={{marginTop: '3rem'}}>
           <h2 style={{fontSize: '1.5rem', fontWeight: 800, color: '#1e3a8a', marginBottom: '1rem'}}>
-            {varianta.subiectIII && varianta.subiectIII.titlu ? varianta.subiectIII.titlu : 'Subiect III'} (30 puncte)
+            Subiect III - Lumea contemporană (30 puncte)
           </h2>
+            {varianta.subiectIII && varianta.subiectIII.hasDiagrama && (
+            <div style={{marginBottom: '1.5rem'}}>
+              <BacImageMap test={testNum} tip="diagrama" />
+            </div>
+          )}
+          {varianta.subiectIII && varianta.subiectIII.hasTabele && (
+            <div style={{marginBottom: '1.5rem'}}>
+              <BacImageMap test={testNum} tip="tabele" />
+            </div>
+          )}
           <VariantaRenderer exercitii={exercitiiIII} onRaspuns={handleRaspuns} />
+
         </section>
       </div>
     </Layout>
