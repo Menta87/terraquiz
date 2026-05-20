@@ -152,10 +152,17 @@ const VARIANTE = [
     href: '/bac/varianta/varianta-15',
     disponibil: true,
   },
+  {
+    id: 'varianta-16',
+    nume: 'Varianta 16',
+    durata: '~45 min',
+    nrExercitii: 30,
+    nivel: 'BAC complet',
+    culoare: '#dc2626',
+    href: '/bac/varianta/varianta-16',
+    disponibil: true,
+  },
 ];
-  'varianta-15': varianta15,
-  'varianta-16': varianta16,
-};
 
 
 
