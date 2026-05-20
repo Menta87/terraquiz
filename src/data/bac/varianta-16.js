@@ -42,43 +42,19 @@ export const varianta16 = {
       { tip: 'cauza', enunt: '2. Cauză a fenomenului de îmbătrânire a populației Europei', raspunsExemplu: 'Bilanțul natural negativ datorită scăderii natalității (sub 10‰), schimbării mentalității (carieră înainte de familie), emigrării tinerelor cupluri, plus creșterea speranței de viață peste 80 ani datorită nivelului ridicat de trai și sistemului medical avansat.', cuvinteCheie: ['natalitate', 'emigrare', 'speranță', 'medical'], punctaj: 2 },
     ],
   },
-  
-  subiectII: {
-    titlu: 'Subiect II - România',
-    
-    A: [
-      { tip: 'identificare', enunt: '1. Numele unității de relief marcată cu litera E', raspunsCorect: 'Podișul Sucevei', raspunsuriAcceptate: ['Podișul Sucevei', 'Sucevei', 'sucevei'], punctaj: 2 },
-      { tip: 'identificare', enunt: '2. Numele unității de relief marcată cu litera F', raspunsCorect: 'Subcarpații Moldovei', raspunsuriAcceptate: ['Subcarpații Moldovei', 'Moldovei', 'moldovei'], punctaj: 2 },
-      { tip: 'identificare', enunt: '3. Numele râului marcat cu numărul 8', raspunsCorect: 'Olt', raspunsuriAcceptate: ['Olt', 'olt'], punctaj: 1 },
-      { tip: 'identificare', enunt: '4. Numele râului marcat cu numărul 11', raspunsCorect: 'Mureș', raspunsuriAcceptate: ['Mureș', 'Mures', 'mures'], punctaj: 1 },
-    ],
-    
-    B: [
-      { tip: 'completare', enuntInainte: '1. Șisturi verzi se găsesc în unitatea de relief marcată cu litera', raspunsCorect: 'C', raspunsuriAcceptate: ['C', 'c', 'Podișul Dobrogei', 'Dobrogei'], punctaj: 2 },
-      { tip: 'completare', enuntInainte: '2. Lacuri glaciare se găsesc în unitatea de relief marcată cu litera', raspunsCorect: 'B', raspunsuriAcceptate: ['B', 'b', 'Carpații Meridionali'], punctaj: 2 },
-      { tip: 'completare', enuntInainte: '3. Port la Dunăre este orașul marcat cu numărul', raspunsCorect: '5', raspunsuriAcceptate: ['5'], punctaj: 2 },
-    ],
-    
-    C: [
-      { tip: 'grila', enunt: '1. Silvostepa este prezentă în unitatea de relief marcată cu litera:', variante: { a: 'A', b: 'D', c: 'E', d: 'G' }, raspunsCorect: 'a', punctaj: 2 },
-      { tip: 'grila', enunt: '2. Un important combinat siderurgic este în orașul marcat cu numărul:', variante: { a: '1', b: '4', c: '5', d: '6' }, raspunsCorect: 'a', punctaj: 2 },
-      { tip: 'grila', enunt: '3. Resurse de huilă se găsesc în unitatea de relief marcată cu litera:', variante: { a: 'A', b: 'B', c: 'E', d: 'F' }, raspunsCorect: 'b', punctaj: 2 },
-      { tip: 'grila', enunt: '4. Este reședința județului Sălaj orașul marcat cu numărul:', variante: { a: '2', b: '3', c: '4', d: '6' }, raspunsCorect: 'b', punctaj: 2 },
-      { tip: 'grila', enunt: '5. Domuri gazeifere se întâlnesc în unitatea de relief marcată cu litera:', variante: { a: 'A', b: 'C', c: 'F', d: 'H' }, raspunsCorect: 'd', punctaj: 2 },
-    ],
-    
-    D: [
-      { tip: 'comparatie', enunt: 'Precizați 3 deosebiri între relieful unității A (Câmpia de Vest) și relieful unității B (Carpații Meridionali)', raspunsExemplu: [
-        'Mod de formare: A (Câmpia de Vest) prin sedimentare, iar B (Carpații Meridionali) prin orogeneza alpină (cutare)',
-        'Altitudini: Câmpia de Vest 100-200 m (plan), Carpații Meridionali peste 2500 m (Vf. Moldoveanu 2544 m)',
-        'Tipuri de relief: Câmpia de Vest are relief plan cu interfluvii largi, iar Carpații Meridionali au relief glaciar și alpin',
-      ], punctajMaxim: 6 },
-    ],
-    
-    E: [
-      { tip: 'cauza', enunt: 'Două cauze ale prezenței alunecărilor de teren în Subcarpați', raspunsExemplu: 'Cauza 1: structura geologică din argile și marne (roci impermeabile) care, îmbibate cu apă, devin instabile. Cauza 2: despăduririle, pantele accentuate ale dealurilor și precipitațiile abundente declanșează alunecările frecvent în zona subcarpatică.', cuvinteCheie: ['argile', 'marne', 'pante', 'despăduriri'], punctaj: 4 },
-    ],
+  user@MacBook-Air terraquiz % sed -n '160,170p' src/pages/bac/index.js
+
+    nivel: 'BAC complet',
+    culoare: '#dc2626',
+    href: '/bac/varianta/varianta-16',
+    disponibil: true,
   },
+];
+
+
+
+export default function BacIndex() {
+  return (
   
   subiectIII: {
     titlu: 'Subiect III - Lumea contemporană',
