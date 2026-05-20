@@ -153,6 +153,9 @@ const VARIANTE = [
     disponibil: true,
   },
 ];
+  'varianta-15': varianta15,
+  'varianta-16': varianta16,
+};
 
 
 

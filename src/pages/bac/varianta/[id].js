@@ -20,6 +20,8 @@ import { varianta12 } from '../../../data/bac/varianta-12';
 import { varianta13 } from '../../../data/bac/varianta-13';
 import { varianta14 } from '../../../data/bac/varianta-14';
 import { varianta15 } from '../../../data/bac/varianta-15';
+import { varianta16 } from '../../../data/bac/varianta-16';
+
 
 
 
@@ -38,8 +40,10 @@ const VARIANTE = {
   'varianta-12': varianta12,
   'varianta-13': varianta13,
   'varianta-14': varianta14,
-  'varianta-15': varianta15,
+    'varianta-15': varianta15,
+  'varianta-16': varianta16,
 };
+
 
 
 
@@ -98,9 +102,15 @@ export default function VariantaPage() {
           <h2 style={{fontSize: '1.5rem', fontWeight: 800, color: '#1e3a8a', marginBottom: '1rem'}}>
             Subiect I - Europa (30 puncte)
           </h2>
-          <div style={{marginBottom: '1.5rem'}}>
-            <BacImageMap test={testNum} tip="europa" />
+                <div style={{marginBottom: '1.5rem'}}>
+            <BacImageMap 
+              test={testNum} 
+              tip="europa"
+              set={varianta.bacSet || '2020'}
+              varianta={varianta.bacVariantNum || 1}
+            />
           </div>
+
           <VariantaRenderer exercitii={exercitiiI} onRaspuns={handleRaspuns} />
         </section>
         
@@ -109,9 +119,15 @@ export default function VariantaPage() {
           <h2 style={{fontSize: '1.5rem', fontWeight: 800, color: '#1e3a8a', marginBottom: '1rem'}}>
             Subiect II - România (30 puncte)
           </h2>
-          <div style={{marginBottom: '1.5rem'}}>
-            <BacImageMap test={testNum} tip="romania" />
+                  <div style={{marginBottom: '1.5rem'}}>
+            <BacImageMap 
+              test={testNum} 
+              tip="romania"
+              set={varianta.bacSet || '2020'}
+              varianta={varianta.bacVariantNum || 1}
+            />
           </div>
+
           <VariantaRenderer exercitii={exercitiiII} onRaspuns={handleRaspuns} />
         </section>
         
