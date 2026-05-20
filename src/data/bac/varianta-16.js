@@ -42,19 +42,43 @@ export const varianta16 = {
       { tip: 'cauza', enunt: '2. Cauză a fenomenului de îmbătrânire a populației Europei', raspunsExemplu: 'Bilanțul natural negativ datorită scăderii natalității (sub 10‰), schimbării mentalității (carieră înainte de familie), emigrării tinerelor cupluri, plus creșterea speranței de viață peste 80 ani datorită nivelului ridicat de trai și sistemului medical avansat.', cuvinteCheie: ['natalitate', 'emigrare', 'speranță', 'medical'], punctaj: 2 },
     ],
   },
-  user@MacBook-Air terraquiz % sed -n '160,170p' src/pages/bac/index.js
-
-    nivel: 'BAC complet',
-    culoare: '#dc2626',
-    href: '/bac/varianta/varianta-16',
-    disponibil: true,
+  
+  subiectII: {
+    titlu: 'Subiect II - România',
+    
+    A: [
+      { tip: 'identificare', enunt: '1. Numele unității de relief marcată cu litera E', raspunsCorect: 'Podișul Someșan', raspunsuriAcceptate: ['Podișul Someșan', 'Someșan', 'somesan'], punctaj: 2 },
+      { tip: 'identificare', enunt: '2. Numele unității de relief marcată cu litera F', raspunsCorect: 'Podișul Bârladului', raspunsuriAcceptate: ['Podișul Bârladului', 'Bârladului', 'Barladului', 'barladului'], punctaj: 2 },
+      { tip: 'identificare', enunt: '3. Numele râului marcat cu numărul 8', raspunsCorect: 'Motru', raspunsuriAcceptate: ['Motru', 'motru'], punctaj: 1 },
+      { tip: 'identificare', enunt: '4. Numele râului marcat cu numărul 11', raspunsCorect: 'Someșul Mic', raspunsuriAcceptate: ['Someșul Mic', 'Somesul Mic', 'somesul mic', 'Someș Mic'], punctaj: 1 },
+    ],
+    
+    B: [
+      { tip: 'completare', enuntInainte: '1. Șisturi verzi se găsesc în unitatea de relief marcată cu litera', raspunsCorect: 'C', raspunsuriAcceptate: ['C', 'c', 'Dobrogei de Nord', 'Munții Măcin'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '2. Lacuri glaciare se găsesc în unitatea de relief marcată cu litera', raspunsCorect: 'B', raspunsuriAcceptate: ['B', 'b', 'Carpații Meridionali'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '3. Port la Dunăre este orașul marcat cu numărul', raspunsCorect: '5', raspunsuriAcceptate: ['5'], punctaj: 2 },
+    ],
+    
+    C: [
+      { tip: 'grila', enunt: '1. Silvostepa este prezentă în unitatea de relief marcată cu litera:', variante: { a: 'A', b: 'D', c: 'E', d: 'G' }, raspunsCorect: 'd', punctaj: 2 },
+      { tip: 'grila', enunt: '2. Un important combinat siderurgic este în orașul marcat cu numărul:', variante: { a: '1', b: '4', c: '5', d: '6' }, raspunsCorect: 'd', punctaj: 2 },
+      { tip: 'grila', enunt: '3. Resurse de huilă se găsesc în unitatea de relief marcată cu litera:', variante: { a: 'A', b: 'B', c: 'E', d: 'F' }, raspunsCorect: 'b', punctaj: 2 },
+      { tip: 'grila', enunt: '4. Este reședința județului Sălaj orașul marcat cu numărul:', variante: { a: '2', b: '3', c: '4', d: '6' }, raspunsCorect: 'b', punctaj: 2 },
+      { tip: 'grila', enunt: '5. Domuri gazeifere se întâlnesc în unitatea de relief marcată cu litera:', variante: { a: 'A', b: 'C', c: 'F', d: 'H' }, raspunsCorect: 'd', punctaj: 2 },
+    ],
+    
+    D: [
+      { tip: 'comparatie', enunt: 'Precizați 3 deosebiri între relieful Munților Apuseni și relieful Grupei Parâng', raspunsExemplu: [
+        'Altitudini: Munții Apuseni au altitudini sub 2000 m (Vf. Bihor 1849 m), iar Grupa Parâng depășește 2500 m (Vf. Parângu Mare 2519 m)',
+        'Relief glaciar: în Grupa Parâng este bine dezvoltat relieful glaciar, iar în Munții Apuseni lipsește, fiind bine reprezentat relieful carstic',
+        'Fragmentare: gradul de fragmentare este mai mic în Grupa Parâng și mai mare în Munții Apuseni datorită prezenței "depresiunilor-golf" și densității rețelei hidrografice',
+      ], punctajMaxim: 6 },
+    ],
+    
+    E: [
+      { tip: 'cauza', enunt: 'Două cauze ale prezenței numeroase a centrelor industriei produselor lactate în Carpații Orientali', raspunsExemplu: 'Cauza 1: creșterea bovinelor pentru lapte pe baza pășunilor și fânețelor naturale extinse din regiunile montane și subcarpatice ale Carpaților Orientali - pajiști de bună calitate, climă favorabilă creșterii animalelor. Cauza 2: tradițiile vechi legate de prelucrarea laptelui și obținerea unor produse renumite la nivel național (cașcaval, brânză, smântână) - meșteșuguri transmise din generație în generație.', cuvinteCheie: ['bovine', 'pășuni', 'tradiții', 'cașcaval'], punctaj: 4 },
+    ],
   },
-];
-
-
-
-export default function BacIndex() {
-  return (
   
   subiectIII: {
     titlu: 'Subiect III - Lumea contemporană',
@@ -62,7 +86,7 @@ export default function BacIndex() {
     hasTabele: false,
     
     A: [
-      { tip: 'cauza', enunt: '1. Două caracteristici ale Italiei ca stat al Uniunii Europene', raspunsExemplu: 'Caracteristică 1: Italia este membră fondatoare a CEE/UE (1957), economie dezvoltată din G7, cu industrie puternică (auto - FIAT, modă - Milano, design). Caracteristică 2: Peninsulă mediteraneană cu 49 situri UNESCO, populație de 60 milioane locuitori, capitala Roma, monedă euro (€) din 1999.', cuvinteCheie: ['fondatoare', 'G7', 'UNESCO', 'euro'], punctaj: 4 },
+      { tip: 'cauza', enunt: 'Două caracteristici ale Italiei ca stat al Uniunii Europene', raspunsExemplu: 'Caracteristică 1: Italia este membră fondatoare a CEE/UE (1957), economie dezvoltată din G7, cu industrie puternică (auto - FIAT, modă - Milano, design). Caracteristică 2: Peninsulă mediteraneană cu 49 situri UNESCO, populație de 60 milioane locuitori, capitala Roma, monedă euro (€) din 1999.', cuvinteCheie: ['fondatoare', 'G7', 'UNESCO', 'euro'], punctaj: 4 },
     ],
     
     B: [
@@ -73,16 +97,16 @@ export default function BacIndex() {
     ],
     
     C: [
-      { tip: 'cauza', enunt: '1. Două avantaje economice ale Italiei ca membră UE', raspunsExemplu: 'Avantaj 1: piața comună UE permite exporturi fără bariere către 27 de state, ceea ce favorizează industria italiană (auto, modă, alimentară) și agricultura mediteraneană. Avantaj 2: fondurile europene structurale și de coeziune ajută la dezvoltarea zonelor mai puțin dezvoltate (sudul Italiei - Mezzogiorno), infrastructură, mediu.', cuvinteCheie: ['piață', 'export', 'fonduri', 'Mezzogiorno'], punctaj: 4 },
-      { tip: 'cauza', enunt: '2. Două dezavantaje pentru un stat membru UE', raspunsExemplu: 'Dezavantaj 1: pierderea suveranității în multe domenii (politici monetare prin euro, comerciale, agricole - PAC) - statele membre cedează putere instituțiilor europene. Dezavantaj 2: concurența mai puternică pentru companiile naționale din piața unică, plus contribuții financiare la bugetul UE (Italia plătește anual miliarde euro).', cuvinteCheie: ['suveranitate', 'euro', 'concurență', 'contribuții'], punctaj: 4 },
+      { tip: 'cauza', enunt: '1. Două avantaje economice ale Italiei ca membră UE', raspunsExemplu: 'Avantaj 1: piața comună UE permite exporturi fără bariere către 27 de state. Avantaj 2: fondurile europene structurale ajută la dezvoltarea zonelor mai puțin dezvoltate.', cuvinteCheie: ['piață', 'export', 'fonduri', 'dezvoltare'], punctaj: 4 },
+      { tip: 'cauza', enunt: '2. Două dezavantaje pentru un stat membru UE', raspunsExemplu: 'Dezavantaj 1: pierderea suveranității în multe domenii. Dezavantaj 2: concurența mai puternică pentru companiile naționale plus contribuții financiare la bugetul UE.', cuvinteCheie: ['suveranitate', 'concurență', 'contribuții'], punctaj: 4 },
     ],
     
     D: [
-      { tip: 'cauza', enunt: 'Două probleme actuale ale Uniunii Europene', raspunsExemplu: 'Problemă 1: criza migrației - presiunea migranților din Africa și Orientul Mijlociu pe statele de frontieră (Italia, Grecia, Spania) generează tensiuni interne și politice. Problemă 2: diferențele economice mari între statele vestice (Germania, Franța) și estice (România, Bulgaria) determină migrație internă masivă a forței de muncă și dezechilibre demografice.', cuvinteCheie: ['migrație', 'tensiuni', 'diferențe', 'demografice'], punctaj: 4 },
+      { tip: 'cauza', enunt: 'Două probleme actuale ale Uniunii Europene', raspunsExemplu: 'Problemă 1: criza migrației din Africa și Orientul Mijlociu pe statele de frontieră. Problemă 2: diferențele economice mari între statele vestice și estice determină migrație internă masivă.', cuvinteCheie: ['migrație', 'tensiuni', 'diferențe'], punctaj: 4 },
     ],
     
     E: [
-      { tip: 'cauza', enunt: 'Două perspective ale Uniunii Europene', raspunsExemplu: 'Perspectivă 1: aprofundarea integrării politice și fiscale - uniune bancară, armată comună europeană, politică externă unitară, pentru consolidarea poziției UE pe scena mondială față de SUA și China. Perspectivă 2: tranziția ecologică (Green Deal) cu obiectivul neutralității climatice până în 2050, digitalizarea economiei, plus extinderea cu noi state din Balcanii de Vest și Ucraina.', cuvinteCheie: ['integrare', 'armată', 'Green Deal', 'extindere'], punctaj: 4 },
+      { tip: 'cauza', enunt: 'Două perspective ale Uniunii Europene', raspunsExemplu: 'Perspectivă 1: aprofundarea integrării politice și fiscale - uniune bancară, armată comună europeană. Perspectivă 2: tranziția ecologică (Green Deal) cu obiectivul neutralității climatice până în 2050.', cuvinteCheie: ['integrare', 'armată', 'Green Deal'], punctaj: 4 },
     ],
   },
 };
