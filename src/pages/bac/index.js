@@ -92,7 +92,7 @@ const VARIANTE = [
     href: '/bac/varianta/varianta-9',
     disponibil: true,
   },
-  {
+   {
     id: 'varianta-10',
     nume: 'Varianta 10',
     durata: '~45 min',
@@ -102,7 +102,58 @@ const VARIANTE = [
     href: '/bac/varianta/varianta-10',
     disponibil: true,
   },
+  {
+    id: 'varianta-11',
+    nume: 'Varianta 11',
+    durata: '~45 min',
+    nrExercitii: 30,
+    nivel: 'BAC complet',
+    culoare: '#22c55e',
+    href: '/bac/varianta/varianta-11',
+    disponibil: true,
+  },
+  {
+    id: 'varianta-12',
+    nume: 'Varianta 12',
+    durata: '~45 min',
+    nrExercitii: 30,
+    nivel: 'BAC complet',
+    culoare: '#0ea5e9',
+    href: '/bac/varianta/varianta-12',
+    disponibil: true,
+  },
+  {
+    id: 'varianta-13',
+    nume: 'Varianta 13',
+    durata: '~45 min',
+    nrExercitii: 30,
+    nivel: 'BAC complet',
+    culoare: '#d946ef',
+    href: '/bac/varianta/varianta-13',
+    disponibil: true,
+  },
+  {
+    id: 'varianta-14',
+    nume: 'Varianta 14',
+    durata: '~45 min',
+    nrExercitii: 30,
+    nivel: 'BAC complet',
+    culoare: '#dc2626',
+    href: '/bac/varianta/varianta-14',
+    disponibil: true,
+  },
+  {
+    id: 'varianta-15',
+    nume: 'Varianta 15',
+    durata: '~45 min',
+    nrExercitii: 30,
+    nivel: 'BAC complet',
+    culoare: '#7c3aed',
+    href: '/bac/varianta/varianta-15',
+    disponibil: true,
+  },
 ];
+
 
 
 export default function BacIndex() {

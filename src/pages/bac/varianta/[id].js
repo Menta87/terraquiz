@@ -15,6 +15,12 @@ import { varianta7 } from '../../../data/bac/varianta-7';
 import { varianta8 } from '../../../data/bac/varianta-8';
 import { varianta9 } from '../../../data/bac/varianta-9';
 import { varianta10 } from '../../../data/bac/varianta-10';
+import { varianta11 } from '../../../data/bac/varianta-11';
+import { varianta12 } from '../../../data/bac/varianta-12';
+import { varianta13 } from '../../../data/bac/varianta-13';
+import { varianta14 } from '../../../data/bac/varianta-14';
+import { varianta15 } from '../../../data/bac/varianta-15';
+
 
 
 const VARIANTE = {
@@ -27,8 +33,14 @@ const VARIANTE = {
   'varianta-7': varianta7,
   'varianta-8': varianta8,
   'varianta-9': varianta9,
-  'varianta-10': varianta10,
+    'varianta-10': varianta10,
+  'varianta-11': varianta11,
+  'varianta-12': varianta12,
+  'varianta-13': varianta13,
+  'varianta-14': varianta14,
+  'varianta-15': varianta15,
 };
+
 
 
 export default function VariantaPage() {
