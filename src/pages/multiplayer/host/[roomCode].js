@@ -77,7 +77,8 @@ export default function HostRoom() {
   async function startGame() {
     if (players.length === 0) { alert('Trebuie sa fie cel putin un jucator!'); return; }
     const now = new Date().toISOString();
-    await supabase.from('multiplayer_rooms').update({ status: 'playing', current_question_idx: 0, question_started_at: now }).eq('id', room.id);
+       await supabase.from('multiplayer_rooms').update({ status: 'playing', current_question_idx: 0, question_started_at: now, show_results: false }).eq('id', room.id);
+
     setCurrentQuestion(0);
     setAnswersForQuestion([]);
     setTimeLeft(TIME_PER_QUESTION);
@@ -92,7 +93,8 @@ export default function HostRoom() {
       return;
     }
     const now = new Date().toISOString();
-    await supabase.from('multiplayer_rooms').update({ current_question_idx: nextIdx, question_started_at: now }).eq('id', room.id);
+        await supabase.from('multiplayer_rooms').update({ current_question_idx: nextIdx, question_started_at: now, show_results: false }).eq('id', room.id);
+
     setCurrentQuestion(nextIdx);
     setAnswersForQuestion([]);
     setTimeLeft(TIME_PER_QUESTION);
@@ -167,7 +169,8 @@ export default function HostRoom() {
 
 
           </div>
-          {stage === 'question' && (<button onClick={() => setStage('reveal')} style={{width:'100%', padding:'1rem', background:'white', color:'#5b21b6', border:'none', borderRadius:'12px', fontSize:'1.1rem', fontWeight:700, cursor:'pointer'}}>⏭️ Arata raspunsul</button>)}
+                   {stage === 'question' && (<button onClick={async () => { await supabase.from('multiplayer_rooms').update({ show_results: true }).eq('id', room.id); setStage('reveal'); }} style={{width:'100%', padding:'1rem', background:'white', color:'#5b21b6', border:'none', borderRadius:'12px', fontSize:'1.1rem', fontWeight:700, cursor:'pointer'}}>⏭️ Arata raspunsul</button>)}
+
           {stage === 'reveal' && (
             <>
               <div style={{background:'white', borderRadius:'16px', padding:'1.5rem', marginBottom:'1rem'}}>

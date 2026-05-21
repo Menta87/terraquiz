@@ -25,6 +25,18 @@ export default function PlayerRoom() {
     loadRoom();
   }, [roomCode]);
 
+  async function checkExistingAnswer(roomData, playerId) {
+    if (roomData.current_question_idx < 0) return null;
+    const { data } = await supabase
+      .from('multiplayer_answers')
+      .select('*')
+      .eq('room_id', roomData.id)
+      .eq('player_id', playerId)
+      .eq('question_idx', roomData.current_question_idx)
+      .maybeSingle();
+    return data;
+  }
+
   async function loadRoom() {
     const playerId = typeof window !== 'undefined' ? localStorage.getItem(`mp_player_${roomCode}`) : null;
     if (!playerId) {
@@ -50,6 +62,14 @@ export default function PlayerRoom() {
     if (ps) setPlayers(ps);
     if (r.status === 'playing' && r.current_question_idx >= 0) {
       await loadCurrentQuestion(r);
+      // Verific daca jucatorul a raspuns deja la aceasta intrebare (anti-refresh)
+      const existing = await checkExistingAnswer(r, playerId);
+      if (existing) {
+        setHasAnswered(true);
+        setSelectedAnswer(existing.answer);
+        setIsCorrect(existing.is_correct);
+        setPointsEarned(existing.points_earned);
+      }
     }
     setLoading(false);
 
@@ -98,6 +118,17 @@ export default function PlayerRoom() {
 
   async function submitAnswer(answer) {
     if (hasAnswered || !currentQuestion || !room) return;
+    
+    // VERIFICARE ANTI-CHEAT: re-verifica in DB inainte de a salva
+    const existing = await checkExistingAnswer(room, player.id);
+    if (existing) {
+      setHasAnswered(true);
+      setSelectedAnswer(existing.answer);
+      setIsCorrect(existing.is_correct);
+      setPointsEarned(existing.points_earned);
+      return;
+    }
+    
     setHasAnswered(true);
     setSelectedAnswer(answer);
     const answerTimeMs = Date.now() - questionStartTime;
@@ -179,7 +210,28 @@ export default function PlayerRoom() {
 
   if (room.status === 'playing' && currentQuestion) {
     const myRank = players.findIndex(p => p.id === player.id) + 1;
-    if (hasAnswered) {
+    const showResult = hasAnswered && room.show_results === true;
+    
+    if (hasAnswered && !showResult) {
+      // Jucatorul a raspuns - astepta rezultatul de la profesor
+      return (
+        <div style={{minHeight:'90vh', display:'flex', alignItems:'center', justifyContent:'center', padding:'2rem 1.5rem', background:'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'}}>
+          <div style={{maxWidth:'500px', width:'100%', textAlign:'center', color:'white'}}>
+            <div style={{fontSize:'6rem'}}>✅</div>
+            <h1 style={{fontSize:'2rem', marginTop:'1rem'}}>Raspuns trimis!</h1>
+            <div style={{fontSize:'1.2rem', marginTop:'1rem', opacity:0.9}}>Astept ca profesorul sa arate raspunsul...</div>
+            <div style={{background:'rgba(255,255,255,0.2)', padding:'1.5rem', borderRadius:'16px', marginTop:'2rem'}}>
+              <div style={{fontSize:'2.5rem'}}>{player.avatar_emoji}</div>
+              <div style={{fontSize:'1.3rem', fontWeight:700}}>{player.nickname}</div>
+              <div style={{fontSize:'2rem', fontWeight:900, marginTop:'1rem'}}>{player.score} pct</div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+    
+    if (showResult) {
+      // Profesorul a aratat raspunsul - jucatorul vede acum corect/gresit
       return (
         <div style={{minHeight:'90vh', display:'flex', alignItems:'center', justifyContent:'center', padding:'2rem 1.5rem', background: isCorrect ? 'linear-gradient(135deg, #10b981, #059669)' : 'linear-gradient(135deg, #ef4444, #dc2626)'}}>
           <div style={{maxWidth:'500px', width:'100%', textAlign:'center', color:'white'}}>
@@ -192,7 +244,6 @@ export default function PlayerRoom() {
                 <div style={{fontSize:'1.5rem', fontWeight:800}}>{currentQuestion.correct_answer}</div>
               </div>
             )}
-
             <div style={{background:'rgba(255,255,255,0.2)', padding:'1.5rem', borderRadius:'16px', marginTop:'2rem'}}>
               <div style={{fontSize:'2.5rem'}}>{player.avatar_emoji}</div>
               <div style={{fontSize:'1.3rem', fontWeight:700}}>{player.nickname}</div>
@@ -206,6 +257,7 @@ export default function PlayerRoom() {
         </div>
       );
     }
+    
     const hasFlag = currentQuestion.image_description && currentQuestion.image_description.startsWith('FLAG_IMAGE:');
     const flagIso = hasFlag ? currentQuestion.image_description.replace('FLAG_IMAGE:', '') : null;
     return (
