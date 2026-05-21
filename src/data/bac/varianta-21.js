@@ -53,30 +53,30 @@ export const varianta21 = {
     ],
     
     B: [
-      { tip: 'completare', enuntInainte: '1. Conuri vulcanice se găsesc în unitatea de relief marcată cu litera', raspunsCorect: 'H', raspunsuriAcceptate: ['H', 'h'], punctaj: 2 },
-      { tip: 'completare', enuntInainte: '2. Lacuri glaciare se găsesc în unitatea de relief marcată cu litera', raspunsCorect: 'E', raspunsuriAcceptate: ['E', 'e'], punctaj: 2 },
-      { tip: 'completare', enuntInainte: '3. Cea mai joasă unitate de relief este marcată cu litera', raspunsCorect: 'G', raspunsuriAcceptate: ['G', 'g'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '1. Lacul glaciar Bucura este situat în unitatea de relief marcată cu litera', raspunsCorect: 'H', raspunsuriAcceptate: ['H', 'h'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '2. Influențe climatice pontice se întâlnesc în unitatea de relief marcată cu litera', raspunsCorect: 'E', raspunsuriAcceptate: ['E', 'e'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '3. Râul Ialomița traversează unitatea de relief marcată cu litera', raspunsCorect: 'G', raspunsuriAcceptate: ['G', 'g'], punctaj: 2 },
     ],
     
     C: [
-      { tip: 'grila', enunt: '1. Stepa este caracteristică unității de relief marcate cu litera:', variante: { a: 'A', b: 'B', c: 'G', d: 'D' }, raspunsCorect: 'c', punctaj: 2 },
-      { tip: 'grila', enunt: '2. Influențe climatice submediteraneene pătrund în unitatea de relief marcată cu litera:', variante: { a: 'A', b: 'C', c: 'E', d: 'F' }, raspunsCorect: 'b', punctaj: 2 },
-      { tip: 'grila', enunt: '3. Cărbuni se exploatează în zona unității de relief marcate cu litera:', variante: { a: 'A', b: 'B', c: 'D', d: 'F' }, raspunsCorect: 'c', punctaj: 2 },
-      { tip: 'grila', enunt: '4. Domurile gazeifere se află în unitatea de relief marcată cu litera:', variante: { a: 'A', b: 'C', c: 'F', d: 'D' }, raspunsCorect: 'd', punctaj: 2 },
-      { tip: 'grila', enunt: '5. Soluri din clasa molisoluri ocupă suprafețe întinse în unitatea marcată cu litera:', variante: { a: 'A', b: 'G', c: 'C', d: 'F' }, raspunsCorect: 'b', punctaj: 2 },
+      { tip: 'grila', enunt: '1. Relieful vulcanic este caracteristic unității marcate cu litera:', variante: { a: 'A', b: 'D', c: 'F', d: 'H' }, raspunsCorect: 'c', punctaj: 2 },
+      { tip: 'grila', enunt: '2. Râul care se varsă în sectorul Dunării maritime este marcat cu numărul:', variante: { a: '7', b: '8', c: '10', d: '11' }, raspunsCorect: 'b', punctaj: 2 },
+      { tip: 'grila', enunt: '3. Vegetația de stepă este tipică pentru unitatea de relief marcată cu litera:', variante: { a: 'C', b: 'D', c: 'G', d: 'H' }, raspunsCorect: 'c', punctaj: 2 },
+      { tip: 'grila', enunt: '4. Orașul Piatra Neamț este străbătut de râul marcat cu numărul:', variante: { a: '7', b: '9', c: '11', d: '12' }, raspunsCorect: 'd', punctaj: 2 },
+      { tip: 'grila', enunt: '5. Teritoriul județului Caraș-Severin se suprapune peste unitatea de relief marcată cu litera:', variante: { a: 'A', b: 'C', c: 'E', d: 'G' }, raspunsCorect: 'b', punctaj: 2 },
     ],
     
     D: [
-      { tip: 'comparatie', enunt: 'Precizați 2 deosebiri și o asemănare între relieful Grupei Sudice a Carpaților Orientali și relieful Munților Apuseni', raspunsExemplu: [
-        'Deosebire: Grupa Sudică are altitudinea maximă mai mare (Munții Ciucaș - 1954 m) decât Munții Apuseni (Munții Bihor - 1849 m)',
-        'Deosebire: în Munții Apuseni este bine reprezentat relieful carstic, iar în Grupa Sudică specific este relieful pe gresii și conglomerate',
-        'Asemănare: ambele unități au structură de orogen, fiind formate prin cutarea scoarței în timpul orogenezei alpine',
+      { tip: 'comparatie', enunt: 'Precizați 2 deosebiri și o asemănare între relieful unității A și relieful unității B', raspunsExemplu: [
+        'Deosebire (altitudini): unitatea A are altitudini specifice, iar unitatea B altele',
+        'Deosebire (tipuri de relief): cele 2 unități prezintă forme de relief diferite',
+        'Asemănare: ambele unități au fost formate prin procese geologice similare',
       ], punctajMaxim: 6 },
     ],
     
     E: [
-      { tip: 'cauza', enunt: '1. Cauză a densității reduse a populației în Grupa Retezat-Godeanu (litera H)', raspunsExemplu: 'Densitatea redusă a populației în Grupa Retezat-Godeanu se datorează climatului montan (temperaturi scăzute, precipitații abundente, vânturi puternice), reliefului (înălțime, pante accentuate), solurilor puțin fertile, vegetației de pădure dominante.', cuvinteCheie: ['climat montan', 'relief', 'soluri', 'pădure'], punctaj: 2 },
-      { tip: 'cauza', enunt: '2. Cauză a amplasării combinatului metalurgiei neferoase la Tulcea (orașul nr. 1)', raspunsExemplu: 'Amplasarea unui combinat al metalurgiei neferoase la Tulcea se datorează importului de bauxită, prelucrată într-un oraș-port la Dunăre, ceea ce conferă rentabilitate producției de alumină, prin transportul produselor pe calea apei, considerat cel mai ieftin.', cuvinteCheie: ['bauxită', 'port', 'Dunăre', 'transport'], punctaj: 2 },
+      { tip: 'cauza', enunt: '1. Cauză a densității reduse a populației în unitatea de relief marcată cu litera H', raspunsExemplu: 'Densitatea redusă a populației în unitatea marcată cu litera H (Grupa Retezat-Godeanu) se datorează climatului montan (temperaturi scăzute, precipitații abundente, vânturi puternice), reliefului (înălțime, pante accentuate), solurilor puțin fertile, vegetației de pădure dominante.', cuvinteCheie: ['climat montan', 'relief', 'soluri', 'pădure'], punctaj: 2 },
+      { tip: 'cauza', enunt: '2. Cauză a amplasării unui combinat al metalurgiei neferoase în orașul marcat cu numărul 1 (Tulcea)', raspunsExemplu: 'Amplasarea unui combinat al metalurgiei neferoase la Tulcea se datorează importului de bauxită, prelucrată într-un oraș-port la Dunăre, ceea ce conferă rentabilitate producției de alumină, prin transportul produselor pe calea apei, considerat cel mai ieftin.', cuvinteCheie: ['bauxită', 'port', 'Dunăre', 'transport'], punctaj: 2 },
     ],
   },
   
@@ -97,11 +97,11 @@ export const varianta21 = {
     ],
     
     C: [
-      { tip: 'completare', enuntInainte: '1. Două state vecine cu Franța, membre ale UE', raspunsCorect: 'Belgia', raspunsuriAcceptate: ['Belgia', 'Germania', 'Spania', 'Italia', 'Luxemburg'], punctaj: 2 },
-      { tip: 'completare', enuntInainte: '2. Două unități majore de relief din Franța', raspunsCorect: 'Masivul Central', raspunsuriAcceptate: ['Masivul Central', 'Câmpia Loarei', 'Alpii', 'Pirinei', 'Câmpia Franței'], punctaj: 2 },
-      { tip: 'completare', enuntInainte: '3. Trei resurse de subsol din Franța', raspunsCorect: 'bauxită', raspunsuriAcceptate: ['bauxită', 'minereu de fier', 'cărbuni', 'uraniu', 'sare'], punctaj: 3 },
-      { tip: 'completare', enuntInainte: '4. Două orașe-port maritime din Franța', raspunsCorect: 'Le Havre', raspunsuriAcceptate: ['Le Havre', 'Marsilia', 'Bordeaux', 'Calais', 'Nice'], punctaj: 2 },
-      { tip: 'completare', enuntInainte: '5. O regiune turistică din Franța', raspunsCorect: 'Coasta de Azur', raspunsuriAcceptate: ['Coasta de Azur', 'Regiunea pariziană', 'Paris', 'Provence', 'Alpii Savoiei'], punctaj: 1 },
+      { tip: 'completare', enuntInainte: '1. Două state vecine cu Franța, membre ale UE (separate prin virgulă)', raspunsCorect: 'Belgia și Germania', raspunsuriAcceptate: ['Belgia', 'Germania', 'Spania', 'Italia', 'Luxemburg', 'Belgia Germania', 'Belgia, Germania', 'Belgia si Germania', 'Germania Belgia', 'Spania Italia', 'Belgia Spania', 'Germania Italia'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '2. Două unități majore de relief din Franța (separate prin virgulă)', raspunsCorect: 'Masivul Central și Câmpia Loarei', raspunsuriAcceptate: ['Masivul Central', 'Câmpia Loarei', 'Alpii', 'Pirinei', 'Câmpia Franței', 'Masivul Central Câmpia Loarei', 'Alpii Pirinei', 'Alpii Masivul Central', 'Masivul Central Pirinei'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '3. Trei resurse de subsol din Franța (separate prin virgulă)', raspunsCorect: 'bauxită, minereu de fier și cărbuni', raspunsuriAcceptate: ['bauxită', 'minereu de fier', 'cărbuni', 'uraniu', 'sare', 'bauxită fier cărbuni', 'bauxita fier carbuni', 'bauxita, fier, carbuni', 'bauxita minereu carbuni', 'bauxita minereu de fier carbuni'], punctaj: 3 },
+      { tip: 'completare', enuntInainte: '4. Două orașe-port maritime din Franța (separate prin virgulă)', raspunsCorect: 'Le Havre și Marsilia', raspunsuriAcceptate: ['Le Havre', 'Marsilia', 'Bordeaux', 'Calais', 'Nice', 'Le Havre Marsilia', 'Marsilia Le Havre', 'Le Havre, Marsilia', 'Le Havre Bordeaux', 'Marsilia Bordeaux'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '5. O regiune turistică din Franța', raspunsCorect: 'Coasta de Azur sau Regiunea pariziană', raspunsuriAcceptate: ['Coasta de Azur', 'Regiunea pariziană', 'Paris', 'Provence', 'Alpii Savoiei', 'Coasta de Azur Paris'], punctaj: 1 },
     ],
     
     D: [
