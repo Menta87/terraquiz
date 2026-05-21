@@ -53,8 +53,9 @@ export const varianta22 = {
     ],
     
     B: [
-      { tip: 'completare', enuntInainte: '1. Depresiunea Petroșani este situată în unitatea de relief marcată cu litera', raspunsCorect: 'F', raspunsuriAcceptate: ['F', 'f', 'Carpații Meridionali'], punctaj: 2 },
-      { tip: 'completare', enuntInainte: '2. Regiunea subcarpatică alcătuită dintr-un singur șir de depresiuni și unul de dealuri este marcată cu litera', raspunsCorect: 'H', raspunsuriAcceptate: ['H', 'h', 'Subcarpații Moldovei'], punctaj: 2 },
+           { tip: 'completare', enuntInainte: '1. Depresiunea Petroșani este situată în unitatea de relief marcată cu litera', raspunsCorect: 'H', raspunsuriAcceptate: ['H', 'h'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '2. Regiunea subcarpatică alcătuită dintr-un singur șir de depresiuni și unul de dealuri este marcată cu litera', raspunsCorect: 'B', raspunsuriAcceptate: ['B', 'b'], punctaj: 2 },
+
       { tip: 'completare', enuntInainte: '3. Orașul marcat cu numărul 7 este reședința județului', raspunsCorect: 'Bihor', raspunsuriAcceptate: ['Bihor', 'bihor'], punctaj: 2 },
     ],
     
