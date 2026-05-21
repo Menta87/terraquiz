@@ -16,29 +16,29 @@ export const varianta22 = {
     ],
     
     B: [
-      { tip: 'completare', enuntInainte: '1. Statul marcat cu litera E se numește', raspunsCorect: 'Germania', raspunsuriAcceptate: ['Germania', 'germania'], punctaj: 2 },
-      { tip: 'completare', enuntInainte: '2. Orașul-capitală al statului marcat cu litera H se numește', raspunsCorect: 'Minsk', raspunsuriAcceptate: ['Minsk', 'minsk'], punctaj: 2 },
-      { tip: 'completare', enuntInainte: '3. Câmpia Padului este marcată cu numărul', raspunsCorect: '9', raspunsuriAcceptate: ['9'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '1. Statul marcat cu litera D se numește', raspunsCorect: 'Germania', raspunsuriAcceptate: ['Germania', 'germania'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '2. Capitala statului marcat cu litera E se numește', raspunsCorect: 'Minsk', raspunsuriAcceptate: ['Minsk', 'minsk'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '3. Bazinul carbonifer Silezia Superioară se află în statul a cărui capitală este orașul marcat cu numărul', raspunsCorect: '9', raspunsuriAcceptate: ['9'], punctaj: 2 },
     ],
     
     C: [
-      { tip: 'grila', enunt: '1. Insulele Sicilia și Sardinia se află pe teritoriul statului marcat cu litera:', variante: { a: 'A', b: 'B', c: 'D', d: 'C' }, raspunsCorect: 'd', punctaj: 2 },
-      { tip: 'grila', enunt: '2. Capitala statului marcat cu litera J se numește:', variante: { a: 'Atena', b: 'Belgrad', c: 'Madrid', d: 'Roma' }, raspunsCorect: 'a', punctaj: 2 },
-      { tip: 'grila', enunt: '3. Munți de origine glaciară se află în statul marcat cu litera:', variante: { a: 'A', b: 'B', c: 'F', d: 'D' }, raspunsCorect: 'c', punctaj: 2 },
-      { tip: 'grila', enunt: '4. Climatul mediteranean este caracteristic în statul marcat cu litera:', variante: { a: 'F', b: 'C', c: 'G', d: 'H' }, raspunsCorect: 'b', punctaj: 2 },
-      { tip: 'grila', enunt: '5. Tundra este vegetația specifică în nordul statului marcat cu litera:', variante: { a: 'D', b: 'F', c: 'A', d: 'I' }, raspunsCorect: 'b', punctaj: 2 },
+      { tip: 'grila', enunt: '1. Orașul marcat cu numărul 5 este capitala statului:', variante: { a: 'Croația', b: 'Muntenegru', c: 'Serbia', d: 'Slovenia' }, raspunsCorect: 'd', punctaj: 2 },
+      { tip: 'grila', enunt: '2. Statul marcat cu litera F se numește:', variante: { a: 'Albania', b: 'Bulgaria', c: 'Croația', d: 'Muntenegru' }, raspunsCorect: 'a', punctaj: 2 },
+      { tip: 'grila', enunt: '3. Statul cu cea mai mică suprafață din Europa este o enclavă în statul marcat cu litera:', variante: { a: 'A', b: 'B', c: 'C', d: 'H' }, raspunsCorect: 'c', punctaj: 2 },
+      { tip: 'grila', enunt: '4. Religia majoritară a populației din statul a cărui capitală este orașul nr. 8 este:', variante: { a: 'catolică', b: 'ortodoxă', c: 'islamică', d: 'protestantă' }, raspunsCorect: 'b', punctaj: 2 },
+      { tip: 'grila', enunt: '5. Este membru al UE statul marcat cu litera:', variante: { a: 'A', b: 'B', c: 'E', d: 'J' }, raspunsCorect: 'b', punctaj: 2 },
     ],
     
     D: [
-      { tip: 'comparatie', enunt: 'Precizați 2 deosebiri și o asemănare între relieful Peninsulei Iberice și relieful Peninsulei Scandinavice', raspunsExemplu: [
-        'Deosebire: în Peninsula Iberică altitudinile depășesc 3000 m, pe când în Peninsula Scandinavică altitudinea maximă este de 2479 m',
-        'Deosebire: Munții Scandinaviei sunt munți vechi, erodați, formați în timpul orogenezei caledoniene; munții din Peninsula Iberică sunt tineri, cu creste ascuțite, înălțați în timpul orogenezei alpine',
+      { tip: 'comparatie', enunt: 'Comparați regiunile montane din Peninsula Scandinavă și Peninsula Iberică (o asemănare și 2 deosebiri din punct de vedere al reliefului)', raspunsExemplu: [
+        'Deosebire: în Peninsula Iberică altitudinile depășesc 3000 m (Pic dAneto, Mulhacen), pe când în Peninsula Scandinavică altitudinea maximă este de 2479 m (Galdhopiggen)',
+        'Deosebire: Munții Scandinaviei sunt munți vechi, erodați, formați în orogeneza caledoniană; munții din Peninsula Iberică sunt tineri, cu creste ascuțite, înălțați în orogeneza alpină',
         'Asemănare: în ambele peninsule munții s-au format prin cutare, în timpul proceselor orogenice; în ambele regiuni este prezent relieful glaciar',
       ], punctajMaxim: 6 },
     ],
     
     E: [
-      { tip: 'cauza', enunt: 'Două cauze ale creșterii continentalității climei în estul Europei', raspunsExemplu: 'Cauza 1: situare la distanță mare de Oceanul Atlantic, ceea ce determină cantități reduse de precipitații (mase de aer care își pierd umiditatea pe drum). Cauza 2: extensiunea mare a masei continentale, ceea ce determină amplitudini termice tot mai mari spre est (veri foarte calde, ierni foarte reci).', cuvinteCheie: ['distanță', 'Atlantic', 'continentală', 'amplitudini'], punctaj: 4 },
+      { tip: 'cauza', enunt: 'Doi factori care generează climatul temperat arid din estul Europei', raspunsExemplu: 'Factor 1: situarea la distanță mare de Oceanul Atlantic, ceea ce determină cantități reduse de precipitații (masele de aer își pierd umiditatea pe drum). Factor 2: extensiunea mare a masei continentale, ceea ce determină amplitudini termice tot mai mari spre est (veri foarte calde, ierni foarte reci) - aer continental dominant.', cuvinteCheie: ['Atlantic', 'distanță', 'continentală', 'amplitudini'], punctaj: 4 },
     ],
   },
   
@@ -86,21 +86,21 @@ export const varianta22 = {
     
     A: [
       { tip: 'completare', enuntInainte: '1. Valoarea maximă a debitului mediu lunar și luna', raspunsCorect: '10000 m³/s mai', raspunsuriAcceptate: ['10000 mai', '10000', 'mai', '9000', '11000'], punctaj: 2 },
-      { tip: 'completare', enuntInainte: '2. Două luni în care debitul mediu lunar depășește 4000 m³/s', raspunsCorect: 'martie aprilie', raspunsuriAcceptate: ['martie', 'aprilie', 'mai', 'iunie', 'iulie', 'august', 'decembrie'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '2. Două luni în care debitul mediu lunar depășește 4000 m³/s', raspunsCorect: 'martie, aprilie, mai, iunie, iulie, august sau decembrie', raspunsuriAcceptate: ['martie', 'aprilie', 'mai', 'iunie', 'iulie', 'august', 'decembrie', 'martie aprilie', 'aprilie mai', 'mai iunie', 'martie aprilie mai iunie iulie august decembrie'], punctaj: 2 },
     ],
     
     B: [
       { tip: 'completare', enuntInainte: '1. Valoarea debitului mediu în luna ianuarie', raspunsCorect: '4000 m³/s', raspunsuriAcceptate: ['4000', '3500', '4500'], punctaj: 2 },
       { tip: 'completare', enuntInainte: '2. Luna cu cea mai mică valoare a debitului mediu lunar', raspunsCorect: 'octombrie', raspunsuriAcceptate: ['octombrie', 'septembrie', 'noiembrie'], punctaj: 2 },
-      { tip: 'completare', enuntInainte: '3. Două luni în care debitul mediu lunar este de 7000 m³/s', raspunsCorect: 'aprilie iunie', raspunsuriAcceptate: ['aprilie', 'mai', 'iunie'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '3. Două luni în care debitul mediu lunar este de 7000 m³/s', raspunsCorect: 'aprilie și iunie', raspunsuriAcceptate: ['aprilie iunie', 'aprilie mai', 'mai iunie', 'aprilie', 'mai', 'iunie'], punctaj: 2 },
     ],
     
     C: [
-      { tip: 'completare', enuntInainte: '1. Două insule sau arhipelaguri care aparțin Spaniei', raspunsCorect: 'Mallorca', raspunsuriAcceptate: ['Mallorca', 'Ibiza', 'Menorca', 'Formentera', 'Insulele Baleare', 'Baleare', 'Canare'], punctaj: 2 },
-      { tip: 'completare', enuntInainte: '2. Două state vecine Spaniei, membre UE', raspunsCorect: 'Portugalia', raspunsuriAcceptate: ['Portugalia', 'Franța', 'Franta'], punctaj: 2 },
-      { tip: 'completare', enuntInainte: '3. Două unități de relief din Spania', raspunsCorect: 'Munții Pirinei', raspunsuriAcceptate: ['Pirinei', 'Munții Pirinei', 'Cordiliera Betică', 'Podișul Castilia', 'Castilia', 'Câmpia Andaluziei', 'Câmpia Aragonului'], punctaj: 2 },
-      { tip: 'completare', enuntInainte: '4. Două tipuri de climă din Spania', raspunsCorect: 'mediteraneană', raspunsuriAcceptate: ['mediteraneană', 'oceanică', 'temperat-oceanică', 'continentală'], punctaj: 2 },
-      { tip: 'completare', enuntInainte: '5. Două orașe din Spania, cu excepția capitalei', raspunsCorect: 'Barcelona', raspunsuriAcceptate: ['Barcelona', 'Valencia', 'Cordoba', 'Zaragoza', 'Bilbao', 'Sevilla'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '1. Două insule sau arhipelaguri care aparțin Spaniei (separate prin virgulă)', raspunsCorect: 'Mallorca și Ibiza (de exemplu)', raspunsuriAcceptate: ['Mallorca', 'Ibiza', 'Menorca', 'Formentera', 'Baleare', 'Canare', 'Mallorca Ibiza', 'Mallorca, Ibiza', 'Canare Baleare', 'Insulele Baleare', 'Insulele Canare'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '2. Două state vecine Spaniei, membre UE (separate prin virgulă)', raspunsCorect: 'Portugalia și Franța', raspunsuriAcceptate: ['Portugalia', 'Franța', 'Franta', 'Portugalia Franta', 'Portugalia, Franta', 'Portugalia si Franta', 'Portugalia și Franța', 'Franta Portugalia'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '3. Două unități de relief din Spania (separate prin virgulă)', raspunsCorect: 'Munții Pirinei și Podișul Castiliei', raspunsuriAcceptate: ['Pirinei', 'Munții Pirinei', 'Cordiliera Betică', 'Podișul Castiliei', 'Castilia', 'Câmpia Andaluziei', 'Câmpia Aragonului', 'Pirinei Castilia', 'Pirinei, Castilia', 'Pirinei Andaluzia', 'Castilia Andaluzia'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '4. Două tipuri de climă din Spania (separate prin virgulă)', raspunsCorect: 'mediteraneană și oceanică', raspunsuriAcceptate: ['mediteraneană', 'oceanică', 'temperat-oceanică', 'continentală', 'mediteraneană oceanică', 'mediteraneană și oceanică', 'mediteraneana, oceanica', 'oceanic mediteranean', 'mediteranean continental'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '5. Două orașe din Spania, cu excepția capitalei (separate prin virgulă)', raspunsCorect: 'Barcelona și Valencia', raspunsuriAcceptate: ['Barcelona', 'Valencia', 'Cordoba', 'Zaragoza', 'Bilbao', 'Sevilla', 'Malaga', 'Barcelona Valencia', 'Barcelona, Valencia', 'Barcelona Sevilla', 'Sevilla Valencia', 'Barcelona si Valencia'], punctaj: 2 },
     ],
     
     D: [
