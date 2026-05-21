@@ -172,6 +172,37 @@ const VARIANTE = [
     href: '/bac/varianta/varianta-17',
     disponibil: true,
   },
+    {
+    id: 'varianta-18',
+    nume: 'Varianta 18',
+    durata: '~45 min',
+    nrExercitii: 30,
+    nivel: 'BAC complet',
+    culoare: '#16a34a',
+    href: '/bac/varianta/varianta-18',
+    disponibil: true,
+  },
+  {
+    id: 'varianta-19',
+    nume: 'Varianta 19',
+    durata: '~45 min',
+    nrExercitii: 30,
+    nivel: 'BAC complet',
+    culoare: '#9333ea',
+    href: '/bac/varianta/varianta-19',
+    disponibil: true,
+  },
+  {
+    id: 'varianta-20',
+    nume: 'Varianta 20',
+    durata: '~45 min',
+    nrExercitii: 30,
+    nivel: 'BAC complet',
+    culoare: '#0ea5e9',
+    href: '/bac/varianta/varianta-20',
+    disponibil: true,
+  },
+
 ];
 
 
