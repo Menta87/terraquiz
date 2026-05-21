@@ -150,12 +150,24 @@ export default function VariantaPage() {
           </h2>
             {varianta.subiectIII && varianta.subiectIII.hasDiagrama && (
             <div style={{marginBottom: '1.5rem'}}>
-              <BacImageMap test={testNum} tip="diagrama" />
+                        <BacImageMap 
+                test={testNum} 
+                tip="diagrama"
+                set={varianta.bacSet || '2020'}
+                varianta={varianta.bacVariantNum || 1}
+              />
+
             </div>
           )}
           {varianta.subiectIII && varianta.subiectIII.hasTabele && (
             <div style={{marginBottom: '1.5rem'}}>
-              <BacImageMap test={testNum} tip="tabele" />
+                         <BacImageMap 
+                test={testNum} 
+                tip="tabele"
+                set={varianta.bacSet || '2020'}
+                varianta={varianta.bacVariantNum || 1}
+              />
+
             </div>
           )}
           <VariantaRenderer exercitii={exercitiiIII} onRaspuns={handleRaspuns} />
