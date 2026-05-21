@@ -46,36 +46,36 @@ export const varianta22 = {
     titlu: 'Subiect II - România',
     
     A: [
-      { tip: 'identificare', enunt: '1. Numele unității de relief marcată cu litera D', raspunsCorect: 'Podișul Târnavelor', raspunsuriAcceptate: ['Podișul Târnavelor', 'Târnavelor', 'Tarnavelor'], punctaj: 2 },
-      { tip: 'identificare', enunt: '2. Numele unității de relief marcată cu litera G', raspunsCorect: 'Subcarpații Getici', raspunsuriAcceptate: ['Subcarpații Getici', 'Getici', 'getici'], punctaj: 2 },
-      { tip: 'identificare', enunt: '3. Numele râului marcat cu numărul 2', raspunsCorect: 'Prahova', raspunsuriAcceptate: ['Prahova', 'prahova'], punctaj: 1 },
-      { tip: 'identificare', enunt: '4. Numele râului marcat cu numărul 4', raspunsCorect: 'Vedea', raspunsuriAcceptate: ['Vedea', 'vedea'], punctaj: 1 },
+      { tip: 'identificare', enunt: '1. Numele unității de relief marcată cu litera D', raspunsCorect: 'Podișul Transilvaniei', raspunsuriAcceptate: ['Podișul Transilvaniei', 'Transilvaniei', 'Depresiunea Colinară a Transilvaniei'], punctaj: 2 },
+      { tip: 'identificare', enunt: '2. Numele unității de relief marcată cu litera G', raspunsCorect: 'Subcarpații Curburii', raspunsuriAcceptate: ['Subcarpații Curburii', 'Curburii', 'curburii'], punctaj: 2 },
+      { tip: 'identificare', enunt: '3. Numele râului marcat cu numărul 2', raspunsCorect: 'Olt', raspunsuriAcceptate: ['Olt', 'olt'], punctaj: 1 },
+      { tip: 'identificare', enunt: '4. Numele râului marcat cu numărul 4', raspunsCorect: 'Mureș', raspunsuriAcceptate: ['Mureș', 'Mures', 'mures'], punctaj: 1 },
     ],
     
     B: [
-      { tip: 'completare', enuntInainte: '1. Munți vulcanici se găsesc în unitatea de relief marcată cu litera', raspunsCorect: 'H', raspunsuriAcceptate: ['H', 'h'], punctaj: 2 },
-      { tip: 'completare', enuntInainte: '2. Cele mai înalte vârfuri se găsesc în unitatea de relief marcată cu litera', raspunsCorect: 'B', raspunsuriAcceptate: ['B', 'b'], punctaj: 2 },
-      { tip: 'completare', enuntInainte: '3. Cea mai mare altitudine din Munții Apuseni se atinge în vârful', raspunsCorect: 'Bihor', raspunsuriAcceptate: ['Bihor', 'bihor', 'Vf. Bihor', 'Vârful Bihor'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '1. Depresiunea Petroșani este situată în unitatea de relief marcată cu litera', raspunsCorect: 'F', raspunsuriAcceptate: ['F', 'f', 'Carpații Meridionali'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '2. Regiunea subcarpatică alcătuită dintr-un singur șir de depresiuni și unul de dealuri este marcată cu litera', raspunsCorect: 'H', raspunsuriAcceptate: ['H', 'h', 'Subcarpații Moldovei'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '3. Orașul marcat cu numărul 7 este reședința județului', raspunsCorect: 'Bihor', raspunsuriAcceptate: ['Bihor', 'bihor'], punctaj: 2 },
     ],
     
     C: [
-      { tip: 'grila', enunt: '1. Stepa este caracteristică unității de relief marcate cu litera:', variante: { a: 'A', b: 'D', c: 'F', d: 'G' }, raspunsCorect: 'c', punctaj: 2 },
-      { tip: 'grila', enunt: '2. Influențe climatice oceanice pătrund în unitatea de relief marcată cu litera:', variante: { a: 'A', b: 'D', c: 'F', d: 'H' }, raspunsCorect: 'a', punctaj: 2 },
-      { tip: 'grila', enunt: '3. Cărbuni se exploatează în unitatea de relief marcată cu litera:', variante: { a: 'A', b: 'B', c: 'C', d: 'E' }, raspunsCorect: 'd', punctaj: 2 },
-      { tip: 'grila', enunt: '4. Domurile gazeifere se găsesc în unitatea de relief marcată cu litera:', variante: { a: 'A', b: 'B', c: 'D', d: 'G' }, raspunsCorect: 'c', punctaj: 2 },
-      { tip: 'grila', enunt: '5. Resurse de petrol se găsesc în unitatea de relief marcată cu litera:', variante: { a: 'G', b: 'B', c: 'C', d: 'D' }, raspunsCorect: 'a', punctaj: 2 },
+      { tip: 'grila', enunt: '1. Relieful eolian este prezent în subunitatea marcată cu litera:', variante: { a: 'B', b: 'C', c: 'E', d: 'F' }, raspunsCorect: 'c', punctaj: 2 },
+      { tip: 'grila', enunt: '2. În unitatea D cea mai numeroasă minoritate națională o formează:', variante: { a: 'germanii', b: 'grecii', c: 'polonezii', d: 'turco-tătarii' }, raspunsCorect: 'a', punctaj: 2 },
+      { tip: 'grila', enunt: '3. În unitatea de relief F se exploatează resurse de:', variante: { a: 'aur și argint', b: 'bauxită', c: 'fier', d: 'lignit' }, raspunsCorect: 'd', punctaj: 2 },
+      { tip: 'grila', enunt: '4. Orașul marcat cu numărul 12 este situat în unitatea de relief numită:', variante: { a: 'Câmpia Bărăganului', b: 'Delta Dunării', c: 'Pod. Dobrogei', d: 'Subcarpații Curburii' }, raspunsCorect: 'c', punctaj: 2 },
+      { tip: 'grila', enunt: '5. Magistrala rutieră E60 trece prin orașele marcate cu numerele:', variante: { a: '7 și 8', b: '8 și 9', c: '8 și 11', d: '9 și 10' }, raspunsCorect: 'c', punctaj: 2 },
     ],
     
     D: [
-      { tip: 'comparatie', enunt: 'Precizați 3 deosebiri între clima Podișului Târnavelor și clima Câmpiei Olteniei', raspunsExemplu: [
-        'Etaj climatic: în Podișul Târnavelor este caracteristic un climat de dealuri și podișuri, în timp ce în Câmpia Olteniei etajul climatic specific este cel de câmpie',
-        'Temperaturi: în Câmpia Olteniei temperaturile medii anuale au valori de 10-11°C, în timp ce în Podișul Târnavelor sunt mai scăzute (6-9°C)',
-        'Influențe climatice: în Câmpia Olteniei sunt caracteristice influențe submediteraneene (climat blând), în timp ce în Podișul Târnavelor se resimt influențe oceanice (climat moderat termic și umed)',
+      { tip: 'comparatie', enunt: 'Precizați 3 deosebiri între clima unității D (Podișul Transilvaniei) și clima unității E (Podișul Dobrogei)', raspunsExemplu: [
+        'Etaj climatic: în Podișul Transilvaniei este caracteristic etajul climatic de dealuri și podișuri, în Podișul Dobrogei este etajul climatic de câmpie',
+        'Temperaturi: în Podișul Dobrogei temperaturile medii anuale sunt 11-12°C, în Podișul Transilvaniei sunt mai scăzute (6-9°C)',
+        'Influențe climatice: în Podișul Dobrogei sunt pontice (continentalitate excesivă), în Podișul Transilvaniei sunt oceanice (climat moderat termic și umed)',
       ], punctajMaxim: 6 },
     ],
     
     E: [
-      { tip: 'cauza', enunt: 'Două argumente pentru importanța economică a Dunării pentru România', raspunsExemplu: 'Argument 1: amenajări hidroenergetice importante (Porțile de Fier I și II) care produc cantități mari de energie electrică pentru România și Serbia. Argument 2: important coridor de transport fluvial ce asigură legătura dintre Marea Neagră și Marea Nordului, prin intermediul Canalului Dunăre-Main-Rin (deschis în 1992).', cuvinteCheie: ['hidroenergetice', 'Porțile de Fier', 'transport', 'Rin'], punctaj: 4 },
+      { tip: 'cauza', enunt: 'Două avantaje economice care decurg din poziția României ca țară dunăreană', raspunsExemplu: 'Avantaj 1: amenajări hidroenergetice importante pe Dunăre (Porțile de Fier I și II) care produc cantități mari de energie electrică pentru România și Serbia. Avantaj 2: important coridor de transport fluvial ce asigură legătura dintre Marea Neagră și Marea Nordului prin Canalul Dunăre-Main-Rin, plus comerțul portuar (Galați, Brăila, Constanța-Dunăre Canal).', cuvinteCheie: ['hidroenergetice', 'Porțile de Fier', 'transport', 'Rin'], punctaj: 4 },
     ],
   },
   
@@ -86,17 +86,17 @@ export const varianta22 = {
     
     A: [
       { tip: 'completare', enuntInainte: '1. Valoarea maximă a debitului mediu lunar și luna', raspunsCorect: '10000 m³/s mai', raspunsuriAcceptate: ['10000 mai', '10000', 'mai', '9000', '11000'], punctaj: 2 },
-      { tip: 'completare', enuntInainte: '2. Două luni în care debitul mediu lunar depășește 4000 m³/s', raspunsCorect: 'martie, aprilie, mai, iunie, iulie, august sau decembrie', raspunsuriAcceptate: ['martie', 'aprilie', 'mai', 'iunie', 'iulie', 'august', 'decembrie', 'martie aprilie', 'aprilie mai', 'mai iunie', 'martie aprilie mai iunie iulie august decembrie'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '2. Două luni în care debitul mediu lunar depășește 4000 m³/s', raspunsCorect: 'martie, aprilie, mai, iunie, iulie, august sau decembrie', raspunsuriAcceptate: ['martie', 'aprilie', 'mai', 'iunie', 'iulie', 'august', 'decembrie', 'martie aprilie', 'aprilie mai', 'mai iunie', 'iunie iulie', 'aprilie iunie', 'martie iulie'], punctaj: 2 },
     ],
     
     B: [
       { tip: 'completare', enuntInainte: '1. Valoarea debitului mediu în luna ianuarie', raspunsCorect: '4000 m³/s', raspunsuriAcceptate: ['4000', '3500', '4500'], punctaj: 2 },
       { tip: 'completare', enuntInainte: '2. Luna cu cea mai mică valoare a debitului mediu lunar', raspunsCorect: 'octombrie', raspunsuriAcceptate: ['octombrie', 'septembrie', 'noiembrie'], punctaj: 2 },
-      { tip: 'completare', enuntInainte: '3. Două luni în care debitul mediu lunar este de 7000 m³/s', raspunsCorect: 'aprilie și iunie', raspunsuriAcceptate: ['aprilie iunie', 'aprilie mai', 'mai iunie', 'aprilie', 'mai', 'iunie'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '3. Două luni în care debitul mediu lunar este de 7000 m³/s', raspunsCorect: 'aprilie și iunie', raspunsuriAcceptate: ['aprilie iunie', 'aprilie mai', 'mai iunie', 'aprilie', 'mai', 'iunie', 'aprilie si iunie', 'aprilie, iunie'], punctaj: 2 },
     ],
     
     C: [
-      { tip: 'completare', enuntInainte: '1. Două insule sau arhipelaguri care aparțin Spaniei (separate prin virgulă)', raspunsCorect: 'Mallorca și Ibiza (de exemplu)', raspunsuriAcceptate: ['Mallorca', 'Ibiza', 'Menorca', 'Formentera', 'Baleare', 'Canare', 'Mallorca Ibiza', 'Mallorca, Ibiza', 'Canare Baleare', 'Insulele Baleare', 'Insulele Canare'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '1. Două insule sau arhipelaguri care aparțin Spaniei (separate prin virgulă)', raspunsCorect: 'Mallorca și Ibiza', raspunsuriAcceptate: ['Mallorca', 'Ibiza', 'Menorca', 'Formentera', 'Baleare', 'Canare', 'Mallorca Ibiza', 'Mallorca, Ibiza', 'Insulele Baleare', 'Insulele Canare', 'Baleare Canare', 'Mallorca si Ibiza'], punctaj: 2 },
       { tip: 'completare', enuntInainte: '2. Două state vecine Spaniei, membre UE (separate prin virgulă)', raspunsCorect: 'Portugalia și Franța', raspunsuriAcceptate: ['Portugalia', 'Franța', 'Franta', 'Portugalia Franta', 'Portugalia, Franta', 'Portugalia si Franta', 'Portugalia și Franța', 'Franta Portugalia'], punctaj: 2 },
       { tip: 'completare', enuntInainte: '3. Două unități de relief din Spania (separate prin virgulă)', raspunsCorect: 'Munții Pirinei și Podișul Castiliei', raspunsuriAcceptate: ['Pirinei', 'Munții Pirinei', 'Cordiliera Betică', 'Podișul Castiliei', 'Castilia', 'Câmpia Andaluziei', 'Câmpia Aragonului', 'Pirinei Castilia', 'Pirinei, Castilia', 'Pirinei Andaluzia', 'Castilia Andaluzia'], punctaj: 2 },
       { tip: 'completare', enuntInainte: '4. Două tipuri de climă din Spania (separate prin virgulă)', raspunsCorect: 'mediteraneană și oceanică', raspunsuriAcceptate: ['mediteraneană', 'oceanică', 'temperat-oceanică', 'continentală', 'mediteraneană oceanică', 'mediteraneană și oceanică', 'mediteraneana, oceanica', 'oceanic mediteranean', 'mediteranean continental'], punctaj: 2 },
