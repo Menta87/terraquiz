@@ -25,6 +25,10 @@ import { varianta17 } from '../../../data/bac/varianta-17';
 import { varianta18 } from '../../../data/bac/varianta-18';
 import { varianta19 } from '../../../data/bac/varianta-19';
 import { varianta20 } from '../../../data/bac/varianta-20';
+import { varianta21 } from '../../../data/bac/varianta-21';
+import { varianta22 } from '../../../data/bac/varianta-22';
+
+
 
 
 
@@ -51,8 +55,12 @@ const VARIANTE = {
    'varianta-17': varianta17,
   'varianta-18': varianta18,
   'varianta-19': varianta19,
-  'varianta-20': varianta20,
+   'varianta-20': varianta20,
+    'varianta-21': varianta21,
+  'varianta-22': varianta22,
 };
+
+
 
 
 
