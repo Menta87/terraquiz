@@ -47,7 +47,7 @@ export const varianta21 = {
     
     A: [
       { tip: 'identificare', enunt: '1. Numele unității de relief marcată cu litera C', raspunsCorect: 'Munții Banatului', raspunsuriAcceptate: ['Munții Banatului', 'Banatului', 'banatului'], punctaj: 2 },
-      { tip: 'identificare', enunt: '2. Numele unității de relief marcată cu litera F', raspunsCorect: 'Carpații Maramureșului și ai Bucovinei', raspunsuriAcceptate: ['Carpații Maramureșului și ai Bucovinei', 'Maramureșului', 'Bucovinei', 'Grupa Nordică a Carpaților Orientali'], punctaj: 2 },
+      { tip: 'identificare', enunt: '2. Numele unității de relief marcată cu litera F', raspunsCorect: 'Carpații Maramureșului și ai Bucovinei', raspunsuriAcceptate: ['Carpații Maramureșului și ai Bucovinei', 'Maramureșului', 'Bucovinei', 'Carpații Maramureșului', 'Grupa Nordică a Carpaților Orientali'], punctaj: 2 },
       { tip: 'identificare', enunt: '3. Numele orașului marcat cu numărul 3', raspunsCorect: 'Suceava', raspunsuriAcceptate: ['Suceava', 'suceava'], punctaj: 1 },
       { tip: 'identificare', enunt: '4. Numele orașului marcat cu numărul 4', raspunsCorect: 'Vaslui', raspunsuriAcceptate: ['Vaslui', 'vaslui'], punctaj: 1 },
     ],
@@ -67,15 +67,15 @@ export const varianta21 = {
     ],
     
     D: [
-      { tip: 'comparatie', enunt: 'Precizați 2 deosebiri și o asemănare între relieful unității A și relieful unității B', raspunsExemplu: [
-        'Deosebire (altitudini): unitatea A are altitudini specifice, iar unitatea B altele',
-        'Deosebire (tipuri de relief): cele 2 unități prezintă forme de relief diferite',
-        'Asemănare: ambele unități au fost formate prin procese geologice similare',
+      { tip: 'comparatie', enunt: 'Precizați 2 deosebiri și o asemănare între relieful unității A (Grupa Sudică a Carpaților Orientali) și relieful unității B (Munții Apuseni)', raspunsExemplu: [
+        'Deosebire: Grupa Sudică are altitudinea maximă mai mare (Munții Ciucaș - 1954 m) decât Munții Apuseni (Munții Bihor - 1849 m)',
+        'Deosebire: în Munții Apuseni este bine reprezentat relieful carstic, iar în Grupa Sudică specific este relieful pe gresii și conglomerate',
+        'Asemănare: ambele unități au structură de orogen, fiind formate prin cutarea scoarței în timpul orogenezei alpine',
       ], punctajMaxim: 6 },
     ],
     
     E: [
-      { tip: 'cauza', enunt: '1. Cauză a densității reduse a populației în unitatea de relief marcată cu litera H', raspunsExemplu: 'Densitatea redusă a populației în unitatea marcată cu litera H (Grupa Retezat-Godeanu) se datorează climatului montan (temperaturi scăzute, precipitații abundente, vânturi puternice), reliefului (înălțime, pante accentuate), solurilor puțin fertile, vegetației de pădure dominante.', cuvinteCheie: ['climat montan', 'relief', 'soluri', 'pădure'], punctaj: 2 },
+      { tip: 'cauza', enunt: '1. Cauză a densității reduse a populației în unitatea de relief marcată cu litera H (Grupa Retezat-Godeanu)', raspunsExemplu: 'Densitatea redusă a populației în unitatea marcată cu litera H (Grupa Retezat-Godeanu) se datorează climatului montan (temperaturi scăzute, precipitații abundente, vânturi puternice), reliefului (înălțime, pante accentuate), solurilor puțin fertile, vegetației de pădure dominante.', cuvinteCheie: ['climat montan', 'relief', 'soluri', 'pădure'], punctaj: 2 },
       { tip: 'cauza', enunt: '2. Cauză a amplasării unui combinat al metalurgiei neferoase în orașul marcat cu numărul 1 (Tulcea)', raspunsExemplu: 'Amplasarea unui combinat al metalurgiei neferoase la Tulcea se datorează importului de bauxită, prelucrată într-un oraș-port la Dunăre, ceea ce conferă rentabilitate producției de alumină, prin transportul produselor pe calea apei, considerat cel mai ieftin.', cuvinteCheie: ['bauxită', 'port', 'Dunăre', 'transport'], punctaj: 2 },
     ],
   },
