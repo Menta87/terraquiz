@@ -18,7 +18,7 @@ export const varianta16 = {
     B: [
       { tip: 'completare', enuntInainte: '1. Lisabona este capitala statului marcat cu litera', raspunsCorect: 'A', raspunsuriAcceptate: ['A', 'a', 'Portugalia', 'portugalia'], punctaj: 2 },
       { tip: 'completare', enuntInainte: '2. Orașul-capitală marcat cu numărul 11 se numește', raspunsCorect: 'Praga', raspunsuriAcceptate: ['Praga', 'praga'], punctaj: 2 },
-      { tip: 'completare', enuntInainte: '3. Munții Penini se găsesc în statul marcat cu litera', raspunsCorect: 'C', raspunsuriAcceptate: ['C', 'c', 'Marea Britanie', 'UK'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '3. Munții Penini se găsesc în statul marcat cu litera', raspunsCorect: 'C', raspunsuriAcceptate: ['C', 'c', 'Marea Britanie', 'UK', 'Regatul Unit'], punctaj: 2 },
     ],
     
     C: [
@@ -54,8 +54,8 @@ export const varianta16 = {
     ],
     
     B: [
-      { tip: 'completare', enuntInainte: '1. Șisturi verzi se găsesc în unitatea de relief marcată cu litera', raspunsCorect: 'C', raspunsuriAcceptate: ['C', 'c', 'Dobrogei de Nord', 'Munții Măcin'], punctaj: 2 },
-      { tip: 'completare', enuntInainte: '2. Lacuri glaciare se găsesc în unitatea de relief marcată cu litera', raspunsCorect: 'B', raspunsuriAcceptate: ['B', 'b', 'Carpații Meridionali'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '1. Șisturi verzi se găsesc în unitatea de relief marcată cu litera', raspunsCorect: 'C', raspunsuriAcceptate: ['C', 'c'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '2. Lacuri glaciare se găsesc în unitatea de relief marcată cu litera', raspunsCorect: 'B', raspunsuriAcceptate: ['B', 'b'], punctaj: 2 },
       { tip: 'completare', enuntInainte: '3. Port la Dunăre este orașul marcat cu numărul', raspunsCorect: '5', raspunsuriAcceptate: ['5'], punctaj: 2 },
     ],
     
@@ -68,20 +68,20 @@ export const varianta16 = {
     ],
     
     D: [
-      { tip: 'comparatie', enunt: 'Precizați 3 deosebiri între relieful Munților Apuseni și relieful Grupei Parâng', raspunsExemplu: [
-        'Altitudini: Munții Apuseni au altitudini sub 2000 m (Vf. Bihor 1849 m), iar Grupa Parâng depășește 2500 m (Vf. Parângu Mare 2519 m)',
-        'Relief glaciar: în Grupa Parâng este bine dezvoltat relieful glaciar, iar în Munții Apuseni lipsește, fiind bine reprezentat relieful carstic',
-        'Fragmentare: gradul de fragmentare este mai mic în Grupa Parâng și mai mare în Munții Apuseni datorită prezenței "depresiunilor-golf" și densității rețelei hidrografice',
+      { tip: 'comparatie', enunt: 'Precizați 3 deosebiri între relieful Munților Apuseni și relieful Grupei Făgăraș', raspunsExemplu: [
+        'Altitudini: Munții Apuseni au altitudini sub 2000 m (Vf. Bihor 1849 m), iar Grupa Făgăraș depășește 2500 m (Vf. Moldoveanu 2544 m)',
+        'Relief glaciar: în Grupa Făgăraș este bine dezvoltat relieful glaciar, iar în Munții Apuseni lipsește, fiind bine reprezentat relieful carstic',
+        'Fragmentare: gradul de fragmentare este mai mic în Grupa Făgăraș și mai mare în Munții Apuseni datorită prezenței "depresiunilor-golf"',
       ], punctajMaxim: 6 },
     ],
     
     E: [
-      { tip: 'cauza', enunt: 'Două cauze ale prezenței numeroase a centrelor industriei produselor lactate în Carpații Orientali', raspunsExemplu: 'Cauza 1: creșterea bovinelor pentru lapte pe baza pășunilor și fânețelor naturale extinse din regiunile montane și subcarpatice ale Carpaților Orientali - pajiști de bună calitate, climă favorabilă creșterii animalelor. Cauza 2: tradițiile vechi legate de prelucrarea laptelui și obținerea unor produse renumite la nivel național (cașcaval, brânză, smântână) - meșteșuguri transmise din generație în generație.', cuvinteCheie: ['bovine', 'pășuni', 'tradiții', 'cașcaval'], punctaj: 4 },
+      { tip: 'cauza', enunt: 'Două cauze pentru numeroasele centre ale industriei produselor lactate din Carpații Orientali', raspunsExemplu: 'Cauza 1: creșterea bovinelor pentru lapte pe baza pășunilor și fânețelor naturale extinse din zonele montane și subcarpatice ale Carpaților Orientali - pajiști de bună calitate, climă favorabilă. Cauza 2: tradițiile vechi legate de prelucrarea laptelui și obținerea unor produse renumite la nivel național (cașcaval, brânză, smântână).', cuvinteCheie: ['bovine', 'pășuni', 'tradiții', 'cașcaval'], punctaj: 4 },
     ],
   },
   
   subiectIII: {
-    titlu: 'Subiect III - Lumea contemporană',
+    titlu: 'Subiect III - Italia (UE)',
     hasDiagrama: false,
     hasTabele: false,
     
@@ -91,9 +91,9 @@ export const varianta16 = {
     
     B: [
       { tip: 'completare', enuntInainte: '1. Numele capitalei Italiei', raspunsCorect: 'Roma', raspunsuriAcceptate: ['Roma', 'roma'], punctaj: 1 },
-      { tip: 'completare', enuntInainte: '2. Două orașe importante din Italia', raspunsCorect: 'Milano', raspunsuriAcceptate: ['Milano', 'Torino', 'Napoli', 'Genova', 'Florența', 'Veneția', 'Bologna'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '2. Două orașe importante din Italia (separate prin virgulă)', raspunsCorect: 'Milano și Torino', raspunsuriAcceptate: ['Milano', 'Torino', 'Napoli', 'Genova', 'Florența', 'Veneția', 'Bologna', 'Milano Torino', 'Milano, Torino', 'Milano Napoli', 'Napoli Florenta', 'Milano si Torino'], punctaj: 2 },
       { tip: 'completare', enuntInainte: '3. Numele monedei naționale a Italiei', raspunsCorect: 'euro', raspunsuriAcceptate: ['euro', 'EUR', 'Euro'], punctaj: 1 },
-      { tip: 'completare', enuntInainte: '4. Două ramuri industriale dezvoltate în Italia', raspunsCorect: 'industria auto', raspunsuriAcceptate: ['auto', 'modă', 'siderurgie', 'chimică', 'construcții', 'textilă'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '4. Două ramuri industriale dezvoltate în Italia (separate prin virgulă)', raspunsCorect: 'industria auto și modă', raspunsuriAcceptate: ['auto', 'modă', 'siderurgie', 'chimică', 'construcții', 'textilă', 'auto modă', 'auto, moda', 'siderurgie chimica', 'auto textila'], punctaj: 2 },
     ],
     
     C: [

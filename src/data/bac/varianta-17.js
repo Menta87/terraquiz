@@ -32,14 +32,14 @@ export const varianta17 = {
     D: [
       { tip: 'comparatie', enunt: 'Precizați 2 deosebiri și o asemănare între relieful Munților Alpi și relieful Munților Scandinaviei', raspunsExemplu: [
         'Deosebire (mod de formare): Munții Alpi s-au format în orogeneza alpină, iar Munții Scandinaviei în orogeneza caledoniană',
-        'Deosebire (altitudini): altitudinea maximă în Munții Alpi ajunge la 4807 m (Vf. Mont Blanc), iar în Munții Scandinaviei la 2469 m (Vf. Galdhopiggen)',
+        'Deosebire (altitudini): altitudinea maximă în Munții Alpi ajunge la 4807 m (Mont Blanc), iar în Munții Scandinaviei la 2469 m (Galdhopiggen)',
         'Asemănare: prezența reliefului glaciar în ambele unități montane',
       ], punctajMaxim: 6 },
     ],
     
     E: [
-      { tip: 'cauza', enunt: '1. Cauză a prezenței ghețarilor actuali în Munții Pirinei', raspunsExemplu: 'Altitudinile de peste 3000 m (Pic dAneto 3404 m) care depășesc limita zăpezilor perene la latitudinea respectivă, ceea ce permite acumularea zăpezilor și formarea ghețarilor montani actuali pe versanții nordici.', cuvinteCheie: ['altitudini', '3000', 'zăpezi', 'perene'], punctaj: 2 },
-      { tip: 'cauza', enunt: '2. Cauză a scăderii cantității de precipitații din vestul spre estul Europei', raspunsExemplu: 'Circulația predominant vestică a maselor de aer dinspre Oceanul Atlantic - vânturile de vest aduc precipitații abundente în vest, dar pe măsură ce ajung în est își pierd umiditatea, iar continentalitatea crește, generând precipitații tot mai reduse spre est.', cuvinteCheie: ['vestică', 'vânturi', 'umiditate', 'continentalitate'], punctaj: 2 },
+      { tip: 'cauza', enunt: '1. Cauză a prezenței ghețarilor actuali în Munții Pirinei', raspunsExemplu: 'Altitudinile de peste 3000 m (Pic dAneto 3404 m) care depășesc limita zăpezilor perene la latitudinea respectivă, permițând acumularea zăpezilor și formarea ghețarilor montani actuali.', cuvinteCheie: ['altitudini', '3000', 'zăpezi', 'perene'], punctaj: 2 },
+      { tip: 'cauza', enunt: '2. Cauză a scăderii cantității de precipitații din vestul spre estul Europei', raspunsExemplu: 'Circulația predominant vestică a maselor de aer dinspre Oceanul Atlantic - vânturile de vest aduc precipitații abundente în vest, dar își pierd umiditatea spre est, iar continentalitatea crește.', cuvinteCheie: ['vestică', 'vânturi', 'umiditate', 'continentalitate'], punctaj: 2 },
     ],
   },
   
@@ -71,13 +71,13 @@ export const varianta17 = {
       { tip: 'comparatie', enunt: 'Precizați 3 deosebiri între relieful Munților Banatului și relieful Grupei Nordice a Carpaților Orientali', raspunsExemplu: [
         'Tipuri de roci: Munții Banatului - roci cristaline și sedimentare (calcare); Grupa Nordică - roci cristaline, vulcanice și sedimentare cutate (fliș)',
         'Altitudini: Munții Banatului 1446 m (Munții Semenic); Grupa Nordică 2303 m (Munții Rodnei)',
-        'Relief specific: Munții Banatului - relief carstic bine dezvoltat (pe calcare); Grupa Nordică - relief glaciar prezent',
+        'Relief specific: în Munții Banatului este dezvoltat relieful carstic, iar în Grupa Nordică este prezent relieful glaciar',
       ], punctajMaxim: 6 },
     ],
     
     E: [
-      { tip: 'cauza', enunt: '1. Cauză a densității reduse a populației în Munții Carpați', raspunsExemplu: 'Altitudinile ridicate, temperaturile scăzute, precipitațiile abundente, durata mare a perioadei de îngheț, pantele abrupte, stratul subțire de sol - toate determină condiții puțin favorabile pentru așezările umane și pentru densitate mare.', cuvinteCheie: ['altitudini', 'temperaturi', 'pante', 'sol'], punctaj: 2 },
-      { tip: 'cauza', enunt: '2. Cauză a precipitațiilor mai mari în vest față de est', raspunsExemplu: 'Mișcarea generală a aerului se produce preponderent de la vest spre est. Aceasta determină repartiția descrescătoare a precipitațiilor de la vest la est. În vest precipitațiile sunt cca 630 mm/an, în timp ce în est ajung la 400-500 mm/an. Relieful (Carpații) constituie barieră în calea maselor de aer oceanice.', cuvinteCheie: ['vest', 'oceanic', 'barieră', 'Carpați'], punctaj: 2 },
+      { tip: 'cauza', enunt: '1. Cauză a densității reduse a populației în Munții Carpați', raspunsExemplu: 'Altitudinile ridicate, temperaturile scăzute, precipitațiile abundente, durata mare a perioadei de îngheț, pantele abrupte, stratul subțire de sol - toate determină condiții puțin favorabile pentru așezări umane.', cuvinteCheie: ['altitudini', 'temperaturi', 'pante', 'sol'], punctaj: 2 },
+      { tip: 'cauza', enunt: '2. Cauză a precipitațiilor mai mari în partea vestică față de cea estică', raspunsExemplu: 'La latitudinea României, mișcarea generală a aerului se produce preponderent de la vest spre est. Aceasta determină repartiția descrescătoare a precipitațiilor de la vest la est. Relieful (Carpații) constituie barieră în calea maselor de aer oceanice.', cuvinteCheie: ['vest', 'oceanic', 'barieră', 'Carpați'], punctaj: 2 },
     ],
   },
   
@@ -98,11 +98,11 @@ export const varianta17 = {
     ],
     
     C: [
-      { tip: 'completare', enuntInainte: '1. Două unități de relief din Regatul Unit', raspunsCorect: 'Munții Grampian', raspunsuriAcceptate: ['Munții Grampian', 'Grampian', 'Munții Penini', 'Penini', 'Câmpia Londrei'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '1. Două unități de relief din Regatul Unit (separate prin virgulă)', raspunsCorect: 'Munții Grampian și Munții Penini', raspunsuriAcceptate: ['Munții Grampian', 'Grampian', 'Munții Penini', 'Penini', 'Câmpia Londrei', 'Grampian Penini', 'Grampian, Penini', 'Penini Londrei', 'Grampian si Penini'], punctaj: 2 },
       { tip: 'completare', enuntInainte: '2. Un râu sau fluviu din Regatul Unit', raspunsCorect: 'Tamisa', raspunsuriAcceptate: ['Tamisa', 'tamisa', 'Severn'], punctaj: 1 },
-      { tip: 'completare', enuntInainte: '3. Două resurse ale subsolului', raspunsCorect: 'cărbuni', raspunsuriAcceptate: ['cărbuni', 'petrol', 'gaze naturale', 'minereu de fier'], punctaj: 2 },
-      { tip: 'completare', enuntInainte: '4. Două orașe mari, altele decât capitala', raspunsCorect: 'Liverpool', raspunsuriAcceptate: ['Liverpool', 'Leeds', 'Manchester', 'Birmingham', 'Glasgow', 'Edinburgh'], punctaj: 2 },
-      { tip: 'completare', enuntInainte: '5. Trei ramuri industriale', raspunsCorect: 'aeronautică', raspunsuriAcceptate: ['aeronautică', 'textilă', 'chimică', 'auto', 'siderurgică', 'navală'], punctaj: 3 },
+      { tip: 'completare', enuntInainte: '3. Două resurse ale subsolului (separate prin virgulă)', raspunsCorect: 'cărbuni și petrol', raspunsuriAcceptate: ['cărbuni', 'petrol', 'gaze naturale', 'minereu de fier', 'cărbuni petrol', 'carbuni petrol', 'carbuni gaze', 'petrol gaze'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '4. Două orașe mari, altele decât capitala (separate prin virgulă)', raspunsCorect: 'Liverpool și Manchester', raspunsuriAcceptate: ['Liverpool', 'Leeds', 'Manchester', 'Birmingham', 'Glasgow', 'Edinburgh', 'Liverpool Manchester', 'Manchester Birmingham', 'Leeds Glasgow'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '5. Trei ramuri industriale (separate prin virgulă)', raspunsCorect: 'aeronautică, textilă și chimică', raspunsuriAcceptate: ['aeronautică', 'textilă', 'chimică', 'auto', 'siderurgică', 'navală', 'aeronautica textila chimica', 'aeronautica auto siderurgica', 'aeronautica textila auto'], punctaj: 3 },
     ],
     
     D: [
@@ -114,7 +114,7 @@ export const varianta17 = {
     ],
     
     E: [
-      { tip: 'completare', enuntInainte: 'Patru surse de energie nepoluantă utilizate de UE', raspunsCorect: 'eoliană', raspunsuriAcceptate: ['eoliană', 'solară', 'mareelor', 'maree', 'geotermală', 'hidroenergie'], punctaj: 4 },
+      { tip: 'completare', enuntInainte: 'Patru surse de energie nepoluantă utilizate de UE (separate prin virgulă)', raspunsCorect: 'eoliană, solară, hidroenergie și geotermală', raspunsuriAcceptate: ['eoliană', 'solară', 'mareelor', 'maree', 'geotermală', 'hidroenergie', 'eoliana solara hidro geotermala', 'eoliana solara maree hidro'], punctaj: 4 },
     ],
   },
 };

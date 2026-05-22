@@ -47,37 +47,37 @@ export const varianta18 = {
     titlu: 'Subiect II - România',
     
     A: [
-      { tip: 'identificare', enunt: '1. Numele unității de relief marcată cu litera E', raspunsCorect: 'Grupa Parâng', raspunsuriAcceptate: ['Grupa Parâng', 'Parâng', 'parang'], punctaj: 2 },
-      { tip: 'identificare', enunt: '2. Numele unității de relief marcată cu litera G', raspunsCorect: 'Câmpia Bărăganului', raspunsuriAcceptate: ['Câmpia Bărăganului', 'Bărăganului', 'baraganului'], punctaj: 2 },
+      { tip: 'identificare', enunt: '1. Numele unității de relief marcată cu litera E', raspunsCorect: 'Grupa Parâng', raspunsuriAcceptate: ['Grupa Parâng', 'Parâng', 'Parang', 'parang'], punctaj: 2 },
+      { tip: 'identificare', enunt: '2. Numele unității de relief marcată cu litera G', raspunsCorect: 'Câmpia Bărăganului', raspunsuriAcceptate: ['Câmpia Bărăganului', 'Bărăganului', 'Baraganului', 'baraganului'], punctaj: 2 },
       { tip: 'identificare', enunt: '3. Numele râului marcat cu numărul 7', raspunsCorect: 'Jijia', raspunsuriAcceptate: ['Jijia', 'jijia'], punctaj: 1 },
       { tip: 'identificare', enunt: '4. Numele râului marcat cu numărul 11', raspunsCorect: 'Bega', raspunsuriAcceptate: ['Bega', 'bega'], punctaj: 1 },
     ],
     
     B: [
-      { tip: 'completare', enuntInainte: '1. Lacuri glaciare se găsesc în unitatea de relief marcată cu litera', raspunsCorect: 'B', raspunsuriAcceptate: ['B', 'b'], punctaj: 2 },
-      { tip: 'completare', enuntInainte: '2. Cel mai important port la Dunăre este orașul marcat cu numărul', raspunsCorect: '9', raspunsuriAcceptate: ['9'], punctaj: 2 },
-      { tip: 'completare', enuntInainte: '3. Relief carstic dezvoltat se găsește în Munții', raspunsCorect: 'Munții Banatului', raspunsuriAcceptate: ['Munții Banatului', 'Banatului', 'banatului'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '1. Resurse de bauxită se găsesc în unitatea de relief marcată cu litera', raspunsCorect: 'B', raspunsuriAcceptate: ['B', 'b'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '2. Traversează orașul Pitești râul marcat cu numărul', raspunsCorect: '9', raspunsuriAcceptate: ['9'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '3. Unitatea de relief marcată cu litera A se numește', raspunsCorect: 'Munții Banatului', raspunsuriAcceptate: ['Munții Banatului', 'Banatului', 'banatului'], punctaj: 2 },
     ],
     
     C: [
-      { tip: 'grila', enunt: '1. Soluri din clasa molisoluri (cernoziom) se găsesc în unitatea de relief marcată cu litera:', variante: { a: 'A', b: 'G', c: 'D', d: 'F' }, raspunsCorect: 'b', punctaj: 2 },
-      { tip: 'grila', enunt: '2. Influențe climatice submediteraneene pătrund în unitatea de relief marcată cu litera:', variante: { a: 'A', b: 'B', c: 'C', d: 'D' }, raspunsCorect: 'd', punctaj: 2 },
-      { tip: 'grila', enunt: '3. O resursă de subsol importantă în unitatea de relief marcată cu litera E:', variante: { a: 'gaz metan', b: 'minereu de fier', c: 'petrol', d: 'cărbuni' }, raspunsCorect: 'd', punctaj: 2 },
-      { tip: 'grila', enunt: '4. Stepa este prezentă în unitatea de relief marcată cu litera:', variante: { a: 'G', b: 'B', c: 'C', d: 'F' }, raspunsCorect: 'a', punctaj: 2 },
-      { tip: 'grila', enunt: '5. Domurile gazeifere se află în unitatea de relief marcată cu litera:', variante: { a: 'A', b: 'C', c: 'F', d: 'H' }, raspunsCorect: 'a', punctaj: 2 },
+      { tip: 'grila', enunt: '1. Lacuri pe masive de sare sunt caracteristice unității de relief marcate cu litera:', variante: { a: 'A', b: 'C', c: 'E', d: 'F' }, raspunsCorect: 'b', punctaj: 2 },
+      { tip: 'grila', enunt: '2. Influențele climatice continentale (de ariditate) pătrund în unitatea de relief marcată cu litera:', variante: { a: 'B', b: 'E', c: 'D', d: 'F' }, raspunsCorect: 'd', punctaj: 2 },
+      { tip: 'grila', enunt: '3. Mureșul și Oltul izvorăsc din unitatea de relief marcată cu litera:', variante: { a: 'A', b: 'C', c: 'E', d: 'H' }, raspunsCorect: 'd', punctaj: 2 },
+      { tip: 'grila', enunt: '4. Minereuri complexe se exploatează din unitatea de relief marcată cu litera:', variante: { a: 'B', b: 'D', c: 'E', d: 'F' }, raspunsCorect: 'a', punctaj: 2 },
+      { tip: 'grila', enunt: '5. Este situat într-o depresiune intramontană orașul marcat cu numărul:', variante: { a: '1', b: '3', c: '5', d: '6' }, raspunsCorect: 'a', punctaj: 2 },
     ],
     
     D: [
       { tip: 'comparatie', enunt: 'Precizați 2 asemănări și o deosebire între relieful Grupei Retezat-Godeanu și relieful Grupei Făgăraș', raspunsExemplu: [
-        'Asemănare: ambele unități s-au format prin cutarea scoarței terestre în orogeneza alpină',
-        'Asemănare: altitudinile sunt mari, depășind 2000 de metri în ambele grupe + prezența reliefului glaciar',
-        'Deosebire: Grupa Făgăraș se prezintă sub forma a două culmi principale (nordică masivă peste 2000 m și sudică sub 2000 m), iar Grupa Retezat-Godeanu are culmi paralele despărțite de rețeaua hidrografică; în Retezat-Godeanu există relief carstic care nu apare în Făgăraș',
+        'Asemănare: ambele unități s-au format prin cutarea scoarței terestre în orogeneza alpină; altitudinile depășesc 2000 m în ambele grupe',
+        'Asemănare: prezența reliefului glaciar atât în Grupa Retezat-Godeanu cât și în Grupa Făgăraș',
+        'Deosebire: Grupa Făgăraș se prezintă sub forma a două culmi principale (nordică masivă peste 2000 m și sudică sub 2000 m), iar în Grupa Retezat-Godeanu culmile sunt paralele, despărțite prin rețeaua hidrografică',
       ], punctajMaxim: 6 },
     ],
     
     E: [
-      { tip: 'cauza', enunt: '1. Cauză a amenajărilor hidroenergetice predominant în zona montană', raspunsExemplu: 'Potențialul hidroenergetic al râurilor este mai mare în cursul superior (zona de munte) datorită pantei accentuate care determină viteză și forță mari. Amenajările sunt propice în munți pentru că albia este îngustă și adâncă, rocile sunt foarte dure (rezistă presiunii), iar forța apei asigură funcționarea turbinelor. Majoritatea hidrocentralelor sunt în munți: Porțile de Fier I și II, Vidraru, hidrocentralele de pe Bistrița. În câmpie, amenajările sunt dificile din cauza pantei slabe și solurilor sedimentare permeabile.', cuvinteCheie: ['munte', 'pantă', 'Porțile de Fier', 'Vidraru'], punctaj: 2 },
-      { tip: 'cauza', enunt: '2. Cauză a diferenței de temperatură nord-sud în România', raspunsExemplu: 'Așezarea României pe 5° de latitudine determină diferențe de temperatură: temperatura medie anuală scade de la sud la nord cu cca 2,5°C (gradient normal latitudinal). La aceasta se adaugă influența reliefului - în sud câmpie (până la 300 m), în nord munți (peste 2000 m).', cuvinteCheie: ['latitudine', 'gradient', 'relief', 'altitudine'], punctaj: 2 },
+      { tip: 'cauza', enunt: '1. Cauză a frecvenței mult mai mari a hidrocentralelor în zona montană decât în zona de câmpie', raspunsExemplu: 'Potențialul hidroenergetic al râurilor este mai mare în cursul superior (zona de munte) datorită pantei accentuate care determină viteză și forță mari. Amenajările sunt propice în munți pentru că albia este îngustă și adâncă, rocile sunt foarte dure, iar forța apei asigură funcționarea turbinelor. Majoritatea hidrocentralelor sunt în munți: Porțile de Fier I și II, Vidraru, hidrocentralele de pe Bistrița. În câmpie amenajările sunt dificile din cauza pantei slabe, vitezei reduse și solurilor sedimentare permeabile.', cuvinteCheie: ['munte', 'pantă', 'Porțile de Fier', 'Vidraru'], punctaj: 2 },
+      { tip: 'cauza', enunt: '2. Cauză a diferenței de temperatură de peste 2°C între sudul și nordul țării', raspunsExemplu: 'Așezarea României pe 5° de latitudine determină diferențe de temperatură: temperatura medie anuală scade de la sud la nord cu cca 2,5°C (gradient normal latitudinal). La aceasta se adaugă influența reliefului - în sud câmpie (până la 300 m), în nord munți (peste 2000 m).', cuvinteCheie: ['latitudine', 'gradient', 'relief', 'altitudine'], punctaj: 2 },
     ],
   },
   
@@ -87,7 +87,7 @@ export const varianta18 = {
     hasTabele: false,
     
     A: [
-      { tip: 'completare', enuntInainte: '1. Valoarea maximă a temperaturii medii lunare și lunile', raspunsCorect: '15°C iulie și august', raspunsuriAcceptate: ['15 iulie august', '15 iulie', '15 august', 'iulie', 'august', '15'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '1. Valoarea maximă a temperaturii medii lunare și lunile', raspunsCorect: '15°C iulie și august', raspunsuriAcceptate: ['15 iulie august', '15 iulie', '15 august', 'iulie', 'august', '15', 'iulie august', 'iulie si august'], punctaj: 2 },
       { tip: 'completare', enuntInainte: '2. Cantitatea minimă de precipitații și luna', raspunsCorect: '80 mm mai', raspunsuriAcceptate: ['80 mai', '80', 'mai', '75 mai', '85 mai'], punctaj: 2 },
     ],
     
@@ -99,10 +99,10 @@ export const varianta18 = {
     
     C: [
       { tip: 'completare', enuntInainte: '1. Peninsula în care este situată Spania', raspunsCorect: 'Iberică', raspunsuriAcceptate: ['Iberică', 'Iberica', 'iberica'], punctaj: 2 },
-      { tip: 'completare', enuntInainte: '2. Două unități montane din Spania', raspunsCorect: 'Munții Cantabrici', raspunsuriAcceptate: ['Cantabrici', 'Munții Cantabrici', 'Iberici', 'Munții Iberici', 'Pirinei', 'Sierra Nevada'], punctaj: 2 },
-      { tip: 'completare', enuntInainte: '3. Două tipuri de climă', raspunsCorect: 'mediteraneană', raspunsuriAcceptate: ['mediteraneană', 'oceanică', 'temperat-oceanică'], punctaj: 2 },
-      { tip: 'completare', enuntInainte: '4. Trei orașe mari din Spania, altele decât capitala', raspunsCorect: 'Sevilla', raspunsuriAcceptate: ['Sevilla', 'Barcelona', 'Valencia', 'Bilbao', 'Malaga'], punctaj: 2 },
-      { tip: 'completare', enuntInainte: '5. Două regiuni turistice', raspunsCorect: 'Madrid', raspunsuriAcceptate: ['Madrid', 'Palma de Mallorca', 'Mallorca', 'Costa del Sol', 'Costa Brava'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '2. Două unități montane din Spania (separate prin virgulă)', raspunsCorect: 'Munții Cantabrici și Munții Iberici', raspunsuriAcceptate: ['Cantabrici', 'Munții Cantabrici', 'Iberici', 'Munții Iberici', 'Pirinei', 'Sierra Nevada', 'Cantabrici Iberici', 'Cantabrici Pirinei', 'Pirinei Sierra Nevada'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '3. Două tipuri de climă din Spania (separate prin virgulă)', raspunsCorect: 'mediteraneană și oceanică', raspunsuriAcceptate: ['mediteraneană', 'oceanică', 'temperat-oceanică', 'mediteraneană oceanică', 'mediteraneana, oceanica', 'oceanic mediteranean'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '4. Trei orașe mari din Spania, altele decât capitala (separate prin virgulă)', raspunsCorect: 'Barcelona, Sevilla și Valencia', raspunsuriAcceptate: ['Barcelona', 'Sevilla', 'Valencia', 'Bilbao', 'Malaga', 'Zaragoza', 'Barcelona Sevilla Valencia', 'Barcelona Valencia Bilbao', 'Sevilla Valencia Malaga'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '5. Două regiuni turistice din Spania (separate prin virgulă)', raspunsCorect: 'Costa del Sol și Costa Brava', raspunsuriAcceptate: ['Madrid', 'Palma de Mallorca', 'Mallorca', 'Costa del Sol', 'Costa Brava', 'Mallorca Costa del Sol', 'Costa del Sol Costa Brava', 'Madrid Mallorca'], punctaj: 2 },
     ],
     
     D: [

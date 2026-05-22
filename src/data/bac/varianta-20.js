@@ -54,21 +54,21 @@ export const varianta20 = {
     ],
     
     B: [
-      { tip: 'completare', enuntInainte: '1. Domurile gazeifere se află în unitatea de relief marcată cu litera', raspunsCorect: 'E', raspunsuriAcceptate: ['E', 'e'], punctaj: 2 },
-      { tip: 'completare', enuntInainte: '2. Relief carstic dezvoltat se găsește în unitatea de relief marcată cu litera', raspunsCorect: 'H', raspunsuriAcceptate: ['H', 'h'], punctaj: 2 },
-      { tip: 'completare', enuntInainte: '3. Influențe climatice de ariditate (continentale) pătrund în unitatea de relief marcată cu litera', raspunsCorect: 'G', raspunsuriAcceptate: ['G', 'g'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '1. Aparține Podișului Transilvaniei subunitatea de relief marcată cu litera', raspunsCorect: 'E', raspunsuriAcceptate: ['E', 'e'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '2. Cele mai multe lacuri glaciare se întâlnesc în unitatea de relief marcată cu litera', raspunsCorect: 'H', raspunsuriAcceptate: ['H', 'h'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '3. Terenurile arabile au ponderea cea mai mare în unitatea de relief marcată cu litera', raspunsCorect: 'G', raspunsuriAcceptate: ['G', 'g'], punctaj: 2 },
     ],
     
     C: [
-      { tip: 'grila', enunt: '1. Stratificarea de loess este caracteristică unității de relief marcate cu litera:', variante: { a: 'G', b: 'B', c: 'D', d: 'F' }, raspunsCorect: 'a', punctaj: 2 },
-      { tip: 'grila', enunt: '2. Cărbuni se exploatează din unitatea de relief marcată cu litera:', variante: { a: 'A', b: 'B', c: 'H', d: 'D' }, raspunsCorect: 'c', punctaj: 2 },
-      { tip: 'grila', enunt: '3. Soluri din clasa molisoluri (cernoziom) ocupă suprafețe întinse în unitatea de relief marcată cu litera:', variante: { a: 'C', b: 'G', c: 'B', d: 'F' }, raspunsCorect: 'b', punctaj: 2 },
-      { tip: 'grila', enunt: '4. Există relief glaciar bine dezvoltat în unitatea de relief marcată cu litera:', variante: { a: 'A', b: 'B', c: 'H', d: 'D' }, raspunsCorect: 'c', punctaj: 2 },
-      { tip: 'grila', enunt: '5. Lacurile de baraj antropic (hidroenergetice) se găsesc în unitatea de relief marcată cu litera:', variante: { a: 'A', b: 'B', c: 'C', d: 'H' }, raspunsCorect: 'd', punctaj: 2 },
+      { tip: 'grila', enunt: '1. Relieful carstic (chei și peșteri) este mai dezvoltat în unitatea de relief marcată cu litera:', variante: { a: 'B', b: 'D', c: 'E', d: 'G' }, raspunsCorect: 'a', punctaj: 2 },
+      { tip: 'grila', enunt: '2. Cel mai mare debit îl are râul marcat cu numărul:', variante: { a: '7', b: '8', c: '9', d: '11' }, raspunsCorect: 'c', punctaj: 2 },
+      { tip: 'grila', enunt: '3. Resursele energetice (petrol, cărbuni, gaze naturale) se găsesc în unitatea de relief marcată cu litera:', variante: { a: 'A', b: 'D', c: 'E', d: 'F' }, raspunsCorect: 'b', punctaj: 2 },
+      { tip: 'grila', enunt: '4. Curge în totalitate pe teritoriul țării noastre râul marcat cu numărul:', variante: { a: '8', b: '9', c: '10', d: '11' }, raspunsCorect: 'c', punctaj: 2 },
+      { tip: 'grila', enunt: '5. Secetele frecvente sunt specifice unității de relief marcate cu litera:', variante: { a: 'A', b: 'C', c: 'D', d: 'G' }, raspunsCorect: 'd', punctaj: 2 },
     ],
     
     D: [
-      { tip: 'comparatie', enunt: 'Precizați 3 deosebiri între clima unității C (Podișul Transilvaniei) și clima unității H (Carpații Meridionali - Retezat-Godeanu)', raspunsExemplu: [
+      { tip: 'comparatie', enunt: 'Precizați 3 deosebiri între clima unității C și clima unității H', raspunsExemplu: [
         'Tip de climă: în unitatea C este climat de dealuri (temperat-continental moderat), iar în unitatea H este climat de munte (temperat-continental rece)',
         'Temperaturi: temperatura medie anuală este de 6-8°C în unitatea C și de 0-6°C în unitatea H (mai rece la altitudine)',
         'Precipitații: cantitatea medie anuală de precipitații este de 600-800 mm în unitatea C și de 800-1200 mm în unitatea H',
@@ -76,8 +76,7 @@ export const varianta20 = {
     ],
     
     E: [
-      { tip: 'cauza', enunt: '1. Importanța Dunării pentru formarea Deltei Dunării', raspunsExemplu: 'Dunărea, prin cantitatea mare de aluviuni transportate și depuse în mare (peste 50 milioane tone anual), a format Delta Dunării prin proces de aluvionare continuă (cca 40 m/an spre est). Aluviunile s-au depus la vărsare, formând grinduri, ostroave, brațe (Chilia, Sulina, Sf. Gheorghe).', cuvinteCheie: ['aluviuni', 'depuse', 'aluvionare', 'grinduri'], punctaj: 2 },
-      { tip: 'cauza', enunt: '2. Importanța Mării Negre pentru formarea Deltei Dunării', raspunsExemplu: 'Marea Neagră, prin mareele cu amplitudine redusă (sub 30 cm) și prezența curenților circulari în lungul țărmului, a favorizat depunerea aluviunilor Dunării la vărsare. Lipsa unor maree puternice (precum în Atlantic) a permis acumularea aluviunilor și formarea Deltei.', cuvinteCheie: ['maree', 'amplitudine redusă', 'curenți', 'circulari'], punctaj: 2 },
+      { tip: 'cauza', enunt: 'Doi factori care au contribuit la formarea Deltei Dunării și modul în care a acționat fiecare', raspunsExemplu: 'Factor 1: Dunărea, prin cantitatea mare de aluviuni transportate și depuse în mare (peste 50 milioane tone anual), a format Delta Dunării prin proces de aluvionare continuă (cca 40 m/an spre est). Factor 2: Marea Neagră, prin mareele cu amplitudine redusă (sub 30 cm) și prezența curenților circulari în lungul țărmului, a favorizat depunerea aluviunilor Dunării la vărsare. Lipsa unor maree puternice (precum în Atlantic) a permis acumularea aluviunilor și formarea Deltei.', cuvinteCheie: ['aluviuni', 'Dunărea', 'Marea Neagră', 'curenți'], punctaj: 4 },
     ],
   },
   
@@ -97,17 +96,17 @@ export const varianta20 = {
     ],
     
     C: [
-      { tip: 'completare', enuntInainte: '1. Două caracteristici climatice ale Italiei', raspunsCorect: 'ierni blânde și ploioase în sud', raspunsuriAcceptate: ['ierni blânde', 'veri calde', 'mediteraneană', 'continentală în nord', 'veri secetoase'], punctaj: 2 },
-      { tip: 'completare', enuntInainte: '2. Un fluviu din Italia', raspunsCorect: 'Pad', raspunsuriAcceptate: ['Pad', 'Po', 'Adige', 'Tibru'], punctaj: 1 },
-      { tip: 'completare', enuntInainte: '3. Două orașe-port din Italia', raspunsCorect: 'Genova', raspunsuriAcceptate: ['Genova', 'Napoli', 'Veneția', 'Bari', 'Palermo'], punctaj: 2 },
-      { tip: 'completare', enuntInainte: '4. Două insule italiene', raspunsCorect: 'Sardinia', raspunsuriAcceptate: ['Sardinia', 'Sicilia', 'Capri', 'Elba'], punctaj: 2 },
-      { tip: 'completare', enuntInainte: '5. Trei tipuri de turism practicate în Italia', raspunsCorect: 'turism cultural', raspunsuriAcceptate: ['turism cultural', 'cultural', 'balnear-maritim', 'monahal', 'religios', 'gastronomic'], punctaj: 3 },
+      { tip: 'completare', enuntInainte: '1. Două caracteristici climatice ale Italiei (separate prin virgulă)', raspunsCorect: 'ierni blânde și veri calde', raspunsuriAcceptate: ['ierni blânde', 'veri calde', 'mediteraneană', 'continentală în nord', 'veri secetoase', 'ierni blânde veri calde', 'mediteraneană continentală', 'ierni calde veri uscate'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '2. Un fluviu din Italia', raspunsCorect: 'Pad (Po)', raspunsuriAcceptate: ['Pad', 'Po', 'Adige', 'Tibru'], punctaj: 1 },
+      { tip: 'completare', enuntInainte: '3. Două orașe-port din Italia (separate prin virgulă)', raspunsCorect: 'Genova și Napoli', raspunsuriAcceptate: ['Genova', 'Napoli', 'Veneția', 'Bari', 'Palermo', 'Genova Napoli', 'Napoli Veneția', 'Genova Bari', 'Veneția Palermo'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '4. Două insule italiene (separate prin virgulă)', raspunsCorect: 'Sardinia și Sicilia', raspunsuriAcceptate: ['Sardinia', 'Sicilia', 'Capri', 'Elba', 'Sardinia Sicilia', 'Sicilia Capri', 'Sardinia Elba', 'Sicilia Sardinia'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '5. Trei tipuri de turism practicate în Italia (separate prin virgulă)', raspunsCorect: 'turism cultural, balnear-maritim și religios', raspunsuriAcceptate: ['turism cultural', 'cultural', 'balnear-maritim', 'monahal', 'religios', 'gastronomic', 'cultural balnear religios', 'cultural monahal gastronomic', 'balnear cultural religios'], punctaj: 3 },
     ],
     
     D: [
-      { tip: 'completare', enuntInainte: '1. Două state UE cu producție mare de grâu', raspunsCorect: 'Franța și Germania', raspunsuriAcceptate: ['Franța', 'Germania', 'Franța și Germania'], punctaj: 2 },
-      { tip: 'completare', enuntInainte: '2. Două state UE cu producție mică de grâu (Europa de Est)', raspunsCorect: 'România și Bulgaria', raspunsuriAcceptate: ['România', 'Bulgaria', 'România și Bulgaria'], punctaj: 2 },
-      { tip: 'completare', enuntInainte: '3. Două state UE cu producție scăzută din motive climatice (Europa Nordică)', raspunsCorect: 'Finlanda și Letonia', raspunsuriAcceptate: ['Finlanda', 'Letonia', 'Suedia', 'Estonia'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '1. Două state UE cu producție mare de grâu (separate prin virgulă)', raspunsCorect: 'Franța și Germania', raspunsuriAcceptate: ['Franța', 'Germania', 'Franța și Germania', 'Franta Germania', 'Franta, Germania', 'Germania Franta'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '2. Două state UE cu producție mică de grâu - Europa de Est (separate prin virgulă)', raspunsCorect: 'România și Bulgaria', raspunsuriAcceptate: ['România', 'Bulgaria', 'România și Bulgaria', 'Romania Bulgaria', 'Romania, Bulgaria', 'Bulgaria Romania'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '3. Două state UE cu producție scăzută din motive climatice - Europa Nordică (separate prin virgulă)', raspunsCorect: 'Finlanda și Suedia', raspunsuriAcceptate: ['Finlanda', 'Letonia', 'Suedia', 'Estonia', 'Finlanda Suedia', 'Finlanda Letonia', 'Suedia Estonia', 'Letonia Estonia'], punctaj: 2 },
     ],
     
     E: [

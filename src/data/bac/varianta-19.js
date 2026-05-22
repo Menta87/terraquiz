@@ -55,29 +55,29 @@ export const varianta19 = {
     ],
     
     B: [
-      { tip: 'completare', enuntInainte: '1. Petrol se exploatează din unitatea de relief marcată cu litera', raspunsCorect: 'F', raspunsuriAcceptate: ['F', 'f'], punctaj: 2 },
-      { tip: 'completare', enuntInainte: '2. Sare se exploatează din unitatea de relief marcată cu litera', raspunsCorect: 'D', raspunsuriAcceptate: ['D', 'd'], punctaj: 2 },
-      { tip: 'completare', enuntInainte: '3. Cea mai veche unitate de relief este marcată cu numărul', raspunsCorect: '2', raspunsuriAcceptate: ['2'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '1. Aparține Podișului Moldovei subunitatea de relief marcată cu litera', raspunsCorect: 'F', raspunsuriAcceptate: ['F', 'f'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '2. Prin depuneri piemontane s-a format unitatea de relief marcată cu litera', raspunsCorect: 'D', raspunsuriAcceptate: ['D', 'd'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '3. Este traversat de râul Dâmbovița orașul marcat cu numărul', raspunsCorect: '2', raspunsuriAcceptate: ['2'], punctaj: 2 },
     ],
     
     C: [
-      { tip: 'grila', enunt: '1. Relief carstic dezvoltat se găsește în unitatea de relief marcată cu litera:', variante: { a: 'A', b: 'B', c: 'C', d: 'D' }, raspunsCorect: 'd', punctaj: 2 },
-      { tip: 'grila', enunt: '2. Pe râul marcat cu numărul X există hidrocentrale importante:', variante: { a: 'Argeș', b: 'Bistrița', c: 'Lotru', d: 'Olt' }, raspunsCorect: 'c', punctaj: 2 },
-      { tip: 'grila', enunt: '3. Cele mai mari precipitații medii anuale cad în unitatea de relief marcată cu litera:', variante: { a: 'A', b: 'B', c: 'C', d: 'D' }, raspunsCorect: 'c', punctaj: 2 },
-      { tip: 'grila', enunt: '4. Domurile gazeifere se află în unitatea de relief marcată cu litera:', variante: { a: 'D', b: 'B', c: 'C', d: 'F' }, raspunsCorect: 'a', punctaj: 2 },
-      { tip: 'grila', enunt: '5. Lacuri de baraj antropic se găsesc pe râul marcat cu numărul:', variante: { a: '1', b: '2', c: '3', d: '4' }, raspunsCorect: 'a', punctaj: 2 },
+      { tip: 'grila', enunt: '1. Altitudinile cele mai mari se întâlnesc în unitatea de relief marcată cu litera:', variante: { a: 'A', b: 'B', c: 'D', d: 'H' }, raspunsCorect: 'd', punctaj: 2 },
+      { tip: 'grila', enunt: '2. Râul cu cele mai multe amenajări hidroenergetice este cel marcat cu numărul:', variante: { a: '8', b: '9', c: '10', d: '11' }, raspunsCorect: 'c', punctaj: 2 },
+      { tip: 'grila', enunt: '3. Cel mai important bazin de exploatare a lignitului (Motru-Rovinari) se află în unitatea de relief marcată cu litera:', variante: { a: 'A', b: 'C', c: 'D', d: 'F' }, raspunsCorect: 'c', punctaj: 2 },
+      { tip: 'grila', enunt: '4. Influențe climatice baltice (scandinavo-baltice) pătrund în unitatea de relief marcată cu litera:', variante: { a: 'A', b: 'C', c: 'D', d: 'G' }, raspunsCorect: 'a', punctaj: 2 },
+      { tip: 'grila', enunt: '5. Pădurea de conifere este mai extinsă în unitatea de relief marcată cu litera:', variante: { a: 'A', b: 'C', c: 'D', d: 'E' }, raspunsCorect: 'a', punctaj: 2 },
     ],
     
     D: [
       { tip: 'comparatie', enunt: 'Precizați 2 deosebiri și o asemănare între relieful Grupei Retezat-Godeanu și relieful Munților Apuseni', raspunsExemplu: [
-        'Deosebire (altitudini): Grupa Retezat-Godeanu - 2509 m (Vf. Peleaga), Munții Apuseni - doar 1849 m (Vf. Bihor - Munții Bihor)',
-        'Deosebire (relief specific): calcare și relief carstic dezvoltat în Munții Apuseni; șisturi cristaline în Grupa Retezat-Godeanu',
+        'Deosebire (altitudini): Grupa Retezat-Godeanu - 2509 m (Vf. Peleaga), Munții Apuseni - doar 1849 m (Vf. Bihor)',
+        'Deosebire (relief specific): calcare și relief carstic dezvoltat în Munții Apuseni; șisturi cristaline și relief glaciar în Grupa Retezat-Godeanu',
         'Asemănare: ambele unități montane s-au format în orogeneza alpină',
       ], punctajMaxim: 6 },
     ],
     
     E: [
-      { tip: 'cauza', enunt: '1. Cauze ale alunecărilor de teren în Subcarpați', raspunsExemplu: 'Alunecările de teren se produc datorită existenței pantei accentuate și a prezenței argilei și/sau a marnei în substrat. Se adaugă climatul continental, cu ploi neregulate, torențiale sau îndelungate, cu topiri bruște de zăpadă, alternând cu perioade de secetă, când terenurile argiloase se usucă.', cuvinteCheie: ['pantă', 'argile', 'marne', 'ploi torențiale'], punctaj: 2 },
+      { tip: 'cauza', enunt: '1. Cauze ale alunecărilor de teren în Subcarpați', raspunsExemplu: 'Alunecările de teren se produc datorită existenței pantei accentuate și a prezenței argilei și/sau marnei în substrat. Se adaugă climatul continental, cu ploi neregulate, torențiale sau îndelungate, cu topiri bruște de zăpadă, alternând cu perioade de secetă, când terenurile argiloase se usucă.', cuvinteCheie: ['pantă', 'argile', 'marne', 'ploi torențiale'], punctaj: 2 },
       { tip: 'cauza', enunt: '2. Argument pentru "Podișul Dobrogei este cea mai veche unitate de relief a țării"', raspunsExemplu: 'Podișul Dobrogei este cea mai veche unitate de relief datorită prezenței șisturilor verzi în Podișul Casimcei (roci foarte vechi) și a orogenezei hercinice prin care s-a format Masivul Dobrogei de Nord (acum cca 280 milioane ani).', cuvinteCheie: ['șisturi verzi', 'Casimcei', 'hercinică', 'vechi'], punctaj: 2 },
     ],
   },
@@ -101,10 +101,10 @@ export const varianta19 = {
     C: [
       { tip: 'completare', enuntInainte: '1. Așezarea geografică a Franței', raspunsCorect: 'Europa Apuseană', raspunsuriAcceptate: ['Europa Apuseană', 'Apuseană', 'Europa Vestică', 'Vestică'], punctaj: 1 },
       { tip: 'completare', enuntInainte: '2. O insulă care aparține Franței', raspunsCorect: 'Corsica', raspunsuriAcceptate: ['Corsica', 'corsica'], punctaj: 1 },
-      { tip: 'completare', enuntInainte: '3. Două caracteristici ale reliefului Franței', raspunsCorect: 'relief variat', raspunsuriAcceptate: ['relief variat', '80% altitudini sub 500m', 'Alpi', 'Pirinei', 'câmpii', 'Masivul Central'], punctaj: 2 },
-      { tip: 'completare', enuntInainte: '4. Două caracteristici ale climei Franței', raspunsCorect: 'influențe mediteraneene în sud', raspunsuriAcceptate: ['mediteraneene', 'oceanice', 'temperat-oceanică', 'continentală'], punctaj: 2 },
-      { tip: 'completare', enuntInainte: '5. Trei orașe din Franța, altele decât capitala', raspunsCorect: 'Bordeaux', raspunsuriAcceptate: ['Bordeaux', 'Marsilia', 'Lyon', 'Nice', 'Toulouse', 'Strasbourg'], punctaj: 3 },
-      { tip: 'completare', enuntInainte: '6. O regiune turistică', raspunsCorect: 'Coasta de Azur', raspunsuriAcceptate: ['Coasta de Azur', 'Regiunea pariziană', 'Alpii Savoiei', 'Paris', 'Provence'], punctaj: 1 },
+      { tip: 'completare', enuntInainte: '3. Două caracteristici ale reliefului Franței (separate prin virgulă)', raspunsCorect: 'relief variat și Munții Alpi', raspunsuriAcceptate: ['relief variat', '80% altitudini sub 500m', 'Alpi', 'Pirinei', 'câmpii', 'Masivul Central', 'relief variat Alpi', 'Alpii Pirinei', 'câmpii munți', 'Masivul Central Alpi'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '4. Două caracteristici ale climei Franței (separate prin virgulă)', raspunsCorect: 'influențe mediteraneene în sud și oceanice în vest', raspunsuriAcceptate: ['mediteraneene', 'oceanice', 'temperat-oceanică', 'continentală', 'mediteraneene oceanice', 'oceanic mediteranean', 'continental oceanic'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '5. Trei orașe din Franța, altele decât capitala (separate prin virgulă)', raspunsCorect: 'Bordeaux, Marsilia și Lyon', raspunsuriAcceptate: ['Bordeaux', 'Marsilia', 'Lyon', 'Nice', 'Toulouse', 'Strasbourg', 'Bordeaux Marsilia Lyon', 'Marsilia Lyon Nice', 'Lyon Toulouse Strasbourg'], punctaj: 3 },
+      { tip: 'completare', enuntInainte: '6. O regiune turistică din Franța', raspunsCorect: 'Coasta de Azur', raspunsuriAcceptate: ['Coasta de Azur', 'Regiunea pariziană', 'Alpii Savoiei', 'Paris', 'Provence'], punctaj: 1 },
     ],
     
     D: [
