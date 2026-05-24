@@ -16,29 +16,29 @@ export const varianta21 = {
     ],
     
     B: [
-      { tip: 'completare', enuntInainte: '1. Munții Carpați se desfășoară pe teritoriul statului marcat cu litera', raspunsCorect: 'C', raspunsuriAcceptate: ['C', 'c'], punctaj: 2 },
-      { tip: 'completare', enuntInainte: '2. Cel mai mare fluviu din Europa Centrală se numește', raspunsCorect: 'Dunărea', raspunsuriAcceptate: ['Dunărea', 'Dunarea', 'dunarea'], punctaj: 2 },
-      { tip: 'completare', enuntInainte: '3. Marea în care se varsă fluviile din statul I (Suedia) se numește Marea', raspunsCorect: 'Baltică', raspunsuriAcceptate: ['Baltică', 'Baltica', 'baltica'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '1. Munții Apenini se găsesc pe teritoriul statului marcat cu litera', raspunsCorect: 'C', raspunsuriAcceptate: ['C', 'c', 'Italia', 'italia'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '2. Orașele-capitală marcate cu numerele 9, 10 și 14 sunt traversate de fluviul', raspunsCorect: 'Dunărea', raspunsuriAcceptate: ['Dunărea', 'Dunarea', 'dunarea'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '3. Statul marcat cu litera J are ieșire la Marea', raspunsCorect: 'Baltică', raspunsuriAcceptate: ['Baltică', 'Baltica', 'baltica'], punctaj: 2 },
     ],
     
     C: [
-      { tip: 'grila', enunt: '1. Cel mai mic stat din Europa Centrală este marcat cu litera:', variante: { a: 'A', b: 'B', c: 'D', d: 'E' }, raspunsCorect: 'c', punctaj: 2 },
-      { tip: 'grila', enunt: '2. Capitala statului marcat cu litera H se numește:', variante: { a: 'Belgrad', b: 'Bratislava', c: 'Budapesta', d: 'Praga' }, raspunsCorect: 'c', punctaj: 2 },
-      { tip: 'grila', enunt: '3. Munți de origine glaciară se găsesc în statul marcat cu litera:', variante: { a: 'I', b: 'F', c: 'D', d: 'H' }, raspunsCorect: 'a', punctaj: 2 },
-      { tip: 'grila', enunt: '4. Capitala statului marcat cu litera J se numește:', variante: { a: 'Atena', b: 'Belgrad', c: 'Madrid', d: 'Roma' }, raspunsCorect: 'b', punctaj: 2 },
-      { tip: 'grila', enunt: '5. Statul marcat cu litera F se află în Peninsula:', variante: { a: 'Apenină', b: 'Iberică', c: 'Italică', d: 'Scandinavă' }, raspunsCorect: 'b', punctaj: 2 },
+      { tip: 'grila', enunt: '1. Fluviul care străbate statul marcat cu litera H este:', variante: { a: 'Nipru', b: 'Nistru', c: 'Vistula', d: 'Volga' }, raspunsCorect: 'c', punctaj: 2 },
+      { tip: 'grila', enunt: '2. Masivul Central Francez se găsește pe teritoriul statului marcat cu litera:', variante: { a: 'B', b: 'C', c: 'E', d: 'F' }, raspunsCorect: 'c', punctaj: 2 },
+      { tip: 'grila', enunt: '3. Capitala statului Belarus este orașul marcat cu numărul:', variante: { a: '1', b: '4', c: '6', d: '10' }, raspunsCorect: 'a', punctaj: 2 },
+      { tip: 'grila', enunt: '4. Climatul temperat-oceanic este caracteristic statului marcat cu litera:', variante: { a: 'C', b: 'D', c: 'G', d: 'J' }, raspunsCorect: 'b', punctaj: 2 },
+      { tip: 'grila', enunt: '5. Cel mai mare producător de autovehicule din Europa Centrală este statul marcat cu litera:', variante: { a: 'A', b: 'B', c: 'H', d: 'I' }, raspunsCorect: 'b', punctaj: 2 },
     ],
     
     D: [
-      { tip: 'comparatie', enunt: 'Precizați 2 deosebiri și o asemănare între relieful Câmpiei Europei de Est și relieful Câmpiei Padului', raspunsExemplu: [
-        'Deosebire: Câmpia Europei de Est este dezvoltată pe o structură rigidă, aparținând Platformei Est-Europene, iar Câmpia Padului este o câmpie de acumulare fluvială',
-        'Deosebire: Câmpia Europei de Est are vârstă proterozoică, iar Câmpia Padului s-a format mai târziu, în cuaternar',
+      { tip: 'comparatie', enunt: 'Precizați 2 deosebiri și o asemănare între relieful Câmpiei Padului și relieful Câmpiei Europei de Est', raspunsExemplu: [
+        'Deosebire: Câmpia Europei de Est este dezvoltată pe o structură rigidă, aparținând Platformei Est-Europene, pe când Câmpia Padului este o câmpie de acumulare fluvială',
+        'Deosebire: Câmpia Europei de Est are vârstă proterozoică, pe când Câmpia Padului s-a format mai târziu, în cuaternar',
         'Asemănare: ambele regiuni au relief de câmpie, cu interfluvii netede și văi largi',
       ], punctajMaxim: 6 },
     ],
     
     E: [
-      { tip: 'cauza', enunt: 'Două cauze ale densității foarte reduse a populației în nordul Federației Ruse', raspunsExemplu: 'Cauza 1: condiții climatice restrictive - climat temperat-rece și subpolar cu ierni foarte lungi (8-9 luni) și temperaturi de -30 până la -50°C în Siberia. Cauza 2: soluri aride, cu fertilitate scăzută, în mare parte a anului fiind înghețate (permafrost) - improprii agriculturii și locuirii pe scară largă.', cuvinteCheie: ['climatice', 'rece', 'soluri', 'permafrost'], punctaj: 4 },
+      { tip: 'cauza', enunt: 'Două cauze care determină densitatea scăzută a populației din Peninsula Scandinavă', raspunsExemplu: 'Cauza 1: condiții climatice restrictive - climat temperat-rece și subpolar cu ierni foarte lungi (8-9 luni) și temperaturi de -30 până la -50°C în nord. Cauza 2: soluri aride, cu fertilitate scăzută, în mare parte a anului fiind înghețate (permafrost) - improprii agriculturii și locuirii pe scară largă.', cuvinteCheie: ['climatice', 'rece', 'subpolar', 'soluri'], punctaj: 4 },
     ],
   },
   
