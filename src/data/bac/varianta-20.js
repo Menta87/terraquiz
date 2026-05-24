@@ -16,30 +16,30 @@ export const varianta20 = {
     ],
     
     B: [
-      { tip: 'completare', enuntInainte: '1. Influențele climatice care se resimt în statele baltice se numesc', raspunsCorect: 'baltice', raspunsuriAcceptate: ['baltice', 'scandinavo-baltice', 'baltică'], punctaj: 2 },
-      { tip: 'completare', enuntInainte: '2. Cel mai populat oraș al Europei este marcat cu numărul', raspunsCorect: '1', raspunsuriAcceptate: ['1'], punctaj: 2 },
-      { tip: 'completare', enuntInainte: '3. Cei mai înalți munți din Europa Centrală se numesc', raspunsCorect: 'Alpi', raspunsuriAcceptate: ['Alpi', 'Munții Alpi', 'alpii'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '1. Statul marcat cu litera I are ieșire la Marea', raspunsCorect: 'Baltică', raspunsuriAcceptate: ['Baltică', 'Baltica', 'baltica'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '2. Orașul-capitală traversat de fluviul Sena este marcat cu numărul', raspunsCorect: '1', raspunsuriAcceptate: ['1', 'Paris'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '3. Lanțul muntos situat în nordul statului marcat cu litera C este cel al Munților', raspunsCorect: 'Alpi', raspunsuriAcceptate: ['Alpi', 'Munții Alpi', 'alpi', 'alpii'], punctaj: 2 },
     ],
     
     C: [
-      { tip: 'grila', enunt: '1. Munți care depășesc 4000 m altitudine se găsesc în statul marcat cu litera:', variante: { a: 'A', b: 'B', c: 'C', d: 'D' }, raspunsCorect: 'c', punctaj: 2 },
-      { tip: 'grila', enunt: '2. Capitala statului marcat cu litera F se numește:', variante: { a: 'Berlin', b: 'Praga', c: 'Varșovia', d: 'Viena' }, raspunsCorect: 'a', punctaj: 2 },
-      { tip: 'grila', enunt: '3. Insula Sicilia aparține statului marcat cu litera:', variante: { a: 'B', b: 'D', c: 'H', d: 'I' }, raspunsCorect: 'd', punctaj: 2 },
-      { tip: 'grila', enunt: '4. Statul marcat cu litera A se numește:', variante: { a: 'Estonia', b: 'Letonia', c: 'Lituania', d: 'Portugalia' }, raspunsCorect: 'd', punctaj: 2 },
-      { tip: 'grila', enunt: '5. Lacurile glaciare numeroase se găsesc în statul marcat cu litera:', variante: { a: 'D', b: 'C', c: 'H', d: 'J' }, raspunsCorect: 'b', punctaj: 2 },
+      { tip: 'grila', enunt: '1. Orașul-capitală marcat cu numărul 5 este:', variante: { a: 'Kiev', b: 'Minsk', c: 'Moscova', d: 'Varșovia' }, raspunsCorect: 'c', punctaj: 2 },
+      { tip: 'grila', enunt: '2. Bazinul carbonifer Ruhr se găsește în statul marcat cu litera:', variante: { a: 'B', b: 'D', c: 'E', d: 'H' }, raspunsCorect: 'a', punctaj: 2 },
+      { tip: 'grila', enunt: '3. Climatul mediteranean este caracteristic statului marcat cu litera:', variante: { a: 'B', b: 'D', c: 'E', d: 'F' }, raspunsCorect: 'd', punctaj: 2 },
+      { tip: 'grila', enunt: '4. Insula Creta aparține statului marcat cu litera:', variante: { a: 'B', b: 'C', c: 'I', d: 'J' }, raspunsCorect: 'd', punctaj: 2 },
+      { tip: 'grila', enunt: '5. Câmpia situată pe teritoriul statelor marcate cu literele B și D este de origine:', variante: { a: 'fluvio-lacustră', b: 'fluvio-glaciară', c: 'litorală', d: 'piemontană' }, raspunsCorect: 'b', punctaj: 2 },
     ],
     
     D: [
       { tip: 'comparatie', enunt: 'Precizați 2 deosebiri și o asemănare între relieful Munților Carpați și relieful Munților Ural', raspunsExemplu: [
         'Deosebire (mod de formare): Munții Carpați s-au format în orogeneza alpină, iar Munții Ural în orogeneza hercinică',
-        'Deosebire (altitudini): Munții Carpați au altitudinea maximă 2655 m (Vf. Gerlachovsky), iar Munții Ural doar 1894 m (Vf. Narodnaia)',
+        'Deosebire (altitudini): Munții Carpați au altitudinea maximă de 2655 m (Vf. Gerlachovsky), iar Munții Ural doar 1894 m (Vf. Narodnaia)',
         'Asemănare: ambii munți s-au format prin cutarea scoarței terestre și prezintă relief glaciar',
       ], punctajMaxim: 6 },
     ],
     
     E: [
-      { tip: 'cauza', enunt: '1. Cauză a prezenței estuarelor la vărsarea fluviilor în Oceanul Atlantic', raspunsExemplu: 'Estuarele la vărsarea fluviilor (Sena, Tamisa, Loire, Garonne) s-au format datorită amplitudinii mari a mareelor din Oceanul Atlantic - mareele puternice (până la 10-15 m amplitudine pe coastele Franței și Marii Britanii) împiedică depunerea aluviunilor la vărsare, formând gura largă a estuarelor.', cuvinteCheie: ['maree', 'amplitudine', 'aluviuni', 'Atlantic'], punctaj: 2 },
-      { tip: 'cauza', enunt: '2. Importanța estuarelor pentru economia statelor europene', raspunsExemplu: 'Estuarele sunt favorabile pentru amenajarea porturilor (Rotterdam, Hamburg, Londra, Le Havre) și dezvoltarea navigației fluvio-maritime - permit accesul navelor maritime mari adânc în interiorul continentului, facilitând comerțul și transportul de mărfuri.', cuvinteCheie: ['porturi', 'navigație', 'maritimă', 'comerț'], punctaj: 2 },
+      { tip: 'cauza', enunt: '1. Cauză a formării estuarelor pe țărmul european al Oceanului Atlantic', raspunsExemplu: 'Estuarele la vărsarea fluviilor (Sena, Tamisa, Loire, Garonne) s-au format datorită amplitudinii mari a mareelor din Oceanul Atlantic - mareele puternice (până la 10-15 m amplitudine pe coastele Franței și Marii Britanii) împiedică depunerea aluviunilor la vărsare, formând gura largă a estuarelor.', cuvinteCheie: ['maree', 'amplitudine', 'aluviuni', 'Atlantic'], punctaj: 2 },
+      { tip: 'cauza', enunt: '2. Mod de utilizare economică a estuarelor', raspunsExemplu: 'Estuarele sunt favorabile pentru amenajarea porturilor (Rotterdam, Hamburg, Londra, Le Havre) și dezvoltarea navigației fluvio-maritime - permit accesul navelor maritime mari adânc în interiorul continentului, facilitând comerțul și transportul de mărfuri.', cuvinteCheie: ['porturi', 'navigație', 'maritimă', 'comerț'], punctaj: 2 },
     ],
   },
   
@@ -76,7 +76,7 @@ export const varianta20 = {
     ],
     
     E: [
-      { tip: 'cauza', enunt: 'Doi factori care au contribuit la formarea Deltei Dunării și modul în care a acționat fiecare', raspunsExemplu: 'Factor 1: Dunărea, prin cantitatea mare de aluviuni transportate și depuse în mare (peste 50 milioane tone anual), a format Delta Dunării prin proces de aluvionare continuă (cca 40 m/an spre est). Factor 2: Marea Neagră, prin mareele cu amplitudine redusă (sub 30 cm) și prezența curenților circulari în lungul țărmului, a favorizat depunerea aluviunilor Dunării la vărsare. Lipsa unor maree puternice (precum în Atlantic) a permis acumularea aluviunilor și formarea Deltei.', cuvinteCheie: ['aluviuni', 'Dunărea', 'Marea Neagră', 'curenți'], punctaj: 4 },
+      { tip: 'cauza', enunt: 'Doi factori care au contribuit la formarea Deltei Dunării', raspunsExemplu: 'Factor 1: Dunărea, prin cantitatea mare de aluviuni transportate și depuse în mare (peste 50 milioane tone anual), a format Delta Dunării prin proces de aluvionare continuă (cca 40 m/an spre est). Factor 2: Marea Neagră, prin mareele cu amplitudine redusă (sub 30 cm) și prezența curenților circulari în lungul țărmului, a favorizat depunerea aluviunilor Dunării la vărsare.', cuvinteCheie: ['aluviuni', 'Dunărea', 'Marea Neagră', 'curenți'], punctaj: 4 },
     ],
   },
   
