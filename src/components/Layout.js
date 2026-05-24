@@ -53,9 +53,18 @@ export default function Layout({ children }) {
 
                        <Link href="/leaderboard">🏆 Clasament</Link>
 
-            <Link href="/diplome">Diplome</Link>
+                    <Link href="/diplome">Diplome</Link>
 
-                       {/* Premium dezactivat temporar - revine după înregistrare PFA */}
+            {isPremium ? (
+              <Link href="/premium" style={{background:'linear-gradient(135deg, #f59e0b, #d97706)', color:'white', padding:'0.4rem 0.9rem', borderRadius:'8px', fontWeight:700, marginLeft:'0.25rem'}}>
+                👑 Premium
+              </Link>
+            ) : (
+              <Link href="/premium" style={{background:'linear-gradient(135deg, #fbbf24, #f59e0b)', color:'white', padding:'0.4rem 0.9rem', borderRadius:'8px', fontWeight:700, marginLeft:'0.25rem'}}>
+                ⭐ Premium
+              </Link>
+            )}
+
 
 
             {user ? (
