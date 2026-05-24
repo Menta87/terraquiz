@@ -1,9 +1,19 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Layout from '../../../components/Layout';
 import BacImageMap from '../../../components/bac/BacImageMap';
 import VariantaRenderer from '../../../components/bac/VariantaRenderer';
+import { supabase } from '../../../lib/supabase';
+
+// Lista variantelor PREMIUM (Var 6-22). Var 1-5 sunt FREE.
+const PREMIUM_VARIANTS = [
+  'varianta-6', 'varianta-7', 'varianta-8', 'varianta-9', 'varianta-10',
+  'varianta-11', 'varianta-12', 'varianta-13', 'varianta-14', 'varianta-15',
+  'varianta-16', 'varianta-17', 'varianta-18', 'varianta-19', 'varianta-20',
+  'varianta-21', 'varianta-22'
+];
+
 
 import { varianta1 } from '../../../data/bac/varianta-1';
 import { varianta2 } from '../../../data/bac/varianta-2';
@@ -71,10 +81,69 @@ export default function VariantaPage() {
   const router = useRouter();
   const { id } = router.query;
   const [raspunsuri, setRaspunsuri] = useState({});
+  const [isPremium, setIsPremium] = useState(false);
+  const [checkingPremium, setCheckingPremium] = useState(true);
+  
+  useEffect(() => {
+    async function checkUser() {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session) {
+        try {
+          const res = await fetch('/api/subscription-status?userId=' + session.user.id);
+          const data = await res.json();
+          setIsPremium(data.isPremium || false);
+        } catch (e) {}
+      }
+      setCheckingPremium(false);
+    }
+    checkUser();
+  }, []);
   
   if (!id) return <Layout><div style={{padding:'2rem', textAlign:'center'}}>Se încarcă...</div></Layout>;
   
+  // Check Premium pentru variantele Premium
+  const isPremiumVariant = PREMIUM_VARIANTS.includes(id);
+  
+  if (isPremiumVariant && !checkingPremium && !isPremium) {
+    return (
+      <Layout>
+        <div style={{maxWidth: '600px', margin: '0 auto', padding: '4rem 1.5rem', textAlign: 'center'}}>
+          <div style={{fontSize: '5rem', marginBottom: '1rem'}}>🔒</div>
+          <h1 style={{fontSize: '2rem', fontWeight: 900, color: '#1e293b', marginBottom: '1rem'}}>
+            Această variantă este Premium
+          </h1>
+          <p style={{fontSize: '1.1rem', color: '#64748b', lineHeight: 1.7, marginBottom: '2rem'}}>
+            Variantele 6-22 sunt disponibile doar pentru abonații Premium.
+            Variantele 1-5 rămân gratuite pentru toți utilizatorii.
+          </p>
+          <div style={{display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap'}}>
+            <Link href="/premium" style={{
+              padding: '0.9rem 2rem',
+              background: 'linear-gradient(135deg, #f59e0b, #d97706)',
+              color: 'white', borderRadius: '10px',
+              textDecoration: 'none', fontWeight: 700,
+              fontSize: '1.05rem',
+            }}>
+              👑 Deblochează Premium - 9,90 RON/lună
+            </Link>
+            <Link href="/bac" style={{
+              padding: '0.9rem 2rem',
+              background: 'white',
+              color: '#1e293b', borderRadius: '10px',
+              textDecoration: 'none', fontWeight: 700,
+              fontSize: '1.05rem',
+              border: '2px solid #e2e8f0',
+            }}>
+              ← Înapoi la BAC
+            </Link>
+          </div>
+        </div>
+      </Layout>
+    );
+  }
+  
   const varianta = VARIANTE[id];
+
   
   if (!varianta) {
     return (

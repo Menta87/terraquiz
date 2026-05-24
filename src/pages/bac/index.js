@@ -1,7 +1,11 @@
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import Layout from '../../components/Layout';
+import { supabase } from '../../lib/supabase';
 
 const VARIANTE = [
+
   {
     id: 'varianta-1',
     nume: 'Varianta 1',
@@ -61,6 +65,7 @@ const VARIANTE = [
     culoare: '#ec4899',
     href: '/bac/varianta/varianta-6',
     disponibil: true,
+    isPremium: true,
   },
   {
     id: 'varianta-7',
@@ -71,6 +76,7 @@ const VARIANTE = [
     culoare: '#06b6d4',
     href: '/bac/varianta/varianta-7',
     disponibil: true,
+    isPremium: true,
   },
   {
     id: 'varianta-8',
@@ -81,6 +87,7 @@ const VARIANTE = [
     culoare: '#14b8a6',
     href: '/bac/varianta/varianta-8',
     disponibil: true,
+    isPremium: true,
   },
   {
     id: 'varianta-9',
@@ -91,6 +98,7 @@ const VARIANTE = [
     culoare: '#a855f7',
     href: '/bac/varianta/varianta-9',
     disponibil: true,
+    isPremium: true,
   },
    {
     id: 'varianta-10',
@@ -101,6 +109,7 @@ const VARIANTE = [
     culoare: '#f97316',
     href: '/bac/varianta/varianta-10',
     disponibil: true,
+    isPremium: true,
   },
   {
     id: 'varianta-11',
@@ -111,6 +120,7 @@ const VARIANTE = [
     culoare: '#22c55e',
     href: '/bac/varianta/varianta-11',
     disponibil: true,
+    isPremium: true,
   },
   {
     id: 'varianta-12',
@@ -121,6 +131,7 @@ const VARIANTE = [
     culoare: '#0ea5e9',
     href: '/bac/varianta/varianta-12',
     disponibil: true,
+    isPremium: true,
   },
   {
     id: 'varianta-13',
@@ -131,6 +142,7 @@ const VARIANTE = [
     culoare: '#d946ef',
     href: '/bac/varianta/varianta-13',
     disponibil: true,
+    isPremium: true,
   },
   {
     id: 'varianta-14',
@@ -141,6 +153,7 @@ const VARIANTE = [
     culoare: '#dc2626',
     href: '/bac/varianta/varianta-14',
     disponibil: true,
+    isPremium: true,
   },
   {
     id: 'varianta-15',
@@ -151,6 +164,7 @@ const VARIANTE = [
     culoare: '#7c3aed',
     href: '/bac/varianta/varianta-15',
     disponibil: true,
+    isPremium: true,
   },
    {
     id: 'varianta-16',
@@ -161,6 +175,7 @@ const VARIANTE = [
     culoare: '#dc2626',
     href: '/bac/varianta/varianta-16',
     disponibil: true,
+    isPremium: true,
   },
   {
     id: 'varianta-17',
@@ -171,6 +186,7 @@ const VARIANTE = [
     culoare: '#0891b2',
     href: '/bac/varianta/varianta-17',
     disponibil: true,
+    isPremium: true,
   },
     {
     id: 'varianta-18',
@@ -181,6 +197,7 @@ const VARIANTE = [
     culoare: '#16a34a',
     href: '/bac/varianta/varianta-18',
     disponibil: true,
+    isPremium: true,
   },
   {
     id: 'varianta-19',
@@ -191,6 +208,7 @@ const VARIANTE = [
     culoare: '#9333ea',
     href: '/bac/varianta/varianta-19',
     disponibil: true,
+    isPremium: true,
   },
   {
     id: 'varianta-20',
@@ -201,6 +219,7 @@ const VARIANTE = [
     culoare: '#0ea5e9',
     href: '/bac/varianta/varianta-20',
     disponibil: true,
+    isPremium: true,
   },
   {
     id: 'varianta-21',
@@ -211,6 +230,7 @@ const VARIANTE = [
     culoare: '#e11d48',
     href: '/bac/varianta/varianta-21',
     disponibil: true,
+    isPremium: true,
   },
   {
     id: 'varianta-22',
@@ -221,6 +241,7 @@ const VARIANTE = [
     culoare: '#0d9488',
     href: '/bac/varianta/varianta-22',
     disponibil: true,
+    isPremium: true,
   },
 
 ];
@@ -229,8 +250,35 @@ const VARIANTE = [
 
 
 export default function BacIndex() {
+  const router = useRouter();
+  const [isPremium, setIsPremium] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  
+  useEffect(() => {
+    async function check() {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session) {
+        setIsLoggedIn(true);
+        try {
+          const res = await fetch('/api/subscription-status?userId=' + session.user.id);
+          const data = await res.json();
+          setIsPremium(data.isPremium || false);
+        } catch (e) {}
+      }
+    }
+    check();
+  }, []);
+  
+  function handleVariantClick(e, v) {
+    if (v.isPremium && !isPremium) {
+      e.preventDefault();
+      router.push('/premium');
+    }
+  }
+  
   return (
     <Layout>
+
       <section style={{
         background: 'linear-gradient(135deg, #1e3a8a 0%, #5b21b6 50%, #7c3aed 100%)',
         color: 'white',
@@ -270,14 +318,29 @@ export default function BacIndex() {
                 padding: '1.75rem',
                 position: 'relative',
               }}>
-                <div style={{
+                              <div style={{
                   position: 'absolute', top: '1rem', right: '1rem',
-                  background: v.culoare, color: 'white',
-                  padding: '0.25rem 0.75rem', borderRadius: '12px',
-                  fontSize: '0.75rem', fontWeight: 700,
+                  display: 'flex', gap: '0.5rem',
                 }}>
-                  {v.nivel}
+                  {v.isPremium && (
+                    <div style={{
+                      background: 'linear-gradient(135deg, #f59e0b, #d97706)', 
+                      color: 'white',
+                      padding: '0.25rem 0.6rem', borderRadius: '12px',
+                      fontSize: '0.7rem', fontWeight: 800,
+                    }}>
+                      👑 PREMIUM
+                    </div>
+                  )}
+                  <div style={{
+                    background: v.culoare, color: 'white',
+                    padding: '0.25rem 0.75rem', borderRadius: '12px',
+                    fontSize: '0.75rem', fontWeight: 700,
+                  }}>
+                    {v.nivel}
+                  </div>
                 </div>
+
                 <h3 style={{
                   margin: '0 0 1rem', color: '#1e293b',
                   fontSize: '1.25rem', fontWeight: 800,
@@ -292,15 +355,20 @@ export default function BacIndex() {
                   <span>⏱️ {v.durata}</span>
                   <span>📝 {v.nrExercitii} exerciții</span>
                 </div>
-                <Link href={v.href} style={{
-                  display: 'block', textAlign: 'center',
-                  padding: '0.7rem 1.2rem',
-                  background: v.culoare, color: 'white',
-                  borderRadius: '8px', textDecoration: 'none',
-                  fontWeight: 700, fontSize: '0.95rem',
-                }}>
-                  🚀 Începe varianta
+                              <Link 
+                  href={v.isPremium && !isPremium ? '/premium' : v.href}
+                  onClick={(e) => handleVariantClick(e, v)}
+                  style={{
+                    display: 'block', textAlign: 'center',
+                    padding: '0.7rem 1.2rem',
+                    background: v.isPremium && !isPremium ? '#94a3b8' : v.culoare, 
+                    color: 'white',
+                    borderRadius: '8px', textDecoration: 'none',
+                    fontWeight: 700, fontSize: '0.95rem',
+                  }}>
+                  {v.isPremium && !isPremium ? '🔒 Deblochează cu Premium' : '🚀 Începe varianta'}
                 </Link>
+
               </div>
             );
           })}
