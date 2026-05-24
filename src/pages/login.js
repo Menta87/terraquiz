@@ -57,9 +57,15 @@ export default function Login() {
             <div className={`form-message ${message.type}`}>{message.text}</div>
           )}
         </form>
+                <p className="form-link" style={{marginTop: '1rem'}}>
+          <Link href="/reset-password" style={{color: '#0284c7', textDecoration: 'underline'}}>
+            🔑 Am uitat parola
+          </Link>
+        </p>
         <p className="form-link">
           Nu ai cont? <Link href="/register">Înregistrează-te</Link>
         </p>
+
       </div>
     </div>
   );
