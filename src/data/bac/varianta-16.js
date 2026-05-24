@@ -5,12 +5,12 @@ export const varianta16 = {
   bacVariantNum: 1,
   totalPuncte: 90,
   
-  subiectI: {
+   subiectI: {
     titlu: 'Subiect I - Europa',
     
     A: [
-      { tip: 'identificare', enunt: '1. Numele statului marcat cu litera D', raspunsCorect: 'Danemarca', raspunsuriAcceptate: ['Danemarca', 'danemarca'], punctaj: 2 },
-      { tip: 'identificare', enunt: '2. Numele statului marcat cu litera G', raspunsCorect: 'Estonia', raspunsuriAcceptate: ['Estonia', 'estonia'], punctaj: 2 },
+      { tip: 'identificare', enunt: '1. Numele statului marcat cu litera D', raspunsCorect: 'Spania', raspunsuriAcceptate: ['Spania', 'spania'], punctaj: 2 },
+      { tip: 'identificare', enunt: '2. Numele statului marcat cu litera G', raspunsCorect: 'Suedia', raspunsuriAcceptate: ['Suedia', 'suedia'], punctaj: 2 },
       { tip: 'identificare', enunt: '3. Numele orașului-capitală marcat cu numărul 1', raspunsCorect: 'Madrid', raspunsuriAcceptate: ['Madrid', 'madrid'], punctaj: 1 },
       { tip: 'identificare', enunt: '4. Numele orașului-capitală marcat cu numărul 4', raspunsCorect: 'Berlin', raspunsuriAcceptate: ['Berlin', 'berlin'], punctaj: 1 },
     ],
@@ -18,7 +18,7 @@ export const varianta16 = {
     B: [
       { tip: 'completare', enuntInainte: '1. Lisabona este capitala statului marcat cu litera', raspunsCorect: 'A', raspunsuriAcceptate: ['A', 'a', 'Portugalia', 'portugalia'], punctaj: 2 },
       { tip: 'completare', enuntInainte: '2. Orașul-capitală marcat cu numărul 11 se numește', raspunsCorect: 'Praga', raspunsuriAcceptate: ['Praga', 'praga'], punctaj: 2 },
-      { tip: 'completare', enuntInainte: '3. Munții Penini se găsesc în statul marcat cu litera', raspunsCorect: 'C', raspunsuriAcceptate: ['C', 'c', 'Marea Britanie', 'UK', 'Regatul Unit'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '3. Munții Penini se găsesc în statul marcat cu litera', raspunsCorect: 'C', raspunsuriAcceptate: ['C', 'c', 'Marea Britanie', 'Regatul Unit', 'UK'], punctaj: 2 },
     ],
     
     C: [
@@ -31,9 +31,9 @@ export const varianta16 = {
     
     D: [
       { tip: 'comparatie', enunt: 'Precizați 3 deosebiri între clima Europei Nordice și clima Europei Sudice', raspunsExemplu: [
-        'Tip de climă: în Europa Nordică sunt prezente tipurile de climă subpolar și temperat-oceanic, iar în Europa Sudică, cel subtropical (mediteranean)',
-        'Temperaturi: temperatura medie anuală este mai scăzută în Europa Nordică (între -5 și +5°C), iar în Europa Sudică este de cca 15°C',
-        'Influențe: în Europa Nordică apar influențe oceanice și polare, iar în Europa Sudică sunt pregnante influențele mediteraneene și nord-africane',
+        'Tip de climă: în Europa Nordică predomină tipurile subpolar și temperat-oceanic, iar în Europa Sudică climatul subtropical (mediteranean)',
+        'Temperaturi medii anuale: în Europa Nordică sunt scăzute (între -5 și +5°C), iar în Europa Sudică cca 15°C',
+        'Precipitații: în Europa Nordică 500-800 mm/an predominant sub formă de ninsoare; în Europa Sudică 600-900 mm/an, dominant în octombrie-aprilie',
       ], punctajMaxim: 6 },
     ],
     
@@ -42,6 +42,7 @@ export const varianta16 = {
       { tip: 'cauza', enunt: '2. Cauză a fenomenului de îmbătrânire a populației Europei', raspunsExemplu: 'Bilanțul natural negativ datorită scăderii natalității (sub 10‰), schimbării mentalității (carieră înainte de familie), emigrării tinerelor cupluri, plus creșterea speranței de viață peste 80 ani datorită nivelului ridicat de trai și sistemului medical avansat.', cuvinteCheie: ['natalitate', 'emigrare', 'speranță', 'medical'], punctaj: 2 },
     ],
   },
+
   
   subiectII: {
     titlu: 'Subiect II - România',

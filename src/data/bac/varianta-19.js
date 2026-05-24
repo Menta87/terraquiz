@@ -5,7 +5,7 @@ export const varianta19 = {
   bacVariantNum: 4,
   totalPuncte: 90,
   
-  subiectI: {
+    subiectI: {
     titlu: 'Subiect I - Europa',
     
     A: [
@@ -16,34 +16,33 @@ export const varianta19 = {
     ],
     
     B: [
-      { tip: 'completare', enuntInainte: '1. Tipul de climă caracteristic vestului Europei se numește', raspunsCorect: 'temperat-oceanic', raspunsuriAcceptate: ['temperat-oceanic', 'temperat oceanic', 'oceanic'], punctaj: 2 },
-      { tip: 'completare', enuntInainte: '2. Capitala Franței este străbătută de fluviul numit', raspunsCorect: 'Sena', raspunsuriAcceptate: ['Sena', 'sena', 'Seine'], punctaj: 2 },
-      { tip: 'completare', enuntInainte: '3. Capitala Olandei se numește', raspunsCorect: 'Amsterdam', raspunsuriAcceptate: ['Amsterdam', 'amsterdam'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '1. Climatul caracteristic statului marcat cu litera C este', raspunsCorect: 'temperat-oceanic', raspunsuriAcceptate: ['temperat-oceanic', 'temperat oceanic', 'oceanic', 'temperat-oceanică'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '2. Fluviul care traversează orașul-capitală marcat cu numărul 1 se numește', raspunsCorect: 'Sena', raspunsuriAcceptate: ['Sena', 'sena', 'Seine'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '3. Orașul-capitală marcat cu numărul 8 se numește', raspunsCorect: 'Amsterdam', raspunsuriAcceptate: ['Amsterdam', 'amsterdam'], punctaj: 2 },
     ],
     
     C: [
-      { tip: 'grila', enunt: '1. Munți cu vârfuri ce depășesc 4000 m se găsesc în statul marcat cu litera:', variante: { a: 'A', b: 'B', c: 'C', d: 'D' }, raspunsCorect: 'b', punctaj: 2 },
-      { tip: 'grila', enunt: '2. Capitala statului marcat cu litera J se numește:', variante: { a: 'Atena', b: 'Lisabona', c: 'Madrid', d: 'Roma' }, raspunsCorect: 'a', punctaj: 2 },
-      { tip: 'grila', enunt: '3. Munții formați în orogeneza caledoniană se găsesc în statele marcate cu literele:', variante: { a: 'A și C', b: 'B și D', c: 'E și H', d: 'F și G' }, raspunsCorect: 'a', punctaj: 2 },
-      { tip: 'grila', enunt: '4. Insulele Sicilia și Sardinia aparțin statului marcat cu litera:', variante: { a: 'C', b: 'E', c: 'G', d: 'I' }, raspunsCorect: 'b', punctaj: 2 },
-      { tip: 'grila', enunt: '5. Capitala Estoniei este orașul marcat cu numărul:', variante: { a: '11', b: '13', c: '14', d: '15' }, raspunsCorect: 'c', punctaj: 2 },
+      { tip: 'grila', enunt: '1. Statul cu deschidere la Marea Baltică este marcat cu litera:', variante: { a: 'C', b: 'D', c: 'H', d: 'I' }, raspunsCorect: 'b', punctaj: 2 },
+      { tip: 'grila', enunt: '2. Cu litera J este marcat statul:', variante: { a: 'Austria', b: 'Elveția', c: 'Polonia', d: 'Ungaria' }, raspunsCorect: 'a', punctaj: 2 },
+      { tip: 'grila', enunt: '3. Câmpia Nord-Europeană ocupă o parte din teritoriul statului marcat cu litera:', variante: { a: 'B', b: 'C', c: 'H', d: 'I' }, raspunsCorect: 'a', punctaj: 2 },
+      { tip: 'grila', enunt: '4. Orașul marcat cu numărul 9 este capitala statului:', variante: { a: 'Belgia', b: 'Elveția', c: 'Franța', d: 'Olanda' }, raspunsCorect: 'b', punctaj: 2 },
+      { tip: 'grila', enunt: '5. Capitala statului Belarus este marcată cu numărul:', variante: { a: '4', b: '7', c: '11', d: '15' }, raspunsCorect: 'c', punctaj: 2 },
     ],
     
     D: [
-      { tip: 'comparatie', enunt: 'Precizați 3 deosebiri și o asemănare între relieful Munților Ural și relieful Munților Alpi', raspunsExemplu: [
+      { tip: 'comparatie', enunt: 'Precizați 2 deosebiri și o asemănare între relieful Munților Alpi și relieful Munților Ural', raspunsExemplu: [
         'Deosebire (mod de formare): Munții Ural s-au format în orogeneza hercinică, iar Munții Alpi în orogeneza alpină',
         'Deosebire (înălțime): Înălțimea medie este mult mai redusă pentru Munții Ural (au aspect de dealuri), Alpii ating 4807 m (Mont Blanc)',
-        'Deosebire (fragmentare): Fragmentarea este mai accentuată pentru Munții Ural, care au o lungime mult mai mare (2000 km vs 1200 km pentru Munții Alpi)',
         'Asemănare: modul de formare prin încrețirea (cutarea) scoarței terestre',
       ], punctajMaxim: 6 },
     ],
     
     E: [
-      { tip: 'cauza', enunt: '1. Factori care influențează clima Europei', raspunsExemplu: 'Clima Europei este influențată de: latitudine (variază între 35°N - 71°N), relief (Alpii, Carpații, Munții Scandinaviei), oceanele și mările care o înconjoară (Atlanticul, Marea Mediterană, Marea Baltică, Marea Neagră) - care moderează temperaturile.', cuvinteCheie: ['latitudine', 'relief', 'oceane', 'mări'], punctaj: 2 },
-      { tip: 'cauza', enunt: '2. Consecințele sporului natural foarte redus în Europa', raspunsExemplu: 'Sporul natural foarte redus în Europa are drept consecințe: încetinirea creșterii populației, îmbătrânirea demografică (creșterea ponderii vârstnicilor), scăderea potențialului forței de muncă a populației active, presiune crescută pe sistemele de pensii și sănătate.', cuvinteCheie: ['încetinire', 'îmbătrânire', 'forță muncă', 'pensii'], punctaj: 2 },
+      { tip: 'cauza', enunt: '1. Doi factori care influențează clima Europei', raspunsExemplu: 'Clima Europei este influențată de: latitudine (variază între 35°N - 71°N), relief (Alpii, Carpații, Munții Scandinaviei), oceanele și mările care o înconjoară (Atlanticul, Marea Mediterană, Marea Baltică, Marea Neagră) - care moderează temperaturile.', cuvinteCheie: ['latitudine', 'relief', 'oceane', 'mări'], punctaj: 2 },
+      { tip: 'cauza', enunt: '2. Două consecințe ale sporului natural foarte redus din Europa', raspunsExemplu: 'Sporul natural foarte redus în Europa are drept consecințe: încetinirea creșterii populației, îmbătrânirea demografică (creșterea ponderii vârstnicilor), scăderea potențialului forței de muncă a populației active, presiune crescută pe sistemele de pensii și sănătate.', cuvinteCheie: ['încetinire', 'îmbătrânire', 'forță muncă', 'pensii'], punctaj: 2 },
     ],
   },
-  
+
   subiectII: {
     titlu: 'Subiect II - România',
     

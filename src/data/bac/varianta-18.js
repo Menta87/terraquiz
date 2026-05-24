@@ -10,36 +10,36 @@ export const varianta18 = {
     
     A: [
       { tip: 'identificare', enunt: '1. Numele statului marcat cu litera B', raspunsCorect: 'Portugalia', raspunsuriAcceptate: ['Portugalia', 'portugalia'], punctaj: 2 },
-      { tip: 'identificare', enunt: '2. Numele statului marcat cu litera D', raspunsCorect: 'Marea Britanie', raspunsuriAcceptate: ['Marea Britanie', 'Regatul Unit', 'UK', 'Marea Britanie si Irlanda de Nord'], punctaj: 2 },
+      { tip: 'identificare', enunt: '2. Numele statului marcat cu litera D', raspunsCorect: 'Marea Britanie', raspunsuriAcceptate: ['Marea Britanie', 'Regatul Unit', 'UK', 'Marea Britanie si Irlanda de Nord', 'marea britanie'], punctaj: 2 },
       { tip: 'identificare', enunt: '3. Numele orașului-capitală marcat cu numărul 3', raspunsCorect: 'Madrid', raspunsuriAcceptate: ['Madrid', 'madrid'], punctaj: 1 },
       { tip: 'identificare', enunt: '4. Numele orașului-capitală marcat cu numărul 10', raspunsCorect: 'Moscova', raspunsuriAcceptate: ['Moscova', 'moscova', 'Moscow'], punctaj: 1 },
     ],
     
     B: [
-      { tip: 'completare', enuntInainte: '1. Sena străbate orașul-capitală marcat cu numărul', raspunsCorect: '15', raspunsuriAcceptate: ['15', 'Paris'], punctaj: 2 },
-      { tip: 'completare', enuntInainte: '2. Câmpia Panonică se desfășoară în statul marcat cu litera', raspunsCorect: 'I', raspunsuriAcceptate: ['I', 'i', 'Ungaria', 'ungaria'], punctaj: 2 },
-      { tip: 'completare', enuntInainte: '3. Vulcani activi există în statul marcat cu litera', raspunsCorect: 'F', raspunsuriAcceptate: ['F', 'f', 'Islanda', 'islanda'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '1. Este traversat de fluviul Sena orașul marcat cu numărul', raspunsCorect: '15', raspunsuriAcceptate: ['15', 'Paris'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '2. Lacul Balaton este situat în statul marcat cu litera', raspunsCorect: 'I', raspunsuriAcceptate: ['I', 'i', 'Ungaria', 'ungaria'], punctaj: 2 },
+      { tip: 'completare', enuntInainte: '3. Vulcani activi se găsesc în statul insular marcat cu litera', raspunsCorect: 'F', raspunsuriAcceptate: ['F', 'f', 'Islanda', 'islanda'], punctaj: 2 },
     ],
     
     C: [
-      { tip: 'grila', enunt: '1. Climatul mediteranean este caracteristic în nordul statului marcat cu litera:', variante: { a: 'A', b: 'B', c: 'F', d: 'J' }, raspunsCorect: 'b', punctaj: 2 },
-      { tip: 'grila', enunt: '2. Cel mai mare port european este situat în statul marcat cu litera:', variante: { a: 'B', b: 'F', c: 'G', d: 'D' }, raspunsCorect: 'c', punctaj: 2 },
-      { tip: 'grila', enunt: '3. Orașul Tallinn este capitala statului marcat cu litera:', variante: { a: 'C', b: 'E', c: 'H', d: 'J' }, raspunsCorect: 'a', punctaj: 2 },
-      { tip: 'grila', enunt: '4. Carpații se desfășoară pe teritoriul statului marcat cu litera:', variante: { a: 'A', b: 'C', c: 'F', d: 'H' }, raspunsCorect: 'd', punctaj: 2 },
-      { tip: 'grila', enunt: '5. Vegetația de tip stepă (pustă) este caracteristică în statul marcat cu litera:', variante: { a: 'A', b: 'B', c: 'I', d: 'J' }, raspunsCorect: 'c', punctaj: 2 },
+      { tip: 'grila', enunt: '1. Resurse importante de minereu de fier se exploatează din subsolul statului marcat cu litera:', variante: { a: 'B', b: 'G', c: 'H', d: 'J' }, raspunsCorect: 'b', punctaj: 2 },
+      { tip: 'grila', enunt: '2. Are ieșire la Marea Mediterană statul marcat cu litera:', variante: { a: 'B', b: 'C', c: 'E', d: 'I' }, raspunsCorect: 'c', punctaj: 2 },
+      { tip: 'grila', enunt: '3. Râul Vistula străbate capitala statului marcat cu litera:', variante: { a: 'A', b: 'B', c: 'E', d: 'F' }, raspunsCorect: 'a', punctaj: 2 },
+      { tip: 'grila', enunt: '4. Republica Moldova este marcată cu litera:', variante: { a: 'A', b: 'E', c: 'I', d: 'J' }, raspunsCorect: 'd', punctaj: 2 },
+      { tip: 'grila', enunt: '5. Orașul european cu cel mai mare număr de locuitori este marcat cu numărul:', variante: { a: '2', b: '7', c: '10', d: '12' }, raspunsCorect: 'c', punctaj: 2 },
     ],
     
     D: [
-      { tip: 'comparatie', enunt: 'Precizați 3 deosebiri între clima Europei Nordice și clima Europei Sudice', raspunsExemplu: [
+      { tip: 'comparatie', enunt: 'Precizați 3 deosebiri între clima din nordul Europei și clima din sudul Europei', raspunsExemplu: [
         'Tip de climă: în Nordul Europei se întâlnește climatul subpolar, iar în sudul Europei climatul subtropical (mediteranean)',
-        'Temperaturi: temperatura medie anuală este mai scăzută în Europa Nordică (între -5 și +5°C), iar în Europa Sudică este de cca 15°C',
-        'Precipitații: în climatul subpolar sunt 500-800 mm/an, predominant sub formă de ninsoare; în climatul subtropical 600-900 mm/an, dominant în octombrie-aprilie',
+        'Temperaturi medii anuale: în Europa Nordică sunt între -5 și +5°C, iar în Europa Sudică cca 15°C',
+        'Precipitații: în climatul subpolar 500-800 mm/an, predominant sub formă de ninsoare; în climatul subtropical 600-900 mm/an, dominant între octombrie și aprilie',
       ], punctajMaxim: 6 },
     ],
     
     E: [
-      { tip: 'cauza', enunt: '1. Cauză a folosirii forței de muncă externe în unele state europene', raspunsExemplu: 'În unele state europene îmbătrânirea demografică a determinat un deficit de forță de muncă, de aceea s-a apelat la forța de muncă externă (din Africa, Asia, Europa de Est). Plus costul mai scăzut al forței de muncă externe.', cuvinteCheie: ['îmbătrânire', 'deficit', 'externă', 'cost'], punctaj: 2 },
-      { tip: 'cauza', enunt: '2. Cauză a diferenței dintre vegetația din Norvegia și cea din Groenlanda', raspunsExemplu: 'Clima temperat-oceanică din Norvegia, influențată de Curentul Golfului, la care se adaugă natura substratului muntos - favorizează prezența pădurilor. În Groenlanda clima subpolară și polară, cu vânturi puternice și temperaturi foarte scăzute, a favorizat instalarea ghețarilor.', cuvinteCheie: ['Curentul Golfului', 'oceanică', 'polară', 'ghețari'], punctaj: 2 },
+      { tip: 'cauza', enunt: '1. Cauză a necesității forței de muncă externă (imigranți) pentru unele state europene', raspunsExemplu: 'În unele state europene îmbătrânirea demografică a determinat un deficit de forță de muncă, de aceea s-a apelat la forța de muncă externă (din Africa, Asia, Europa de Est). Plus costul mai scăzut al forței de muncă externe.', cuvinteCheie: ['îmbătrânire', 'deficit', 'externă', 'cost'], punctaj: 2 },
+      { tip: 'cauza', enunt: '2. Cauză a prezenței pădurilor în Norvegia și a ghețarilor în Groenlanda la aceeași latitudine', raspunsExemplu: 'Clima temperat-oceanică din Norvegia, influențată de Curentul Golfului, la care se adaugă natura substratului muntos - favorizează prezența pădurilor. În Groenlanda clima subpolară și polară, cu vânturi puternice și temperaturi foarte scăzute, a favorizat instalarea ghețarilor.', cuvinteCheie: ['Curentul Golfului', 'oceanică', 'polară', 'ghețari'], punctaj: 2 },
     ],
   },
   
@@ -76,7 +76,7 @@ export const varianta18 = {
     ],
     
     E: [
-      { tip: 'cauza', enunt: '1. Cauză a frecvenței mult mai mari a hidrocentralelor în zona montană decât în zona de câmpie', raspunsExemplu: 'Potențialul hidroenergetic al râurilor este mai mare în cursul superior (zona de munte) datorită pantei accentuate care determină viteză și forță mari. Amenajările sunt propice în munți pentru că albia este îngustă și adâncă, rocile sunt foarte dure, iar forța apei asigură funcționarea turbinelor. Majoritatea hidrocentralelor sunt în munți: Porțile de Fier I și II, Vidraru, hidrocentralele de pe Bistrița. În câmpie amenajările sunt dificile din cauza pantei slabe, vitezei reduse și solurilor sedimentare permeabile.', cuvinteCheie: ['munte', 'pantă', 'Porțile de Fier', 'Vidraru'], punctaj: 2 },
+      { tip: 'cauza', enunt: '1. Cauză a frecvenței mult mai mari a hidrocentralelor în zona montană decât în zona de câmpie', raspunsExemplu: 'Potențialul hidroenergetic al râurilor este mai mare în cursul superior (zona de munte) datorită pantei accentuate care determină viteză și forță mari. Amenajările sunt propice în munți pentru că albia este îngustă și adâncă, rocile sunt foarte dure, iar forța apei asigură funcționarea turbinelor. Majoritatea hidrocentralelor sunt în munți: Porțile de Fier I și II, Vidraru, hidrocentralele de pe Bistrița.', cuvinteCheie: ['munte', 'pantă', 'Porțile de Fier', 'Vidraru'], punctaj: 2 },
       { tip: 'cauza', enunt: '2. Cauză a diferenței de temperatură de peste 2°C între sudul și nordul țării', raspunsExemplu: 'Așezarea României pe 5° de latitudine determină diferențe de temperatură: temperatura medie anuală scade de la sud la nord cu cca 2,5°C (gradient normal latitudinal). La aceasta se adaugă influența reliefului - în sud câmpie (până la 300 m), în nord munți (peste 2000 m).', cuvinteCheie: ['latitudine', 'gradient', 'relief', 'altitudine'], punctaj: 2 },
     ],
   },
