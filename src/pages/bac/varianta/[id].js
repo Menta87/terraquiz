@@ -11,8 +11,9 @@ const PREMIUM_VARIANTS = [
   'varianta-6', 'varianta-7', 'varianta-8', 'varianta-9', 'varianta-10',
   'varianta-11', 'varianta-12', 'varianta-13', 'varianta-14', 'varianta-15',
   'varianta-16', 'varianta-17', 'varianta-18', 'varianta-19', 'varianta-20',
-  'varianta-21', 'varianta-22'
+   'varianta-21', 'varianta-22', 'varianta-23'
 ];
+
 
 
 import { varianta1 } from '../../../data/bac/varianta-1';
@@ -37,6 +38,8 @@ import { varianta19 } from '../../../data/bac/varianta-19';
 import { varianta20 } from '../../../data/bac/varianta-20';
 import { varianta21 } from '../../../data/bac/varianta-21';
 import { varianta22 } from '../../../data/bac/varianta-22';
+import { varianta23 } from '../../../data/bac/varianta-23';
+
 
 
 
@@ -67,8 +70,10 @@ const VARIANTE = {
   'varianta-19': varianta19,
    'varianta-20': varianta20,
     'varianta-21': varianta21,
-  'varianta-22': varianta22,
+    'varianta-22': varianta22,
+  'varianta-23': varianta23,
 };
+
 
 
 
