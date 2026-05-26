@@ -16,7 +16,6 @@ const PREMIUM_VARIANTS = [
 ];
 
 
-];
 
 
 
