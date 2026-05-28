@@ -386,6 +386,17 @@ const VARIANTE = [
     disponibil: true,
     isPremium: true,
   },
+  {
+    id: 'varianta-36',
+    nume: 'Varianta 36',
+    durata: '~45 min',
+    nrExercitii: 30,
+    nivel: 'BAC complet',
+    culoare: '#c026d3',
+    href: '/bac/varianta/varianta-36',
+    disponibil: true,
+    isPremium: true,
+  },
 
 ];
 
