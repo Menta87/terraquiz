@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { verificaRaspuns } from '../../utils/verificareRaspuns';
+
 
 export default function ExercitiuIdentificare({ 
   enunt,                  // "Precizați numele statului marcat cu litera J"
@@ -13,9 +15,8 @@ export default function ExercitiuIdentificare({
   const [puncteObtinute, setPuncteObtinute] = useState(0);
   
   function verifica() {
-    const raspunsCurat = raspunsUser.trim().toLowerCase();
-    const accepta = (raspunsuriAcceptate || [raspunsCorect]).map(r => r.toLowerCase());
-    const esteCorect = accepta.includes(raspunsCurat);
+    const esteCorect = verificaRaspuns(raspunsUser, raspunsuriAcceptate, raspunsCorect);
+
     
     setCorect(esteCorect);
     setPuncteObtinute(esteCorect ? punctaj : 0);

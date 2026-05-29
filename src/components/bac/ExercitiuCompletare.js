@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { verificaRaspuns } from '../../utils/verificareRaspuns';
+
 
 export default function ExercitiuCompletare({
   enuntInainte,
@@ -15,15 +17,11 @@ export default function ExercitiuCompletare({
   const punctajFinal = punctaj || 2;
   const enuntDupaText = enuntDupa || '';
   
-  function verifica() {
+   function verifica() {
     if (!raspunsUser.trim()) return;
     
-    const raspunsCurat = raspunsUser.trim().toLowerCase();
-    const lista = raspunsuriAcceptate && raspunsuriAcceptate.length 
-      ? raspunsuriAcceptate 
-      : [raspunsCorect];
-    const accepta = lista.map(function(r) { return r.toLowerCase(); });
-    const esteCorect = accepta.includes(raspunsCurat);
+    const esteCorect = verificaRaspuns(raspunsUser, raspunsuriAcceptate, raspunsCorect);
+
     
     setCorect(esteCorect);
     setVerificat(true);
