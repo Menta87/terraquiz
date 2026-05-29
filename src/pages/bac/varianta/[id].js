@@ -60,6 +60,7 @@ import { varianta35 } from '../../../data/bac/varianta-35';
 import { varianta36 } from '../../../data/bac/varianta-36';
 import { varianta37 } from '../../../data/bac/varianta-37';
 import { varianta38 } from '../../../data/bac/varianta-38';
+import { varianta39 } from '../../../data/bac/varianta-39';
 
 
 
@@ -118,9 +119,6 @@ const VARIANTE = {
     'varianta-37': varianta37,
     'varianta-38': varianta38,
     'varianta-39': varianta39,
-    'varianta-39': varianta39,
-
-  
 };
 
 
