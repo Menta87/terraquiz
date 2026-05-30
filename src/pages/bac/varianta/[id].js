@@ -11,7 +11,7 @@ const PREMIUM_VARIANTS = [
   'varianta-6', 'varianta-7', 'varianta-8', 'varianta-9', 'varianta-10',
   'varianta-11', 'varianta-12', 'varianta-13', 'varianta-14', 'varianta-15',
   'varianta-16', 'varianta-17', 'varianta-18', 'varianta-19', 'varianta-20',
-     'varianta-21', 'varianta-22', 'varianta-23', 'varianta-24', 'varianta-25', 'varianta-26', 'varianta-27', 'varianta-28', 'varianta-29', 'varianta-30', 'varianta-31', 'varianta-32', 'varianta-33', 'varianta-34', 'varianta-35', 'varianta-36', 'varianta-37', 'varianta-38', 'varianta-39', 'varianta-40', 'varianta-41', 'varianta-42', 'varianta-43'
+     'varianta-21', 'varianta-22', 'varianta-23', 'varianta-24', 'varianta-25', 'varianta-26', 'varianta-27', 'varianta-28', 'varianta-29', 'varianta-30', 'varianta-31', 'varianta-32', 'varianta-33', 'varianta-34', 'varianta-35', 'varianta-36', 'varianta-37', 'varianta-38', 'varianta-39', 'varianta-40', 'varianta-41', 'varianta-42', 'varianta-43', 'varianta-44'
 
 ];
 
@@ -65,6 +65,7 @@ import { varianta40 } from '../../../data/bac/varianta-40';
 import { varianta41 } from '../../../data/bac/varianta-41';
 import { varianta42 } from '../../../data/bac/varianta-42';
 import { varianta43 } from '../../../data/bac/varianta-43';
+import { varianta44 } from '../../../data/bac/varianta-44';
 
 
 
@@ -127,6 +128,7 @@ const VARIANTE = {
     'varianta-41': varianta41,
     'varianta-42': varianta42,
     'varianta-43': varianta43,
+    'varianta-44': varianta44,
 };
 
 
