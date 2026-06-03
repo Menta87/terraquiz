@@ -529,10 +529,7 @@ const VARIANTE = [
     disponibil: true,
     isPremium: true,
   },
-                                                                                                                                                  10x2p=20p
-  {
 ];
-
 
 
 
