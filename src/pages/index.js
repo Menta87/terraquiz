@@ -31,7 +31,7 @@ export default function Home() {
   async function loadAll() {
     const [chaptersRes, questionsRes, playersCount] = await Promise.all([
       supabase.from('chapters').select('*').order('order_num'),
-      supabase.from('questions').select('chapter_id, level').range(0, 9999),
+      supabase.from('questions').select('chapter_id, level').limit(5000),
       supabase.from('profiles').select('*', { count: 'exact', head: true }),
     ]);
     
