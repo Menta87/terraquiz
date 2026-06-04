@@ -19,6 +19,7 @@ const CHAPTER_GRADIENTS = {
 
 export default function Home() {
   const [chapters, setChapters] = useState([]);
+  const [chapterCounts, setChapterCounts] = useState({});
   const [stats, setStats] = useState({ totalQuestions: 0, totalChapters: 0, totalPlayers: 0, totalDiplomas: 14 });
   const [loading, setLoading] = useState(true);
   const router = useRouter();
@@ -28,15 +29,27 @@ export default function Home() {
   }, []);
 
   async function loadAll() {
-    const [chaptersRes, questionsCount, playersCount] = await Promise.all([
+    const [chaptersRes, questionsRes, playersCount] = await Promise.all([
       supabase.from('chapters').select('*').order('order_num'),
-      supabase.from('questions').select('*', { count: 'exact', head: true }),
+      supabase.from('questions').select('chapter_id, level'),
       supabase.from('profiles').select('*', { count: 'exact', head: true }),
     ]);
     
+    // Count per chapter + per level
+    const counts = {};
+    if (questionsRes.data) {
+      questionsRes.data.forEach(q => {
+        if (!counts[q.chapter_id]) counts[q.chapter_id] = { total: 0, Mediu: 0, Avansat: 0 };
+        counts[q.chapter_id].total++;
+        if (q.level === 'Mediu') counts[q.chapter_id].Mediu++;
+        if (q.level === 'Avansat') counts[q.chapter_id].Avansat++;
+      });
+    }
+    
     if (chaptersRes.data) setChapters(chaptersRes.data);
+    setChapterCounts(counts);
     setStats({
-      totalQuestions: questionsCount.count || 0,
+      totalQuestions: questionsRes.data?.length || 0,
       totalChapters: chaptersRes.data?.length || 0,
       totalPlayers: playersCount.count || 0,
       totalDiplomas: 14,
@@ -150,7 +163,7 @@ export default function Home() {
               gap:'1.5rem',
             }}>
               {chapters.map(c => (
-                <ChapterCard key={c.id} chapter={c} onClick={() => startQuiz(c.id)} />
+                <ChapterCard key={c.id} chapter={c} counts={chapterCounts[c.id]} onClick={() => startQuiz(c.id)} />
               ))}
             </div>
           )}
@@ -204,8 +217,12 @@ function StatCard({ num, label, icon }) {
   );
 }
 
-function ChapterCard({ chapter, onClick }) {
+function ChapterCard({ chapter, counts, onClick }) {
   const gradient = CHAPTER_GRADIENTS[chapter.order_num] || CHAPTER_GRADIENTS.default;
+  const total = counts?.total || 0;
+  const mediu = counts?.Mediu || 0;
+  const avansat = counts?.Avansat || 0;
+  
   return (
     <div
       onClick={onClick}
@@ -232,16 +249,60 @@ function ChapterCard({ chapter, onClick }) {
         padding:'2rem 1.5rem',
         textAlign:'center',
         color:'white',
+        position: 'relative',
       }}>
         <div style={{fontSize:'3.5rem', filter:'drop-shadow(0 2px 4px rgba(0,0,0,0.2))'}}>{chapter.emoji}</div>
+        {total > 0 && (
+          <div style={{
+            position: 'absolute',
+            top: '12px',
+            right: '12px',
+            background: 'rgba(255,255,255,0.25)',
+            backdropFilter: 'blur(10px)',
+            padding: '0.35rem 0.75rem',
+            borderRadius: '20px',
+            fontSize: '0.85rem',
+            fontWeight: 700,
+            border: '1px solid rgba(255,255,255,0.3)',
+          }}>
+            📝 {total}
+          </div>
+        )}
       </div>
       <div style={{padding:'1.5rem'}}>
         <h3 style={{fontSize:'1.25rem', fontWeight:700, color:'#1e293b', marginBottom:'0.5rem'}}>
           {chapter.name}
         </h3>
-        <p style={{color:'#64748b', fontSize:'0.95rem', marginBottom:'1.25rem', lineHeight:1.5, minHeight:'2.8em'}}>
+        <p style={{color:'#64748b', fontSize:'0.95rem', marginBottom:'1rem', lineHeight:1.5, minHeight:'2.8em'}}>
           {chapter.description}
         </p>
+        {total > 0 && (
+          <div style={{
+            display: 'flex',
+            gap: '0.5rem',
+            marginBottom: '1rem',
+            fontSize: '0.8rem',
+          }}>
+            <span style={{
+              background: '#dcfce7',
+              color: '#166534',
+              padding: '0.25rem 0.6rem',
+              borderRadius: '6px',
+              fontWeight: 600,
+            }}>
+              {mediu} Mediu
+            </span>
+            <span style={{
+              background: '#fef3c7',
+              color: '#854d0e',
+              padding: '0.25rem 0.6rem',
+              borderRadius: '6px',
+              fontWeight: 600,
+            }}>
+              {avansat} Avansat
+            </span>
+          </div>
+        )}
         <div style={{
           background:'#1e3a8a',
           color:'white',
