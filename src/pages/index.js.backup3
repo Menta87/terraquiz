@@ -29,27 +29,27 @@ export default function Home() {
   }, []);
 
   async function loadAll() {
-    const [chaptersRes, countsRes, totalCount, playersCount] = await Promise.all([
+    const [chaptersRes, questionsRes, playersCount] = await Promise.all([
       supabase.from('chapters').select('*').order('order_num'),
-      supabase.rpc('get_chapter_counts'),
-      supabase.from('questions').select('*', { count: 'exact', head: true }),
+      supabase.from('questions').select('chapter_id, level').limit(5000),
       supabase.from('profiles').select('*', { count: 'exact', head: true }),
     ]);
     
+    // Count per chapter + per level
     const counts = {};
-    if (countsRes.data) {
-      countsRes.data.forEach(row => {
-        if (!counts[row.chapter_id]) counts[row.chapter_id] = { total: 0, Mediu: 0, Avansat: 0 };
-        counts[row.chapter_id].total += Number(row.count);
-        if (row.level === 'Mediu') counts[row.chapter_id].Mediu = Number(row.count);
-        if (row.level === 'Avansat') counts[row.chapter_id].Avansat = Number(row.count);
+    if (questionsRes.data) {
+      questionsRes.data.forEach(q => {
+        if (!counts[q.chapter_id]) counts[q.chapter_id] = { total: 0, Mediu: 0, Avansat: 0 };
+        counts[q.chapter_id].total++;
+        if (q.level === 'Mediu') counts[q.chapter_id].Mediu++;
+        if (q.level === 'Avansat') counts[q.chapter_id].Avansat++;
       });
     }
     
     if (chaptersRes.data) setChapters(chaptersRes.data);
     setChapterCounts(counts);
     setStats({
-      totalQuestions: totalCount.count || 0,
+      totalQuestions: questionsRes.data?.length || 0,
       totalChapters: chaptersRes.data?.length || 0,
       totalPlayers: playersCount.count || 0,
       totalDiplomas: 14,
