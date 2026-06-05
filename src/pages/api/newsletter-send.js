@@ -30,6 +30,9 @@ export default async function handler(req, res) {
 
     if (profErr) throw profErr;
 
+    const profileMap = {};
+    profiles.forEach(p => { profileMap[p.id] = p; });
+
     const subscribedProfileIds = profiles
       .filter(p => p.newsletter_subscribed !== false)
       .map(p => p.id);
@@ -43,13 +46,16 @@ export default async function handler(req, res) {
 
     let recipients = users
       .filter(u => subscribedProfileIds.includes(u.id))
-      .map(u => ({ email: u.email, id: u.id }));
+      .map(u => ({ 
+        email: u.email, 
+        id: u.id,
+        username: profileMap[u.id]?.username || 'Geograf'
+      }));
 
-    // TEST MODE: trimite doar la admin
     if (testMode) {
       recipients = recipients.filter(r => r.email === 'robert_menta@yahoo.com');
       if (recipients.length === 0) {
-        recipients = [{ email: 'robert_menta@yahoo.com', id: 'admin-test' }];
+        recipients = [{ email: 'robert_menta@yahoo.com', id: 'admin-test', username: 'Robert' }];
       }
     }
 
@@ -68,7 +74,9 @@ export default async function handler(req, res) {
         from: 'TerraQuiz <newsletter@terraquiz.ro>',
         to: [r.email],
         subject: testMode ? '[TEST] ' + subject : subject,
-        html: html.replace(/EMAIL_PLACEHOLDER/g, encodeURIComponent(r.email)),
+        html: html
+          .replace(/EMAIL_PLACEHOLDER/g, encodeURIComponent(r.email))
+          .replace(/USERNAME_PLACEHOLDER/g, r.username || 'Geograf'),
       }));
 
       try {
