@@ -8,7 +8,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { adminEmail, html, subject } = req.body;
+  const { adminEmail, html, subject, testMode } = req.body;
   
   if (adminEmail !== 'robert_menta@yahoo.com') {
     return res.status(403).json({ error: 'Forbidden - admin only' });
@@ -41,9 +41,17 @@ export default async function handler(req, res) {
 
     if (usersErr) throw usersErr;
 
-    const recipients = users
+    let recipients = users
       .filter(u => subscribedProfileIds.includes(u.id))
       .map(u => ({ email: u.email, id: u.id }));
+
+    // TEST MODE: trimite doar la admin
+    if (testMode) {
+      recipients = recipients.filter(r => r.email === 'robert_menta@yahoo.com');
+      if (recipients.length === 0) {
+        recipients = [{ email: 'robert_menta@yahoo.com', id: 'admin-test' }];
+      }
+    }
 
     if (recipients.length === 0) {
       return res.status(200).json({ sent: 0, message: 'No subscribers' });
@@ -59,7 +67,7 @@ export default async function handler(req, res) {
       const emails = batch.map(r => ({
         from: 'TerraQuiz <newsletter@terraquiz.ro>',
         to: [r.email],
-        subject: subject,
+        subject: testMode ? '[TEST] ' + subject : subject,
         html: html.replace(/EMAIL_PLACEHOLDER/g, encodeURIComponent(r.email)),
       }));
 
@@ -84,6 +92,7 @@ export default async function handler(req, res) {
       sent: sentCount,
       failed: errorCount,
       total: recipients.length,
+      testMode: !!testMode,
       errors: errors.slice(0, 5),
     });
   } catch (error) {

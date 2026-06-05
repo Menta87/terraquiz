@@ -35,15 +35,19 @@ export default function NewsletterAdmin() {
     setGenerating(false);
   }
 
-  async function sendNewsletter() {
-    if (!confirm('Sigur vrei să trimiți newsletter-ul la TOȚI utilizatorii abonați?')) return;
+  async function sendNewsletter(testMode = false) {
+    const msg = testMode 
+      ? 'Trimitem un email de TEST doar la robert_menta@yahoo.com?'
+      : 'Sigur vrei să trimiți newsletter-ul la TOȚI utilizatorii abonați?';
+    if (!confirm(msg)) return;
+    
     setSending(true);
     setSendResult(null);
     try {
       const res = await fetch('/api/newsletter-send', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ adminEmail: userEmail, subject, html: preview.html }),
+        body: JSON.stringify({ adminEmail: userEmail, subject, html: preview.html, testMode }),
       });
       setSendResult(await res.json());
     } catch (e) { setSendResult({ error: e.message }); }
@@ -92,12 +96,21 @@ export default function NewsletterAdmin() {
             </div>
           </div>
 
+          <div style={{background:'#dbeafe',padding:'1.5rem',borderRadius:'12px',border:'2px solid #3b82f6',marginBottom:'1.5rem'}}>
+            <h2 style={{margin:'0 0 0.5rem',color:'#1e3a8a'}}>4️⃣ TEST - Trimite doar la mine</h2>
+            <p style={{color:'#1e40af',marginBottom:'1rem',fontSize:'0.95rem'}}>✉️ Recomandat: testează cum arată \u00een Inbox \u00eenainte de a trimite la toți.</p>
+            <button onClick={() => sendNewsletter(true)} disabled={sending}
+              style={{background:'#3b82f6',color:'white',border:'none',padding:'0.9rem 2rem',borderRadius:'8px',fontWeight:800,cursor:'pointer',fontSize:'1.05rem'}}>
+              {sending ? '📤 Se trimite...' : '✉️ Trimite test (doar la mine)'}
+            </button>
+          </div>
+
           <div style={{background:'#fef3c7',padding:'1.5rem',borderRadius:'12px',border:'2px solid #d97706',marginBottom:'1.5rem'}}>
-            <h2 style={{margin:'0 0 0.5rem',color:'#78350f'}}>4️⃣ Trimite la toți utilizatorii</h2>
-            <p style={{color:'#92400e',marginBottom:'1rem',fontSize:'0.95rem'}}>⚠️ Aceasta va trimite newsletter-ul la TOȚI utilizatorii abonați.</p>
-            <button onClick={sendNewsletter} disabled={sending}
+            <h2 style={{margin:'0 0 0.5rem',color:'#78350f'}}>5️⃣ Trimite la TOȚI utilizatorii</h2>
+            <p style={{color:'#92400e',marginBottom:'1rem',fontSize:'0.95rem'}}>⚠️ Aceasta va trimite newsletter-ul la TOȚI utilizatorii abonați (290 persoane).</p>
+            <button onClick={() => sendNewsletter(false)} disabled={sending}
               style={{background:'#d97706',color:'white',border:'none',padding:'0.9rem 2rem',borderRadius:'8px',fontWeight:800,cursor:'pointer',fontSize:'1.05rem'}}>
-              {sending ? '📤 Se trimite...' : '🚀 TRIMITE NEWSLETTER ACUM'}
+              {sending ? '📤 Se trimite...' : '🚀 TRIMITE LA TOȚI'}
             </button>
           </div>
 
@@ -108,7 +121,9 @@ export default function NewsletterAdmin() {
               ) : (
                 <>
                   <h3 style={{color:'#166534',margin:'0 0 0.5rem'}}>✅ Trimis cu succes!</h3>
-                  <p style={{color:'#166534',fontSize:'1.1rem',margin:'0.5rem 0'}}>📬 <strong>{sendResult.sent}</strong> emailuri trimise (din {sendResult.total} destinatari)</p>
+                  <p style={{color:'#166534',fontSize:'1.1rem',margin:'0.5rem 0'}}>
+                    📬 <strong>{sendResult.sent}</strong> emailuri trimise {sendResult.testMode ? '(MOD TEST)' : ''} (din {sendResult.total} destinatari)
+                  </p>
                   {sendResult.failed > 0 && <p style={{color:'#d97706'}}>⚠️ {sendResult.failed} emailuri au eșuat</p>}
                 </>
               )}
