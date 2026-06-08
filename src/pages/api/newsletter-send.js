@@ -67,17 +67,27 @@ export default async function handler(req, res) {
     let errorCount = 0;
     const errors = [];
 
-    for (let i = 0; i < recipients.length; i += 50) {
-      const batch = recipients.slice(i, i + 50);
+    // Batch-uri mai mici (25 in loc de 50) cu pauza mai mare
+    for (let i = 0; i < recipients.length; i += 25) {
+      const batch = recipients.slice(i, i + 25);
       
-      const emails = batch.map(r => ({
-        from: 'TerraQuiz <newsletter@terraquiz.ro>',
-        to: [r.email],
-        subject: testMode ? '[TEST] ' + subject : subject,
-        html: html
-          .replace(/EMAIL_PLACEHOLDER/g, encodeURIComponent(r.email))
-          .replace(/USERNAME_PLACEHOLDER/g, r.username || 'Geograf'),
-      }));
+      const emails = batch.map(r => {
+        const unsubUrl = `https://terraquiz.ro/api/newsletter-unsubscribe?email=${encodeURIComponent(r.email)}`;
+        return {
+          from: 'TerraQuiz <newsletter@terraquiz.ro>',
+          to: [r.email],
+          reply_to: 'newsletter@terraquiz.ro',
+          subject: testMode ? '[TEST] ' + subject : subject,
+          html: html
+            .replace(/EMAIL_PLACEHOLDER/g, encodeURIComponent(r.email))
+            .replace(/USERNAME_PLACEHOLDER/g, r.username || 'Geograf'),
+          headers: {
+            'List-Unsubscribe': `<${unsubUrl}>`,
+            'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
+            'X-Entity-Ref-ID': `newsletter-${Date.now()}-${r.id}`,
+          },
+        };
+      });
 
       try {
         const { data, error } = await resend.batch.send(emails);
@@ -93,7 +103,8 @@ export default async function handler(req, res) {
         errors.push(e.message);
       }
 
-      await new Promise(r => setTimeout(r, 600));
+      // Pauză mai mare între batch-uri (1.2s în loc de 0.6s)
+      await new Promise(r => setTimeout(r, 1200));
     }
 
     res.status(200).json({
