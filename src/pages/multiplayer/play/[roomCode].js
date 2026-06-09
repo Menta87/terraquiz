@@ -116,7 +116,7 @@ export default function PlayerRoom() {
   }, []);
 
   async function submitAnswer(answer) {
-    if (hasAnswered || !currentQuestion || !room) return;
+    if (hasAnswered || !currentQuestion || !room || room.show_results) return;
     
     // ANTI-CHEAT: verifica in DB inainte de a salva (in caz de refresh)
     const existing = await checkExistingAnswer(room, player.id);
@@ -212,6 +212,31 @@ export default function PlayerRoom() {
   if (room.status === 'playing' && currentQuestion) {
     const myRank = players.findIndex(p => p.id === player.id) + 1;
     const showResult = hasAnswered && room.show_results === true;
+    const timeExpired = !hasAnswered && room.show_results === true;
+    
+    if (timeExpired) {
+      return (
+        <div style={{minHeight:"90vh", display:"flex", alignItems:"center", justifyContent:"center", padding:"2rem 1.5rem", background:"linear-gradient(135deg, #f59e0b, #d97706)"}}>
+          <div style={{maxWidth:"500px", width:"100%", textAlign:"center", color:"white"}}>
+            <div style={{fontSize:"6rem"}}>⏰</div>
+            <h1 style={{fontSize:"2.5rem", marginTop:"1rem"}}>Timpul a expirat!</h1>
+            <div style={{fontSize:"1.2rem", marginTop:"1rem", opacity:0.95}}>Nu ai răspuns la această întrebare.</div>
+            {currentQuestion && (
+              <div style={{background:"rgba(255,255,255,0.25)", padding:"1.25rem", borderRadius:"12px", marginTop:"1.5rem"}}>
+                <div style={{fontSize:"0.95rem", opacity:0.9, marginBottom:"0.5rem"}}>Răspunsul corect era:</div>
+                <div style={{fontSize:"1.5rem", fontWeight:800}}>{currentQuestion.correct_answer}</div>
+              </div>
+            )}
+            <div style={{background:"rgba(255,255,255,0.2)", padding:"1.5rem", borderRadius:"16px", marginTop:"2rem"}}>
+              <div style={{fontSize:"2.5rem"}}>{player.avatar_emoji}</div>
+              <div style={{fontSize:"1.3rem", fontWeight:700}}>{player.nickname}</div>
+              <div style={{fontSize:"2rem", fontWeight:900, marginTop:"1rem"}}>{player.score} pct</div>
+            </div>
+            <div style={{marginTop:"2rem", fontSize:"1.1rem"}}>⏳ Astept urmatoarea intrebare...</div>
+          </div>
+        </div>
+      );
+    }
     
     if (hasAnswered && !showResult) {
       // Jucatorul a raspuns - astepta rezultatul de la profesor
