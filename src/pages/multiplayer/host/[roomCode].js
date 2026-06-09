@@ -134,6 +134,14 @@ export default function HostRoom() {
     );
   }
 
+  // Badge cu codul jocului - vizibil pe toate stage-urile in timpul jocului
+  const RoomCodeBadge = () => (
+    <div style={{position:'fixed', top:'1rem', left:'1rem', zIndex:1000, background:'linear-gradient(135deg, #8b5cf6, #6d28d9)', color:'white', padding:'0.75rem 1.25rem', borderRadius:'12px', boxShadow:'0 4px 16px rgba(0,0,0,0.25)', border:'2px solid white', fontWeight:800, fontSize:'1.1rem', letterSpacing:'0.15rem', fontFamily:'monospace', display:'flex', alignItems:'center', gap:'0.5rem'}}>
+      <span style={{fontSize:'1rem'}}>🎮</span>
+      <span>{roomCode}</span>
+    </div>
+  );
+
   if (stage === 'question' || stage === 'reveal') {
     const q = questions[currentQuestion];
     if (!q) return <div className="loading container">Se incarca intrebarea...</div>;
@@ -144,6 +152,7 @@ export default function HostRoom() {
 
     return (
       <div style={{minHeight:'90vh', padding:'2rem 1.5rem', background:'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'}}>
+        <RoomCodeBadge />
         <div style={{maxWidth:'1200px', margin:'0 auto'}}>
           <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'1.5rem', color:'white'}}>
             <div style={{fontSize:'1.2rem', fontWeight:600}}>Intrebarea {currentQuestion + 1} / {questions.length}</div>
