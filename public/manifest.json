@@ -1,0 +1,43 @@
+{
+  "name": "TerraQuiz - Geografie pentru BAC",
+  "short_name": "TerraQuiz",
+  "description": "Platformă educațională cu 1.699 întrebări de geografie, 50 variante BAC complete și quiz-uri interactive",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#1e3a8a",
+  "theme_color": "#1e3a8a",
+  "lang": "ro",
+  "categories": ["education", "learning", "books"],
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Variante BAC",
+      "short_name": "BAC",
+      "description": "50 variante BAC complete",
+      "url": "/bac",
+      "icons": [{"src": "/icon-192.png", "sizes": "192x192"}]
+    },
+    {
+      "name": "Profilul meu",
+      "short_name": "Profil",
+      "description": "Vezi progresul tău",
+      "url": "/profile",
+      "icons": [{"src": "/icon-192.png", "sizes": "192x192"}]
+    }
+  ]
+}
