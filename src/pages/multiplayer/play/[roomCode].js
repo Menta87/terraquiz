@@ -62,7 +62,6 @@ export default function PlayerRoom() {
     if (ps) setPlayers(ps);
     if (r.status === 'playing' && r.current_question_idx >= 0) {
       await loadCurrentQuestion(r);
-      // Verific daca jucatorul a raspuns deja la aceasta intrebare (anti-refresh)
       const existing = await checkExistingAnswer(r, playerId);
       if (existing) {
         setHasAnswered(true);
@@ -119,7 +118,7 @@ export default function PlayerRoom() {
   async function submitAnswer(answer) {
     if (hasAnswered || !currentQuestion || !room) return;
     
-    // VERIFICARE ANTI-CHEAT: re-verifica in DB inainte de a salva
+    // ANTI-CHEAT: verifica in DB inainte de a salva (in caz de refresh)
     const existing = await checkExistingAnswer(room, player.id);
     if (existing) {
       setHasAnswered(true);
@@ -150,16 +149,18 @@ export default function PlayerRoom() {
       points = basePoints + Math.floor(timeBonus / 3);
     }
     setPointsEarned(points);
+    
+    // Salvam doar raspunsul - scorul NU se actualizeaza inca!
+    // Profesorul va apela RPC reveal_question_scores cand da "Arata raspunsul"
     await supabase.from('multiplayer_answers').insert({
       room_id: room.id, player_id: player.id, question_idx: room.current_question_idx,
       question_id: currentQuestion.id, answer: answer || '', is_correct: correct,
       points_earned: points, answer_time_ms: answerTimeMs
     });
-    if (correct) {
-      await supabase.from('multiplayer_players').update({
-        score: player.score + points, correct_answers: player.correct_answers + 1
-      }).eq('id', player.id);
-    }
+    
+    // BUG FIX: NU mai facem update la player.score aici!
+    // Scorul se actualizeaza in DB doar dupa ce profesorul da "Arata raspunsul"
+    // (prin RPC reveal_question_scores)
   }
 
   if (loading) return <div className="loading container">Se incarca...</div>;
@@ -214,6 +215,7 @@ export default function PlayerRoom() {
     
     if (hasAnswered && !showResult) {
       // Jucatorul a raspuns - astepta rezultatul de la profesor
+      // Aratam scorul FARA noile puncte (ele se adauga doar la reveal)
       return (
         <div style={{minHeight:'90vh', display:'flex', alignItems:'center', justifyContent:'center', padding:'2rem 1.5rem', background:'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'}}>
           <div style={{maxWidth:'500px', width:'100%', textAlign:'center', color:'white'}}>

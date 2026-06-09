@@ -169,7 +169,7 @@ export default function HostRoom() {
 
 
           </div>
-                   {stage === 'question' && (<button onClick={async () => { await supabase.from('multiplayer_rooms').update({ show_results: true }).eq('id', room.id); setStage('reveal'); }} style={{width:'100%', padding:'1rem', background:'white', color:'#5b21b6', border:'none', borderRadius:'12px', fontSize:'1.1rem', fontWeight:700, cursor:'pointer'}}>⏭️ Arata raspunsul</button>)}
+                   {stage === 'question' && (<button onClick={async () => { await supabase.rpc('reveal_question_scores', { p_room_id: room.id, p_question_idx: currentQuestion }); setStage('reveal'); }} style={{width:'100%', padding:'1rem', background:'white', color:'#5b21b6', border:'none', borderRadius:'12px', fontSize:'1.1rem', fontWeight:700, cursor:'pointer'}}>⏭️ Arata raspunsul</button>)}
 
           {stage === 'reveal' && (
             <>
