@@ -126,7 +126,7 @@ export default function MultiplayerHome() {
       return;
     }
 
-    // RECONECTARE: daca elevul are deja un player ID in localStorage, verifica daca exista in DB
+    // RECONECTARE HIBRIDA: verifica localStorage SI nickname
     const existingPlayerId = typeof window !== 'undefined' ? localStorage.getItem(`mp_player_${roomCode}`) : null;
     if (existingPlayerId) {
       const { data: existingPlayer } = await supabase
@@ -136,10 +136,14 @@ export default function MultiplayerHome() {
         .eq('room_id', room.id)
         .maybeSingle();
       
-      if (existingPlayer) {
-        // Reconectare cu succes - du-l direct la pagina de joc
+      // Reconectare DOAR daca tasteaza ACELASI nickname
+      if (existingPlayer && existingPlayer.nickname.toLowerCase().trim() === nickname.toLowerCase().trim()) {
         router.push(`/multiplayer/play/${roomCode}`);
         return;
+      }
+      // Daca nickname diferit, sterge localStorage vechi si creeaza player nou
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem(`mp_player_${roomCode}`);
       }
     }
 
