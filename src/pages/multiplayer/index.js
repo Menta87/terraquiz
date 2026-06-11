@@ -126,12 +126,25 @@ export default function MultiplayerHome() {
       return;
     }
 
-    if (room.status === 'playing') {
-      setError('Jocul a inceput deja in aceasta camera.');
-      setLoading(false);
-      return;
+    // RECONECTARE: daca elevul are deja un player ID in localStorage, verifica daca exista in DB
+    const existingPlayerId = typeof window !== 'undefined' ? localStorage.getItem(`mp_player_${roomCode}`) : null;
+    if (existingPlayerId) {
+      const { data: existingPlayer } = await supabase
+        .from('multiplayer_players')
+        .select('*')
+        .eq('id', existingPlayerId)
+        .eq('room_id', room.id)
+        .maybeSingle();
+      
+      if (existingPlayer) {
+        // Reconectare cu succes - du-l direct la pagina de joc
+        router.push(`/multiplayer/play/${roomCode}`);
+        return;
+      }
     }
 
+    // Daca jocul a inceput deja si elevul nu are reconectare valida, accepta intrare noua
+    // (elev intarziat care intra in timpul jocului)
     const { data: { session } } = await supabase.auth.getSession();
     
     const avatars = ['😀', '😎', '🤓', '😺', '🦊', '🐼', '🦁', '🐯', '🐸', '🦄', '🐳', '🦋', '🌟', '⚡', '🔥'];
