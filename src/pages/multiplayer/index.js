@@ -147,6 +147,24 @@ export default function MultiplayerHome() {
       }
     }
 
+    // VERIFICARE IN DB: exista deja un player cu acest nickname in camera?
+    // (cazul cand localStorage a fost suprascris de alt elev pe acelasi device)
+    const { data: playerByNickname } = await supabase
+      .from('multiplayer_players')
+      .select('*')
+      .eq('room_id', room.id)
+      .ilike('nickname', nickname.trim())
+      .maybeSingle();
+    
+    if (playerByNickname) {
+      // Player cu acest nickname exista deja - reconectare prin nickname
+      if (typeof window !== 'undefined') {
+        localStorage.setItem(`mp_player_${roomCode}`, playerByNickname.id);
+      }
+      router.push(`/multiplayer/play/${roomCode}`);
+      return;
+    }
+
     // Daca jocul a inceput deja si elevul nu are reconectare valida, accepta intrare noua
     // (elev intarziat care intra in timpul jocului)
     const { data: { session } } = await supabase.auth.getSession();
