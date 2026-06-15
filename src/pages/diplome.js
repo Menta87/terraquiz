@@ -20,6 +20,22 @@ const ALL_DIPLOMAS = [
   { code: 'enthusiast', name: 'Pasionat', emoji: 'PS', desc: 'Acumuleaza 1000 puncte totale', type: 'cumulative' },
   { code: 'expert', name: 'Expert Geograf', emoji: 'EX', desc: 'Acumuleaza 5000 puncte totale', type: 'cumulative' },
   { code: 'supreme_master', name: 'Maestru Suprem', emoji: 'MS', desc: 'Acumuleaza 10000 puncte totale', type: 'cumulative' },
+  { code: 'legendary_geographer', name: 'Legenda Geografiei', emoji: 'LG', desc: 'Acumuleaza 25000 puncte totale', type: 'cumulative' },
+  { code: 'eternal_geographer', name: 'Geograf Etern', emoji: 'GE', desc: 'Acumuleaza 50000 puncte totale', type: 'cumulative' },
+  // World master (capitol Geografie Generala)
+  { code: 'world_master', name: 'Maestru al Lumii', emoji: 'WM', desc: 'Termini Geografie Generala cu peste 80%', type: 'chapter' },
+  // Progres
+  { code: 'first_steps', name: 'Primii Pasi', emoji: 'P1', desc: 'Joaca primele 10 jocuri', type: 'progress' },
+  { code: 'dedicated_player', name: 'Jucator Dedicat', emoji: 'JD', desc: 'Joaca 50 jocuri', type: 'progress' },
+  { code: 'marathon_geographer', name: 'Maraton Geografic', emoji: 'MG', desc: 'Joaca 100 jocuri', type: 'progress' },
+  { code: 'veteran_terraquiz', name: 'Veteran TerraQuiz', emoji: 'VT', desc: 'Joaca 500 jocuri', type: 'progress' },
+  { code: 'living_legend', name: 'Legenda Vie', emoji: 'LV', desc: 'Joaca 1000 jocuri', type: 'progress' },
+  // Speciale
+  { code: 'premium_subscriber', name: 'Abonat Premium', emoji: 'PR', desc: 'Ai abonament Premium activ', type: 'special' },
+  { code: 'multiplayer_hero', name: 'Erou Multiplayer', emoji: 'MH', desc: 'Termini top 3 in jocul multiplayer', type: 'special' },
+  { code: 'whole_world', name: 'Lume Intreaga', emoji: 'LI', desc: 'Castiga diplome la toate cele 10 capitole', type: 'special' },
+  // BAC extreme
+  { code: 'bac_extreme_master', name: 'Maestru BAC Extreme', emoji: 'BX', desc: 'Termini 25 variante BAC cu peste 80%', type: 'bac' },
 ];
 
 export default function Diplome() {
@@ -185,8 +201,38 @@ export default function Diplome() {
       </div>
 
       <h2 style={{color:'var(--primary-dark)', marginBottom:'1rem'}}>Diplome cumulative (puncte)</h2>
-      <div style={{display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(280px, 1fr))', gap:'1rem'}}>
+      <div style={{display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(280px, 1fr))', gap:'1rem', marginBottom:'2.5rem'}}>
         {ALL_DIPLOMAS.filter(d => d.type === 'cumulative').map(d => {
+          const e = isEarned(d.code);
+          return (
+            <DiplomaCard key={d.code} diploma={d} earned={e} onDownload={() => e && downloadPDF(e)} />
+          );
+        })}
+      </div>
+
+      <h2 style={{color:'var(--primary-dark)', marginBottom:'1rem'}}>📈 Diplome de progres (jocuri jucate)</h2>
+      <div style={{display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(280px, 1fr))', gap:'1rem', marginBottom:'2.5rem'}}>
+        {ALL_DIPLOMAS.filter(d => d.type === 'progress').map(d => {
+          const e = isEarned(d.code);
+          return (
+            <DiplomaCard key={d.code} diploma={d} earned={e} onDownload={() => e && downloadPDF(e)} />
+          );
+        })}
+      </div>
+
+      <h2 style={{color:'var(--primary-dark)', marginBottom:'1rem'}}>✨ Diplome speciale</h2>
+      <div style={{display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(280px, 1fr))', gap:'1rem', marginBottom:'2.5rem'}}>
+        {ALL_DIPLOMAS.filter(d => d.type === 'special').map(d => {
+          const e = isEarned(d.code);
+          return (
+            <DiplomaCard key={d.code} diploma={d} earned={e} onDownload={() => e && downloadPDF(e)} />
+          );
+        })}
+      </div>
+
+      <h2 style={{color:'var(--primary-dark)', marginBottom:'1rem'}}>🎓 Diplome BAC</h2>
+      <div style={{display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(280px, 1fr))', gap:'1rem'}}>
+        {ALL_DIPLOMAS.filter(d => d.type === 'bac').map(d => {
           const e = isEarned(d.code);
           return (
             <DiplomaCard key={d.code} diploma={d} earned={e} onDownload={() => e && downloadPDF(e)} />

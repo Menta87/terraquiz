@@ -251,6 +251,7 @@ export default function PlayQuiz() {
   }
 
   async function checkAndAwardDiplomas(session, totalScore, finalCorrect, total) {
+    // Pas 1: Verific diploma de capitol (logica veche - rapida)
     const pct = Math.round((finalCorrect / total) * 100);
     let awarded = null;
     if (chapter && pct >= 80) {
@@ -266,18 +267,27 @@ export default function PlayQuiz() {
         }
       }
     }
-    for (const cd of CUMULATIVE_DIPLOMAS) {
-      if (totalScore >= cd.threshold) {
-        const { data: existing } = await supabase.from('diplomas').select('id').eq('user_id', session.user.id).eq('diploma_code', cd.code).maybeSingle();
-        if (!existing) {
-          const { data } = await supabase.from('diplomas').insert({
-            user_id: session.user.id, diploma_code: cd.code, diploma_name: cd.name,
-            diploma_emoji: cd.emoji, diploma_type: 'cumulative', earned_score: totalScore
-          }).select().single();
-          if (data && !awarded) awarded = data;
-        }
+    
+    // Pas 2: Cheam RPC pentru toate diplomele (cumulative, progres, speciale, BAC)
+    try {
+      const { data: rpcResult } = await supabase.rpc('check_and_award_diplomas', {
+        p_user_id: session.user.id
+      });
+      // Daca RPC a acordat diplome si nu avem una "primara" la capitol, arata prima din RPC
+      if (rpcResult && rpcResult.awarded && rpcResult.awarded.length > 0 && !awarded) {
+        const firstNew = rpcResult.awarded[0];
+        awarded = {
+          diploma_code: firstNew.code,
+          diploma_name: firstNew.name,
+          diploma_emoji: firstNew.emoji,
+          earned_score: totalScore,
+          earned_at: new Date().toISOString()
+        };
       }
+    } catch (e) {
+      console.error('RPC diplome eroare:', e);
     }
+    
     return awarded;
   }
 
