@@ -145,9 +145,20 @@ export default function Diplome() {
       doc.setFontSize(12);
       doc.setTextColor(146, 64, 14);
       doc.setFont('helvetica', 'normal');
-      const scoreText = diploma.diploma_type === 'cumulative' 
-        ? 'cu un total de ' + diploma.earned_score + ' puncte'
-        : 'cu o acuratete de ' + diploma.earned_score + '%';
+      let scoreText = '';
+      if (diploma.diploma_type === 'chapter') {
+        scoreText = 'cu o acuratete de ' + diploma.earned_score + '%';
+      } else if (diploma.diploma_type === 'cumulative') {
+        scoreText = 'cu un total de ' + diploma.earned_score + ' puncte';
+      } else if (diploma.diploma_type === 'progress') {
+        scoreText = 'pentru dedicare si perseverenta';
+      } else if (diploma.diploma_type === 'special') {
+        scoreText = 'pentru realizare deosebita';
+      } else if (diploma.diploma_type === 'bac') {
+        scoreText = 'pentru maiestrie la variantele BAC';
+      } else {
+        scoreText = 'pentru rezultate excelente';
+      }
       doc.text(scoreText, 148.5, 145, { align: 'center' });
     }
     
