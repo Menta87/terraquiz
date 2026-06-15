@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+// Nota: limita zilnica de jocuri (FREE = 20, Premium = nelimitat)
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { supabase } from '../../lib/supabase';
@@ -187,6 +188,8 @@ export default function PlayQuiz() {
   const [loading, setLoading] = useState(true);
   const [finished, setFinished] = useState(false);
   const [startTime, setStartTime] = useState(Date.now());
+  const [dailyLimitReached, setDailyLimitReached] = useState(null);
+  const [dailyLimitInfo, setDailyLimitInfo] = useState(null);
   const [newDiploma, setNewDiploma] = useState(null);
   const [challengeId, setChallengeId] = useState(null);
   const [creatingChallenge, setCreatingChallenge] = useState(false);
@@ -196,6 +199,23 @@ export default function PlayQuiz() {
   async function loadQuiz() {
     const { data: chap } = await supabase.from('chapters').select('*').eq('id', chapterId).single();
     setChapter(chap);
+    
+    // VERIFICARE LIMITA ZILNICA (doar pentru quiz-urile non-Bacalaureat)
+    // Bacalaureat (chapter_id=13) are propriul sistem Premium (Var 6+)
+    const isBacalaureat = parseInt(chapterId) === 13;
+    if (!isBacalaureat) {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session) {
+        const { data: limitData } = await supabase.rpc('count_daily_games', { p_user_id: session.user.id });
+        if (limitData && limitData.is_limited) {
+          setDailyLimitReached(limitData);
+          setLoading(false);
+          return;
+        }
+        if (limitData) setDailyLimitInfo(limitData);
+      }
+    }
+    
     const { data: qs } = await supabase.from('questions').select('*').eq('chapter_id', chapterId);
     if (qs && qs.length > 0) {
       const shuffled = [...qs].sort(() => Math.random() - 0.5).slice(0, QUESTION_COUNT);
@@ -331,6 +351,40 @@ export default function PlayQuiz() {
     
     if (!error) setChallengeId(id);
     setCreatingChallenge(false);
+  }
+
+  // ECRAN LIMITA ZILNICA - apare pentru FREE users care au depasit 20 jocuri/zi
+  if (dailyLimitReached) {
+    return (
+      <div style={{minHeight:'80vh', display:'flex', alignItems:'center', justifyContent:'center', padding:'2rem 1.5rem', background:'linear-gradient(135deg, #fef3c7, #fde68a)'}}>
+        <div style={{maxWidth:'500px', width:'100%', background:'white', borderRadius:'20px', padding:'2.5rem', textAlign:'center', boxShadow:'0 10px 40px rgba(0,0,0,0.15)'}}>
+          <div style={{fontSize:'5rem'}}>⏰</div>
+          <h1 style={{color:'#1e293b', marginTop:'1rem', fontSize:'1.8rem'}}>Limita zilnică atinsă</h1>
+          <p style={{color:'#475569', fontSize:'1.05rem', marginTop:'1rem', lineHeight:1.6}}>
+            Ai jucat <strong>{dailyLimitReached.games_today} din {dailyLimitReached.daily_limit}</strong> quiz-uri permise astăzi pentru utilizatorii gratuiți.
+          </p>
+          <div style={{background:'linear-gradient(135deg, #8b5cf6, #6d28d9)', color:'white', borderRadius:'16px', padding:'1.5rem', marginTop:'1.5rem', boxShadow:'0 8px 24px rgba(139, 92, 246, 0.4)'}}>
+            <div style={{fontSize:'2.5rem'}}>👑</div>
+            <h2 style={{margin:'0.5rem 0', fontSize:'1.4rem'}}>Treci la Premium</h2>
+            <p style={{fontSize:'0.95rem', opacity:0.95, marginBottom:'1.5rem'}}>
+              ✅ Jocuri NELIMITATE<br/>
+              ✅ Toate cele 50 variante BAC<br/>
+              ✅ Doar 9.90 RON/lună sau 79 RON/an
+            </p>
+            <Link href="/premium" style={{display:'inline-block', background:'white', color:'#6d28d9', padding:'0.85rem 2rem', borderRadius:'10px', fontWeight:800, fontSize:'1.05rem', textDecoration:'none'}}>
+              👑 Vezi Premium
+            </Link>
+          </div>
+          <p style={{color:'#64748b', fontSize:'0.9rem', marginTop:'1.5rem'}}>
+            🌙 Sau revino mâine - limita se resetează la miezul nopții!
+          </p>
+          <div style={{marginTop:'1.5rem', display:'flex', gap:'0.75rem', justifyContent:'center'}}>
+            <Link href="/" style={{padding:'0.75rem 1.25rem', background:'#f1f5f9', color:'#475569', borderRadius:'10px', textDecoration:'none', fontWeight:600}}>← Acasă</Link>
+            <Link href="/multiplayer" style={{padding:'0.75rem 1.25rem', background:'linear-gradient(135deg, #10b981, #059669)', color:'white', borderRadius:'10px', textDecoration:'none', fontWeight:700}}>🎮 Joacă Multiplayer</Link>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   if (loading) return <div className="loading container">Se incarca intrebarile...</div>;
