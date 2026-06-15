@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { supabase } from '../../../lib/supabase';
+import { safePlay, playCorrect, playWrong, playSubmit, playTimeUp, playGameStart, playVictory } from '../../../lib/sounds';
 
 export default function PlayerRoom() {
   const router = useRouter();
@@ -16,6 +17,7 @@ export default function PlayerRoom() {
   const [isCorrect, setIsCorrect] = useState(null);
   const [pointsEarned, setPointsEarned] = useState(0);
   const [questionStartTime, setQuestionStartTime] = useState(null);
+  const [hasPlayedResultSound, setHasPlayedResultSound] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const channelRef = useRef(null);
@@ -115,6 +117,28 @@ export default function PlayerRoom() {
     return () => { if (channelRef.current) supabase.removeChannel(channelRef.current); };
   }, []);
 
+  // Sunete: la reveal cantam corect/gresit, la timp expirat - timeUp, la finished - victory
+  useEffect(() => {
+    if (!room) return;
+    if (room.status === 'finished' && !hasPlayedResultSound) {
+      safePlay(playVictory);
+      setHasPlayedResultSound(true);
+      return;
+    }
+    if (room.show_results && !hasPlayedResultSound && room.status === 'playing') {
+      if (hasAnswered) {
+        safePlay(isCorrect ? playCorrect : playWrong);
+      } else {
+        safePlay(playTimeUp);
+      }
+      setHasPlayedResultSound(true);
+    }
+    // Reset cand vine intrebare noua
+    if (room.status === 'playing' && !room.show_results && hasPlayedResultSound) {
+      setHasPlayedResultSound(false);
+    }
+  }, [room?.show_results, room?.status, isCorrect, hasAnswered, hasPlayedResultSound]);
+
   async function submitAnswer(answer) {
     if (hasAnswered || !currentQuestion || !room || room.show_results) return;
     
@@ -130,6 +154,7 @@ export default function PlayerRoom() {
     
     setHasAnswered(true);
     setSelectedAnswer(answer);
+    safePlay(playSubmit);
     const answerTimeMs = Date.now() - questionStartTime;
     const timeBonus = Math.max(0, 30 - Math.floor(answerTimeMs / 1000));
     let correct = false;

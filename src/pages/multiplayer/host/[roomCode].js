@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { supabase } from '../../../lib/supabase';
+import { safePlay, playGameStart, playNextQuestion, playVictory } from '../../../lib/sounds';
 
 const TIME_PER_QUESTION = 30;
 
@@ -83,6 +84,7 @@ export default function HostRoom() {
     setAnswersForQuestion([]);
     setTimeLeft(TIME_PER_QUESTION);
     setStage('question');
+    safePlay(playGameStart);
   }
 
   async function nextQuestion() {
@@ -90,6 +92,7 @@ export default function HostRoom() {
     if (nextIdx >= questions.length) {
       await supabase.from('multiplayer_rooms').update({ status: 'finished' }).eq('id', room.id);
       setStage('finished');
+      safePlay(playVictory);
       return;
     }
     const now = new Date().toISOString();
@@ -99,6 +102,7 @@ export default function HostRoom() {
     setAnswersForQuestion([]);
     setTimeLeft(TIME_PER_QUESTION);
     setStage('question');
+    safePlay(playNextQuestion);
   }
 
   const sortedPlayers = [...players].sort((a, b) => b.score - a.score);
