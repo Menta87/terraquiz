@@ -57,6 +57,7 @@ export default async function handler(req, res) {
     const subject = '📢 Schimbare importantă pe TerraQuiz - vă explicăm';
     let sentCount = 0;
     let errorCount = 0;
+    let lastError = null;
 
     for (let i = 0; i < recipients.length; i += 25) {
       const batch = recipients.slice(i, i + 25);
@@ -76,15 +77,24 @@ export default async function handler(req, res) {
       });
 
       try {
-        const { error } = await resend.batch.send(emails);
-        if (error) errorCount += batch.length;
-        else sentCount += batch.length;
-      } catch (e) { errorCount += batch.length; }
+        const { data, error } = await resend.batch.send(emails);
+        if (error) {
+          errorCount += batch.length;
+          console.error('Resend batch error:', JSON.stringify(error));
+          lastError = error.message || JSON.stringify(error);
+        } else {
+          sentCount += batch.length;
+        }
+      } catch (e) { 
+        errorCount += batch.length;
+        console.error('Catch error:', e.message);
+        lastError = e.message;
+      }
 
       await new Promise(r => setTimeout(r, 1200));
     }
 
-    res.status(200).json({ sent: sentCount, failed: errorCount, total: recipients.length, testMode: !!testMode });
+    res.status(200).json({ sent: sentCount, failed: errorCount, total: recipients.length, testMode: !!testMode, lastError: lastError || null, sampleRecipients: recipients.slice(0, 3).map(r => r.email) });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
