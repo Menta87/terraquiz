@@ -20,7 +20,7 @@ const CHAPTER_GRADIENTS = {
 export default function Home() {
   const [chapters, setChapters] = useState([]);
   const [chapterCounts, setChapterCounts] = useState({});
-  const [stats, setStats] = useState({ totalQuestions: 0, totalChapters: 0, totalPlayers: 0, totalDiplomas: 14 });
+  const [stats, setStats] = useState({ totalQuestions: 0, totalChapters: 0, totalPlayers: 0, totalDiplomas: 26, totalSchoolQuestions: 0, totalSchoolChapters: 0, totalBacVariants: 50 });
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
@@ -29,11 +29,13 @@ export default function Home() {
   }, []);
 
   async function loadAll() {
-    const [chaptersRes, countsRes, totalCount, playersCount] = await Promise.all([
+    const [chaptersRes, countsRes, totalCount, playersCount, schoolQuestionsCount, schoolChaptersCount] = await Promise.all([
       supabase.from('chapters').select('*').order('order_num'),
       supabase.rpc('get_chapter_counts'),
       supabase.from('questions').select('*', { count: 'exact', head: true }),
       supabase.from('profiles').select('*', { count: 'exact', head: true }),
+      supabase.from('school_questions').select('*', { count: 'exact', head: true }),
+      supabase.from('school_chapters').select('*', { count: 'exact', head: true }),
     ]);
     
     const counts = {};
@@ -49,10 +51,13 @@ export default function Home() {
     if (chaptersRes.data) setChapters(chaptersRes.data);
     setChapterCounts(counts);
     setStats({
-      totalQuestions: totalCount.count || 0,
+      totalQuestions: (totalCount.count || 0) + (schoolQuestionsCount.count || 0),
       totalChapters: chaptersRes.data?.length || 0,
       totalPlayers: playersCount.count || 0,
-      totalDiplomas: 14,
+      totalDiplomas: 26,
+      totalSchoolQuestions: schoolQuestionsCount.count || 0,
+      totalSchoolChapters: schoolChaptersCount.count || 0,
+      totalBacVariants: 50,
     });
     setLoading(false);
   }
@@ -81,7 +86,7 @@ export default function Home() {
           <div style={{fontSize:'5rem', marginBottom:'0.5rem', filter:'drop-shadow(0 4px 8px rgba(0,0,0,0.3))'}}>🌍</div>
           <h1 style={{fontSize:'3.5rem', fontWeight:900, marginBottom:'1rem', letterSpacing:'-1px'}}>TerraQuiz</h1>
           <p style={{fontSize:'1.3rem', opacity:0.95, maxWidth:'700px', margin:'0 auto 3rem', lineHeight:1.6}}>
-            Aplicatie educationala de geografie cu peste {stats.totalQuestions} de intrebari, harti interactive si diplome
+            Aplicatie educationala de geografie cu peste {stats.totalQuestions} de intrebari, 50 variante BAC, programa scolara V-XII, multiplayer si diplome
           </p>
           
           <div style={{
@@ -92,9 +97,11 @@ export default function Home() {
             margin:'0 auto',
           }}>
             <StatCard num={stats.totalQuestions} label="Intrebari" icon="📝" />
-            <StatCard num={stats.totalChapters} label="Capitole" icon="📚" />
+            <StatCard num={stats.totalBacVariants} label="Variante BAC" icon="🎓" />
+            <StatCard num={8} label="Clase scoala" icon="🏫" />
             <StatCard num={stats.totalDiplomas} label="Diplome" icon="🏆" />
             <StatCard num={stats.totalPlayers} label="Jucatori" icon="👥" />
+            <StatCard num={stats.totalSchoolChapters + stats.totalChapters} label="Capitole" icon="📚" />
           </div>
         </div>
       </section>
@@ -138,6 +145,60 @@ export default function Home() {
             >
               🚀 Intra in modul Multiplayer
             </a>
+          </div>
+        </div>
+      </section>
+
+      <section style={{
+        background:'linear-gradient(135deg, #f59e0b 0%, #d97706 50%, #b45309 100%)',
+        padding:'3rem 0',
+      }}>
+        <div className="container">
+          <div style={{
+            background:'rgba(255,255,255,0.15)',
+            backdropFilter:'blur(10px)',
+            border:'2px solid rgba(255,255,255,0.3)',
+            borderRadius:'24px',
+            padding:'2.5rem 2rem',
+            textAlign:'center',
+            color:'white',
+            boxShadow:'0 20px 60px rgba(0,0,0,0.2)',
+          }}>
+            <div style={{fontSize:'4rem', marginBottom:'0.5rem'}}>🏫</div>
+            <h2 style={{fontSize:'2.2rem', fontWeight:900, marginBottom:'0.75rem', letterSpacing:'-0.5px'}}>
+              Programa scolara V-XII
+            </h2>
+            <p style={{fontSize:'1.15rem', opacity:0.95, maxWidth:'700px', margin:'0 auto 2rem', lineHeight:1.5}}>
+              {stats.totalSchoolQuestions} intrebari Premium pe programa oficiala (OM 3393/2017), pentru toate cele 8 clase. {stats.totalSchoolChapters} capitole, cu explicatii educative la fiecare intrebare.
+            </p>
+            <div style={{display:'flex',gap:'1rem',justifyContent:'center',flexWrap:'wrap'}}>
+              <a href="/scoala" style={{
+                display:'inline-block',
+                background:'white',
+                color:'#b45309',
+                padding:'1rem 2rem',
+                borderRadius:'12px',
+                fontWeight:800,
+                fontSize:'1.05rem',
+                textDecoration:'none',
+                boxShadow:'0 8px 24px rgba(0,0,0,0.25)',
+              }}>
+                🏫 Vezi clasele V-XII
+              </a>
+              <a href="/premium" style={{
+                display:'inline-block',
+                background:'linear-gradient(135deg, #8b5cf6, #6d28d9)',
+                color:'white',
+                padding:'1rem 2rem',
+                borderRadius:'12px',
+                fontWeight:800,
+                fontSize:'1.05rem',
+                textDecoration:'none',
+                boxShadow:'0 8px 24px rgba(0,0,0,0.25)',
+              }}>
+                👑 Devino Premium
+              </a>
+            </div>
           </div>
         </div>
       </section>
