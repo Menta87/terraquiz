@@ -138,6 +138,15 @@ export default function PlayerRoom() {
             });
             // Update streak (zile consecutive de joc)
             await supabase.rpc('update_user_streak', { p_user_id: session.user.id });
+            // Update progres challenge zilnic
+            const { data: chData } = await supabase.rpc('update_daily_challenge_progress', {
+              p_user_id: session.user.id,
+              p_event_type: 'game_multi',
+              p_score_pct: null
+            });
+            if (chData && chData.just_completed) {
+              alert('🎉 Challenge completat: ' + chData.name + ' - ' + chData.reward + ' puncte bonus!');
+            }
           }
         } catch (e) { console.error('Weekly score error:', e); }
       })();

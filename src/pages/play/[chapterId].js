@@ -188,6 +188,7 @@ export default function PlayQuiz() {
   const [loading, setLoading] = useState(true);
   const [finished, setFinished] = useState(false);
   const [streakInfo, setStreakInfo] = useState(null);
+  const [challengeCompleted, setChallengeCompleted] = useState(null);
   const [startTime, setStartTime] = useState(Date.now());
   const [dailyLimitReached, setDailyLimitReached] = useState(null);
   const [dailyLimitInfo, setDailyLimitInfo] = useState(null);
@@ -335,6 +336,16 @@ export default function PlayQuiz() {
       const { data: streakData } = await supabase.rpc('update_user_streak', { p_user_id: session.user.id });
       if (streakData && streakData.is_new_record && streakData.current_streak >= 3) {
         setStreakInfo(streakData);
+      }
+      // Update progres challenge zilnic
+      const pct = Math.round((correct / questions.length) * 100);
+      const { data: chData } = await supabase.rpc('update_daily_challenge_progress', {
+        p_user_id: session.user.id,
+        p_event_type: 'game_solo',
+        p_score_pct: pct
+      });
+      if (chData && chData.just_completed) {
+        setChallengeCompleted(chData);
       }
     } catch (e) { console.error('Streak error:', e); }
   }

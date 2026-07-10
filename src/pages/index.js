@@ -21,6 +21,7 @@ export default function Home() {
   const [chapters, setChapters] = useState([]);
   const [chapterCounts, setChapterCounts] = useState({});
   const [stats, setStats] = useState({ totalQuestions: 0, totalChapters: 0, totalPlayers: 0, totalDiplomas: 26, totalSchoolQuestions: 0, totalSchoolChapters: 0, totalBacVariants: 50 });
+  const [dailyChallenge, setDailyChallenge] = useState(null);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
@@ -50,6 +51,14 @@ export default function Home() {
     
     if (chaptersRes.data) setChapters(chaptersRes.data);
     setChapterCounts(counts);
+    // Load challenge zilnic (doar user autentificat)
+    const { data: { session } } = await supabase.auth.getSession();
+    if (session) {
+      try {
+        const { data: chData } = await supabase.rpc('get_or_create_daily_challenge', { p_user_id: session.user.id });
+        if (chData) setDailyChallenge(chData);
+      } catch (e) { console.error('Challenge error:', e); }
+    }
     setStats({
       totalQuestions: (totalCount.count || 0) + (schoolQuestionsCount.count || 0),
       totalChapters: chaptersRes.data?.length || 0,
@@ -106,6 +115,42 @@ export default function Home() {
         </div>
       </section>
 
+      {dailyChallenge && (
+        <section style={{background:'white', padding:'2rem 1rem', borderTop:'3px solid #f97316'}}>
+          <div className="container" style={{maxWidth:'600px'}}>
+            <div style={{
+              background: dailyChallenge.completed 
+                ? 'linear-gradient(135deg, #22c55e, #16a34a)'
+                : 'linear-gradient(135deg, #fef3c7, #fde68a)',
+              padding:'1.5rem',
+              borderRadius:'20px',
+              boxShadow:'0 8px 24px rgba(249,115,22,0.15)',
+              border: dailyChallenge.completed ? '2px solid #16a34a' : '2px solid #f59e0b'
+            }}>
+              <div style={{display:'flex', alignItems:'center', gap:'1rem'}}>
+                <div style={{fontSize:'3rem'}}>{dailyChallenge.emoji}</div>
+                <div style={{flex:1}}>
+                  <div style={{fontSize:'0.85rem', color: dailyChallenge.completed ? 'white' : '#92400e', fontWeight:700, textTransform:'uppercase', letterSpacing:'1px'}}>
+                    {dailyChallenge.completed ? '✓ Challenge completat!' : '🎯 Challenge-ul de azi'}
+                  </div>
+                  <div style={{fontSize:'1.15rem', fontWeight:800, color: dailyChallenge.completed ? 'white' : '#78350f', marginTop:'0.25rem'}}>
+                    {dailyChallenge.name}
+                  </div>
+                  <div style={{marginTop:'0.75rem'}}>
+                    <div style={{background:'rgba(255,255,255,0.4)', height:'10px', borderRadius:'5px', overflow:'hidden'}}>
+                      <div style={{background: dailyChallenge.completed ? 'white' : '#f97316', height:'100%', width: Math.min(100, (dailyChallenge.progress / dailyChallenge.target) * 100) + '%', transition:'width 0.5s'}}></div>
+                    </div>
+                    <div style={{display:'flex', justifyContent:'space-between', marginTop:'0.5rem', fontSize:'0.85rem', fontWeight:700, color: dailyChallenge.completed ? 'white' : '#92400e'}}>
+                      <span>{dailyChallenge.progress}/{dailyChallenge.target}</span>
+                      <span>+{dailyChallenge.reward} puncte</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
          <section style={{
         background:'linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%)',
         padding:'3rem 0',
