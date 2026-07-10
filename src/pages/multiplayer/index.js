@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { supabase } from '../../lib/supabase';
+import { useEffect } from 'react';
 
 const CHAPTERS_LIST = [
   { id: 1, name: 'Geografie Generala', emoji: '🌍' },
@@ -27,6 +28,22 @@ export default function MultiplayerHome() {
   const [questionCount, setQuestionCount] = useState(10);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [savedRooms, setSavedRooms] = useState([]);
+  const [isTeacher, setIsTeacher] = useState(false);
+  const [showSaveDialog, setShowSaveDialog] = useState(false);
+  const [saveRoomName, setSaveRoomName] = useState('');
+  const [pendingRoom, setPendingRoom] = useState(null);
+  
+  useEffect(() => {
+    (async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session) {
+        setIsTeacher(true);
+        const { data: rooms } = await supabase.from('teacher_rooms').select('*').eq('user_id', session.user.id).order('last_used_at', { ascending: false, nullsFirst: false }).limit(5);
+        setSavedRooms(rooms || []);
+      }
+    })();
+  }, []);
 
   function generateRoomCode() {
     return Math.floor(100000 + Math.random() * 900000).toString();
@@ -89,7 +106,58 @@ export default function MultiplayerHome() {
       return;
     }
 
+    // Ofer optiune de salvare template daca nu e deja salvat cu aceste setari
+    const alreadySaved = savedRooms.some(r => r.chapter_id === selectedChapter && r.question_count === questionCount);
+    if (isTeacher && !alreadySaved && savedRooms.length < 10) {
+      setPendingRoom({ code, chapter, chapter_id: selectedChapter, question_count: questionCount });
+      setShowSaveDialog(true);
+      setLoading(false);
+      return;
+    }
+    // Update last_used pentru template existent
+    if (alreadySaved) {
+      const existingTemplate = savedRooms.find(r => r.chapter_id === selectedChapter && r.question_count === questionCount);
+      if (existingTemplate) {
+        await supabase.from('teacher_rooms').update({ 
+          times_used: existingTemplate.times_used + 1,
+          last_used_at: new Date().toISOString()
+        }).eq('id', existingTemplate.id);
+      }
+    }
     router.push(`/multiplayer/host/${code}`);
+  }
+
+  async function saveTemplate() {
+    if (!pendingRoom || !saveRoomName.trim()) return;
+    const { data: { session } } = await supabase.auth.getSession();
+    await supabase.from('teacher_rooms').insert({
+      user_id: session.user.id,
+      room_name: saveRoomName.trim(),
+      chapter_id: pendingRoom.chapter_id,
+      question_count: pendingRoom.question_count,
+      times_used: 1,
+      last_used_at: new Date().toISOString()
+    });
+    setShowSaveDialog(false);
+    router.push(`/multiplayer/host/${pendingRoom.code}`);
+  }
+
+  function skipSave() {
+    setShowSaveDialog(false);
+    router.push(`/multiplayer/host/${pendingRoom.code}`);
+  }
+
+  async function useTemplate(template) {
+    setSelectedChapter(template.chapter_id);
+    setQuestionCount(template.question_count);
+    // Auto-scroll pentru feedback vizual
+    window.scrollTo({ top: 300, behavior: 'smooth' });
+  }
+
+  async function deleteTemplate(templateId) {
+    if (!confirm('Sigur vrei sa stergi acest template?')) return;
+    await supabase.from('teacher_rooms').delete().eq('id', templateId);
+    setSavedRooms(savedRooms.filter(r => r.id !== templateId));
   }
 
   async function joinRoom() {
@@ -225,6 +293,35 @@ export default function MultiplayerHome() {
             <h1 style={{fontSize:'2rem'}}>👨‍🏫 Creeaza camera</h1>
             <p style={{opacity:0.9}}>Alege capitolul si numarul de intrebari</p>
           </div>
+          {savedRooms.length > 0 && (
+            <div style={{background:'linear-gradient(135deg, #fef3c7, #fde68a)', borderRadius:'16px', padding:'1.25rem', marginBottom:'1rem', border:'2px solid #f59e0b'}}>
+              <div style={{fontWeight:800, color:'#78350f', marginBottom:'0.75rem', fontSize:'0.95rem'}}>⭐ Camerele mele salvate</div>
+              <div style={{display:'flex', flexDirection:'column', gap:'0.5rem'}}>
+                {savedRooms.map(t => (
+                  <div key={t.id} style={{background:'white', padding:'0.75rem 1rem', borderRadius:'10px', display:'flex', alignItems:'center', gap:'0.75rem', boxShadow:'0 2px 6px rgba(0,0,0,0.08)'}}>
+                    <div style={{fontSize:'1.5rem'}}>{t.room_emoji || '🏫'}</div>
+                    <div style={{flex:1}}>
+                      <div style={{fontWeight:700, color:'#1e293b', fontSize:'0.95rem'}}>{t.room_name}</div>
+                      <div style={{fontSize:'0.75rem', color:'#64748b'}}>{t.question_count} intrebari • folosit {t.times_used}x</div>
+                    </div>
+                    <button onClick={() => useTemplate(t)} style={{padding:'0.5rem 0.9rem', background:'linear-gradient(135deg, #8b5cf6, #6d28d9)', color:'white', border:'none', borderRadius:'8px', fontWeight:700, cursor:'pointer', fontSize:'0.85rem'}}>Folosește</button>
+                    <button onClick={() => deleteTemplate(t.id)} style={{padding:'0.5rem 0.7rem', background:'#fee2e2', color:'#991b1b', border:'none', borderRadius:'8px', fontWeight:700, cursor:'pointer', fontSize:'0.85rem'}}>×</button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+          {showSaveDialog && (
+            <div style={{background:'linear-gradient(135deg, #ddd6fe, #c4b5fd)', borderRadius:'16px', padding:'1.5rem', marginBottom:'1rem', border:'2px solid #8b5cf6'}}>
+              <div style={{fontWeight:800, color:'#5b21b6', marginBottom:'0.75rem', fontSize:'1rem'}}>💾 Salvează ca template?</div>
+              <div style={{color:'#5b21b6', fontSize:'0.9rem', marginBottom:'1rem'}}>Vei putea folosi rapid data viitoare fără să alegi setările din nou.</div>
+              <input type="text" placeholder='Ex: Clasa 12A - BAC' value={saveRoomName} onChange={e => setSaveRoomName(e.target.value)} style={{width:'100%', padding:'0.75rem', border:'2px solid #8b5cf6', borderRadius:'8px', marginBottom:'0.75rem', fontSize:'1rem'}} autoFocus />
+              <div style={{display:'flex', gap:'0.5rem'}}>
+                <button onClick={saveTemplate} disabled={!saveRoomName.trim()} style={{flex:1, padding:'0.85rem', background: saveRoomName.trim() ? 'linear-gradient(135deg, #8b5cf6, #6d28d9)' : '#e2e8f0', color: saveRoomName.trim() ? 'white' : '#94a3b8', border:'none', borderRadius:'10px', fontWeight:700, cursor: saveRoomName.trim() ? 'pointer' : 'not-allowed'}}>💾 Salvează</button>
+                <button onClick={skipSave} style={{flex:1, padding:'0.85rem', background:'white', color:'#5b21b6', border:'2px solid #8b5cf6', borderRadius:'10px', fontWeight:700, cursor:'pointer'}}>Sari peste</button>
+              </div>
+            </div>
+          )}
           <div style={{background:'white', borderRadius:'20px', padding:'2rem', boxShadow:'0 10px 40px rgba(0,0,0,0.2)'}}>
             <div style={{marginBottom:'1.5rem'}}>
               <label style={{fontWeight:600, color:'#1e293b', marginBottom:'0.5rem', display:'block'}}>Capitol:</label>
