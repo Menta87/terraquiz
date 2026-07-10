@@ -160,6 +160,55 @@ export default function MultiplayerHome() {
     setSavedRooms(savedRooms.filter(r => r.id !== templateId));
   }
 
+  async function createDuel() {
+    setLoading(true);
+    setError('');
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session) {
+      setError('Trebuie sa fii autentificat pentru duel.');
+      setLoading(false);
+      return;
+    }
+    const { data: profile } = await supabase.from('profiles').select('username').eq('id', session.user.id).single();
+    const hostName = profile?.username || 'Jucator';
+    const chapter = CHAPTERS_LIST.find(c => c.id === selectedChapter);
+    const { data: questions } = await supabase.from('questions').select('id').eq('chapter_id', selectedChapter);
+    if (!questions || questions.length < 10) {
+      setError('Nu exista suficient intrebari pentru duel (min 10).');
+      setLoading(false);
+      return;
+    }
+    const shuffled = [...questions].sort(() => Math.random() - 0.5).slice(0, 10);
+    const questionIds = shuffled.map(q => q.id);
+    let code = generateRoomCode();
+    let attempts = 0;
+    while (attempts < 5) {
+      const { data: existing } = await supabase.from('multiplayer_rooms').select('id').eq('room_code', code).maybeSingle();
+      if (!existing) break;
+      code = generateRoomCode();
+      attempts++;
+    }
+    const { data: room, error: roomError } = await supabase.from('multiplayer_rooms').insert({
+      room_code: code,
+      host_id: session.user.id,
+      host_name: hostName,
+      chapter_id: selectedChapter,
+      chapter_name: chapter.name,
+      chapter_emoji: chapter.emoji,
+      question_count: 10,
+      question_ids: questionIds,
+      status: 'waiting',
+      is_duel: true,
+      max_players: 2
+    }).select().single();
+    if (roomError) {
+      setError('Eroare la crearea duelului: ' + roomError.message);
+      setLoading(false);
+      return;
+    }
+    router.push(`/multiplayer/host/${code}`);
+  }
+
   async function joinRoom() {
     setLoading(true);
     setError('');
@@ -273,6 +322,9 @@ export default function MultiplayerHome() {
             <button onClick={() => setMode('create')} style={{width:'100%', padding:'1.5rem', background:'linear-gradient(135deg, #8b5cf6, #6d28d9)', color:'white', border:'none', borderRadius:'12px', fontSize:'1.2rem', fontWeight:700, cursor:'pointer', marginBottom:'1rem', boxShadow:'0 4px 12px rgba(139, 92, 246, 0.4)'}}>
               👨‍🏫 Creeaza camera (host)
             </button>
+            <button onClick={() => setMode('duel')} style={{width:'100%', padding:'1.5rem', background:'linear-gradient(135deg, #dc2626, #b91c1c)', color:'white', border:'none', borderRadius:'12px', fontSize:'1.2rem', fontWeight:700, cursor:'pointer', marginBottom:'1rem', boxShadow:'0 4px 12px rgba(220, 38, 38, 0.4)'}}>
+              ⚔️ Duel 1v1 rapid
+            </button>
             <button onClick={() => setMode('join')} style={{width:'100%', padding:'1.5rem', background:'linear-gradient(135deg, #10b981, #059669)', color:'white', border:'none', borderRadius:'12px', fontSize:'1.2rem', fontWeight:700, cursor:'pointer', boxShadow:'0 4px 12px rgba(16, 185, 129, 0.4)'}}>
               🎯 Intra cu cod
             </button>
@@ -285,7 +337,45 @@ export default function MultiplayerHome() {
     );
   }
 
-  if (mode === 'create') {
+  if (mode === 'duel') {
+    return (
+      <div style={{minHeight:'80vh', padding:'2rem 1.5rem', background:'linear-gradient(135deg, #dc2626 0%, #7f1d1d 100%)'}}>
+        <div style={{maxWidth:'500px', margin:'0 auto'}}>
+          <div style={{textAlign:'center', marginBottom:'2rem', color:'white'}}>
+            <div style={{fontSize:'4rem'}}>⚔️</div>
+            <h1 style={{fontSize:'2rem'}}>Duel 1v1</h1>
+            <p style={{opacity:0.9}}>10 întrebări. Cel mai bun câștigă!</p>
+          </div>
+          <div style={{background:'white', borderRadius:'20px', padding:'2rem', boxShadow:'0 10px 40px rgba(0,0,0,0.2)'}}>
+            <div style={{background:'linear-gradient(135deg, #fef3c7, #fde68a)', padding:'1rem', borderRadius:'12px', marginBottom:'1.5rem', textAlign:'center'}}>
+              <div style={{fontWeight:800, color:'#78350f', marginBottom:'0.25rem'}}>🎯 Cum funcționează</div>
+              <div style={{fontSize:'0.9rem', color:'#78350f'}}>Alegi capitol → generezi cod → prietenul intră cu codul → 10 întrebări → câștigătorul primește puncte!</div>
+            </div>
+            <div style={{marginBottom:'1.5rem'}}>
+              <label style={{fontWeight:600, color:'#1e293b', marginBottom:'0.5rem', display:'block'}}>Capitol:</label>
+              <div style={{display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(140px, 1fr))', gap:'0.5rem'}}>
+                {CHAPTERS_LIST.map(c => (
+                  <button key={c.id} onClick={() => setSelectedChapter(c.id)} style={{padding:'0.75rem', borderRadius:'8px', border: selectedChapter === c.id ? '2px solid #dc2626' : '2px solid #e2e8f0', background: selectedChapter === c.id ? '#fee2e2' : 'white', cursor:'pointer', fontSize:'0.9rem', fontWeight:600, color:'#1e293b'}}>
+                    <div style={{fontSize:'1.5rem'}}>{c.emoji}</div>
+                    <div>{c.name}</div>
+                  </button>
+                ))}
+              </div>
+            </div>
+            {error && <div style={{padding:'0.75rem', background:'#fee2e2', color:'#991b1b', borderRadius:'8px', marginBottom:'1rem'}}>{error}</div>}
+            <button onClick={createDuel} disabled={loading} style={{width:'100%', padding:'1rem', background:'linear-gradient(135deg, #dc2626, #b91c1c)', color:'white', border:'none', borderRadius:'12px', fontSize:'1.1rem', fontWeight:700, cursor: loading ? 'wait' : 'pointer'}}>
+              {loading ? 'Se pregatește duelul...' : '⚔️ Start Duel'}
+            </button>
+            <button onClick={() => setMode('choose')} style={{width:'100%', padding:'0.75rem', marginTop:'0.5rem', background:'transparent', color:'#64748b', border:'none', cursor:'pointer', fontSize:'0.95rem'}}>
+              ← Inapoi
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+    if (mode === 'create') {
     return (
       <div style={{minHeight:'80vh', padding:'2rem 1.5rem', background:'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'}}>
         <div style={{maxWidth:'600px', margin:'0 auto'}}>

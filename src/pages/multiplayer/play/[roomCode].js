@@ -147,6 +147,13 @@ export default function PlayerRoom() {
             if (chData && chData.just_completed) {
               alert('🎉 Challenge completat: ' + chData.name + ' - ' + chData.reward + ' puncte bonus!');
             }
+            // Register duel result daca e duel
+            if (room.is_duel) {
+              await supabase.rpc('register_duel_result', {
+                p_user_id: session.user.id,
+                p_won: isWinner
+              });
+            }
           }
         } catch (e) { console.error('Weekly score error:', e); }
       })();
@@ -246,6 +253,43 @@ export default function PlayerRoom() {
     const myRank = players.findIndex(p => p.id === player.id) + 1;
     const isWinner = myRank === 1;
     const isPodium = myRank <= 3;
+    // ECRAN SPECIAL DUEL 1v1
+    if (room.is_duel && players.length >= 2) {
+      const me = players.find(p => p.id === player.id);
+      const opponent = players.find(p => p.id !== player.id);
+      const meWon = me.score > opponent.score;
+      const draw = me.score === opponent.score;
+      return (
+        <div style={{minHeight:'90vh', padding:'2rem 1.5rem', background: meWon ? 'linear-gradient(135deg, #16a34a, #15803d)' : draw ? 'linear-gradient(135deg, #64748b, #475569)' : 'linear-gradient(135deg, #dc2626, #991b1b)'}}>
+          <div style={{maxWidth:'500px', margin:'0 auto'}}>
+            <div style={{background:'white', borderRadius:'24px', padding:'2rem', textAlign:'center'}}>
+              <div style={{fontSize:'5rem'}}>{meWon ? '🏆' : draw ? '🤝' : '⚔️'}</div>
+              <h1 style={{color: meWon ? '#16a34a' : draw ? '#475569' : '#dc2626', marginTop:'0.5rem'}}>
+                {meWon ? 'VICTORIE!' : draw ? 'Egalitate' : 'Înfrângere'}
+              </h1>
+              <div style={{background:'#f8fafc', borderRadius:'16px', padding:'1.25rem', margin:'1.5rem 0'}}>
+                <div style={{display:'grid', gridTemplateColumns:'1fr auto 1fr', gap:'0.5rem', alignItems:'center'}}>
+                  <div>
+                    <div style={{fontSize:'2rem'}}>{me.avatar_emoji}</div>
+                    <div style={{fontWeight:700, color:'#1e293b', fontSize:'0.95rem'}}>{me.nickname}</div>
+                    <div style={{fontSize:'2rem', fontWeight:900, color:'#5b21b6'}}>{me.score}</div>
+                  </div>
+                  <div style={{fontSize:'1.5rem', color:'#64748b', fontWeight:700}}>VS</div>
+                  <div>
+                    <div style={{fontSize:'2rem'}}>{opponent.avatar_emoji}</div>
+                    <div style={{fontWeight:700, color:'#1e293b', fontSize:'0.95rem'}}>{opponent.nickname}</div>
+                    <div style={{fontSize:'2rem', fontWeight:900, color:'#64748b'}}>{opponent.score}</div>
+                  </div>
+                </div>
+              </div>
+              <div style={{color:'#64748b', fontSize:'0.9rem'}}>{me.correct_answers} corecte din {room.question_count}</div>
+              <Link href="/multiplayer" style={{display:'block', textAlign:'center', padding:'1rem', marginTop:'1.5rem', background:'linear-gradient(135deg, #8b5cf6, #6d28d9)', color:'white', borderRadius:'12px', textDecoration:'none', fontWeight:700}}>⚔️ Nou duel</Link>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
     return (
       <div style={{minHeight:'90vh', padding:'2rem 1.5rem', background:'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'}}>
         <div style={{maxWidth:'500px', margin:'0 auto'}}>
