@@ -123,6 +123,22 @@ export default function PlayerRoom() {
     if (room.status === 'finished' && !hasPlayedResultSound) {
       safePlay(playVictory);
       setHasPlayedResultSound(true);
+      // Salvez scorul in leaderboard saptamanal (doar user autentificat + are scor)
+      (async () => {
+        try {
+          const { data: { session } } = await supabase.auth.getSession();
+          if (session && player && player.score > 0) {
+            const myRank = players.findIndex(p => p.id === player.id) + 1;
+            const isWinner = myRank === 1;
+            await supabase.rpc('add_weekly_score', {
+              p_user_id: session.user.id,
+              p_nickname: player.nickname,
+              p_points: player.score,
+              p_won: isWinner
+            });
+          }
+        } catch (e) { console.error('Weekly score error:', e); }
+      })();
       return;
     }
     if (room.show_results && !hasPlayedResultSound && room.status === 'playing') {
