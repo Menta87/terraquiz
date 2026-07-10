@@ -54,6 +54,8 @@ export default function Layout({ children }) {
 
                        <Link href="/leaderboard">🏆 Clasament</Link>
 
+                    <Link href="/turnee" style={{background:'linear-gradient(135deg, #dc2626, #991b1b)', color:'white', padding:'0.4rem 0.9rem', borderRadius:'8px', fontWeight:700}}>⚔️ Turnee</Link>
+
                     <Link href="/diplome">Diplome</Link>
 
             {isPremium ? (

@@ -189,6 +189,7 @@ export default function PlayQuiz() {
   const [finished, setFinished] = useState(false);
   const [streakInfo, setStreakInfo] = useState(null);
   const [challengeCompleted, setChallengeCompleted] = useState(null);
+  const [tournamentInfo, setTournamentInfo] = useState(null);
   const [startTime, setStartTime] = useState(Date.now());
   const [dailyLimitReached, setDailyLimitReached] = useState(null);
   const [dailyLimitInfo, setDailyLimitInfo] = useState(null);
@@ -347,6 +348,18 @@ export default function PlayQuiz() {
       if (chData && chData.just_completed) {
         setChallengeCompleted(chData);
       }
+      // Submit scor la turneu (dacă capitolul are turneu activ)
+      try {
+        const { data: tData } = await supabase.rpc('submit_tournament_score', {
+          p_user_id: session.user.id,
+          p_chapter_id: parseInt(chapterId),
+          p_score: score,
+          p_correct: correct
+        });
+        if (tData && tData.improved) {
+          setTournamentInfo(tData);
+        }
+      } catch (e) { console.error('Tournament error:', e); }
     } catch (e) { console.error('Streak error:', e); }
   }
 
