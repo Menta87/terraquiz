@@ -136,6 +136,8 @@ export default function PlayerRoom() {
               p_points: player.score,
               p_won: isWinner
             });
+            // Update streak (zile consecutive de joc)
+            await supabase.rpc('update_user_streak', { p_user_id: session.user.id });
           }
         } catch (e) { console.error('Weekly score error:', e); }
       })();

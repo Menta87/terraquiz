@@ -187,6 +187,7 @@ export default function PlayQuiz() {
   const [timeLeft, setTimeLeft] = useState(TIME_PER_QUESTION);
   const [loading, setLoading] = useState(true);
   const [finished, setFinished] = useState(false);
+  const [streakInfo, setStreakInfo] = useState(null);
   const [startTime, setStartTime] = useState(Date.now());
   const [dailyLimitReached, setDailyLimitReached] = useState(null);
   const [dailyLimitInfo, setDailyLimitInfo] = useState(null);
@@ -329,6 +330,13 @@ export default function PlayQuiz() {
     }
     const awarded = await checkAndAwardDiplomas(session, newTotalScore, correct, questions.length);
     if (awarded) setNewDiploma(awarded);
+    // Update streak (zile consecutive de joc)
+    try {
+      const { data: streakData } = await supabase.rpc('update_user_streak', { p_user_id: session.user.id });
+      if (streakData && streakData.is_new_record && streakData.current_streak >= 3) {
+        setStreakInfo(streakData);
+      }
+    } catch (e) { console.error('Streak error:', e); }
   }
 
   async function createChallenge() {
@@ -403,6 +411,14 @@ export default function PlayQuiz() {
     return (
       <>
         {newDiploma && <DiplomaPopup diploma={newDiploma} onClose={() => setNewDiploma(null)} />}
+        {streakInfo && (
+          <div style={{position:'fixed',top:'1rem',left:'50%',transform:'translateX(-50%)',zIndex:1000,background:'linear-gradient(135deg, #f97316, #dc2626)',color:'white',padding:'1rem 1.5rem',borderRadius:'16px',boxShadow:'0 10px 40px rgba(220,38,38,0.4)',minWidth:'280px',textAlign:'center',cursor:'pointer',animation:'slideDown 0.5s'}} onClick={() => setStreakInfo(null)}>
+            <div style={{fontSize:'2.5rem'}}>🔥</div>
+            <div style={{fontWeight:900,fontSize:'1.3rem',marginTop:'0.25rem'}}>Streak {streakInfo.current_streak} zile!</div>
+            <div style={{fontSize:'0.9rem',opacity:0.95,marginTop:'0.25rem'}}>{streakInfo.is_new_record ? '🏆 Record personal!' : 'Continuă zi de zi pentru bonus!'}</div>
+            <div style={{fontSize:'0.75rem',opacity:0.8,marginTop:'0.5rem'}}>Apasă pentru a închide</div>
+          </div>
+        )}
         <div className="container">
           <div className="results">
             <div style={{fontSize:'4rem'}}>{pct >= 80 ? 'Excelent' : pct >= 60 ? 'Bine' : pct >= 40 ? 'Ok' : 'Mai studiaza'}</div>

@@ -104,6 +104,14 @@ export default function Profile() {
             <div style={{fontSize:'2rem', fontWeight:700}}>{profile?.games_played || 0}</div>
             <div style={{opacity:0.85, fontSize:'0.9rem'}}>Jocuri jucate</div>
           </div>
+          <div style={{background:'rgba(249,115,22,0.25)',padding:'0.75rem',borderRadius:'12px'}}>
+            <div style={{fontSize:'2rem', fontWeight:700}}>🔥 {profile?.current_streak || 0}</div>
+            <div style={{opacity:0.85, fontSize:'0.9rem'}}>Zile consecutive</div>
+          </div>
+          <div style={{background:'rgba(234,179,8,0.25)',padding:'0.75rem',borderRadius:'12px'}}>
+            <div style={{fontSize:'2rem', fontWeight:700}}>🏆 {profile?.longest_streak || 0}</div>
+            <div style={{opacity:0.85, fontSize:'0.9rem'}}>Record streak</div>
+          </div>
         </div>
       </div>
 
