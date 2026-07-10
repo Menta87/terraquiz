@@ -6,6 +6,8 @@ import { supabase } from '../lib/supabase';
 export default function Profile() {
   const router = useRouter();
   const [profile, setProfile] = useState(null);
+  const [showAvatarPicker, setShowAvatarPicker] = useState(false);
+  const [isPremiumUser, setIsPremiumUser] = useState(false);
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(true);
   const [subscription, setSubscription] = useState(null);
@@ -75,9 +77,17 @@ export default function Profile() {
     }
   }
 
-  if (loading) return <div className="loading container">Se încarcă...</div>;
+  async function changeAvatar(emoji) {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session) return;
+    await supabase.from('profiles').update({ avatar_emoji: emoji }).eq('id', session.user.id);
+    setProfile({ ...profile, avatar_emoji: emoji });
+    setShowAvatarPicker(false);
+  }
+    if (loading) return <div className="loading container">Se încarcă...</div>;
 
   const isPremium = subscription?.isPremium;
+  if (isPremium !== isPremiumUser) setIsPremiumUser(isPremium);
   const willCancel = subscription?.cancelAtPeriodEnd;
   const periodEnd = subscription?.currentPeriodEnd 
     ? new Date(subscription.currentPeriodEnd).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' })
@@ -92,7 +102,8 @@ export default function Profile() {
         borderRadius:'12px',
         marginBottom:'2rem'
       }}>
-        <div style={{fontSize:'4rem'}}>👤</div>
+        <div style={{fontSize:'4rem', cursor:'pointer', transition:'transform 0.2s'}} onClick={() => setShowAvatarPicker(true)} onMouseEnter={e => e.currentTarget.style.transform='scale(1.1)'} onMouseLeave={e => e.currentTarget.style.transform='scale(1)'} title="Click pentru a schimba avatarul">{profile?.avatar_emoji || '👤'}</div>
+        <div style={{fontSize:'0.75rem', opacity:0.8, marginTop:'-0.25rem'}}>click pentru a schimba</div>
         <h1 style={{color:'white', margin:'0.5rem 0'}}>{profile?.username || 'Anonim'}</h1>
         <p style={{opacity:0.9}}>{profile?.email}</p>
         <div style={{display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'1rem', marginTop:'1.5rem'}}>
@@ -232,6 +243,34 @@ export default function Profile() {
           🚪 Deconectează-mă
         </button>
       </div>
+      {showAvatarPicker && (
+        <div style={{position:'fixed',top:0,left:0,right:0,bottom:0,background:'rgba(0,0,0,0.7)',display:'flex',alignItems:'center',justifyContent:'center',zIndex:9999,padding:'1rem'}} onClick={() => setShowAvatarPicker(false)}>
+          <div style={{background:'white',borderRadius:'20px',padding:'2rem',maxWidth:'500px',width:'100%',maxHeight:'80vh',overflowY:'auto'}} onClick={e => e.stopPropagation()}>
+            <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:'1rem'}}>
+              <h2 style={{margin:0,color:'#1e293b'}}>Alege un avatar</h2>
+              <button onClick={() => setShowAvatarPicker(false)} style={{background:'none',border:'none',fontSize:'1.5rem',cursor:'pointer',color:'#64748b'}}>×</button>
+            </div>
+            <div style={{fontSize:'0.9rem',color:'#64748b',marginBottom:'1rem'}}>Free - 20 avatare disponibile</div>
+            <div style={{display:'grid',gridTemplateColumns:'repeat(5, 1fr)',gap:'0.75rem',marginBottom:'1.5rem'}}>
+              {["👤","😀","😎","🤓","🧐","🤠","🥳","👨‍🎓","👩‍🎓","👨‍🏫","👩‍🏫","🦁","🐯","🦉","🐺","🦊","🐨","🐼","🐸","🐙"].map(emoji => (
+                <button key={emoji} onClick={() => changeAvatar(emoji)} style={{fontSize:'2rem',padding:'0.75rem',border: profile?.avatar_emoji === emoji ? '3px solid #8b5cf6' : '2px solid #e2e8f0',borderRadius:'12px',background: profile?.avatar_emoji === emoji ? '#ede9fe' : 'white',cursor:'pointer',transition:'all 0.2s'}}>{emoji}</button>
+              ))}
+            </div>
+            <div style={{fontSize:'0.9rem',color:'#f59e0b',fontWeight:700,marginBottom:'1rem'}}>👑 Premium - 20 avatare exclusive</div>
+            <div style={{display:'grid',gridTemplateColumns:'repeat(5, 1fr)',gap:'0.75rem'}}>
+              {["👑","💎","🏆","⚡","🌟","🔥","🚀","🦄","🐉","🦅","🦈","🐆","🦁","⚔️","🎯","🎖️","🏅","💫","✨","🌈"].map(emoji => (
+                <button key={emoji} onClick={() => isPremiumUser ? changeAvatar(emoji) : null} disabled={!isPremiumUser} style={{fontSize:'2rem',padding:'0.75rem',border: profile?.avatar_emoji === emoji ? '3px solid #f59e0b' : '2px solid #fef3c7',borderRadius:'12px',background: profile?.avatar_emoji === emoji ? '#fef3c7' : '#fffbeb',cursor: isPremiumUser ? 'pointer' : 'not-allowed',opacity: isPremiumUser ? 1 : 0.4,transition:'all 0.2s',position:'relative'}}>{emoji}{!isPremiumUser && <div style={{position:'absolute',top:'2px',right:'2px',fontSize:'0.6rem'}}>🔒</div>}</button>
+              ))}
+            </div>
+            {!isPremiumUser && (
+              <div style={{marginTop:'1rem',padding:'1rem',background:'linear-gradient(135deg, #fef3c7, #fde68a)',borderRadius:'12px',textAlign:'center'}}>
+                <div style={{color:'#92400e',fontWeight:700}}>👑 Deblochează avatarele Premium</div>
+                <a href="/premium" style={{display:'inline-block',marginTop:'0.5rem',padding:'0.5rem 1rem',background:'#f59e0b',color:'white',borderRadius:'8px',textDecoration:'none',fontWeight:700}}>Devino Premium</a>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
