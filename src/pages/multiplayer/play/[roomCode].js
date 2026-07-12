@@ -233,6 +233,28 @@ export default function PlayerRoom() {
     // (prin RPC reveal_question_scores)
   }
 
+  // AUTO-ADVANCE la duel: după 5 sec de reveal → următoarea întrebare (doar host declanșează)
+  useEffect(() => {
+    if (!room || !room.is_duel || !room.show_results || room.status !== 'playing') return;
+    if (room.host_id !== player?.user_id) return; // Doar host declanseaza
+    const timer = setTimeout(async () => {
+      const nextIdx = room.current_question_idx + 1;
+      const totalQuestions = room.question_count || 10;
+      if (nextIdx >= totalQuestions) {
+        // Terminare duel
+        await supabase.from('multiplayer_rooms').update({ status: 'finished' }).eq('id', room.id);
+      } else {
+        // Următoarea întrebare
+        await supabase.from('multiplayer_rooms').update({ 
+          current_question_idx: nextIdx, 
+          question_started_at: new Date().toISOString(), 
+          show_results: false 
+        }).eq('id', room.id);
+      }
+    }, 5000);
+    return () => clearTimeout(timer);
+  }, [room?.show_results, room?.current_question_idx, room?.is_duel, room?.status]);
+
   async function startDuel() {
     if (!room || !room.is_duel) return;
     const now = new Date().toISOString();
