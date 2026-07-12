@@ -31,36 +31,9 @@ export default function AdminCodes() {
   }
 
   async function loadUsers(code) {
-    // 1. Iau utilizările
-    const { data: uses, error: usesErr } = await supabase
-      .from('user_promo_uses')
-      .select('*')
-      .eq('code', code)
-      .order('used_at', { ascending: false });
-    
-    console.log('Utilizări:', uses, 'Eroare:', usesErr);
-    
-    if (!uses || uses.length === 0) {
-      setUsers([]);
-      return;
-    }
-    
-    // 2. Iau profilurile pentru utilizatori
-    const userIds = uses.map(u => u.user_id);
-    const { data: profiles } = await supabase
-      .from('profiles')
-      .select('id, username, email')
-      .in('id', userIds);
-    
-    console.log('Profile:', profiles);
-    
-    // 3. Combin datele
-    const enrichedUses = uses.map(u => ({
-      ...u,
-      profile: profiles?.find(p => p.id === u.user_id) || { username: 'Anonim', email: '-' }
-    }));
-    
-    setUsers(enrichedUses);
+    const { data, error } = await supabase.rpc('get_promo_code_users', { p_code: code });
+    if (error) console.error('RPC error:', error);
+    setUsers(data || []);
   }
 
   async function toggleCodeStatus(codeId, isActive) {
@@ -175,8 +148,8 @@ export default function AdminCodes() {
                       alignItems:'center'
                     }}>
                       <div style={{fontWeight:800, color:'#5b21b6', textAlign:'center'}}>#{i+1}</div>
-                      <div style={{fontWeight:700, color:'#1e293b'}}>{u.profile?.username || 'Anonim'}</div>
-                      <div style={{fontSize:'0.85rem', color:'#64748b'}}>{u.profile?.email || '-'}</div>
+                      <div style={{fontWeight:700, color:'#1e293b'}}>{u.username || 'Anonim'}</div>
+                      <div style={{fontSize:'0.85rem', color:'#64748b'}}>{u.email || '-'}</div>
                       <div style={{fontSize:'0.85rem', color:'#475569'}}>{new Date(u.used_at).toLocaleString('ro-RO')}</div>
                     </div>
                   ))}
