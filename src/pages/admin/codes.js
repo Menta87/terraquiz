@@ -1,3 +1,4 @@
+import { requireAdmin } from '../../lib/adminAuth';
 import { useEffect, useState } from 'react';
 import { supabase } from '../../lib/supabase';
 
@@ -162,3 +163,6 @@ export default function AdminCodes() {
     </div>
   );
 }
+
+
+export const getServerSideProps = requireAdmin();

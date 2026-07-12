@@ -1,3 +1,4 @@
+import { requireAdmin } from '../../lib/adminAuth';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { supabase } from '../../lib/supabase';
@@ -211,3 +212,6 @@ function Section({ title, children }) {
     </div>
   );
 }
+
+
+export const getServerSideProps = requireAdmin();
