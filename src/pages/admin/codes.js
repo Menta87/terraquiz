@@ -15,8 +15,10 @@ export default function AdminCodes() {
     const { data: { session } } = await supabase.auth.getSession();
     if (!session) { window.location.href = '/login'; return; }
     
-    const { data: profile } = await supabase.from('profiles').select('email').eq('id', session.user.id).single();
-    if (profile?.email !== 'robert_menta@yahoo.com') {
+    // Verific email din auth (mai fiabil decât profiles.email care poate fi null)
+    const userEmail = session.user.email;
+    if (userEmail !== 'robert_menta@yahoo.com') {
+      console.log('Email verificat:', userEmail);
       setLoading(false);
       return;
     }
