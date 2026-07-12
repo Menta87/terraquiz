@@ -42,6 +42,39 @@ export default function HostRoom() {
       setLoading(false);
       return;
     }
+    // DUEL 1v1: host-ul JOACĂ împreună cu adversarul
+    if (r.is_duel) {
+      // Verific dacă host e deja înregistrat ca player
+      const { data: existingPlayer } = await supabase
+        .from('multiplayer_players')
+        .select('*')
+        .eq('room_id', r.id)
+        .eq('user_id', session.user.id)
+        .maybeSingle();
+      
+      if (!existingPlayer) {
+        // Adaug host-ul ca player
+        const { data: profile } = await supabase.from('profiles').select('username, avatar_emoji').eq('id', session.user.id).single();
+        const { data: newPlayer } = await supabase.from('multiplayer_players').insert({
+          room_id: r.id,
+          user_id: session.user.id,
+          nickname: profile?.username || r.host_name,
+          avatar_emoji: profile?.avatar_emoji || '👤'
+        }).select().single();
+        
+        if (newPlayer && typeof window !== 'undefined') {
+          localStorage.setItem(`mp_player_${roomCode}`, newPlayer.id);
+        }
+      } else if (typeof window !== 'undefined') {
+        localStorage.setItem(`mp_player_${roomCode}`, existingPlayer.id);
+      }
+      
+      // Auto-start jocul când al doilea player intră (verific în interval)
+      // Sau host-ul poate porni manual de pe pagina /play (are un buton special)
+      // Redirect la /play pentru a juca
+      router.push(`/multiplayer/play/${roomCode}`);
+      return;
+    }
     setRoom(r);
     const { data: qs } = await supabase.from('questions').select('*').in('id', r.question_ids);
     if (qs) {

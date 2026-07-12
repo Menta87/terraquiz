@@ -222,7 +222,18 @@ export default function PlayerRoom() {
     // (prin RPC reveal_question_scores)
   }
 
-  if (loading) return <div className="loading container">Se incarca...</div>;
+  async function startDuel() {
+    if (!room || !room.is_duel) return;
+    const now = new Date().toISOString();
+    await supabase.from('multiplayer_rooms').update({ 
+      status: 'playing', 
+      current_question_idx: 0, 
+      question_started_at: now, 
+      show_results: false 
+    }).eq('id', room.id);
+  }
+
+    if (loading) return <div className="loading container">Se incarca...</div>;
   if (error) return (<div className="container" style={{padding:'4rem 0', textAlign:'center'}}><h2>{error}</h2><Link href="/multiplayer" className="btn btn-primary" style={{marginTop:'1rem'}}>Inapoi</Link></div>);
 
   if (room.status === 'waiting') {
@@ -236,11 +247,35 @@ export default function PlayerRoom() {
               <div style={{fontSize:'0.95rem', marginBottom:'0.5rem'}}>Esti in camera:</div>
               <div style={{fontSize:'1.3rem', fontWeight:700}}>{room.chapter_emoji} {room.chapter_name}</div>
             </div>
-            <div style={{padding:'1.5rem 0'}}>
-              <div style={{fontSize:'3rem'}}>⏳</div>
-              <div style={{color:'#64748b', marginTop:'0.5rem', fontSize:'1.1rem'}}>Astept ca profesorul sa porneasca jocul...</div>
-            </div>
-            <div style={{padding:'1rem', background:'#f8fafc', borderRadius:'12px', fontSize:'0.95rem', color:'#475569'}}>
+            {room.is_duel ? (
+              <>
+                {players.length < 2 ? (
+                  <div style={{padding:'1.5rem 0'}}>
+                    <div style={{fontSize:'3rem'}}>⏳</div>
+                    <div style={{color:'#64748b', marginTop:'0.5rem', fontSize:'1.1rem'}}>Aștept adversarul să intre cu codul...</div>
+                    <div style={{marginTop:'1rem', padding:'0.75rem', background:'#fef3c7', borderRadius:'10px', color:'#78350f', fontWeight:700}}>Trimite codul: <span style={{fontFamily:'monospace', fontSize:'1.2rem'}}>{roomCode}</span></div>
+                  </div>
+                ) : (
+                  <>
+                    <div style={{padding:'1.5rem 0'}}>
+                      <div style={{fontSize:'3rem'}}>⚔️</div>
+                      <div style={{color:'#dc2626', marginTop:'0.5rem', fontSize:'1.2rem', fontWeight:700}}>Adversarul e aici!</div>
+                    </div>
+                    {room.host_id === player.user_id ? (
+                      <button onClick={startDuel} style={{width:'100%', padding:'1.25rem', background:'linear-gradient(135deg, #dc2626, #b91c1c)', color:'white', border:'none', borderRadius:'12px', fontSize:'1.2rem', fontWeight:800, cursor:'pointer', boxShadow:'0 4px 12px rgba(220,38,38,0.4)'}}>⚔️ START DUEL!</button>
+                    ) : (
+                      <div style={{padding:'1rem', background:'#f8fafc', borderRadius:'10px', color:'#64748b'}}>Așteptăm gazda să pornească duelul...</div>
+                    )}
+                  </>
+                )}
+              </>
+            ) : (
+              <div style={{padding:'1.5rem 0'}}>
+                <div style={{fontSize:'3rem'}}>⏳</div>
+                <div style={{color:'#64748b', marginTop:'0.5rem', fontSize:'1.1rem'}}>Astept ca profesorul sa porneasca jocul...</div>
+              </div>
+            )}
+            <div style={{padding:'1rem', background:'#f8fafc', borderRadius:'12px', fontSize:'0.95rem', color:'#475569', marginTop:'1rem'}}>
               👥 {players.length} {players.length === 1 ? 'jucator' : 'jucatori'} in camera
             </div>
           </div>
