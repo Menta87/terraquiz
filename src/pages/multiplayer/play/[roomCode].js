@@ -210,6 +210,17 @@ export default function PlayerRoom() {
     setPointsEarned(points);
     
     // Salvam doar raspunsul - scorul NU se actualizeaza inca!
+    // La duel: verifică dacă ambii au răspuns → auto-reveal
+    if (room.is_duel) {
+      setTimeout(async () => {
+        try {
+          await supabase.rpc('check_duel_auto_reveal', {
+            p_room_id: room.id,
+            p_question_idx: room.current_question_idx
+          });
+        } catch (e) { console.error('Auto-reveal error:', e); }
+      }, 500);
+    }
     // Profesorul va apela RPC reveal_question_scores cand da "Arata raspunsul"
     await supabase.from('multiplayer_answers').insert({
       room_id: room.id, player_id: player.id, question_idx: room.current_question_idx,
