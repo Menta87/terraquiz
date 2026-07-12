@@ -60,6 +60,16 @@ export default function MultiplayerHome() {
       return;
     }
 
+    // Rate limit: max 10 camere per user/oră
+    const { data: rateCheck } = await supabase.rpc('check_room_creation_limit', { 
+      p_user_id: session.user.id 
+    });
+    if (rateCheck && !rateCheck.allowed) {
+      setError(`Prea multe camere create. Așteaptă ${rateCheck.retry_after_minutes} min.`);
+      setLoading(false);
+      return;
+    }
+
     const { data: profile } = await supabase.from('profiles').select('username').eq('id', session.user.id).single();
     const hostName = profile?.username || 'Profesor';
 
@@ -171,6 +181,15 @@ export default function MultiplayerHome() {
     }
     const { data: profile } = await supabase.from('profiles').select('username').eq('id', session.user.id).single();
     const hostName = profile?.username || 'Jucator';
+    // Rate limit: max 10 dueluri per user/oră
+    const { data: rateDuel } = await supabase.rpc('check_room_creation_limit', { 
+      p_user_id: session.user.id 
+    });
+    if (rateDuel && !rateDuel.allowed) {
+      setError(`Prea multe dueluri create. Așteaptă ${rateDuel.retry_after_minutes} min.`);
+      setLoading(false);
+      return;
+    }
     const chapter = CHAPTERS_LIST.find(c => c.id === selectedChapter);
     const { data: questions } = await supabase.from('questions').select('id').eq('chapter_id', selectedChapter);
     if (!questions || questions.length < 10) {
