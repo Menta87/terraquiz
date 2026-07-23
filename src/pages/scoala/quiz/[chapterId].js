@@ -146,10 +146,10 @@ export default function SchoolQuiz() {
         {!showResult ? (
           q.type === 'multiple_choice' ? (
             <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'0.75rem'}}>
-              {[{key:'option_a',color:'#ef4444',shape:'▲'},{key:'option_b',color:'#3b82f6',shape:'◆'},{key:'option_c',color:'#eab308',shape:'●'},{key:'option_d',color:'#22c55e',shape:'■'}].map(({key,color,shape}) => {
+              {[{key:'option_a',letter:'A',color:'#ef4444',shape:'▲'},{key:'option_b',letter:'B',color:'#3b82f6',shape:'◆'},{key:'option_c',letter:'C',color:'#eab308',shape:'●'},{key:'option_d',letter:'D',color:'#22c55e',shape:'■'}].map(({key,letter,color,shape}) => {
                 const opt = q[key];
                 if (!opt) return null;
-                return (<button key={key} onClick={() => handleAnswer(opt)} style={{padding:'1.5rem 1rem',background: color,color:'white',border:'none',borderRadius:'12px',fontSize:'1rem',fontWeight:700,cursor:'pointer',minHeight:'100px',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',gap:'0.5rem'}}><div style={{fontSize:'1.75rem'}}>{shape}</div><div style={{textAlign:'center'}}>{opt}</div></button>);
+                return (<button key={key} onClick={() => handleAnswer(letter)} style={{padding:'1.5rem 1rem',background: color,color:'white',border:'none',borderRadius:'12px',fontSize:'1rem',fontWeight:700,cursor:'pointer',minHeight:'100px',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',gap:'0.5rem'}}><div style={{fontSize:'1.75rem'}}>{shape}</div><div style={{textAlign:'center'}}>{opt}</div></button>);
               })}
             </div>
           ) : (
@@ -162,7 +162,7 @@ export default function SchoolQuiz() {
           <div style={{background: isCorrect ? '#d1fae5' : '#fee2e2',borderRadius:'16px',padding:'1.5rem',textAlign:'center'}}>
             <div style={{fontSize:'3.5rem'}}>{isCorrect ? '✅' : '❌'}</div>
             <h2 style={{color: isCorrect ? '#065f46' : '#991b1b',marginTop:'0.5rem',fontSize:'1.5rem'}}>{isCorrect ? 'Corect!' : 'Greșit'}</h2>
-            {!isCorrect && <div style={{color:'#475569',marginTop:'0.75rem',fontSize:'0.95rem'}}>Răspuns corect: <strong>{q.correct_answer}</strong></div>}
+            {!isCorrect && <div style={{color:'#475569',marginTop:'0.75rem',fontSize:'0.95rem'}}>Răspuns corect: <strong>{q.correct_answer} - {q['option_' + q.correct_answer.toLowerCase()]}</strong></div>}
             {q.explanation && (
               <div style={{background:'rgba(255,255,255,0.7)',padding:'1rem',borderRadius:'10px',marginTop:'1rem',textAlign:'left',color:'#1e293b',fontSize:'0.92rem',lineHeight:1.5}}>
                 💡 <strong>Explicație:</strong> {q.explanation}
