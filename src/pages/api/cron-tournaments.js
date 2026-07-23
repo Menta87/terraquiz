@@ -18,6 +18,28 @@ export default async function handler(req, res) {
     const { data, error } = await supabase.rpc('weekly_tournament_cycle');
     
     if (error) throw error;
+    
+    // Trimit email câștigătorilor (care nu au primit încă notificarea)
+    const { data: pendingRewards } = await supabase
+      .from('user_rewards')
+      .select('id, user_id')
+      .eq('reward_type', 'tournament_winner')
+      .is('notification_sent_at', null);
+    
+    if (pendingRewards && pendingRewards.length > 0) {
+      for (const reward of pendingRewards) {
+        try {
+          await fetch(`${req.headers.host?.includes('localhost') ? 'http' : 'https'}://${req.headers.host}/api/notify-winner`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${process.env.CRON_SECRET}`
+            },
+            body: JSON.stringify({ userId: reward.user_id, rewardId: reward.id })
+          });
+        } catch (e) { console.error('Notify error:', e); }
+      }
+    }
 
     // Trimit email de notificare
     const resend = new Resend(process.env.RESEND_API_KEY);
