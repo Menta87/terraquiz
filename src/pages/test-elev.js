@@ -65,9 +65,19 @@ export default function TestEntry() {
 
   async function submitTest() {
     setLoading(true);
+    // Citesc answers cel mai proaspăt prin functional setter (avoid stale closure)
+    let currentAnswers = answers;
+    await new Promise(resolve => {
+      setAnswers(prev => {
+        currentAnswers = prev;
+        resolve();
+        return prev;
+      });
+    });
+    
     let correct = 0;
     questions.forEach(q => {
-      const userAns = answers[String(q.id)];
+      const userAns = currentAnswers[String(q.id)];
       if (!userAns) return;
       if (q.type === 'multiple_choice') {
         if (userAns === q.correct_answer) correct++;
@@ -91,7 +101,7 @@ export default function TestEntry() {
       total_questions: total,
       score_percent: scorePct,
       grade: grade,
-      answers: answers,
+      answers: currentAnswers,
       finished_at: new Date().toISOString(),
       time_taken_seconds: timeTaken
     });
