@@ -60,14 +60,14 @@ export default function TestEntry() {
   }
 
   function selectAnswer(qId, answer) {
-    setAnswers(prev => ({ ...prev, [qId]: answer }));
+    setAnswers(prev => ({ ...prev, [String(qId)]: answer }));
   }
 
   async function submitTest() {
     setLoading(true);
     let correct = 0;
     questions.forEach(q => {
-      const userAns = answers[q.id];
+      const userAns = answers[String(q.id)];
       if (!userAns) return;
       if (q.type === 'multiple_choice') {
         if (userAns === q.correct_answer) correct++;
@@ -158,7 +158,7 @@ export default function TestEntry() {
               {[{key:'option_a', letter:'A', color:'#ef4444'},{key:'option_b', letter:'B', color:'#3b82f6'},{key:'option_c', letter:'C', color:'#eab308'},{key:'option_d', letter:'D', color:'#22c55e'}].map(({key, letter, color}) => {
                 const opt = q[key];
                 if (!opt) return null;
-                const isSelected = answers[q.id] === letter;
+                const isSelected = answers[String(q.id)] === letter;
                 return (
                   <button key={key} onClick={() => selectAnswer(q.id, letter)} style={{padding:'1rem', background: isSelected ? color : 'white', color: isSelected ? 'white' : '#1e293b', border:'3px solid ' + color, borderRadius:'12px', fontWeight:700, cursor:'pointer', textAlign:'left'}}>
                     <div style={{fontSize:'0.85rem', opacity:0.85}}>{letter}</div>
@@ -168,7 +168,7 @@ export default function TestEntry() {
               })}
             </div>
           ) : (
-            <input type="text" placeholder="Scrie răspunsul..." value={answers[q.id] || ''} onChange={e => selectAnswer(q.id, e.target.value)} style={{width:'100%', padding:'1rem', border:'2px solid #e2e8f0', borderRadius:'12px', fontSize:'1rem', marginBottom:'1rem'}} />
+            <input type="text" placeholder="Scrie răspunsul..." value={answers[String(q.id)] || ''} onChange={e => selectAnswer(q.id, e.target.value)} style={{width:'100%', padding:'1rem', border:'2px solid #e2e8f0', borderRadius:'12px', fontSize:'1rem', marginBottom:'1rem'}} />
           )}
           
           <div style={{display:'flex', gap:'0.5rem', marginTop:'1.5rem'}}>

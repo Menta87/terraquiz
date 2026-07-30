@@ -344,6 +344,9 @@ export default function MultiplayerHome() {
             <button onClick={() => setMode('duel')} style={{width:'100%', padding:'1.5rem', background:'linear-gradient(135deg, #dc2626, #b91c1c)', color:'white', border:'none', borderRadius:'12px', fontSize:'1.2rem', fontWeight:700, cursor:'pointer', marginBottom:'1rem', boxShadow:'0 4px 12px rgba(220, 38, 38, 0.4)'}}>
               ⚔️ Duel 1v1 rapid
             </button>
+            <Link href="/test-elev" style={{display:'block', width:'100%', padding:'1.5rem', background:'linear-gradient(135deg, #0891b2, #0e7490)', color:'white', border:'none', borderRadius:'12px', fontSize:'1.2rem', fontWeight:700, cursor:'pointer', marginBottom:'1rem', boxShadow:'0 4px 12px rgba(8, 145, 178, 0.4)', textAlign:'center', textDecoration:'none'}}>
+              📝 Test de la profesor (cod)
+            </Link>
             <button onClick={() => setMode('join')} style={{width:'100%', padding:'1.5rem', background:'linear-gradient(135deg, #10b981, #059669)', color:'white', border:'none', borderRadius:'12px', fontSize:'1.2rem', fontWeight:700, cursor:'pointer', boxShadow:'0 4px 12px rgba(16, 185, 129, 0.4)'}}>
               🎯 Intra cu cod
             </button>
