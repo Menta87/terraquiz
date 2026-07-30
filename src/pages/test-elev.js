@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { supabase } from '../lib/supabase';
@@ -12,6 +12,7 @@ export default function TestEntry() {
   const [questions, setQuestions] = useState([]);
   const [currentIdx, setCurrentIdx] = useState(0);
   const [answers, setAnswers] = useState({});
+  const answersRef = useRef({});
   const [startedAt, setStartedAt] = useState(null);
   const [timeLeft, setTimeLeft] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -60,24 +61,22 @@ export default function TestEntry() {
   }
 
   function selectAnswer(qId, answer) {
-    setAnswers(prev => ({ ...prev, [String(qId)]: answer }));
+    const key = String(qId);
+    answersRef.current = { ...answersRef.current, [key]: answer };
+    setAnswers(prev => ({ ...prev, [key]: answer }));
+    console.log('Salvat răspuns:', key, '=', answer, '| Total răspunsuri:', Object.keys(answersRef.current).length);
   }
 
   async function submitTest() {
     setLoading(true);
-    // Citesc answers cel mai proaspăt prin functional setter (avoid stale closure)
-    let currentAnswers = answers;
-    await new Promise(resolve => {
-      setAnswers(prev => {
-        currentAnswers = prev;
-        resolve();
-        return prev;
-      });
-    });
+    const currentAnswers = answersRef.current;
+    console.log('Submit test cu răspunsuri:', currentAnswers);
+    console.log('Nr total răspunsuri:', Object.keys(currentAnswers).length);
     
     let correct = 0;
     questions.forEach(q => {
       const userAns = currentAnswers[String(q.id)];
+      console.log('Q', q.id, 'răspuns:', userAns, 'corect:', q.correct_answer);
       if (!userAns) return;
       if (q.type === 'multiple_choice') {
         if (userAns === q.correct_answer) correct++;
