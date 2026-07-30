@@ -9,6 +9,7 @@ export default function TestReport() {
   const [loading, setLoading] = useState(true);
   const [test, setTest] = useState(null);
   const [results, setResults] = useState([]);
+  const [className, setClassName] = useState('');
 
   useEffect(() => { if (id) load(); }, [id]);
 
@@ -22,15 +23,29 @@ export default function TestReport() {
       return;
     }
     setTest(testData);
+    setClassName(`Clasa a ${['V','VI','VII','VIII'][testData.class_level - 5]}-a`);
     
-    const { data: resultsData } = await supabase.from('test_results').select('*').eq('test_id', id).order('grade', { ascending: false });
+    const { data: resultsData } = await supabase.from('test_results').select('*').eq('test_id', id).order('student_name');
     setResults(resultsData || []);
     setLoading(false);
   }
 
+  function printReport() {
+    window.print();
+  }
+
   function exportCSV() {
-    const header = 'Nume,Nota,Corecte,Total,Timp (min),Data\n';
-    const rows = results.map(r => `"${r.student_name}",${r.grade},${r.correct_answers},${r.total_questions},${Math.round((r.time_taken_seconds || 0) / 60)},${new Date(r.finished_at || r.started_at).toLocaleString('ro-RO')}`).join('\n');
+    const header = 'Nr.crt,Numele si prenumele elevului,Total punctaj,Nota\n';
+    let rows = '';
+    let idx = 1;
+    combined.forEach(s => {
+      if (s.result) {
+        rows += `${idx},"${s.name}",${s.result.score_percent.toFixed(0)},${s.result.grade}\n`;
+      } else {
+        rows += `${idx},"${s.name}",-,ABSENT\n`;
+      }
+      idx++;
+    });
     const csv = header + rows;
     const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8' });
     const url = URL.createObjectURL(blob);
@@ -43,124 +58,139 @@ export default function TestReport() {
   if (loading) return <div className="loading container">Se încarcă...</div>;
   if (!test) return <div className="container" style={{padding:'4rem', textAlign:'center'}}><h2>Test negăsit</h2><Link href="/profesor" className="btn btn-primary">← Înapoi</Link></div>;
 
-  // Statistici
-  const totalStudents = results.length;
-  const averageGrade = totalStudents > 0 ? (results.reduce((sum, r) => sum + parseFloat(r.grade), 0) / totalStudents).toFixed(2) : 0;
-  const highestGrade = totalStudents > 0 ? Math.max(...results.map(r => parseFloat(r.grade))).toFixed(2) : 0;
-  const lowestGrade = totalStudents > 0 ? Math.min(...results.map(r => parseFloat(r.grade))).toFixed(2) : 0;
+  // Combin lista așteptată cu cei prezenți
+  const expected = (test.expected_students || []);
+  const presentByName = {};
+  results.forEach(r => { presentByName[r.student_name.toLowerCase().trim()] = r; });
+  
+  // Elevii așteptați + cei prezenți NEașteptați
+  const allStudents = new Map();
+  expected.forEach(name => {
+    allStudents.set(name.toLowerCase().trim(), { name, result: presentByName[name.toLowerCase().trim()] || null });
+  });
+  results.forEach(r => {
+    const key = r.student_name.toLowerCase().trim();
+    if (!allStudents.has(key)) {
+      allStudents.set(key, { name: r.student_name, result: r });
+    }
+  });
+  const combined = Array.from(allStudents.values()).sort((a, b) => a.name.localeCompare(b.name, 'ro'));
+  
+  const presentResults = results;
+  const totalStudents = expected.length || presentResults.length;
+  const testedCount = presentResults.length;
+  const absentCount = totalStudents - testedCount;
+  
+  // Media generală (doar cei prezenți)
+  const averageGrade = testedCount > 0 ? (presentResults.reduce((sum, r) => sum + parseFloat(r.grade), 0) / testedCount).toFixed(2) : 0;
 
   // Distribuție pe intervale
   const intervals = [
-    { label: '1 - 3.99', min: 1, max: 3.99, color: '#dc2626' },
-    { label: '4 - 4.99', min: 4, max: 4.99, color: '#f97316' },
-    { label: '5 - 5.99', min: 5, max: 5.99, color: '#eab308' },
-    { label: '6 - 6.99', min: 6, max: 6.99, color: '#84cc16' },
-    { label: '7 - 7.99', min: 7, max: 7.99, color: '#10b981' },
-    { label: '8 - 8.99', min: 8, max: 8.99, color: '#06b6d4' },
-    { label: '9 - 9.99', min: 9, max: 9.99, color: '#3b82f6' },
-    { label: '10', min: 10, max: 10, color: '#8b5cf6' }
+    { label: '1-3,99', min: 1, max: 3.99 },
+    { label: '4-4,99', min: 4, max: 4.99 },
+    { label: '5-5,99', min: 5, max: 5.99 },
+    { label: '6-6,99', min: 6, max: 6.99 },
+    { label: '7-7,99', min: 7, max: 7.99 },
+    { label: '8-8,99', min: 8, max: 8.99 },
+    { label: '9-9,99', min: 9, max: 9.99 },
+    { label: '10', min: 10, max: 10 }
   ];
   
   const distribution = intervals.map(i => ({
     ...i,
-    count: results.filter(r => {
+    count: presentResults.filter(r => {
       const g = parseFloat(r.grade);
       return g >= i.min && g <= i.max;
     }).length
   }));
 
-  // Elevi absenți
-  const presentNames = results.map(r => r.student_name.toLowerCase().trim());
-  const absentStudents = (test.expected_students || []).filter(s => !presentNames.includes(s.toLowerCase().trim()));
-
   return (
-    <div className="container" style={{padding:'2rem 1.5rem', maxWidth:'1000px'}}>
-      <Link href="/profesor" style={{color:'#8b5cf6', textDecoration:'none', fontWeight:700}}>← Panou profesor</Link>
+    <div style={{padding:'2rem 1.5rem', maxWidth:'900px', margin:'0 auto'}}>
+      <style jsx global>{`
+        @media print {
+          .no-print { display: none !important; }
+          body { background: white; }
+          table { page-break-inside: avoid; }
+        }
+      `}</style>
       
-      <div style={{background:'linear-gradient(135deg, #8b5cf6, #6d28d9)', color:'white', padding:'2rem', borderRadius:'16px', marginTop:'1rem'}}>
-        <h1 style={{margin:0, color:'white'}}>{test.test_name}</h1>
-        <div style={{opacity:0.9, marginTop:'0.5rem'}}>Clasa {test.class_level} • {test.question_count} întrebări • {test.duration_minutes} min</div>
-        <div style={{marginTop:'1rem', background:'rgba(255,255,255,0.2)', padding:'0.75rem', borderRadius:'10px', display:'inline-block', fontFamily:'monospace', fontWeight:900, fontSize:'1.4rem'}}>Cod: {test.test_code}</div>
+      <div className="no-print" style={{marginBottom:'1rem'}}>
+        <Link href="/profesor" style={{color:'#8b5cf6', textDecoration:'none', fontWeight:700}}>← Panou profesor</Link>
       </div>
 
-      {/* KPI */}
-      <div style={{display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(180px, 1fr))', gap:'1rem', marginTop:'2rem'}}>
-        <div style={{background:'white', padding:'1.25rem', borderRadius:'12px', boxShadow:'0 2px 6px rgba(0,0,0,0.05)'}}>
-          <div style={{fontSize:'0.85rem', color:'#64748b', textTransform:'uppercase', fontWeight:700}}>Elevi prezenți</div>
-          <div style={{fontSize:'2rem', fontWeight:900, color:'#5b21b6', marginTop:'0.25rem'}}>{totalStudents}</div>
-        </div>
-        <div style={{background:'white', padding:'1.25rem', borderRadius:'12px', boxShadow:'0 2px 6px rgba(0,0,0,0.05)'}}>
-          <div style={{fontSize:'0.85rem', color:'#64748b', textTransform:'uppercase', fontWeight:700}}>Media clasei</div>
-          <div style={{fontSize:'2rem', fontWeight:900, color:'#10b981', marginTop:'0.25rem'}}>{averageGrade}</div>
-        </div>
-        <div style={{background:'white', padding:'1.25rem', borderRadius:'12px', boxShadow:'0 2px 6px rgba(0,0,0,0.05)'}}>
-          <div style={{fontSize:'0.85rem', color:'#64748b', textTransform:'uppercase', fontWeight:700}}>Nota max</div>
-          <div style={{fontSize:'2rem', fontWeight:900, color:'#8b5cf6', marginTop:'0.25rem'}}>{highestGrade}</div>
-        </div>
-        <div style={{background:'white', padding:'1.25rem', borderRadius:'12px', boxShadow:'0 2px 6px rgba(0,0,0,0.05)'}}>
-          <div style={{fontSize:'0.85rem', color:'#64748b', textTransform:'uppercase', fontWeight:700}}>Nota min</div>
-          <div style={{fontSize:'2rem', fontWeight:900, color:'#dc2626', marginTop:'0.25rem'}}>{lowestGrade}</div>
-        </div>
+      <div className="no-print" style={{display:'flex', gap:'0.75rem', marginBottom:'1.5rem', flexWrap:'wrap'}}>
+        <button onClick={printReport} style={{padding:'0.75rem 1.25rem', background:'#5b21b6', color:'white', border:'none', borderRadius:'8px', fontWeight:700, cursor:'pointer'}}>🖨️ Print / PDF</button>
+        <button onClick={exportCSV} style={{padding:'0.75rem 1.25rem', background:'#10b981', color:'white', border:'none', borderRadius:'8px', fontWeight:700, cursor:'pointer'}}>📥 Export CSV</button>
       </div>
 
-      {/* Distribuție note */}
-      <h2 style={{color:'#1e293b', marginTop:'2rem'}}>📊 Distribuție note</h2>
-      <div style={{background:'white', padding:'1.5rem', borderRadius:'12px', boxShadow:'0 2px 6px rgba(0,0,0,0.05)'}}>
-        {distribution.map(d => {
-          const pct = totalStudents > 0 ? (d.count / totalStudents) * 100 : 0;
-          return (
-            <div key={d.label} style={{marginBottom:'0.75rem'}}>
-              <div style={{display:'flex', justifyContent:'space-between', marginBottom:'0.25rem'}}>
-                <span style={{fontWeight:700, color:'#1e293b'}}>{d.label}</span>
-                <span style={{color:'#64748b', fontWeight:700}}>{d.count} elevi ({pct.toFixed(0)}%)</span>
-              </div>
-              <div style={{background:'#f1f5f9', height:'24px', borderRadius:'8px', overflow:'hidden'}}>
-                <div style={{background: d.color, height:'100%', width: Math.max(pct, 1) + '%', transition:'width 0.5s'}}></div>
-              </div>
-            </div>
-          );
-        })}
+      {/* Header raport */}
+      <div style={{textAlign:'center', marginBottom:'2rem'}}>
+        <h1 style={{fontSize:'1.5rem', margin:'0', color:'#1e293b', textTransform:'uppercase'}}>Interpretarea rezultatelor – Analiză statistică</h1>
+        <div style={{marginTop:'0.5rem', color:'#475569'}}>{test.test_name}</div>
+        <div style={{marginTop:'0.25rem', color:'#64748b', fontSize:'0.9rem'}}>Cod test: <strong>{test.test_code}</strong> • Data: {new Date().toLocaleDateString('ro-RO')}</div>
       </div>
 
-      {/* Elevi absenți */}
-      {absentStudents.length > 0 && (
-        <>
-          <h2 style={{color:'#dc2626', marginTop:'2rem'}}>⚠️ Elevi absenți ({absentStudents.length})</h2>
-          <div style={{background:'#fee2e2', padding:'1.25rem', borderRadius:'12px'}}>
-            {absentStudents.map((name, i) => (
-              <div key={i} style={{padding:'0.5rem', color:'#991b1b', fontWeight:600}}>❌ {name}</div>
-            ))}
-          </div>
-        </>
-      )}
+      {/* Tabel elevi */}
+      <table style={{width:'100%', borderCollapse:'collapse', marginBottom:'2rem', fontSize:'0.9rem'}}>
+        <thead>
+          <tr style={{background:'#f1f5f9'}}>
+            <th style={{border:'1px solid #94a3b8', padding:'0.5rem', textAlign:'center', fontWeight:700}}>Nr.crt.</th>
+            <th style={{border:'1px solid #94a3b8', padding:'0.5rem', textAlign:'left', fontWeight:700}}>Numele și prenumele elevului</th>
+            <th style={{border:'1px solid #94a3b8', padding:'0.5rem', textAlign:'center', fontWeight:700}}>Total punctaj</th>
+            <th style={{border:'1px solid #94a3b8', padding:'0.5rem', textAlign:'center', fontWeight:700}}>Nota</th>
+          </tr>
+        </thead>
+        <tbody>
+          {combined.map((s, i) => (
+            <tr key={i}>
+              <td style={{border:'1px solid #94a3b8', padding:'0.5rem', textAlign:'center'}}>{i + 1}.</td>
+              <td style={{border:'1px solid #94a3b8', padding:'0.5rem'}}>{s.name}</td>
+              <td style={{border:'1px solid #94a3b8', padding:'0.5rem', textAlign:'center'}}>
+                {s.result ? `${s.result.correct_answers}/${s.result.total_questions}` : '-'}
+              </td>
+              <td style={{border:'1px solid #94a3b8', padding:'0.5rem', textAlign:'center', fontWeight: s.result ? 700 : 400, color: s.result ? '#1e293b' : '#dc2626'}}>
+                {s.result ? s.result.grade : 'ABSENT'}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
 
-      {/* Lista elevi prezenți */}
-      <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', marginTop:'2rem'}}>
-        <h2 style={{color:'#1e293b', margin:0}}>👥 Rezultate elevi ({results.length})</h2>
-        {results.length > 0 && <button onClick={exportCSV} style={{padding:'0.75rem 1.25rem', background:'#10b981', color:'white', border:'none', borderRadius:'10px', fontWeight:700, cursor:'pointer'}}>📥 Export CSV</button>}
+      {/* Statistici finale */}
+      <div style={{marginTop:'2rem'}}>
+        <div style={{fontWeight:800, color:'#1e293b', marginBottom:'0.5rem'}}>{className}</div>
+        <div style={{marginBottom:'1rem'}}>- <strong>media generală a clasei:</strong> {averageGrade.replace('.', ',')}</div>
+        
+        <table style={{width:'100%', borderCollapse:'collapse', fontSize:'0.9rem'}}>
+          <thead>
+            <tr style={{background:'#f1f5f9'}}>
+              <th rowSpan="2" style={{border:'1px solid #94a3b8', padding:'0.5rem', verticalAlign:'middle'}}>Clasa</th>
+              <th rowSpan="2" style={{border:'1px solid #94a3b8', padding:'0.5rem', verticalAlign:'middle'}}>Nr. de elevi testați</th>
+              <th colSpan="8" style={{border:'1px solid #94a3b8', padding:'0.5rem'}}>Note între</th>
+            </tr>
+            <tr style={{background:'#f8fafc'}}>
+              {intervals.map(i => (
+                <th key={i.label} style={{border:'1px solid #94a3b8', padding:'0.5rem', fontSize:'0.85rem'}}>{i.label}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style={{border:'1px solid #94a3b8', padding:'0.5rem', textAlign:'center', fontWeight:700}}>{className}</td>
+              <td style={{border:'1px solid #94a3b8', padding:'0.5rem', textAlign:'center'}}>{testedCount}/{totalStudents}</td>
+              {distribution.map(d => (
+                <td key={d.label} style={{border:'1px solid #94a3b8', padding:'0.5rem', textAlign:'center'}}>
+                  {d.count > 0 ? d.count : '-'}
+                </td>
+              ))}
+            </tr>
+          </tbody>
+        </table>
       </div>
       
-      {results.length === 0 ? (
-        <div style={{padding:'3rem', textAlign:'center', background:'white', borderRadius:'12px', color:'#64748b', marginTop:'1rem'}}>
-          Niciun elev nu a susținut testul încă.
-          <br /><br />
-          Trimite codul <strong style={{color:'#5b21b6', fontFamily:'monospace'}}>{test.test_code}</strong> elevilor și rugă-i să intre pe <strong>terraquiz.ro/test-elev</strong>
-        </div>
-      ) : (
-        <div style={{background:'white', borderRadius:'12px', overflow:'hidden', marginTop:'1rem', boxShadow:'0 2px 6px rgba(0,0,0,0.05)'}}>
-          {results.map((r, i) => {
-            const grade = parseFloat(r.grade);
-            const bg = grade >= 9 ? '#dcfce7' : grade >= 7 ? '#dbeafe' : grade >= 5 ? '#fef3c7' : '#fee2e2';
-            const gradeColor = grade >= 9 ? '#166534' : grade >= 7 ? '#1e40af' : grade >= 5 ? '#78350f' : '#991b1b';
-            return (
-              <div key={r.id} style={{display:'grid', gridTemplateColumns:'40px 1fr auto auto', gap:'1rem', padding:'1rem 1.25rem', borderBottom:'1px solid #e2e8f0', alignItems:'center', background: i % 2 === 0 ? 'white' : '#f8fafc'}}>
-                <div style={{fontWeight:800, color:'#5b21b6', textAlign:'center'}}>#{i+1}</div>
-                <div style={{fontWeight:700, color:'#1e293b'}}>{r.student_name}</div>
-                <div style={{color:'#64748b', fontSize:'0.85rem'}}>{r.correct_answers}/{r.total_questions} corecte</div>
-                <div style={{background: bg, color: gradeColor, padding:'0.5rem 1rem', borderRadius:'8px', fontWeight:900, fontSize:'1.2rem', minWidth:'70px', textAlign:'center'}}>{r.grade}</div>
-              </div>
-            );
-          })}
+      {absentCount > 0 && (
+        <div style={{marginTop:'1.5rem', padding:'0.85rem', background:'#fef3c7', borderRadius:'8px', color:'#78350f'}}>
+          <strong>Absenți:</strong> {absentCount} elev(i)
         </div>
       )}
     </div>
