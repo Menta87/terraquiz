@@ -60,6 +60,8 @@ export default function Layout({ children }) {
 
                     <Link href="/recompense" style={{background:'linear-gradient(135deg, #10b981, #059669)', color:'white', padding:'0.4rem 0.9rem', borderRadius:'8px', fontWeight:700}}>🎁 Recompense</Link>
 
+                    <Link href="/profesor" style={{background:'linear-gradient(135deg, #0891b2, #0e7490)', color:'white', padding:'0.4rem 0.9rem', borderRadius:'8px', fontWeight:700}}>🎓 Profesor</Link>
+
             {isPremium ? (
               <Link href="/premium" style={{background:'linear-gradient(135deg, #f59e0b, #d97706)', color:'white', padding:'0.4rem 0.9rem', borderRadius:'8px', fontWeight:700, marginLeft:'0.25rem'}}>
                 👑 Premium
