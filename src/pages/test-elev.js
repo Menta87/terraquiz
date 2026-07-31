@@ -51,7 +51,8 @@ export default function TestEntry() {
     if (existing) return setError(`Ai făcut deja acest test. Nota obținută: ${existing.grade}`);
     
     setLoading(true);
-    const { data: qs } = await supabase.from('school_questions').select('*').in('id', test.question_ids);
+    const sourceTable = test.question_source === 'custom' ? 'teacher_questions' : 'school_questions';
+    const { data: qs } = await supabase.from(sourceTable).select('*').in('id', test.question_ids);
     const ordered = test.question_ids.map(id => qs.find(q => q.id === id)).filter(Boolean);
     setQuestions(ordered);
     setStartedAt(Date.now());
@@ -159,6 +160,9 @@ export default function TestEntry() {
             <div style={{background: timeLeft < 300 ? '#fee2e2' : '#ede9fe', color: timeLeft < 300 ? '#991b1b' : '#5b21b6', padding:'0.5rem 1rem', borderRadius:'8px', fontWeight:800, fontFamily:'monospace'}}>⏱ {mins}:{secs.toString().padStart(2, '0')}</div>
           </div>
           <div style={{background:'#f8fafc', padding:'1.5rem', borderRadius:'12px', marginBottom:'1.25rem'}}>
+            {q.image_url && (
+              <img src={q.image_url} alt="Imagine întrebare" style={{maxWidth:'100%', maxHeight:'350px', borderRadius:'10px', marginBottom:'1rem', display:'block'}} />
+            )}
             <div style={{fontWeight:700, color:'#1e293b', fontSize:'1.1rem'}}>{q.question_text}</div>
           </div>
           
