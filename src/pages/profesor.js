@@ -85,6 +85,12 @@ export default function ProfesorPage() {
     return Math.random().toString(36).substring(2, 8).toUpperCase();
   }
 
+  async function deleteTest(testId, testName) {
+    if (!confirm(`Sigur vrei să ștergi testul "${testName}"? Se vor șterge și rezultatele elevilor asociate.`)) return;
+    await supabase.from('teacher_tests').delete().eq('id', testId);
+    load();
+  }
+
   async function createTest() {
     setError('');
     if (!testName.trim()) return setError('Introdu numele testului');
@@ -283,16 +289,17 @@ export default function ProfesorPage() {
       ) : (
         <div style={{display:'flex', flexDirection:'column', gap:'0.75rem'}}>
           {tests.map(t => (
-            <Link key={t.id} href={`/profesor/test/${t.id}`} style={{background:'white', padding:'1.25rem', borderRadius:'12px', textDecoration:'none', color:'inherit', boxShadow:'0 2px 6px rgba(0,0,0,0.05)', display:'grid', gridTemplateColumns:'1fr auto', gap:'1rem', alignItems:'center'}}>
-              <div>
+            <div key={t.id} style={{background:'white', padding:'1.25rem', borderRadius:'12px', boxShadow:'0 2px 6px rgba(0,0,0,0.05)', display:'grid', gridTemplateColumns:'1fr auto auto', gap:'1rem', alignItems:'center'}}>
+              <Link href={`/profesor/test/${t.id}`} style={{textDecoration:'none', color:'inherit'}}>
                 <div style={{fontWeight:800, color:'#1e293b', fontSize:'1.05rem'}}>{t.test_name}</div>
                 <div style={{color:'#64748b', fontSize:'0.85rem', marginTop:'0.25rem'}}>Clasa {t.class_level} • {t.question_count} întrebări • {t.duration_minutes} min • Creat: {new Date(t.created_at).toLocaleDateString('ro-RO')}</div>
-              </div>
-              <div style={{textAlign:'right'}}>
+              </Link>
+              <Link href={`/profesor/test/${t.id}`} style={{textAlign:'right', textDecoration:'none'}}>
                 <div style={{background:'linear-gradient(135deg, #ede9fe, #ddd6fe)', padding:'0.5rem 0.85rem', borderRadius:'8px', fontFamily:'monospace', fontWeight:900, color:'#5b21b6', fontSize:'1.1rem'}}>{t.test_code}</div>
                 <div style={{color:'#8b5cf6', marginTop:'0.5rem', fontSize:'0.85rem', fontWeight:700}}>Vezi rezultate →</div>
-              </div>
-            </Link>
+              </Link>
+              <button onClick={() => deleteTest(t.id, t.test_name)} style={{padding:'0.6rem 0.8rem', background:'#fee2e2', color:'#991b1b', border:'none', borderRadius:'8px', fontWeight:700, cursor:'pointer', height:'fit-content'}}>🗑️</button>
+            </div>
           ))}
         </div>
       )}
