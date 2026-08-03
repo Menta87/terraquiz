@@ -51,6 +51,7 @@ export default async function handler(req, res) {
     // 4. Trimite în batch-uri
     let sentCount = 0;
     let errorCount = 0;
+    let failedEmails = [];
 
     for (let i = 0; i < recipients.length; i += 25) {
       const batch = recipients.slice(i, i + 25);
@@ -75,16 +76,33 @@ export default async function handler(req, res) {
 
       try {
         const { error } = await resend.batch.send(emails);
-        if (error) errorCount += batch.length;
-        else sentCount += batch.length;
+        if (error) {
+          for (const emailPayload of emails) {
+            try {
+              const { error: singleError } = await resend.emails.send(emailPayload);
+              if (singleError) { errorCount++; failedEmails.push(emailPayload.to[0]); }
+              else { sentCount++; }
+              await new Promise(r => setTimeout(r, 150));
+            } catch (e) { errorCount++; failedEmails.push(emailPayload.to[0]); }
+          }
+        } else {
+          sentCount += batch.length;
+        }
       } catch (e) {
-        errorCount += batch.length;
+        for (const emailPayload of emails) {
+          try {
+            const { error: singleError } = await resend.emails.send(emailPayload);
+            if (singleError) { errorCount++; failedEmails.push(emailPayload.to[0]); }
+            else { sentCount++; }
+            await new Promise(r => setTimeout(r, 150));
+          } catch (e2) { errorCount++; failedEmails.push(emailPayload.to[0]); }
+        }
       }
-
       await new Promise(r => setTimeout(r, 1200));
     }
 
     // 5. Trimite raport la admin
+    const failedListHtml = failedEmails.length > 0 ? ('<p>📋 Adrese eșuate: <br/>' + failedEmails.join('<br/>') + '</p>') : '';
     try {
       await resend.emails.send({
         from: 'TerraQuiz Cron <newsletter@terraquiz.ro>',
@@ -94,6 +112,7 @@ export default async function handler(req, res) {
           <h2>Newsletter trimis automat</h2>
           <p>✅ Livrate: <strong>${sentCount}</strong></p>
           <p>❌ Erori: <strong>${errorCount}</strong></p>
+          ${failedListHtml}
           <p>📅 Data: ${new Date().toLocaleString('ro-RO')}</p>
         `,
       });
