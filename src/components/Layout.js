@@ -58,6 +58,8 @@ export default function Layout({ children }) {
 
                     <Link href="/diplome">Diplome</Link>
 
+                    <Link href="/harti" style={{background:'linear-gradient(135deg, #059669, #047857)', color:'white', padding:'0.4rem 0.9rem', borderRadius:'8px', fontWeight:700}}>🗺️ Hărți</Link>
+
                     <Link href="/recompense" style={{background:'linear-gradient(135deg, #10b981, #059669)', color:'white', padding:'0.4rem 0.9rem', borderRadius:'8px', fontWeight:700}}>🎁 Recompense</Link>
 
                     <Link href="/profesor" style={{background:'linear-gradient(135deg, #0891b2, #0e7490)', color:'white', padding:'0.4rem 0.9rem', borderRadius:'8px', fontWeight:700}}>🎓 Profesor</Link>
