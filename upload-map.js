@@ -25,7 +25,10 @@ async function main() {
   const sizeMB = (buffer.length / 1024 / 1024).toFixed(2);
 
   const ext = imageUrl.split('.').pop().split('?')[0].toLowerCase();
-  const fileName = `${region.toLowerCase().replace(/\s+/g, '-')}-${mapType}-${Date.now()}.${ext}`;
+  const safeRegion = region.toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '') // elimin diacritice
+    .replace(/\s+/g, '-');
+  const fileName = `${safeRegion}-${mapType}-${Date.now()}.${ext}`;
 
   console.log('Încarc în Supabase Storage...');
   const { error: uploadError } = await supabase.storage.from('continent-maps').upload(fileName, buffer, {
