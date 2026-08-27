@@ -18,6 +18,21 @@ export default async function handler(req, res) {
     const { data, error } = await supabase.rpc('weekly_tournament_cycle');
     
     if (error) throw error;
+
+    // Recompensă pentru locul 1 la clasamentul săptămânal precedent
+    const { data: leaderboardReward } = await supabase.rpc('weekly_leaderboard_reward_cycle');
+    if (leaderboardReward?.winner_found) {
+      try {
+        await fetch(`${req.headers.host?.includes('localhost') ? 'http' : 'https'}://${req.headers.host}/api/notify-winner`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${process.env.CRON_SECRET}`
+          },
+          body: JSON.stringify({ userId: leaderboardReward.winner_id, rewardId: leaderboardReward.reward.reward_id })
+        });
+      } catch (e) { console.error('Notify leaderboard winner error:', e); }
+    }
     
     // Trimit email câștigătorilor (care nu au primit încă notificarea)
     const { data: pendingRewards } = await supabase
