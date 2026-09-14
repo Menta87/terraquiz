@@ -19,22 +19,8 @@ export default async function handler(req, res) {
     
     if (error) throw error;
 
-    // Recompensă pentru locul 1 la clasamentul săptămânal precedent
-    const { data: leaderboardReward } = await supabase.rpc('weekly_leaderboard_reward_cycle');
-    if (leaderboardReward?.winner_found) {
-      try {
-        await fetch(`${req.headers.host?.includes('localhost') ? 'http' : 'https'}://${req.headers.host}/api/notify-winner`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${process.env.CRON_SECRET}`
-          },
-          body: JSON.stringify({ userId: leaderboardReward.winner_id, rewardId: leaderboardReward.reward.reward_id })
-        });
-      } catch (e) { console.error('Notify leaderboard winner error:', e); }
-    }
-    
-    // Trimit email câștigătorilor (care nu au primit încă notificarea)
+    // PRIORITATE: Trimit email câștigătorilor de TURNEU care nu au primit încă notificarea
+    // (primul pas, ca să nu piardă din cauza timeout-ului funcției)
     const { data: pendingRewards } = await supabase
       .from('user_rewards')
       .select('id, user_id')
@@ -54,6 +40,21 @@ export default async function handler(req, res) {
           });
         } catch (e) { console.error('Notify error:', e); }
       }
+    }
+
+    // Recompensă pentru locul 1 la clasamentul săptămânal precedent
+    const { data: leaderboardReward } = await supabase.rpc('weekly_leaderboard_reward_cycle');
+    if (leaderboardReward?.winner_found) {
+      try {
+        await fetch(`${req.headers.host?.includes('localhost') ? 'http' : 'https'}://${req.headers.host}/api/notify-winner`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${process.env.CRON_SECRET}`
+          },
+          body: JSON.stringify({ userId: leaderboardReward.winner_id, rewardId: leaderboardReward.reward.reward_id })
+        });
+      } catch (e) { console.error('Notify leaderboard winner error:', e); }
     }
 
     // Trimit email de notificare
