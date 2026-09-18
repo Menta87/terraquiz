@@ -48,7 +48,7 @@ export default async function handler(req, res) {
     // Trimit email
     const resend = new Resend(process.env.RESEND_API_KEY);
     
-    await resend.emails.send({
+    const { data: sendData, error: sendError } = await resend.emails.send({
       from: 'TerraQuiz <noreply@terraquiz.ro>',
       to: [email],
       subject: `🏆 Felicitări! Ai câștigat ${reward.premium_days} zile Premium GRATUIT!`,
@@ -99,13 +99,18 @@ export default async function handler(req, res) {
       `
     });
 
-    // Marchez că s-a trimis notificarea
+    if (sendError) {
+      console.error('Resend error:', sendError);
+      return res.status(500).json({ error: 'Resend a refuzat trimiterea', details: sendError });
+    }
+
+    // Marchez că s-a trimis notificarea DOAR daca Resend a confirmat succesul
     await supabase
       .from('user_rewards')
       .update({ notification_sent_at: new Date().toISOString() })
       .eq('id', rewardId);
 
-    res.status(200).json({ success: true, email });
+    res.status(200).json({ success: true, email, resendId: sendData?.id });
   } catch (e) {
     console.error('Error:', e);
     res.status(500).json({ error: e.message });
