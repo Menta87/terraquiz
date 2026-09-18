@@ -143,7 +143,7 @@ export default function Diplome() {
     doc.setFontSize(14);
     doc.setTextColor(...th.text);
     doc.setFont('helvetica', 'bold');
-    doc.text('🌍 TERRAQUIZ', 148.5, 30, { align: 'center' });
+    doc.text('TERRAQUIZ', 148.5, 30, { align: 'center' });
     doc.setFontSize(10);
     doc.setFont('helvetica', 'normal');
     doc.text('Aplicatie educationala de geografie', 148.5, 36, { align: 'center' });
@@ -229,7 +229,7 @@ export default function Diplome() {
     // Footer
     doc.setFontSize(10);
     doc.setTextColor(...th.dark);
-    doc.text('🌐 terraquiz.ro', 148.5, 185, { align: 'center' });
+    doc.text('terraquiz.ro', 148.5, 185, { align: 'center' });
     
     // Save
     doc.save('Diploma_' + diploma.diploma_name.replace(/ /g, '_') + '.pdf');
