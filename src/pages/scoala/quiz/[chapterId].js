@@ -39,7 +39,7 @@ export default function SchoolQuiz() {
     } catch (e) { router.push('/premium'); return; }
 
     const { data: ch } = await supabase.from('school_chapters').select('*').eq('id', chapterId).maybeSingle();
-    if (!ch) { router.push('/scoala'); return; }
+    if (!ch || ch.is_active === false) { router.push('/scoala'); return; }
     setChapter(ch);
 
     const { data: qs } = await supabase.from('school_questions').select('*').eq('school_chapter_id', chapterId);
@@ -130,48 +130,4 @@ export default function SchoolQuiz() {
         <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',background:'white',padding:'0.75rem 1rem',borderRadius:'12px',marginBottom:'1rem'}}>
           <div style={{fontWeight:700,color:'#1e293b'}}>{chapter?.chapter_emoji} {chapter?.chapter_name}</div>
           <div style={{display:'flex',gap:'0.75rem',alignItems:'center'}}>
-            <div style={{background:'#ede9fe',color:'#5b21b6',padding:'0.4rem 0.75rem',borderRadius:'8px',fontWeight:800}}>{score} pct</div>
-            <div style={{background: timeLeft <= 5 ? '#fee2e2' : '#f1f5f9',color: timeLeft <= 5 ? '#dc2626' : '#1e293b',padding:'0.4rem 0.75rem',borderRadius:'8px',fontWeight:800}}>⏱️ {timeLeft}s</div>
-          </div>
-        </div>
-
-        <div style={{background:'white',borderRadius:'16px',padding:'1.5rem',marginBottom:'1rem'}}>
-          <div style={{display:'flex',justifyContent:'space-between',marginBottom:'0.75rem'}}>
-            <span style={{color:'#94a3b8',fontSize:'0.85rem',fontWeight:600}}>Întrebarea {currentIdx + 1} / {questions.length}</span>
-            <span style={{background: q.level === 'Avansat' ? '#fef3c7' : '#dbeafe',color: q.level === 'Avansat' ? '#92400e' : '#1e40af',padding:'0.2rem 0.6rem',borderRadius:'8px',fontSize:'0.75rem',fontWeight:700}}>{q.level}</span>
-          </div>
-          <h2 style={{color:'#1e293b',fontSize:'1.25rem',lineHeight:1.5,fontWeight:700,margin:0}}>{q.question_text}</h2>
-        </div>
-
-        {!showResult ? (
-          q.type === 'multiple_choice' ? (
-            <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'0.75rem'}}>
-              {[{key:'option_a',letter:'A',color:'#ef4444',shape:'▲'},{key:'option_b',letter:'B',color:'#3b82f6',shape:'◆'},{key:'option_c',letter:'C',color:'#eab308',shape:'●'},{key:'option_d',letter:'D',color:'#22c55e',shape:'■'}].map(({key,letter,color,shape}) => {
-                const opt = q[key];
-                if (!opt) return null;
-                return (<button key={key} onClick={() => handleAnswer(letter)} style={{padding:'1.5rem 1rem',background: color,color:'white',border:'none',borderRadius:'12px',fontSize:'1rem',fontWeight:700,cursor:'pointer',minHeight:'100px',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',gap:'0.5rem'}}><div style={{fontSize:'1.75rem'}}>{shape}</div><div style={{textAlign:'center'}}>{opt}</div></button>);
-              })}
-            </div>
-          ) : (
-            <div style={{background:'white',borderRadius:'16px',padding:'1.5rem'}}>
-              <input type="text" placeholder="Scrie răspunsul..." value={fillAnswer} onChange={e => setFillAnswer(e.target.value)} onKeyDown={e => e.key === 'Enter' && handleAnswer(fillAnswer)} autoFocus style={{width:'100%',padding:'1rem',fontSize:'1.1rem',border:'2px solid #e2e8f0',borderRadius:'12px',marginBottom:'1rem'}} />
-              <button onClick={() => handleAnswer(fillAnswer)} style={{width:'100%',padding:'1rem',background:'linear-gradient(135deg, #8b5cf6, #6d28d9)',color:'white',border:'none',borderRadius:'12px',fontSize:'1.05rem',fontWeight:700,cursor:'pointer'}}>Trimite</button>
-            </div>
-          )
-        ) : (
-          <div style={{background: isCorrect ? '#d1fae5' : '#fee2e2',borderRadius:'16px',padding:'1.5rem',textAlign:'center'}}>
-            <div style={{fontSize:'3.5rem'}}>{isCorrect ? '✅' : '❌'}</div>
-            <h2 style={{color: isCorrect ? '#065f46' : '#991b1b',marginTop:'0.5rem',fontSize:'1.5rem'}}>{isCorrect ? 'Corect!' : 'Greșit'}</h2>
-            {!isCorrect && <div style={{color:'#475569',marginTop:'0.75rem',fontSize:'0.95rem'}}>Răspuns corect: <strong>{q.correct_answer} - {q['option_' + q.correct_answer.toLowerCase()]}</strong></div>}
-            {q.explanation && (
-              <div style={{background:'rgba(255,255,255,0.7)',padding:'1rem',borderRadius:'10px',marginTop:'1rem',textAlign:'left',color:'#1e293b',fontSize:'0.92rem',lineHeight:1.5}}>
-                💡 <strong>Explicație:</strong> {q.explanation}
-              </div>
-            )}
-            <button onClick={nextQuestion} style={{marginTop:'1.25rem',padding:'1rem 2rem',background:'linear-gradient(135deg, #8b5cf6, #6d28d9)',color:'white',border:'none',borderRadius:'10px',fontSize:'1.05rem',fontWeight:700,cursor:'pointer'}}>{currentIdx + 1 >= questions.length ? '🏁 Vezi scor' : '➡️ Următoarea'}</button>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
+            <div style={{background:'#ede9fe',color:'#5b21b6'
