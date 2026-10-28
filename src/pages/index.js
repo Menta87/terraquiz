@@ -29,15 +29,17 @@ export default function Home() {
     loadAll();
   }, []);
 
-  async function loadAll() {
-    const [chaptersRes, countsRes, totalCount, playersCount, schoolQuestionsCount, schoolChaptersCount] = await Promise.all([
+    async function loadAll() {
+    const [chaptersRes, countsRes, totalCount, playersCount, schoolQuestionsRes, schoolChaptersCount] = await Promise.all([
       supabase.from('chapters').select('*').order('order_num'),
       supabase.rpc('get_chapter_counts'),
       supabase.from('questions').select('*', { count: 'exact', head: true }),
       supabase.from('profiles').select('*', { count: 'exact', head: true }),
-      supabase.from('school_questions').select('*', { count: 'exact', head: true }),
-      supabase.from('school_chapters').select('*', { count: 'exact', head: true }),
+      supabase.from('school_chapters').select('question_count').eq('is_active', true),
+      supabase.from('school_chapters').select('*', { count: 'exact', head: true }).eq('is_active', true),
     ]);
+
+    const activeSchoolQuestions = (schoolQuestionsRes.data || []).reduce((sum, r) => sum + (r.question_count || 0), 0);
     
     const counts = {};
     if (countsRes.data) {
@@ -60,11 +62,11 @@ export default function Home() {
       } catch (e) { console.error('Challenge error:', e); }
     }
     setStats({
-      totalQuestions: (totalCount.count || 0) + (schoolQuestionsCount.count || 0),
+      totalQuestions: (totalCount.count || 0) + activeSchoolQuestions,
       totalChapters: chaptersRes.data?.length || 0,
       totalPlayers: playersCount.count || 0,
       totalDiplomas: 26,
-      totalSchoolQuestions: schoolQuestionsCount.count || 0,
+      totalSchoolQuestions: activeSchoolQuestions,
       totalSchoolChapters: schoolChaptersCount.count || 0,
       totalBacVariants: 50,
     });
@@ -214,8 +216,7 @@ export default function Home() {
               Programa scolara V-XII
             </h2>
             <p style={{fontSize:'1.15rem', opacity:0.95, maxWidth:'700px', margin:'0 auto 2rem', lineHeight:1.5}}>
-              {stats.totalSchoolQuestions} intrebari Premium pe programa oficiala (OM 3393/2017), pentru toate cele 8 clase. {stats.totalSchoolChapters} capitole, cu explicatii educative la fiecare intrebare.
-            </p>
+                            {stats.totalSchoolQuestions} intrebari Premium pe programa scolara in vigoare, pentru toate cele 8 clase. {stats.totalSchoolChapters} capitole, cu explicatii educative la fiecare intrebare.
             <div style={{display:'flex',gap:'1rem',justifyContent:'center',flexWrap:'wrap'}}>
               <a href="/scoala" style={{
                 display:'inline-block',
