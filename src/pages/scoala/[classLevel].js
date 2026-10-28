@@ -37,12 +37,20 @@ export default function ClassDetail() {
       .from('school_chapters')
       .select('*')
       .eq('class_level', parseInt(classLevel))
+      .eq('is_active', true)
       .order('order_idx');
     setChapters(chs || []);
     setLoading(false);
   }
 
   const classInfo = CLASS_NAMES[parseInt(classLevel)] || { name: 'Clasa ' + classLevel, emoji: '📚', subtitle: '' };
+
+  const now = new Date();
+  const startYear = now.getMonth() >= 8 ? now.getFullYear() : now.getFullYear() - 1;
+  const schoolYear = startYear + '-' + (startYear + 1);
+  const programa = chapters[0]?.curriculum === 'noua_2025'
+    ? 'OMEC 6.930/2025 (programa nouă)'
+    : 'OM 3393/28.02.2017';
 
   if (loading) return <div style={{padding:'4rem',textAlign:'center'}}>Se încarcă...</div>;
 
@@ -70,7 +78,7 @@ export default function ClassDetail() {
             <p style={{margin:0,fontSize:'1rem',lineHeight:1.6}}>
               📚 {chapters.length > 0 ? chapters.length + ' capitole disponibile' : 'Capitolele sunt în pregătire'}<br/>
               🎯 15 întrebări per capitol<br/>
-              ✨ Conform programei OM 3393/28.02.2017
+              ✨ Programa în vigoare {schoolYear}: {programa}
             </p>
           </div>
           <div style={{background:'linear-gradient(135deg, #8b5cf6, #6d28d9)',color:'white',borderRadius:'16px',padding:'1.75rem',marginTop:'1.5rem'}}>
@@ -96,6 +104,9 @@ export default function ClassDetail() {
           <p style={{fontSize:'1.05rem',opacity:0.95}}>{classInfo.subtitle}</p>
           <div style={{display:'inline-block',background:'rgba(255,255,255,0.2)',color:'white',padding:'0.4rem 1rem',borderRadius:'20px',marginTop:'0.75rem',fontSize:'0.9rem'}}>
             👑 Premium activat · {chapters.length} {chapters.length === 1 ? 'capitol' : 'capitole'}
+          </div>
+          <div style={{color:'white',opacity:0.9,fontSize:'0.85rem',marginTop:'0.6rem'}}>
+            📘 Programa în vigoare pentru anul școlar {schoolYear} · {programa}
           </div>
         </div>
         {chapters.length === 0 ? (
