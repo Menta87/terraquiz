@@ -217,6 +217,7 @@ export default function Home() {
             </h2>
             <p style={{fontSize:'1.15rem', opacity:0.95, maxWidth:'700px', margin:'0 auto 2rem', lineHeight:1.5}}>
                             {stats.totalSchoolQuestions} intrebari Premium pe programa scolara in vigoare, pentru toate cele 8 clase. {stats.totalSchoolChapters} capitole, cu explicatii educative la fiecare intrebare.
+                              </p>
             <div style={{display:'flex',gap:'1rem',justifyContent:'center',flexWrap:'wrap'}}>
               <a href="/scoala" style={{
                 display:'inline-block',
